@@ -116,4 +116,77 @@ class ExtramemView extends DatarunpremiumView {
 		}
 	}
 
+	function Coloring(dc,counter,testvalue) {
+        var mZ1under = 0;
+        var mZ2under = 0;
+        var mZ3under = 0;
+        var mZ4under = 0;
+        var mZ5under = 0;
+        var mZ5upper = 0; 
+        var avgSpeed = (info.averageSpeed != null) ? info.averageSpeed : 0;
+		if (metric[i] == 45 or metric[i] == 46 or metric[i] == 47 or metric[i] == 48 or metric[i] == 49) {  //! HR=45, HR-zone=46, Lap HR=47, L-1 HR=48, Avg HR=49
+            mZ1under = uHrZones[1];
+            mZ2under = uHrZones[2];
+            mZ3under = uHrZones[3];
+            mZ4under = uHrZones[4];
+            mZ5under = uHrZones[5];
+            mZ5upper = 200; 
+        } else if (metric[i] == 50) {  //! Cadence
+            mZ1under = 120;
+            mZ2under = 153;
+            mZ3under = 164;
+            mZ4under = 174;
+            mZ5under = 183;
+            mZ5upper = 300; 
+        } else if (metric[i] == 20 or metric[i] == 21 or metric[i] == 22 or metric[i] == 23 or metric[i] == 24) {  //! Power=20, Pwr 5s=21, L Power=22, L-1 Pwr=23, A Power=24
+        	mZ1under = uPowerZones.substring(0, 3);
+        	mZ2under = uPowerZones.substring(7, 10);
+        	mZ3under = uPowerZones.substring(14, 17);
+        	mZ4under = uPowerZones.substring(21, 24);
+        	mZ5under = uPowerZones.substring(28, 31);
+        	mZ5upper = uPowerZones.substring(35, 38);          
+        	mZ1under = mZ1under.toNumber();
+	        mZ2under = mZ2under.toNumber();
+    	    mZ3under = mZ3under.toNumber();
+	        mZ4under = mZ4under.toNumber();        
+    	    mZ5under = mZ5under.toNumber();
+        	mZ5upper = mZ5upper.toNumber();
+        } else if (metric[i] == 50) {  //! Pace=8, Pace 5s=9, L Pace=10, L-1 Pace=11, AvgPace=12, Speed=40, Spd 5s=41, L Spd=42, LL Spd=43, Avg Spd=44
+            mZ1under = avgSpeed*0.9;
+            mZ2under = avgSpeed*0.95;
+            mZ3under = avgSpeed;
+            mZ4under = avgSpeed*1.05;
+            mZ5under = avgSpeed*1.1;
+            mZ5upper = avgSpeed*1.15; 
+        }       
+        if (TestValue >= mZ5upper) {
+            mfillColour[i] = Graphics.COLOR_PURPLE;        
+			mZone[i] = 5;
+		} else if (TestValue >= mZ5under) {
+			mfillColour[i] = Graphics.COLOR_RED;    	
+			mZone[i] = 4;
+		} else if (TestValue >= mZ4under) {
+			mfillColour[i] = Graphics.COLOR_GREEN;    	
+			mZone[i] = 3;
+		} else if (TestValue >= mZ3under) {
+			mfillColour[i] = Graphics.COLOR_BLUE;        
+			mZone[i] = 2;
+		} else if (TestValue >= mZ2under) {
+			mfillColour[i] = Graphics.COLOR_YELLOW;        
+			mZone[i] = 1;
+		} else if (TestValue >= mZ1under) {
+			mfillColour[i] = Graphics.COLOR_LT_GRAY;        
+			mZone[i] = 0;
+		} else {
+			if (uBlackBackground == true ){
+				mfillColour[i] = Graphics.COLOR_BLACK; 
+			} else {
+				mfillColour[i] = Graphics.COLOR_WHITE;
+			}        
+            mZone[i] = 0;
+		}
+	}
+
+
+
 }

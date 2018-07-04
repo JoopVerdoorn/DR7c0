@@ -36,7 +36,9 @@ class CiqView extends DatarunpremiumView {
 		mColourFont1 = Graphics.COLOR_BLACK;
 		mColourLine = Graphics.COLOR_BLUE;
 		mColourBackGround = Graphics.COLOR_WHITE;
-	
+
+//! specifieke code hierboven	
+//!====================================================================
 
 		var mHash = WatchID.hashCode();
 		mHash = (mHash > 0) ? mHash : -mHash;
@@ -44,9 +46,6 @@ class CiqView extends DatarunpremiumView {
 		ID1 = mHash % 315127+1864;
 		mtest = ((ID2-329)*315127 + ID1-1864) % 74539;
 		mtest = (mtest < 1000) ? mtest + 80000 : mtest; 
-
-//!====================================================================
-
 
 		//!Calculate HR-metrics
 		var info = Activity.getActivityInfo();
@@ -112,5 +111,61 @@ class CiqView extends DatarunpremiumView {
 		}
 
 	}
+
+//! specifieke code hieronder	
+//!====================================================================
+
+	function Coloring(dc,counter,testvalue) {
+        var mZ1under = 0;
+        var mZ2under = 0;
+        var mZ3under = 0;
+        var mZ4under = 0;
+        var mZ5under = 0;
+        var mZ5upper = 0; 
+        var avgSpeed = (info.averageSpeed != null) ? info.averageSpeed : 0;
+        if (metric[i] == 20 or metric[i] == 21 or metric[i] == 22 or metric[i] == 23 or metric[i] == 24) {  //! Power=20, Pwr 5s=21, L Power=22, L-1 Pwr=23, A Power=24
+        	mZ1under = uPowerZones.substring(0, 3);
+        	mZ2under = uPowerZones.substring(7, 10);
+        	mZ3under = uPowerZones.substring(14, 17);
+        	mZ4under = uPowerZones.substring(21, 24);
+        	mZ5under = uPowerZones.substring(28, 31);
+        	mZ5upper = uPowerZones.substring(35, 38);          
+        	mZ1under = mZ1under.toNumber();
+	        mZ2under = mZ2under.toNumber();
+    	    mZ3under = mZ3under.toNumber();
+	        mZ4under = mZ4under.toNumber();        
+    	    mZ5under = mZ5under.toNumber();
+        	mZ5upper = mZ5upper.toNumber();
+        }       
+        if (TestValue >= mZ5upper) {
+            mfillColour[i] = Graphics.COLOR_PURPLE;        
+			mZone[i] = 6;
+		} else if (TestValue >= mZ5under) {
+			mfillColour[i] = Graphics.COLOR_RED;    	
+			mZone[i] = 5;
+		} else if (TestValue >= mZ4under) {
+			mfillColour[i] = Graphics.COLOR_GREEN;    	
+			mZone[i] = 4;
+		} else if (TestValue >= mZ3under) {
+			mfillColour[i] = Graphics.COLOR_BLUE;        
+			mZone[i] = 3;
+		} else if (TestValue >= mZ2under) {
+			mfillColour[i] = Graphics.COLOR_YELLOW;        
+			mZone[i] = 2;
+		} else if (TestValue >= mZ1under) {
+			mfillColour[i] = Graphics.COLOR_LT_GRAY;        
+			mZone[i] = 1;
+		} else {
+			if (uBlackBackground == true ){
+				mfillColour[i] = Graphics.COLOR_BLACK; 
+			} else {
+				mfillColour[i] = Graphics.COLOR_WHITE;
+			}        
+            mZone[i] = 0;
+		}
+	}
+
+
+
 }
 
