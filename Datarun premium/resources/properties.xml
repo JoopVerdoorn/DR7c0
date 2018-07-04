@@ -23,6 +23,7 @@
     <property id="pRequiredPower" type="string">000:999</property>
     <property id="pWarningFreq" type="number">5</property>
     <property id="pAlertbeep" type="boolean">false</property>
+    <property id="pPowerZones" type="string">184:Z1:227:Z2:255:Z3:284:Z4:326:Z5:369</property>    
   </properties>
 
 	
@@ -105,6 +106,7 @@
     <string id="lAPower">Average Stryd footpod power</string>
 	<string id="lLPower">Current lap Stryd footpod power</string>
 	<string id="lLLPower">Last lap Stryd footpod power</string>
+    <string id="lPowerZones">Power zones, a format required like 184:Z1:227:Z2:255:Z3:284:Z4:326:Z5:369</string>
 	<string id="lCEFactor">Current efficiency Index (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
 	<string id="lCEIndex">Current lap efficiency factor (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
     <string id="lCP2HRratio">Current power to heartrate ratio (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
@@ -132,6 +134,9 @@
     </setting>
     <setting propertyKey="@Properties.pRoundedPace" title="@Strings.lRoundedPace">
       <settingConfig type="boolean" required="true" />
+    </setting>
+    <setting propertyKey="@Properties.pPowerZones" title="@Strings.lPowerZones">
+      <settingConfig type="alphaNumeric"  required="true"/>
     </setting>
     <setting propertyKey="@Properties.pRequiredPower" title="@Strings.lRequiredPower">
       <settingConfig type="alphaNumeric"  required="true"/>

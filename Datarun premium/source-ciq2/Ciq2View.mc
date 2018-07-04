@@ -45,6 +45,9 @@ class CiqView extends DatarunpremiumView {
 		mtest = ((ID2-329)*315127 + ID1-1864) % 74539;
 		mtest = (mtest < 1000) ? mtest + 80000 : mtest; 
 
+//!====================================================================
+
+
 		//!Calculate HR-metrics
 		var info = Activity.getActivityInfo();
 		
@@ -74,7 +77,7 @@ class CiqView extends DatarunpremiumView {
             	fieldFormat[i] = "2decimal";
 			} else if (metric[i] == 43) {
     	        fieldValue[i] = (mLastLapSpeed != null) ? 3.6*mLastLapSpeed*1000/unitP : 0;
-        	    fieldLabel[i] = "L-1 Spd";
+        	    fieldLabel[i] = "LL Spd";
             	fieldFormat[i] = "2decimal";
 			} else if (metric[i] == 44) {
 	            fieldValue[i] = (info.averageSpeed != null) ? 3.6*info.averageSpeed*1000/unitP : 0;
@@ -90,7 +93,7 @@ class CiqView extends DatarunpremiumView {
             	fieldFormat[i] = "0decimal";
 			} else if (metric[i] == 48) {
     	        fieldValue[i] = LastLapHeartrate;
-        	    fieldLabel[i] = "L-1 HR";
+        	    fieldLabel[i] = "LL HR";
             	fieldFormat[i] = "0decimal";
 			} else if (metric[i] == 49) {
 	            fieldValue[i] = AverageHeartrate;

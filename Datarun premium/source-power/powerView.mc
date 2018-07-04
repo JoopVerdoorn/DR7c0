@@ -5,8 +5,7 @@ class PowerView extends CiqView {
     hidden var DisplayPower    					= 0; 
     hidden var mElapsedPower	   				= 0;
     hidden var mLastLapElapsedPower				= 0;
-    hidden var mPowerTime						= 0;
-    hidden var uPowerZones                  	= "184:Z1:227:Z2:255:Z3:284:Z4:326:Z5:369";	
+    hidden var mPowerTime						= 0;	
     hidden var mLastLapPowerMarker          	= 0;
     hidden var mLastLapStoppedPowerMarker   	= 0;
     hidden var mLastLapStoppedHeartrateMarker   = 0;
@@ -192,7 +191,7 @@ class PowerView extends CiqView {
             	fieldFormat[i] = "0decimal";   
 	        } else if (metric[i] == 21) {
     	        fieldValue[i] = AveragePower5sec;
-        	    fieldLabel[i] = "Pwr ..s";
+        	    fieldLabel[i] = "Pwr 5s";
             	fieldFormat[i] = "0decimal";
 			} else if (metric[i] == 22) {
     	        fieldValue[i] = LapPower;
@@ -200,7 +199,7 @@ class PowerView extends CiqView {
             	fieldFormat[i] = "0decimal";
 			} else if (metric[i] == 23) {
         	    fieldValue[i] = LastLapPower;
-            	fieldLabel[i] = "L-1 Pwr";
+            	fieldLabel[i] = "LL Pwr";
             	fieldFormat[i] = "0decimal";
 	        } else if (metric[i] == 24) {
     	        fieldValue[i] = AveragePower;

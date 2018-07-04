@@ -94,8 +94,9 @@ class DatarunpremiumView extends Ui.DataField {
     hidden var mLapSpeed 					= 0;
     hidden var mLastLapSpeed 				= 0;
            
-
-	hidden var metric = [1, 2, 3, 4, 5, 6, 7, 8];
+    hidden var uPowerZones                  = "184:Z1:227:Z2:255:Z3:284:Z4:326:Z5:369";
+	hidden var metric = [1, 2, 3, 4, 5, 6, 7,8];
+	
 
     function initialize() {
          DataField.initialize();
@@ -124,7 +125,7 @@ class DatarunpremiumView extends Ui.DataField {
          uRequiredPower		 = mApp.getProperty("pRequiredPower");
          uWarningFreq		 = mApp.getProperty("pWarningFreq");
          uAlertbeep			 = mApp.getProperty("pAlertbeep");
-
+         uPowerZones		 = mApp.getProperty("pPowerZones");
 
 
          
@@ -290,7 +291,7 @@ class DatarunpremiumView extends Ui.DataField {
             	fieldFormat[i] = "pace";
 			} else if (metric[i] == 11) {
     	        fieldValue[i] = mLastLapSpeed;
-        	    fieldLabel[i] = "L-1Pace";
+        	    fieldLabel[i] = "LL Pace";
             	fieldFormat[i] = "pace";
 			} else if (metric[i] == 12) {
 	            fieldValue[i] = (info.averageSpeed != null) ? info.averageSpeed : 0;
