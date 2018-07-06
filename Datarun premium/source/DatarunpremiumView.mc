@@ -61,7 +61,7 @@ class DatarunpremiumView extends Ui.DataField {
     hidden var Pace3 								= 0;
 	hidden var Pace4 								= 0;
     hidden var Pace5 								= 0;
-    var mETA								= 0;
+
     var aaltitude = 0;
     hidden var CurrentSpeedinmpersec			= 0;
     hidden var uRoundedPace                 = true;
@@ -79,11 +79,14 @@ class DatarunpremiumView extends Ui.DataField {
     hidden var uWarningFreq		 			= 5;
     hidden var uAlertbeep			 		= false;
 	hidden var uNoAlerts 					= false;
+	hidden var PowerWarning 				= 0;
     
     hidden var mStartStopPushed             = 0;    //! Timer value when the start/stop button was last pushed
 
     hidden var mPrevElapsedDistance         = 0;
-
+    hidden var uRacedistance                = 42195;
+    hidden var uRacetime					= "03:59:48";
+	hidden var mRacetime  					= 0;
 
     hidden var mLaps                        = 1;
     hidden var mLastLapDistMarker           = 0;
@@ -122,6 +125,8 @@ class DatarunpremiumView extends Ui.DataField {
          uWarningFreq		 = mApp.getProperty("pWarningFreq");
          uAlertbeep			 = mApp.getProperty("pAlertbeep");
          uPowerZones		 = mApp.getProperty("pPowerZones");
+         uRacedistance		 = mApp.getProperty("pRacedistance");
+         uRacetime			 = mApp.getProperty("pRacetime");
 
 
 
@@ -233,6 +238,18 @@ class DatarunpremiumView extends Ui.DataField {
 		}
 
 
+
+		//! Determine required finish time and calculate required pace 	
+
+        var mRacehour = uRacetime.substring(0, 2);
+        var mRacemin = uRacetime.substring(3, 5);
+        var mRacesec = uRacetime.substring(6, 8);
+        mRacehour = mRacehour.toNumber();
+        mRacemin = mRacemin.toNumber();
+        mRacesec = mRacesec.toNumber();
+        mRacetime = mRacehour*3600 + mRacemin*60 + mRacesec;
+
+
 		//!Fill field metrics
 		var i = 0; 
 	    for (i = 1; i < 8; ++i) {	    
@@ -254,7 +271,7 @@ class DatarunpremiumView extends Ui.DataField {
             	fieldFormat[i] = "time";
 	        } else if (metric[i] == 4) {
     	        fieldValue[i] = (info.elapsedDistance != null) ? info.elapsedDistance / unitD : 0;
-        	    fieldLabel[i] = "Distan.";
+        	    fieldLabel[i] = "Distance";
             	fieldFormat[i] = "2decimal";   
 	        } else if (metric[i] == 5) {
     	        fieldValue[i] = mLapElapsedDistance/unitD;
@@ -288,6 +305,12 @@ class DatarunpremiumView extends Ui.DataField {
 	            fieldValue[i] = (info.averageSpeed != null) ? info.averageSpeed : 0;
     	        fieldLabel[i] = "AvgPace";
         	    fieldFormat[i] = "pace";
+            } else if (metric[i] == 13) {
+        		fieldLabel[i]  = "Req pace ";
+        		fieldFormat[i] = "pace";
+        		if (info.elapsedDistance != null and info.timerTime != null and mRacetime != info.timerTime/1000 and mRacetime > info.timerTime/1000) {
+        			fieldValue[i] = (uRacedistance - info.elapsedDistance) / (mRacetime - info.timerTime/1000);
+        		} 
         	} else if (metric[i] == 45) {
     	        fieldValue[i] = (info.currentHeartRate != null) ? info.currentHeartRate : 0;
         	    fieldLabel[i] = "HR";

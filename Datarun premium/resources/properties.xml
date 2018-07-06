@@ -33,8 +33,8 @@
     <!-- Beta name:
     <string id="AppName">Datarun premium</string>
     -->
-    <string id="AppVersion">1.0</string>
-    <string id="lDummysetting4version">Version 0.60 of Datarun premium</string>
+    <string id="AppVersion">1.01</string>
+    <string id="lDummysetting4version">Version 1.01 of Datarun premium</string>
     <string id="lTimerDisplay">Timer field</string>
     <string id="lTimerTimer">Timer</string>
     <string id="lTimerLap">Current lap time</string>
@@ -44,7 +44,7 @@
     <string id="lDistDistance">Total distance</string>
     <string id="lDistLap">Current lap distance</string>
     <string id="lDistLastLap">Last lap distance</string>
-    <string id="lAvgLapD">Avergae lap distance</string>
+    <string id="lAvgLapD">Average lap distance</string>
     <string id="lUpperLeftMetric">Upper left field</string>
     <string id="lUpperRightMetric">Upper right field</string>
     <string id="lMiddleLeftMetric">Middle left field</string>    
@@ -60,9 +60,9 @@
     <string id="lAltitude">Altitude</string>
     <string id="lTEffect">Aerobic training effect</string>
     <string id="lETA">Estimated time of arrival</string>
-    <string id="lETAfrompace">Estimated finished time based on average or last lap pace</string>
-	<string id="lETAdeviation">Deviation from required finish in hours, minutes and seconds</string>
-	<string id="lETArequiredpace">Required pace to meet required finish time (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
+    <string id="lETAfrompace">Estimated finished time based on average or last lap pace (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
+	<string id="lETAdeviation">Deviation from required finish in hours, minutes and seconds (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
+	<string id="lETArequiredpace">Required pace to meet required finish time</string>
     <string id="lElevationGain">Elevation gain (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
     <string id="lElevationLoss">Elevation loss (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
     <string id="lRoundedPace">Show current pace as Rounded Pace</string>
@@ -79,13 +79,13 @@
     <string id="lRacetimeTitle">Enter desired finish time for estimated deviation of finish time (format like 03:59:00 required!)</string>
 	<string id="lHeartratefield">Heartrate field on middle row</string>
     <string id="lHeartrate">Heartrate</string>
-    <string id="lHeartrateZone">Heartrate zone (not working)</string>
+    <string id="lHeartrateZone">Heartrate zone (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
     <string id="lAveraHeartrate">Average heartrate</string>
 	<string id="lLapHeartrate">Current lap heartrate</string>
 	<string id="lLLHeartrate">Last lap heartrate</string>    
-    <string id="lRequiredPower">Boundaries for warning signal, a format required like (227:284)  (not possible for VA3 and FR645))</string> 
-    <string id="lWarningFreq">Frequency for the warning signal for operating out of powerzone (not possible for VA3 and FR645)</string>
-    <string id="lAlertbeep">Play sound as warning signal for operating out of powerzone (not possible for VA3 and FR645)</string>   
+    <string id="lRequiredPower">Boundaries for warning signal, a format required like (227:284)</string> 
+    <string id="lWarningFreq">Frequency for the warning signal for operating out of powerzone</string>
+    <string id="lAlertbeep">Play sound as warning signal for operating out of powerzone</string>   
 	<string id="lPacefield">Pace field on middle row</string>
 	<string id="lPaceperkm">Pace averaged over the last 5 seconds</string>
 	<string id="lPaceper100m">Pace in seconds per 100 meter (for track running)</string>
@@ -106,7 +106,7 @@
     <string id="lAPower">Average Stryd footpod power</string>
 	<string id="lLPower">Current lap Stryd footpod power</string>
 	<string id="lLLPower">Last lap Stryd footpod power</string>
-    <string id="lPowerZones">Power zones, a format required like 184:Z1:227:Z2:255:Z3:284:Z4:326:Z5:369</string>
+    <string id="lPowerZones">Power zones, a format required like 184:Z1:227:Z2:255:Z3:284:Z4:326:Z5:369 (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
 	<string id="lCEFactor">Current efficiency Index (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
 	<string id="lCEIndex">Current lap efficiency factor (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
     <string id="lCP2HRratio">Current power to heartrate ratio (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
@@ -133,6 +133,9 @@
         <settingConfig type="numeric" errorMessage="@Strings.MyNumberError" />
     </setting>
     <setting propertyKey="@Properties.pRoundedPace" title="@Strings.lRoundedPace">
+      <settingConfig type="boolean" required="true" />
+    </setting>
+    <setting propertyKey="@Properties.pETAfromLap" title="@Strings.lETAfromLap">
       <settingConfig type="boolean" required="true" />
     </setting>
     <setting propertyKey="@Properties.pPowerZones" title="@Strings.lPowerZones">
@@ -164,6 +167,8 @@
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
         <listEntry value="12">@Strings.lAvgPace</listEntry>
         <listEntry value="13">@Strings.lETArequiredpace</listEntry>
+        <listEntry value="14">@Strings.lETA</listEntry>
+        <listEntry value="15">@Strings.lETAdeviation</listEntry>
 
         <listEntry value="40">@Strings.lCurrentSpeed</listEntry>
         <listEntry value="41">@Strings.lAveragesecSpeed</listEntry>
@@ -216,7 +221,10 @@
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
         <listEntry value="12">@Strings.lAvgPace</listEntry>
-
+        <listEntry value="13">@Strings.lETArequiredpace</listEntry>
+        <listEntry value="14">@Strings.lETA</listEntry>
+        <listEntry value="15">@Strings.lETAdeviation</listEntry>
+        
         <listEntry value="40">@Strings.lCurrentSpeed</listEntry>
         <listEntry value="41">@Strings.lAveragesecSpeed</listEntry>
         <listEntry value="42">@Strings.lLapSpeed</listEntry>
@@ -228,7 +236,6 @@
         <listEntry value="48">@Strings.lLLHeartrate</listEntry>
         <listEntry value="49">@Strings.lAveraHeartrate</listEntry>
         <listEntry value="50">@Strings.lCadence</listEntry>
-
 
         <listEntry value="20">@Strings.lSPower</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
@@ -248,10 +255,6 @@
 
     <setting propertyKey="@Properties.pMiddleLeftMetric" title="@Strings.lMiddleLeftMetric">
       <settingConfig type="list" required="true">
-        <listEntry value="0">@Strings.lTimerTimer</listEntry>
-        <listEntry value="1">@Strings.lTimerLap</listEntry>
-        <listEntry value="2">@Strings.lTimerLastLap</listEntry>
-        <listEntry value="3">@Strings.lTimerAvgLap</listEntry>
         <listEntry value="4">@Strings.lDistDistance</listEntry>
         <listEntry value="5">@Strings.lDistLap</listEntry>
         <listEntry value="6">@Strings.lDistLastLap</listEntry>
@@ -291,10 +294,6 @@
     </setting>
     <setting propertyKey="@Properties.pMiddleMiddleMetric" title="@Strings.lMiddleMiddleMetric">
       <settingConfig type="list" required="true">
-        <listEntry value="0">@Strings.lTimerTimer</listEntry>
-        <listEntry value="1">@Strings.lTimerLap</listEntry>
-        <listEntry value="2">@Strings.lTimerLastLap</listEntry>
-        <listEntry value="3">@Strings.lTimerAvgLap</listEntry>
         <listEntry value="4">@Strings.lDistDistance</listEntry>
         <listEntry value="5">@Strings.lDistLap</listEntry>
         <listEntry value="6">@Strings.lDistLastLap</listEntry>
@@ -304,6 +303,7 @@
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
         <listEntry value="12">@Strings.lAvgPace</listEntry>
+        <listEntry value="13">@Strings.lETArequiredpace</listEntry>
 
         <listEntry value="40">@Strings.lCurrentSpeed</listEntry>
         <listEntry value="41">@Strings.lAveragesecSpeed</listEntry>
@@ -334,10 +334,6 @@
     </setting>
     <setting propertyKey="@Properties.pMiddleRightMetric" title="@Strings.lMiddleRightMetric">
       <settingConfig type="list" required="true">
-        <listEntry value="0">@Strings.lTimerTimer</listEntry>
-        <listEntry value="1">@Strings.lTimerLap</listEntry>
-        <listEntry value="2">@Strings.lTimerLastLap</listEntry>
-        <listEntry value="3">@Strings.lTimerAvgLap</listEntry>
         <listEntry value="4">@Strings.lDistDistance</listEntry>
         <listEntry value="5">@Strings.lDistLap</listEntry>
         <listEntry value="6">@Strings.lDistLastLap</listEntry>
@@ -347,6 +343,7 @@
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
         <listEntry value="12">@Strings.lAvgPace</listEntry>
+        <listEntry value="13">@Strings.lETArequiredpace</listEntry>
 
         <listEntry value="40">@Strings.lCurrentSpeed</listEntry>
         <listEntry value="41">@Strings.lAveragesecSpeed</listEntry>
@@ -390,7 +387,10 @@
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
         <listEntry value="12">@Strings.lAvgPace</listEntry>
-
+        <listEntry value="13">@Strings.lETArequiredpace</listEntry>
+        <listEntry value="14">@Strings.lETA</listEntry>
+        <listEntry value="15">@Strings.lETAdeviation</listEntry>
+        
         <listEntry value="40">@Strings.lCurrentSpeed</listEntry>
         <listEntry value="41">@Strings.lAveragesecSpeed</listEntry>
         <listEntry value="42">@Strings.lLapSpeed</listEntry>
@@ -433,6 +433,9 @@
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
         <listEntry value="12">@Strings.lAvgPace</listEntry>
+        <listEntry value="13">@Strings.lETArequiredpace</listEntry>
+		<listEntry value="14">@Strings.lETA</listEntry>
+        <listEntry value="15">@Strings.lETAdeviation</listEntry>
 
         <listEntry value="40">@Strings.lCurrentSpeed</listEntry>
         <listEntry value="41">@Strings.lAveragesecSpeed</listEntry>

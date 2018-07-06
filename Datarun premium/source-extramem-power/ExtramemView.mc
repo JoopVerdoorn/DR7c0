@@ -1,21 +1,18 @@
 class ExtramemView extends DatarunpremiumView {
-	var mfillColour = Graphics.COLOR_LT_GRAY;
-    hidden var uRacedistance                = 42195;
-    hidden var uRacetime					= "03:59:48";
-
+	var mfillColour 						= Graphics.COLOR_LT_GRAY;
+	hidden var mETA							= 0;
+	hidden var uETAfromLap 					= true;
 
     function initialize() {
         DatarunpremiumView.initialize();
-        extraMem = true;
+        extraMem 		 = true;
+		var mApp 		 = Application.getApp();
+		uETAfromLap		 = mApp.getProperty("pETAfromLap");
     }
 
 	function onUpdate(dc) {
 		//! call the parent onUpdate to do the base logic
 		DatarunpremiumView.onUpdate(dc);
-
-        var mApp = Application.getApp();
-        uRacedistance		 = mApp.getProperty("pRacedistance");
-        uRacetime			 = mApp.getProperty("pRacetime");
 		
     	//! Setup back- and foregroundcolours
 		if (uBlackBackground == true ){
@@ -60,6 +57,32 @@ class ExtramemView extends DatarunpremiumView {
 		}			
 
 
+        //! Calculate ETA
+        if (info.elapsedDistance != null && info.timerTime != null) {
+            if (uETAfromLap == true ) {
+            	if (mLastLapTimerTime > 0 && mLastLapElapsedDistance > 0 && mLaps > 1) {
+            		if (uRacedistance > info.elapsedDistance) {
+            			mETA = info.timerTime/1000 + (uRacedistance - info.elapsedDistance)/ mLastLapSpeed;
+            		} else {
+            			mETA = 0;
+            		}
+            	}
+            } else {
+            	if (info.elapsedDistance > 5) {
+            		mETA = uRacedistance / (1000*info.elapsedDistance/info.timerTime);
+            	}
+            }
+        }
+
+		//! Determine required finish time and calculate required pace 	
+
+        var mRacehour = uRacetime.substring(0, 2);
+        var mRacemin = uRacetime.substring(3, 5);
+        var mRacesec = uRacetime.substring(6, 8);
+        mRacehour = mRacehour.toNumber();
+        mRacemin = mRacemin.toNumber();
+        mRacesec = mRacesec.toNumber();
+        mRacetime = mRacehour*3600 + mRacemin*60 + mRacesec;
       
         var i = 0; 
 	    for (i = 1; i < 8; ++i) {
@@ -123,11 +146,21 @@ class ExtramemView extends DatarunpremiumView {
            		fieldValue[i] = mElevationLoss;
             	fieldLabel[i] = "EL loss";
             	fieldFormat[i] = "0decimal";
-            } else if (metric[i] == 13) {
-        		fieldLabel[i]  = "Req pace ";
-        		if (info.elapsedDistance != null and info.timerTime != null and mRacetime != info.timerTime/1000 and mRacetime > info.timerTime/1000) {
-        			fieldValue[i] = (uRacedistance - info.elapsedDistance) / (mRacetime - info.timerTime/1000);
-        		} 
+	        } else if (metric[i] == 14) {
+    	        fieldValue[i] = Math.round(mETA).toNumber();
+        	    fieldLabel[i] = "ETA";
+            	fieldFormat[i] = "time";           	
+	        } else if (metric[i] == 15) {
+        	    fieldLabel[i] = "Deviation";
+            	fieldFormat[i] = "time";
+	        	if ( mLaps == 1 ) {
+    	    		fieldValue[i] = 0;
+        		} else {
+        			fieldValue[i] = Math.round(mRacetime - mETA).toNumber() ;
+	        	}
+    	    	if (fieldValue[i] < 0) {
+        			fieldValue[i] = - fieldValue;
+        		}            	
 			}
 		}
 				//! Conditions for showing the demoscreen       
@@ -246,6 +279,13 @@ class ExtramemView extends DatarunpremiumView {
 			mfillColour = mColourBackGround;        
             mZone[counter] = 0;
 		}
+		if (metric[counter] == 13 or metric[counter] == 14 or metric[counter] == 15) {
+			if (mETA < mRacetime) {
+    	    	mfillColour = Graphics.COLOR_GREEN;
+        	} else {
+        		mfillColour = Graphics.COLOR_RED;
+        	}
+        }	
 		dc.setColor(mfillColour, Graphics.COLOR_TRANSPARENT);
         dc.fillRectangle(x, y, w, h);
 	}
