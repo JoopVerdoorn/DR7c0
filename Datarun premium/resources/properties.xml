@@ -34,7 +34,7 @@
     <string id="AppName">Datarun premium</string>
     -->
     <string id="AppVersion">1.0</string>
-    <string id="lDummysetting4version">Version 0.57 of Datarun premium</string>
+    <string id="lDummysetting4version">Version 0.60 of Datarun premium</string>
     <string id="lTimerDisplay">Timer field</string>
     <string id="lTimerTimer">Timer</string>
     <string id="lTimerLap">Current lap time</string>
@@ -62,9 +62,9 @@
     <string id="lETA">Estimated time of arrival</string>
     <string id="lETAfrompace">Estimated finished time based on average or last lap pace</string>
 	<string id="lETAdeviation">Deviation from required finish in hours, minutes and seconds</string>
-	<string id="lETArequiredpace">Required pace to meet required finish time</string>
-    <string id="lElevationGain">Elevation gain</string>
-    <string id="lElevationLoss">Elevation loss</string>
+	<string id="lETArequiredpace">Required pace to meet required finish time (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
+    <string id="lElevationGain">Elevation gain (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
+    <string id="lElevationLoss">Elevation loss (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
     <string id="lRoundedPace">Show current pace as Rounded Pace</string>
     <string id="lMaxColoringPace">Use 5 colors for coloring of pace field in middle row, instead of 3 colors</string>
     <string id="lColoringPaceFromAver">Use average pace for coloring of the pace field in middle row, instead of pace based on desired finish time</string>
@@ -163,6 +163,7 @@
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
         <listEntry value="12">@Strings.lAvgPace</listEntry>
+        <listEntry value="13">@Strings.lETArequiredpace</listEntry>
 
         <listEntry value="40">@Strings.lCurrentSpeed</listEntry>
         <listEntry value="41">@Strings.lAveragesecSpeed</listEntry>

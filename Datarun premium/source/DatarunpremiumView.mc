@@ -40,7 +40,8 @@ class DatarunpremiumView extends Ui.DataField {
 	
 	hidden var fieldValue = [1, 2, 3, 4, 5, 6, 7, 8];
 	hidden var fieldLabel = [1, 2, 3, 4, 5, 6, 7, 8];
-	hidden var fieldFormat = [1, 2, 3, 4, 5, 6, 7, 8];	
+	hidden var fieldFormat = [1, 2, 3, 4, 5, 6, 7, 8];
+	hidden var mZone = [1, 2, 3, 4, 5, 6, 7, 8];	
 
     hidden var Averagespeedinmpersec 			= 0;
     hidden var mColour;
@@ -48,7 +49,6 @@ class DatarunpremiumView extends Ui.DataField {
 	hidden var mColourFont1;
     hidden var mColourLine;
     hidden var mColourBackGround;
-    var mfillColour = Graphics.COLOR_LT_GRAY;
    
     hidden var mLapTimerTime   = 0;
 	hidden var mElapsedDistance				= 0;
@@ -84,6 +84,7 @@ class DatarunpremiumView extends Ui.DataField {
 
     hidden var mPrevElapsedDistance         = 0;
 
+
     hidden var mLaps                        = 1;
     hidden var mLastLapDistMarker           = 0;
     hidden var mLastLapTimeMarker           = 0;
@@ -113,25 +114,15 @@ class DatarunpremiumView extends Ui.DataField {
          metric[6]   	= mApp.getProperty("pBottomLeftMetric");
          metric[7]  	= mApp.getProperty("pBottomRightMetric");
          uRoundedPace        = mApp.getProperty("pRoundedPace");
-//!         uColoringPaceFromAver= mApp.getProperty("pColoringPaceFromAver");
-//!         uAveragedPace       = mApp.getProperty("pAveragedPace");
          uBacklight          = mApp.getProperty("pBacklight");
          umyNumber			 = mApp.getProperty("myNumber");
          uShowDemo			 = mApp.getProperty("pShowDemo");
-//!                  uRacedistance		 = mApp.getProperty("pRacedistance");
-         //!         uRacetime			 = mApp.getProperty("pRacetime");
-//!                  uETAfromLap		 = mApp.getProperty("pETAfromLap");
          uBlackBackground    = mApp.getProperty("pBlackBackground");
          uRequiredPower		 = mApp.getProperty("pRequiredPower");
          uWarningFreq		 = mApp.getProperty("pWarningFreq");
          uAlertbeep			 = mApp.getProperty("pAlertbeep");
          uPowerZones		 = mApp.getProperty("pPowerZones");
 
-
-         
-//!                 if (uRacedistance < 1) { 
-//!         			uRacedistance 		= 42195;
-		//!         }
 
 
         if (System.getDeviceSettings().paceUnits == System.UNIT_STATUTE) {
@@ -172,8 +163,8 @@ class DatarunpremiumView extends Ui.DataField {
 
     
     //! Start/stop button was pushed - emulated via timer start/stop
-    function startStopPushed() {
-        var info = Activity.getActivityInfo();
+    function startStopPushed() {     
+    	var info = Activity.getActivityInfo();   
         var doublePressTimeMs = null;
         if ( mStartStopPushed > 0  &&  info.elapsedTime > 0 ) {
             doublePressTimeMs = info.elapsedTime - mStartStopPushed;

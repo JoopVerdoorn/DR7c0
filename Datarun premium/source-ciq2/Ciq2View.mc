@@ -21,6 +21,7 @@ class CiqView extends DatarunpremiumView {
     var mrealElevationLoss = 0;
     var mrealElevationDiff = 0;
     hidden var ID0;
+    hidden var extraMem = false;
 
 
     function initialize() {
@@ -83,7 +84,7 @@ class CiqView extends DatarunpremiumView {
     	        fieldLabel[i] = "Avg Spd";
         	    fieldFormat[i] = "2decimal";
 			} else if (metric[i] == 46) {
-	            fieldValue[i] = (info.currentHeartRate != null) ? info.currentHeartRate : 0; //! nog HR zone invoegen
+	            fieldValue[i] = 0; //! becomes HR zone later
     	        fieldLabel[i] = "HR zone";
         	    fieldFormat[i] = "0decimal";
 			} else if (metric[i] == 47) {
@@ -106,7 +107,8 @@ class CiqView extends DatarunpremiumView {
 		  		fieldValue[i] = (info.altitude != null) ? Math.round(info.altitude).toNumber() : 0;
 		       	fieldLabel[i] = "Altitude";
 		       	fieldFormat[i] = "0decimal";
-            }
+        	}
+            
         	
 		}
 

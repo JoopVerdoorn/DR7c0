@@ -21,6 +21,7 @@ class CiqView extends ExtramemView {
     var mrealElevationLoss = 0;
     var mrealElevationDiff = 0;
     hidden var ID0;
+    hidden var extraMem = false;
 
     function initialize() {
         ExtramemView.initialize();

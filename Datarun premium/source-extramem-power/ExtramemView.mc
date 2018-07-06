@@ -1,14 +1,21 @@
 class ExtramemView extends DatarunpremiumView {
+	var mfillColour = Graphics.COLOR_LT_GRAY;
+    hidden var uRacedistance                = 42195;
+    hidden var uRacetime					= "03:59:48";
+
 
     function initialize() {
         DatarunpremiumView.initialize();
-        
-        
+        extraMem = true;
     }
 
 	function onUpdate(dc) {
 		//! call the parent onUpdate to do the base logic
 		DatarunpremiumView.onUpdate(dc);
+
+        var mApp = Application.getApp();
+        uRacedistance		 = mApp.getProperty("pRacedistance");
+        uRacetime			 = mApp.getProperty("pRacetime");
 		
     	//! Setup back- and foregroundcolours
 		if (uBlackBackground == true ){
@@ -56,7 +63,11 @@ class ExtramemView extends DatarunpremiumView {
       
         var i = 0; 
 	    for (i = 1; i < 8; ++i) {
-	        if (metric[i] == 25) {
+	        if (metric[i] == 37) {
+    	        fieldValue[i] = 0; //! becomes Power zone later
+        	    fieldLabel[i] = "P zone";
+            	fieldFormat[i] = "0decimal";
+			} else if (metric[i] == 25) {
     	        fieldValue[i] = LapEfficiencyIndex;
         	    fieldLabel[i] = "Lap EI";
             	fieldFormat[i] = "2decimal";
@@ -112,11 +123,57 @@ class ExtramemView extends DatarunpremiumView {
            		fieldValue[i] = mElevationLoss;
             	fieldLabel[i] = "EL loss";
             	fieldFormat[i] = "0decimal";
+            } else if (metric[i] == 13) {
+        		fieldLabel[i]  = "Req pace ";
+        		if (info.elapsedDistance != null and info.timerTime != null and mRacetime != info.timerTime/1000 and mRacetime > info.timerTime/1000) {
+        			fieldValue[i] = (uRacedistance - info.elapsedDistance) / (mRacetime - info.timerTime/1000);
+        		} 
 			}
 		}
+				//! Conditions for showing the demoscreen       
+        if (uShowDemo == false) {
+        	if (umyNumber != mtest && jTimertime > 900)  {
+        		uShowDemo = true;        		
+        	}
+        }
+
+	   //! Check whether demoscreen is showed or the metrics 
+	   if (uShowDemo == false ) {
+
+		for (var i = 1; i < 8; ++i) {
+
+		   	if ( i == 1 ) {			//!upper row, left    	
+	    		Coloring(dc,i,fieldValue[i],"018,029,100,019");
+		   	} else if ( i == 2 ) {	//!upper row, right
+		   		Coloring(dc,i,fieldValue[i],"120,029,100,019");
+	       	} else if ( i == 3 ) {  //!middle row, left
+	    		Coloring(dc,i,fieldValue[i],"000,093,072,019");
+		   	} else if ( i == 4 ) {	//!middle row, middle
+		 		Coloring(dc,i,fieldValue[i],"074,093,089,019");
+	      	} else if ( i == 5 ) {  //!middle row, right
+	    		Coloring(dc,i,fieldValue[i],"165,093,077,019");
+		   	} else if ( i == 6 ) {	//!lower row, left
+		   		Coloring(dc,i,fieldValue[i],"018,199,100,019");
+	      	} else if ( i == 7 ) {	//!lower row, right
+	    		Coloring(dc,i,fieldValue[i],"120,199,100,019");
+	    	}       	
+		}
+		
+
+	   } 
+	   
 	}
 
-	function Coloring(dc,counter,testvalue) {
+	function Coloring(dc,counter,testvalue,CorString) {
+		var info = Activity.getActivityInfo();
+        var x = CorString.substring(0, 3);
+        var y = CorString.substring(4, 7);
+        var w = CorString.substring(8, 11);
+        var h = CorString.substring(12, 15);
+        x = x.toNumber();
+        y = y.toNumber();
+        w = w.toNumber();
+        h = h.toNumber();        
         var mZ1under = 0;
         var mZ2under = 0;
         var mZ3under = 0;
@@ -124,21 +181,21 @@ class ExtramemView extends DatarunpremiumView {
         var mZ5under = 0;
         var mZ5upper = 0; 
         var avgSpeed = (info.averageSpeed != null) ? info.averageSpeed : 0;
-		if (metric[i] == 45 or metric[i] == 46 or metric[i] == 47 or metric[i] == 48 or metric[i] == 49) {  //! HR=45, HR-zone=46, Lap HR=47, L-1 HR=48, Avg HR=49
+		if (metric[counter] == 45 or metric[counter] == 46 or metric[counter] == 47 or metric[counter] == 48 or metric[counter] == 49) {  //! HR=45, HR-zone=46, Lap HR=47, L-1 HR=48, Avg HR=49
             mZ1under = uHrZones[1];
             mZ2under = uHrZones[2];
             mZ3under = uHrZones[3];
             mZ4under = uHrZones[4];
             mZ5under = uHrZones[5];
             mZ5upper = 200; 
-        } else if (metric[i] == 50) {  //! Cadence
+        } else if (metric[counter] == 50) {  //! Cadence
             mZ1under = 120;
             mZ2under = 153;
             mZ3under = 164;
             mZ4under = 174;
             mZ5under = 183;
             mZ5upper = 300; 
-        } else if (metric[i] == 20 or metric[i] == 21 or metric[i] == 22 or metric[i] == 23 or metric[i] == 24) {  //! Power=20, Pwr 5s=21, L Power=22, L-1 Pwr=23, A Power=24
+        } else if (metric[counter] == 20 or metric[counter] == 21 or metric[counter] == 22 or metric[counter] == 23 or metric[counter] == 24) {  //! Power=20, Pwr 5s=21, L Power=22, L-1 Pwr=23, A Power=24
         	mZ1under = uPowerZones.substring(0, 3);
         	mZ2under = uPowerZones.substring(7, 10);
         	mZ3under = uPowerZones.substring(14, 17);
@@ -151,42 +208,48 @@ class ExtramemView extends DatarunpremiumView {
 	        mZ4under = mZ4under.toNumber();        
     	    mZ5under = mZ5under.toNumber();
         	mZ5upper = mZ5upper.toNumber();
-        } else if (metric[i] == 50) {  //! Pace=8, Pace 5s=9, L Pace=10, L-1 Pace=11, AvgPace=12, Speed=40, Spd 5s=41, L Spd=42, LL Spd=43, Avg Spd=44
+        } else if (metric[counter] == 8 or metric[counter] == 9 or metric[counter] == 10 or metric[counter] == 11 or metric[counter] == 12 or metric[counter] == 40 or metric[counter] == 41 or metric[counter] == 42 or metric[counter] == 43 or metric[counter] == 44) {  //! Pace=8, Pace 5s=9, L Pace=10, L-1 Pace=11, AvgPace=12, Speed=40, Spd 5s=41, L Spd=42, LL Spd=43, Avg Spd=44
             mZ1under = avgSpeed*0.9;
             mZ2under = avgSpeed*0.95;
             mZ3under = avgSpeed;
             mZ4under = avgSpeed*1.05;
             mZ5under = avgSpeed*1.1;
             mZ5upper = avgSpeed*1.15; 
-        }       
-        if (TestValue >= mZ5upper) {
-            mfillColour[i] = Graphics.COLOR_PURPLE;        
-			mZone[i] = 5;
-		} else if (TestValue >= mZ5under) {
-			mfillColour[i] = Graphics.COLOR_RED;    	
-			mZone[i] = 4;
-		} else if (TestValue >= mZ4under) {
-			mfillColour[i] = Graphics.COLOR_GREEN;    	
-			mZone[i] = 3;
-		} else if (TestValue >= mZ3under) {
-			mfillColour[i] = Graphics.COLOR_BLUE;        
-			mZone[i] = 2;
-		} else if (TestValue >= mZ2under) {
-			mfillColour[i] = Graphics.COLOR_YELLOW;        
-			mZone[i] = 1;
-		} else if (TestValue >= mZ1under) {
-			mfillColour[i] = Graphics.COLOR_LT_GRAY;        
-			mZone[i] = 0;
+        } else {
+            mZ1under = 99999999;
+            mZ2under = 99999999;
+            mZ3under = 99999999;
+            mZ4under = 99999999;
+            mZ5under = 99999999;
+            mZ5upper = 99999999; 
+        }
+        mZone[counter] = 0;
+        if (testvalue >= mZ5upper) {
+            mfillColour = Graphics.COLOR_PURPLE;
+			mZone[counter] = 6;
+		} else if (testvalue >= mZ5under) {
+			mfillColour = Graphics.COLOR_RED;    	
+			mZone[counter] = 5;
+		} else if (testvalue >= mZ4under) {
+			mfillColour = Graphics.COLOR_GREEN;    	
+			mZone[counter] = 4;
+		} else if (testvalue >= mZ3under) {
+			mfillColour = Graphics.COLOR_BLUE;        
+			mZone[counter] = 3;
+		} else if (testvalue >= mZ2under) {
+			mfillColour = Graphics.COLOR_YELLOW;        
+			mZone[counter] = 2;
+		} else if (testvalue >= mZ1under) {
+			mfillColour = Graphics.COLOR_LT_GRAY;        
+			mZone[counter] = 1;
 		} else {
-			if (uBlackBackground == true ){
-				mfillColour[i] = Graphics.COLOR_BLACK; 
-			} else {
-				mfillColour[i] = Graphics.COLOR_WHITE;
-			}        
-            mZone[i] = 0;
+			mfillColour = mColourBackGround;        
+            mZone[counter] = 0;
 		}
+		dc.setColor(mfillColour, Graphics.COLOR_TRANSPARENT);
+        dc.fillRectangle(x, y, w, h);
 	}
-
-
+		
+	
 
 }
