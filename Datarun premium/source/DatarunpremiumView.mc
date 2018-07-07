@@ -40,7 +40,8 @@ class DatarunpremiumView extends Ui.DataField {
 	
 	hidden var fieldValue = [1, 2, 3, 4, 5, 6, 7, 8];
 	hidden var fieldLabel = [1, 2, 3, 4, 5, 6, 7, 8];
-	hidden var fieldFormat = [1, 2, 3, 4, 5, 6, 7, 8];	
+	hidden var fieldFormat = [1, 2, 3, 4, 5, 6, 7, 8];
+	hidden var mZone = [1, 2, 3, 4, 5, 6, 7, 8];	
 
     hidden var Averagespeedinmpersec 			= 0;
     hidden var mColour;
@@ -48,7 +49,6 @@ class DatarunpremiumView extends Ui.DataField {
 	hidden var mColourFont1;
     hidden var mColourLine;
     hidden var mColourBackGround;
-    var mfillColour = Graphics.COLOR_LT_GRAY;
    
     hidden var mLapTimerTime   = 0;
 	hidden var mElapsedDistance				= 0;
@@ -61,7 +61,7 @@ class DatarunpremiumView extends Ui.DataField {
     hidden var Pace3 								= 0;
 	hidden var Pace4 								= 0;
     hidden var Pace5 								= 0;
-    var mETA								= 0;
+
     var aaltitude = 0;
     hidden var CurrentSpeedinmpersec			= 0;
     hidden var uRoundedPace                 = true;
@@ -79,10 +79,14 @@ class DatarunpremiumView extends Ui.DataField {
     hidden var uWarningFreq		 			= 5;
     hidden var uAlertbeep			 		= false;
 	hidden var uNoAlerts 					= false;
+	hidden var PowerWarning 				= 0;
     
     hidden var mStartStopPushed             = 0;    //! Timer value when the start/stop button was last pushed
 
     hidden var mPrevElapsedDistance         = 0;
+    hidden var uRacedistance                = 42195;
+    hidden var uRacetime					= "03:59:48";
+	hidden var mRacetime  					= 0;
 
     hidden var mLaps                        = 1;
     hidden var mLastLapDistMarker           = 0;
@@ -94,8 +98,9 @@ class DatarunpremiumView extends Ui.DataField {
     hidden var mLapSpeed 					= 0;
     hidden var mLastLapSpeed 				= 0;
            
-
-	hidden var metric = [1, 2, 3, 4, 5, 6, 7, 8];
+    hidden var uPowerZones                  = "184:Z1:227:Z2:255:Z3:284:Z4:326:Z5:369";
+	hidden var metric = [1, 2, 3, 4, 5, 6, 7,8];
+	
 
     function initialize() {
          DataField.initialize();
@@ -112,25 +117,17 @@ class DatarunpremiumView extends Ui.DataField {
          metric[6]   	= mApp.getProperty("pBottomLeftMetric");
          metric[7]  	= mApp.getProperty("pBottomRightMetric");
          uRoundedPace        = mApp.getProperty("pRoundedPace");
-//!         uColoringPaceFromAver= mApp.getProperty("pColoringPaceFromAver");
-//!         uAveragedPace       = mApp.getProperty("pAveragedPace");
          uBacklight          = mApp.getProperty("pBacklight");
          umyNumber			 = mApp.getProperty("myNumber");
          uShowDemo			 = mApp.getProperty("pShowDemo");
-//!                  uRacedistance		 = mApp.getProperty("pRacedistance");
-         //!         uRacetime			 = mApp.getProperty("pRacetime");
-//!                  uETAfromLap		 = mApp.getProperty("pETAfromLap");
          uBlackBackground    = mApp.getProperty("pBlackBackground");
          uRequiredPower		 = mApp.getProperty("pRequiredPower");
          uWarningFreq		 = mApp.getProperty("pWarningFreq");
          uAlertbeep			 = mApp.getProperty("pAlertbeep");
+         uPowerZones		 = mApp.getProperty("pPowerZones");
+         uRacedistance		 = mApp.getProperty("pRacedistance");
+         uRacetime			 = mApp.getProperty("pRacetime");
 
-
-
-         
-//!                 if (uRacedistance < 1) { 
-//!         			uRacedistance 		= 42195;
-		//!         }
 
 
         if (System.getDeviceSettings().paceUnits == System.UNIT_STATUTE) {
@@ -171,8 +168,8 @@ class DatarunpremiumView extends Ui.DataField {
 
     
     //! Start/stop button was pushed - emulated via timer start/stop
-    function startStopPushed() {
-        var info = Activity.getActivityInfo();
+    function startStopPushed() {     
+    	var info = Activity.getActivityInfo();   
         var doublePressTimeMs = null;
         if ( mStartStopPushed > 0  &&  info.elapsedTime > 0 ) {
             doublePressTimeMs = info.elapsedTime - mStartStopPushed;
@@ -241,6 +238,18 @@ class DatarunpremiumView extends Ui.DataField {
 		}
 
 
+
+		//! Determine required finish time and calculate required pace 	
+
+        var mRacehour = uRacetime.substring(0, 2);
+        var mRacemin = uRacetime.substring(3, 5);
+        var mRacesec = uRacetime.substring(6, 8);
+        mRacehour = mRacehour.toNumber();
+        mRacemin = mRacemin.toNumber();
+        mRacesec = mRacesec.toNumber();
+        mRacetime = mRacehour*3600 + mRacemin*60 + mRacesec;
+
+
 		//!Fill field metrics
 		var i = 0; 
 	    for (i = 1; i < 8; ++i) {	    
@@ -262,7 +271,7 @@ class DatarunpremiumView extends Ui.DataField {
             	fieldFormat[i] = "time";
 	        } else if (metric[i] == 4) {
     	        fieldValue[i] = (info.elapsedDistance != null) ? info.elapsedDistance / unitD : 0;
-        	    fieldLabel[i] = "Distan.";
+        	    fieldLabel[i] = "Distance";
             	fieldFormat[i] = "2decimal";   
 	        } else if (metric[i] == 5) {
     	        fieldValue[i] = mLapElapsedDistance/unitD;
@@ -290,12 +299,18 @@ class DatarunpremiumView extends Ui.DataField {
             	fieldFormat[i] = "pace";
 			} else if (metric[i] == 11) {
     	        fieldValue[i] = mLastLapSpeed;
-        	    fieldLabel[i] = "L-1Pace";
+        	    fieldLabel[i] = "LL Pace";
             	fieldFormat[i] = "pace";
 			} else if (metric[i] == 12) {
 	            fieldValue[i] = (info.averageSpeed != null) ? info.averageSpeed : 0;
     	        fieldLabel[i] = "AvgPace";
         	    fieldFormat[i] = "pace";
+            } else if (metric[i] == 13) {
+        		fieldLabel[i]  = "Req pace ";
+        		fieldFormat[i] = "pace";
+        		if (info.elapsedDistance != null and info.timerTime != null and mRacetime != info.timerTime/1000 and mRacetime > info.timerTime/1000) {
+        			fieldValue[i] = (uRacedistance - info.elapsedDistance) / (mRacetime - info.timerTime/1000);
+        		} 
         	} else if (metric[i] == 45) {
     	        fieldValue[i] = (info.currentHeartRate != null) ? info.currentHeartRate : 0;
         	    fieldLabel[i] = "HR";

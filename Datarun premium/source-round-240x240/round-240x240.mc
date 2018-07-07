@@ -39,10 +39,10 @@ class DeviceView extends PowerView {
         dc.drawLine(164, 92,  164, 156);
 
         //! Bottom vertical divider
-        dc.drawLine(119, 156, 119, 223);
+        dc.drawLine(119, 156, 119, 219);
         
         //! Bottom horizontal divider
-        dc.drawLine(53, 223, 187, 223);
+        dc.drawLine(53, 219, 187, 219);
 
         //! Top centre mini-field separator
         dc.drawRoundedRectangle(79, -11, 81, 40, 4);		
@@ -64,20 +64,11 @@ class DeviceView extends PowerView {
 		}
 
 
-
-//! fieldValue[1]=3618;
-//! fieldValue[2]=234;
-//! fieldValue[3]=285;
-//! fieldValue[4]=251;
-//! fieldValue[5]=241;
-//! fieldValue[6]=155;
-//! fieldValue[7]=138; 
-
 		for (var i = 1; i < 8; ++i) {
 	    	if ( i == 1 ) {			//!upper row, left
-	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"069,069,073,013,074,073,038");
+	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"069,069,073,013,074,073,037");
 	       	} else if ( i == 2 ) {	//!upper row, right
-	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"170,069,180,121,074,167,038");
+	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"170,069,180,121,074,167,037");
 	       	} else if ( i == 3 ) {  //!middle row, left
 	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"036,133,000,000,000,036,101");
 	       	} else if ( i == 4 ) {	//!middle row, middle
@@ -91,19 +82,20 @@ class DeviceView extends PowerView {
        		}       	
 		}
 
+
 		//! Bottom battery indicator
 		var mBattcolor = (pwr > 15) ? mColourFont : Graphics.COLOR_RED;
 		dc.setColor(mBattcolor, Graphics.COLOR_TRANSPARENT);
-		dc.fillRectangle(92, 225, 54, 13);
-		dc.fillRectangle(146, 228, 3, 6);
+		dc.fillRectangle(92, 222, 54, 15);
+		dc.fillRectangle(146, 225, 3, 8);
 		
 		dc.setColor(mBattcolor, Graphics.COLOR_TRANSPARENT);
-		dc.fillRectangle(94, 227, 50, 9);
+		dc.fillRectangle(94, 224, 50, 11);
 		
 		dc.setColor(mColourBackGround, Graphics.COLOR_TRANSPARENT);
 		var Startstatuspwrbr = 94 + pwr*0.5  ;
 		var Endstatuspwrbr = 50 - pwr*0.5 ;
-		dc.fillRectangle(Startstatuspwrbr, 227, Endstatuspwrbr, 9);	
+		dc.fillRectangle(Startstatuspwrbr, 224, Endstatuspwrbr, 11);	
 
 	   } else {
 	   //! Display demo screen
@@ -111,7 +103,7 @@ class DeviceView extends PowerView {
 	
 		if (umyNumber == mtest) {
       		dc.drawText(120, 40, Graphics.FONT_XTINY, "Datarun premium", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-      		dc.drawText(120, 70, Graphics.FONT_XTINY, "Version 0.57", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+      		dc.drawText(120, 70, Graphics.FONT_XTINY, "Version 1.03", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(120, 120, Graphics.FONT_TINY, "Registered !!", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(81, 160, Graphics.FONT_XTINY, "License code: ", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(180, 160, Graphics.FONT_XTINY, mtest, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
@@ -124,45 +116,15 @@ class DeviceView extends PowerView {
 			dc.drawText(161, 138, Graphics.FONT_NUMBER_MEDIUM, ID1, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(60, 185, Graphics.FONT_MEDIUM, "ID 2: " , Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(161, 178, Graphics.FONT_NUMBER_MEDIUM, ID2, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-			dc.drawText(120, 215, Graphics.FONT_XTINY, "Version 0.57", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+			dc.drawText(120, 215, Graphics.FONT_XTINY, "Version 1.03", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
       	}
 	   }
 	   
 	}
-	function Coloring(TestValue) {
-		if (metric[i] == 45) {
-                var mZ1under = 0;
-                var mZ2under = 0;
-                var mZ3under = 0;
-                var mZ4under = 0;
-                var mZ5under = 0;
-                var mZ5upper = 0; 
-                if (TestValue >= mZ5upper) {
-                    mfillColour[i] = Graphics.COLOR_BLACK;        
-                    mZone[i] = 6;
-                } else if (TestValue >= mZ5under) {
-                    mfillColour[i] = Graphics.COLOR_PURPLE;    	
-                    mZone[i] = 5;
-                } else if (TestValue >= mZ4under) {
-                    mfillColour[i] = Graphics.COLOR_RED;    	
-                    mZone[i] = 4;
-                } else if (TestValue >= mZ3under) {
-                    mfillColour[i] = Graphics.COLOR_GREEN;        
-                    mZone[i] = 3;
-                } else if (TestValue >= mZ2under) {
-                    mfillColour[i] = Graphics.COLOR_BLUE;        
-                    mZone[i] = 2;
-                } else if (TestValue >= mZ1under) {
-                    mfillColour[i] = Graphics.COLOR_DK_GRAY;        
-                    mZone[i] = 1;
-                } else {
-                    mfillColour[i] = Graphics.COLOR_LT_GRAY;        
-                    mZone[i] = 0;
-                }
-    	}
-	}
+
 
     function Formatting(dc,counter,fieldvalue,fieldformat,fieldlabel,CorString) {    
+        var originalFontcolor = mColourFont;
         var Temp; 
         var x = CorString.substring(0, 3);
         var y = CorString.substring(4, 7);
@@ -179,6 +141,10 @@ class DeviceView extends PowerView {
         xl = xl.toNumber();
         yl = yl.toNumber();
 
+		if ( metric[counter] == 46 or metric[counter] == 37 ) { 
+			fieldvalue = mZone[counter];
+		}
+
         if ( fieldformat.equals("0decimal" ) == true ) {
         	fieldvalue = Math.round(fieldvalue);
         } else if ( fieldformat.equals("1decimal" ) == true ) {
@@ -194,12 +160,20 @@ class DeviceView extends PowerView {
         } else if ( fieldformat.equals("pace" ) == true ) {
         	Temp = (fieldvalue != 0 ) ? (unitP/fieldvalue).toLong() : 0;
         	fieldvalue = (Temp / 60).format("%0d") + ":" + Math.round(Temp % 60).format("%02d");
+        } else if ( fieldformat.equals("power" ) == true ) {     
+        	fieldvalue = Math.round(fieldvalue);       	
+        	if (PowerWarning == 1) { 
+        		mColourFont = Graphics.COLOR_PURPLE;
+        	} else if (PowerWarning == 2) { 
+        		mColourFont = Graphics.COLOR_RED;
+        	}
         } else if ( fieldformat.equals("timeshort" ) == true  ) {
         	Temp = (fieldvalue != 0 ) ? (fieldvalue).toLong() : 0;
         	fieldvalue = (Temp /60000 % 60).format("%02d") + ":" + (Temp /1000 % 60).format("%02d");
         }
 
-
+    	dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
+    	
         if ( fieldformat.equals("time" ) == true ) {    
 	    	if ( counter == 1 or counter == 2 or counter == 6 or counter == 7 ) {  
 	    		var fTimerSecs = (fieldvalue % 60).format("%02d");
@@ -213,18 +187,13 @@ class DeviceView extends PowerView {
             		fTimer = (fieldvalue / 60 % 60).format("%02d") + ":" + fTimerSecs;  
         		}
         			dc.drawText(xx, y, Graphics.FONT_NUMBER_MEDIUM, fTimer, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);	
-        	} else if ( counter == 3 or counter == 5 ) {
-        		var fTimerlong = (fieldvalue / 3600).format("%0d") + ":" + (fieldvalue /60 % 60).format("%02d") + ":" + (fieldvalue  % 60).format("%02d");
-        		dc.drawText(x+2, y, Graphics.FONT_XTINY, fTimerlong, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-        	} else if ( counter == 4 ) {
-        		var fTimerlong = (fieldvalue / 3600).format("%0d") + ":" + (fieldvalue /60 % 60).format("%02d") + ":" + (fieldvalue  % 60).format("%02d");
-        		dc.drawText(x, y, Graphics.FONT_NUMBER_MILD, fTimerlong, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
         	}
         } else {
         	dc.drawText(x, y, Graphics.FONT_NUMBER_MEDIUM, fieldvalue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
         }        
         dc.drawText(xl, yl, Graphics.FONT_XTINY,  fieldlabel, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);               
-
+        mColourFont = originalFontcolor;
+		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
     }
 
 }

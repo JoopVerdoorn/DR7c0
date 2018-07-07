@@ -21,7 +21,7 @@ class CiqView extends ExtramemView {
     var mrealElevationLoss = 0;
     var mrealElevationDiff = 0;
     hidden var ID0;
-
+    hidden var extraMem = false;
 
     function initialize() {
         ExtramemView.initialize();
@@ -49,7 +49,11 @@ class CiqView extends ExtramemView {
 		ID2 = Math.round(mHash / 315127)+329;
 		ID1 = mHash % 315127+1864;
 		mtest = ((ID2-329)*315127 + ID1-1864) % 74539;
+		mtest = (mtest < 1000) ? mtest + 80000 : mtest;
 
+//!====================================================================
+
+		
 		//!Calculate HR-metrics
 		var info = Activity.getActivityInfo();
 		
@@ -118,5 +122,7 @@ class CiqView extends ExtramemView {
 		}
 
 	}
+
+
 }
 

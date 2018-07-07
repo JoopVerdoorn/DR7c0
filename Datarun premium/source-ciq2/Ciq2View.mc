@@ -21,6 +21,7 @@ class CiqView extends DatarunpremiumView {
     var mrealElevationLoss = 0;
     var mrealElevationDiff = 0;
     hidden var ID0;
+    hidden var extraMem = false;
 
 
     function initialize() {
@@ -36,7 +37,9 @@ class CiqView extends DatarunpremiumView {
 		mColourFont1 = Graphics.COLOR_BLACK;
 		mColourLine = Graphics.COLOR_BLUE;
 		mColourBackGround = Graphics.COLOR_WHITE;
-	
+
+//! specifieke code hierboven	
+//!====================================================================
 
 		var mHash = WatchID.hashCode();
 		mHash = (mHash > 0) ? mHash : -mHash;
@@ -74,14 +77,14 @@ class CiqView extends DatarunpremiumView {
             	fieldFormat[i] = "2decimal";
 			} else if (metric[i] == 43) {
     	        fieldValue[i] = (mLastLapSpeed != null) ? 3.6*mLastLapSpeed*1000/unitP : 0;
-        	    fieldLabel[i] = "L-1 Spd";
+        	    fieldLabel[i] = "LL Spd";
             	fieldFormat[i] = "2decimal";
 			} else if (metric[i] == 44) {
 	            fieldValue[i] = (info.averageSpeed != null) ? 3.6*info.averageSpeed*1000/unitP : 0;
     	        fieldLabel[i] = "Avg Spd";
         	    fieldFormat[i] = "2decimal";
 			} else if (metric[i] == 46) {
-	            fieldValue[i] = (info.currentHeartRate != null) ? info.currentHeartRate : 0; //! nog HR zone invoegen
+	            fieldValue[i] = 0; //! becomes HR zone later
     	        fieldLabel[i] = "HR zone";
         	    fieldFormat[i] = "0decimal";
 			} else if (metric[i] == 47) {
@@ -90,7 +93,7 @@ class CiqView extends DatarunpremiumView {
             	fieldFormat[i] = "0decimal";
 			} else if (metric[i] == 48) {
     	        fieldValue[i] = LastLapHeartrate;
-        	    fieldLabel[i] = "L-1 HR";
+        	    fieldLabel[i] = "LL HR";
             	fieldFormat[i] = "0decimal";
 			} else if (metric[i] == 49) {
 	            fieldValue[i] = AverageHeartrate;
@@ -104,10 +107,10 @@ class CiqView extends DatarunpremiumView {
 		  		fieldValue[i] = (info.altitude != null) ? Math.round(info.altitude).toNumber() : 0;
 		       	fieldLabel[i] = "Altitude";
 		       	fieldFormat[i] = "0decimal";
-            }
+        	}
+            
         	
 		}
 
 	}
 }
-
