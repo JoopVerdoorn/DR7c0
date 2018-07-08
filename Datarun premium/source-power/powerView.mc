@@ -116,7 +116,16 @@ class PowerView extends CiqView {
 		var mLapElapsedPower = mElapsedPower - mLastLapPowerMarker;
         
 		AveragePower = Math.round((mPowerTime != 0) ? mElapsedPower/mPowerTime : 0);  
-		LapPower = (mLapTimerTimePwr != 0) ? Math.round(mLapElapsedPower/mLapTimerTimePwr) : 0; 	
+
+		if (mLapTimerTimePwr == 1 ) {  
+			LapPower = (info.currentPower != null) ? info.currentPower : 0;
+			mLapElapsedPower = LapPower;
+		} else if (mLapTimerTimePwr == 2 ) {
+			LapPower = (info.currentPower != null) ? info.currentPower : 0;
+			mLapElapsedPower = 2*LapPower;		
+		} else {   
+			LapPower = (mLapTimerTimePwr != 0) ? Math.round(mLapElapsedPower/mLapTimerTimePwr) : 0; 	
+		}
 		LastLapPower			= (mLastLapTimerTimePwr != 0) ? Math.round(mLastLapElapsedPower/mLastLapTimerTimePwr) : 0;
 
 
@@ -129,7 +138,7 @@ class PowerView extends CiqView {
         if (currentPowertest > 0) {
             if (currentPowertest > 0) {
             	//! Calculate average power
-				if (info.currentSpeed != null) {
+				if (info.currentPower != null) {
         			Power1								= info.currentPower; 
         		} else {
         			Power1								= 0;

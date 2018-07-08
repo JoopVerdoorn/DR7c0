@@ -55,7 +55,16 @@ class CiqView extends DatarunpremiumView {
         var mLapElapsedHeartrate = mElapsedHeartrate - mLastLapHeartrateMarker;
 
 		AverageHeartrate = Math.round((mHeartrateTime != 0) ? mElapsedHeartrate/mHeartrateTime : 0);  		
-		LapHeartrate = (mLapTimerTimeHR != 0) ? Math.round(mLapElapsedHeartrate/mLapTimerTimeHR) : 0;
+		
+		if (mLapTimerTimeHR == 1 ) {  
+			LapHeartrate = (info.currentPower != null) ? info.currentPower : 0;
+			mLapElapsedHeartrate = LapHeartrate;
+		} else if (mLapTimerTimeHR == 2 ) {
+			LapHeartrate = (info.currentPower != null) ? info.currentPower : 0;
+			mLapElapsedHeartrate = 2*LapHeartrate;		
+		} else {   
+			LapHeartrate = (mLapTimerTimeHR != 0) ? Math.round(mLapElapsedHeartrate/mLapTimerTimeHR) : 0; 	
+		}				
 		LastLapHeartrate			= (mLastLapTimerTime != 0) ? Math.round(mLastLapElapsedHeartrate/mLastLapTimerTime) : 0;		
 
 
