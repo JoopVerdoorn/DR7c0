@@ -129,7 +129,6 @@ class DatarunpremiumView extends Ui.DataField {
          uRacetime			 = mApp.getProperty("pRacetime");
 
 
-
         if (System.getDeviceSettings().paceUnits == System.UNIT_STATUTE) {
             unitP = 1609.344;
         }

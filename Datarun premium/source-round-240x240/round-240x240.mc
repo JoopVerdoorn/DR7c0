@@ -51,13 +51,9 @@ class DeviceView extends PowerView {
         dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
 
 		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
- 		
+
 		//! Show number of laps or clock with current time in top
-		if (uShowlaps == true) {
-			 dc.drawText(105, -4, Graphics.FONT_MEDIUM, mLaps, Graphics.TEXT_JUSTIFY_CENTER);
-			 dc.drawText(140, -1
-			 , Graphics.FONT_XTINY, "lap", Graphics.TEXT_JUSTIFY_CENTER);
-		} else {
+		if (uShowlaps == false) {
 			var myTime = Toybox.System.getClockTime(); 
 	    	var strTime = myTime.hour.format("%02d") + ":" + myTime.min.format("%02d");
 			dc.drawText(120, -4, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
@@ -103,7 +99,7 @@ class DeviceView extends PowerView {
 	
 		if (umyNumber == mtest) {
       		dc.drawText(120, 40, Graphics.FONT_XTINY, "Datarun premium", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-      		dc.drawText(120, 70, Graphics.FONT_XTINY, "Version 1.05", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+      		dc.drawText(120, 70, Graphics.FONT_XTINY, "Version 1.10", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(120, 120, Graphics.FONT_TINY, "Registered !!", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(81, 160, Graphics.FONT_XTINY, "License code: ", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(180, 160, Graphics.FONT_XTINY, mtest, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
@@ -116,7 +112,7 @@ class DeviceView extends PowerView {
 			dc.drawText(161, 138, Graphics.FONT_NUMBER_MEDIUM, ID1, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(60, 185, Graphics.FONT_MEDIUM, "ID 2: " , Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(161, 178, Graphics.FONT_NUMBER_MEDIUM, ID2, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-			dc.drawText(120, 215, Graphics.FONT_XTINY, "Version 1.05", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+			dc.drawText(120, 215, Graphics.FONT_XTINY, "Version 1.10", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
       	}
 	   }
 	   

@@ -5,7 +5,10 @@ base.sourcePath=$(fr935.sourcePath)
  
 # define the actual sourcePaths
 fr935.sourcePath=source;source-ciq2;source-power;source-round-240x240
+fr735xt.sourcePath=source;source-ciq2;source-power;source-semiround-215x180
 fenix5.sourcePath=source;source-ciq2;source-power;source-round-240x240
+fenix5s.sourcePath=source;source-ciq2;source-power;source-round-218x218
+fenixchronos.sourcePath=source;source-ciq2;source-power;source-round-218x218
 fenix5x.sourcePath=source;source-extramem-power;source-ciq2extra;source-power;source-round-240x240
 fenix5plus.sourcePath=source;source-extramem-power;source-ciq2extra;source-power;source-round-240x240
 fenix5splus.sourcePath=source;source-extramem-power;source-ciq2extra;source-power;source-round-240x240

@@ -5,9 +5,9 @@ class ExtramemView extends DatarunpremiumView {
 
     function initialize() {
         DatarunpremiumView.initialize();
-        extraMem 		 = true;
 		var mApp 		 = Application.getApp();
 		uETAfromLap		 = mApp.getProperty("pETAfromLap");
+		uShowlaps		 = mApp.getProperty("pShowlaps");
     }
 
 	function onUpdate(dc) {
@@ -192,7 +192,11 @@ class ExtramemView extends DatarunpremiumView {
 	    	}       	
 		}
 		
-
+		//! Show number of laps or clock with current time in top
+		if (uShowlaps == true) {
+			 dc.drawText(103, -4, Graphics.FONT_MEDIUM, mLaps, Graphics.TEXT_JUSTIFY_CENTER);
+			 dc.drawText(140, -1, Graphics.FONT_XTINY, "lap", Graphics.TEXT_JUSTIFY_CENTER);
+		} 
 	   } 
 	   
 	}

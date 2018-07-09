@@ -23,7 +23,8 @@
     <property id="pRequiredPower" type="string">000:999</property>
     <property id="pWarningFreq" type="number">5</property>
     <property id="pAlertbeep" type="boolean">false</property>
-    <property id="pPowerZones" type="string">184:Z1:227:Z2:255:Z3:284:Z4:326:Z5:369</property>    
+    <property id="pPowerZones" type="string">184:Z1:227:Z2:255:Z3:284:Z4:326:Z5:369</property>
+    <property id="pShowlaps" type="boolean">false</property>        
   </properties>
 
 	
@@ -33,8 +34,8 @@
     <!-- Beta name:
     <string id="AppName">Datarun premium</string>
     -->
-    <string id="AppVersion">1.05</string>
-    <string id="lDummysetting4version">Version 1.05 of Datarun premium</string>
+    <string id="AppVersion">1.10</string>
+    <string id="lDummysetting4version">Version 1.10 of Datarun premium</string>
     <string id="lTimerDisplay">Timer field</string>
     <string id="lTimerTimer">Timer</string>
     <string id="lTimerLap">Current lap time</string>
@@ -71,7 +72,7 @@
     <string id="lShowDemo">Show demo view for ID's and check license</string>
     <string id="lBlackBackground">Use black background instead of white (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
     <string id="lBacklight">Force backlight on, regardless of device settings</string>
-    <string id="lShowlaps">Show number of laps instead of clock with current time</string>
+    <string id="lShowlaps">Show number of laps instead of clock with current time (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
     <string id="MyNumberTitle">Enter license key</string>
     <string id="MyNumberError">Not valid, only numbers allowed!</string>
     <string id="lRacedistanceTitle">Enter race distance in meters for estimated finish time</string>
@@ -127,6 +128,9 @@
       <settingConfig type="boolean" required="true" />
     </setting>
     <setting propertyKey="@Properties.pBacklight" title="@Strings.lBacklight">
+      <settingConfig type="boolean" required="true" />
+    </setting>
+    <setting propertyKey="@Properties.pShowlaps" title="@Strings.lShowlaps">
       <settingConfig type="boolean" required="true" />
     </setting>
     <setting propertyKey="@Properties.myNumber" title="@Strings.MyNumberTitle">
