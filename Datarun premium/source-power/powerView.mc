@@ -14,12 +14,10 @@ class PowerView extends CiqView {
 	hidden var AveragePower 							= 0; 
 	hidden var LapPower 								= 0; 
 	hidden var LastLapPower 							= 0; 
-    var AveragePower5sec  	 					= 0;
+    var AveragePower3sec  	 					= 0;
 	var Power1 									= 0;
     var Power2 									= 0;
     var Power3 									= 0;
-	var Power4 									= 0;
-    var Power5 									= 0;
 	var vibrateseconds = 0;
 	hidden var mT = 0;     
     
@@ -59,9 +57,7 @@ class PowerView extends CiqView {
           mlastaltitude = aaltitude;
           mElevationLoss = Math.round(mrealElevationLoss).toNumber();
           mElevationGain = Math.round(mrealElevationGain).toNumber();
-        }        
-        
-        
+        }             
 	}
 
     //! Store last lap quantities and set lap markers
@@ -131,7 +127,7 @@ class PowerView extends CiqView {
 
 
 		//!Calculate average power
-        var AveragePower5sec  	 			= 0;
+        var AveragePower3sec  	 			= 0;
         var currentPowertest				= 0;
 		if (info.currentSpeed != null && info.currentPower != null) {
         	currentPowertest = info.currentPower; 
@@ -144,11 +140,9 @@ class PowerView extends CiqView {
         		} else {
         			Power1								= 0;
 				}
-        		Power5 								= Power4;
-        		Power4 								= Power3;
         		Power3 								= Power2;
         		Power2 								= Power1;
-				AveragePower5sec= (Power1+Power2+Power3+Power4+Power5)/5;
+				AveragePower3sec= (Power1+Power2+Power3)/3;
 			}
  		}
 
@@ -161,28 +155,25 @@ class PowerView extends CiqView {
 		var vibrateData = [
 			new Attention.VibeProfile( 100, 100 )
 		];
+		
+
+		
 		//!var DisplayPower  = (info.currentPower != null) ? info.currentPower : 0;
-		if (AveragePower5sec>mPowerWarningupper or AveragePower5sec<mPowerWarningunder) {
+		PowerWarning = 0;
+		if (AveragePower3sec>mPowerWarningupper or AveragePower3sec<mPowerWarningunder) {
 			 //!Toybox.Attention.playTone(TONE_LOUD_BEEP);		 
 			 if (Toybox.Attention has :vibrate && uNoAlerts == false) {
 			 	vibrateseconds = vibrateseconds + 1;	 		  			
-    			if (AveragePower5sec>mPowerWarningupper) {
+    			if (AveragePower3sec>mPowerWarningupper) {
     				PowerWarning = 1;
     				if (vibrateseconds == uWarningFreq) {
-    					Toybox.Attention.vibrate(vibrateData);
-    					Toybox.Attention.vibrate(vibrateData);
-    					Toybox.Attention.vibrate(vibrateData);
-    					Toybox.Attention.vibrate(vibrateData);
-    					Toybox.Attention.vibrate(vibrateData);
-    					Toybox.Attention.vibrate(vibrateData);
-    					Toybox.Attention.vibrate(vibrateData);
     					Toybox.Attention.vibrate(vibrateData);
     					if (uAlertbeep == true) {
     						Attention.playTone(Attention.TONE_KEY);
     					}
     					vibrateseconds = 0;
     				}
-    			} else if (AveragePower5sec<mPowerWarningunder){
+    			} else if (AveragePower3sec<mPowerWarningunder){
     				PowerWarning = 2;
     				if (vibrateseconds == uWarningFreq) {
     					
@@ -192,14 +183,11 @@ class PowerView extends CiqView {
     					Toybox.Attention.vibrate(vibrateData);
     					vibrateseconds = 0;
     				}
-    			} else {
-    				PowerWarning = 0;
-    			}	
+    			} 
 			 }
 			 
 		}		
 
-		
 		var i = 0; 
 	    for (i = 1; i < 8; ++i) {	    
         	if (metric[i] == 20) {
@@ -207,8 +195,8 @@ class PowerView extends CiqView {
             	fieldLabel[i] = "Power";
             	fieldFormat[i] = "power";   
 	        } else if (metric[i] == 21) {
-    	        fieldValue[i] = AveragePower5sec;
-        	    fieldLabel[i] = "Pwr 5s";
+    	        fieldValue[i] = AveragePower3sec;
+        	    fieldLabel[i] = "Pwr 3s";
             	fieldFormat[i] = "power";
 			} else if (metric[i] == 22) {
     	        fieldValue[i] = LapPower;

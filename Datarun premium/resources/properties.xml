@@ -34,8 +34,8 @@
     <!-- Beta name:
     <string id="AppName">Datarun premium</string>
     -->
-    <string id="AppVersion">1.10</string>
-    <string id="lDummysetting4version">Version 1.10 of Datarun premium</string>
+    <string id="AppVersion">1.13</string>
+    <string id="lDummysetting4version">Version 1.13 of Datarun premium (dummy setting)</string>
     <string id="lTimerDisplay">Timer field</string>
     <string id="lTimerTimer">Timer</string>
     <string id="lTimerLap">Current lap time</string>
@@ -103,7 +103,7 @@
 	<string id="lLLEFactor">Last lap average efficiency factor (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
 	<string id="lLLEIndex">Last lap efficiency Index (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
     <string id="lSPower">Stryd footpod power</string>
-    <string id="lAsecPower">Power averaged over the last 5 seconds</string>
+    <string id="lAsecPower">Power averaged over the last 3 seconds</string>
     <string id="lAPower">Average Stryd footpod power</string>
 	<string id="lLPower">Current lap Stryd footpod power</string>
 	<string id="lLLPower">Last lap Stryd footpod power</string>

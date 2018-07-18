@@ -118,10 +118,7 @@ class CiqView extends DatarunpremiumView {
 		       	fieldLabel[i] = "Altitude";
 		       	fieldFormat[i] = "0decimal";
         	}
-            
-        	
 		}
-
 	}
 	
     function Formatting(dc,counter,fieldvalue,fieldformat,fieldlabel,CorString) {    
@@ -167,6 +164,8 @@ class CiqView extends DatarunpremiumView {
         		mColourFont = Graphics.COLOR_PURPLE;
         	} else if (PowerWarning == 2) { 
         		mColourFont = Graphics.COLOR_RED;
+        	} else if (PowerWarning == 0) { 
+        		mColourFont = originalFontcolor;
         	}
         } else if ( fieldformat.equals("timeshort" ) == true  ) {
         	Temp = (fieldvalue != 0 ) ? (fieldvalue).toLong() : 0;
