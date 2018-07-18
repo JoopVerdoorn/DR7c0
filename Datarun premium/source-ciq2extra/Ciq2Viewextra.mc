@@ -166,6 +166,8 @@ class CiqView extends ExtramemView {
         		mColourFont = Graphics.COLOR_PURPLE;
         	} else if (PowerWarning == 2) { 
         		mColourFont = Graphics.COLOR_RED;
+        	} else if (PowerWarning == 0) { 
+        		mColourFont = originalFontcolor;
         	}
         } else if ( fieldformat.equals("timeshort" ) == true  ) {
         	Temp = (fieldvalue != 0 ) ? (fieldvalue).toLong() : 0;
