@@ -1,9 +1,7 @@
 <resources>
-	<fonts>
-    	<font id="Garmin1" filename="fonts/Garmin1.fnt"/>
-    	<font id="Garmin2" filename="fonts/Garmin2.fnt"/>
-	</fonts>
+
   <properties>
+    <property id="pAppversion" type="string">1.22</property>
     <property id="pUpperLeftMetric" type="number">0</property>
     <property id="pUpperRightMetric" type="number">4</property>
     <property id="pMiddleLeftMetric" type="number">45</property>    
@@ -24,7 +22,9 @@
     <property id="pWarningFreq" type="number">5</property>
     <property id="pAlertbeep" type="boolean">false</property>
     <property id="pPowerZones" type="string">184:Z1:227:Z2:255:Z3:284:Z4:326:Z5:369</property>
-    <property id="pShowlaps" type="boolean">false</property>        
+    <property id="pShowlaps" type="boolean">false</property>
+    <property id="prolavPacmaxsecs" type="number">30</property> 
+    <property id="prolavPowmaxsecs" type="number">30</property>       
   </properties>
 
 	
@@ -34,8 +34,8 @@
     <!-- Beta name:
     <string id="AppName">Datarun premium</string>
     -->
-    <string id="AppVersion">1.13</string>
-    <string id="lDummysetting4version">Version 1.13 of Datarun premium (dummy setting)</string>
+    <string id="AppVersion">1.22</string>
+    <string id="lDummysetting4version">Version 1.22 of Datarun premium (dummy setting)</string>
     <string id="lTimerDisplay">Timer field</string>
     <string id="lTimerTimer">Timer</string>
     <string id="lTimerLap">Current lap time</string>
@@ -70,7 +70,7 @@
     <string id="lMaxColoringPace">Use 5 colors for coloring of pace field in middle row, instead of 3 colors</string>
     <string id="lColoringPaceFromAver">Use average pace for coloring of the pace field in middle row, instead of pace based on desired finish time</string>
     <string id="lShowDemo">Show demo view for ID's and check license</string>
-    <string id="lBlackBackground">Use black background instead of white (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
+    <string id="lBlackBackground">Use black background instead of white</string>
     <string id="lBacklight">Force backlight on, regardless of device settings</string>
     <string id="lShowlaps">Show number of laps instead of clock with current time (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
     <string id="MyNumberTitle">Enter license key</string>
@@ -88,7 +88,11 @@
     <string id="lWarningFreq">Frequency for the warning signal for operating out of powerzone</string>
     <string id="lAlertbeep">Play sound as warning signal for operating out of powerzone</string>   
 	<string id="lPacefield">Pace field on middle row</string>
-	<string id="lPaceperkm">Pace averaged over the last 5 seconds</string>
+	<string id="lPaceper3km">Pace averaged over the last 3 seconds</string>
+	<string id="lPaceper5km">Pace averaged over the last 5 seconds</string>
+	<string id="lPaceper300km">Pace averaged over the last .. seconds</string>
+	<string id="lrolavPacmaxsecs">Pace averaged over the last ... seconds (max is 300 seconds, only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
+	<string id="lrolavPacmaxsecsError">This needs to be a number from 2 too 300</string>
 	<string id="lPaceper100m">Pace in seconds per 100 meter (for track running)</string>
 	<string id="lCurrentSpeed">Speed in km/mile per hour</string>
 	<string id="lAveragesecSpeed">Speed averaged over the last 5 seconds in km/mile per hour</string>
@@ -104,6 +108,9 @@
 	<string id="lLLEIndex">Last lap efficiency Index (only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
     <string id="lSPower">Stryd footpod power</string>
     <string id="lAsecPower">Power averaged over the last 3 seconds</string>
+    <string id="lPowper300km">Power averaged over the last .. seconds</string>
+    <string id="lrolavPowmaxsecs">Power averaged over the last ... seconds (max is 300 seconds, only for Fenix 5x, Fenix 5 plus series and D2 Charlie)</string>
+    <string id="lrolavPowmaxsecsError">This needs to be a number from 2 too 300</string>
     <string id="lAPower">Average Stryd footpod power</string>
 	<string id="lLPower">Current lap Stryd footpod power</string>
 	<string id="lLLPower">Last lap Stryd footpod power</string>
@@ -160,7 +167,13 @@
     <setting propertyKey="@Properties.pRacetime" title="@Strings.lRacetimeTitle">
       <settingConfig type="alphaNumeric"  required="true"/>
     </setting>
-    
+    <setting propertyKey="@Properties.prolavPacmaxsecs" title="@Strings.lrolavPacmaxsecs">
+      <settingConfig type="numeric" errorMessage="@Strings.lrolavPacmaxsecsError" />
+    </setting>
+    <setting propertyKey="@Properties.prolavPowmaxsecs" title="@Strings.lrolavPowmaxsecs">
+      <settingConfig type="numeric" errorMessage="@Strings.lrolavPowmaxsecsError" />
+    </setting>
+        
     <setting propertyKey="@Properties.pUpperLeftMetric" title="@Strings.lUpperLeftMetric">
       <settingConfig type="list" required="true">
         <listEntry value="0">@Strings.lTimerTimer</listEntry>
@@ -171,8 +184,10 @@
         <listEntry value="5">@Strings.lDistLap</listEntry>
         <listEntry value="6">@Strings.lDistLastLap</listEntry>
         <listEntry value="7">@Strings.lAvgLapD</listEntry>
-        <listEntry value="8">@Strings.lCurrentPace</listEntry>        
-        <listEntry value="9">@Strings.lPaceperkm</listEntry>
+        <listEntry value="8">@Strings.lCurrentPace</listEntry>
+        <listEntry value="16">@Strings.lPaceper3km</listEntry>        
+        <listEntry value="9">@Strings.lPaceper5km</listEntry>
+        <listEntry value="17">@Strings.lPaceper300km</listEntry>
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
         <listEntry value="12">@Strings.lAvgPace</listEntry>
@@ -197,6 +212,7 @@
         
         <listEntry value="20">@Strings.lSPower</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
+        <listEntry value="37">@Strings.lPowper300km</listEntry>
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>
@@ -226,8 +242,10 @@
         <listEntry value="5">@Strings.lDistLap</listEntry>
         <listEntry value="6">@Strings.lDistLastLap</listEntry>
         <listEntry value="7">@Strings.lAvgLapD</listEntry>
-        <listEntry value="8">@Strings.lCurrentPace</listEntry>        
-        <listEntry value="9">@Strings.lPaceperkm</listEntry>
+        <listEntry value="8">@Strings.lCurrentPace</listEntry>
+        <listEntry value="16">@Strings.lPaceper3km</listEntry>        
+        <listEntry value="9">@Strings.lPaceper5km</listEntry>
+        <listEntry value="17">@Strings.lPaceper300km</listEntry>
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
         <listEntry value="12">@Strings.lAvgPace</listEntry>
@@ -249,6 +267,7 @@
 
         <listEntry value="20">@Strings.lSPower</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
+        <listEntry value="37">@Strings.lPowper300km</listEntry>
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>
@@ -270,7 +289,9 @@
         <listEntry value="6">@Strings.lDistLastLap</listEntry>
         <listEntry value="7">@Strings.lAvgLapD</listEntry>
         <listEntry value="8">@Strings.lCurrentPace</listEntry>        
-        <listEntry value="9">@Strings.lPaceperkm</listEntry>
+        <listEntry value="16">@Strings.lPaceper3km</listEntry>
+        <listEntry value="9">@Strings.lPaceper5km</listEntry>
+        <listEntry value="17">@Strings.lPaceper300km</listEntry>
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
         <listEntry value="12">@Strings.lAvgPace</listEntry>
@@ -289,6 +310,7 @@
 
         <listEntry value="20">@Strings.lSPower</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
+        <listEntry value="37">@Strings.lPowper300km</listEntry>
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>
@@ -308,8 +330,10 @@
         <listEntry value="5">@Strings.lDistLap</listEntry>
         <listEntry value="6">@Strings.lDistLastLap</listEntry>
         <listEntry value="7">@Strings.lAvgLapD</listEntry>
-        <listEntry value="8">@Strings.lCurrentPace</listEntry>        
-        <listEntry value="9">@Strings.lPaceperkm</listEntry>
+        <listEntry value="8">@Strings.lCurrentPace</listEntry>
+        <listEntry value="16">@Strings.lPaceper3km</listEntry>        
+        <listEntry value="9">@Strings.lPaceper5km</listEntry>
+        <listEntry value="17">@Strings.lPaceper300km</listEntry>
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
         <listEntry value="12">@Strings.lAvgPace</listEntry>
@@ -329,6 +353,7 @@
 
         <listEntry value="20">@Strings.lSPower</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
+        <listEntry value="37">@Strings.lPowper300km</listEntry>
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>
@@ -348,8 +373,10 @@
         <listEntry value="5">@Strings.lDistLap</listEntry>
         <listEntry value="6">@Strings.lDistLastLap</listEntry>
         <listEntry value="7">@Strings.lAvgLapD</listEntry>
-        <listEntry value="8">@Strings.lCurrentPace</listEntry>        
-        <listEntry value="9">@Strings.lPaceperkm</listEntry>
+        <listEntry value="8">@Strings.lCurrentPace</listEntry>
+        <listEntry value="16">@Strings.lPaceper3km</listEntry>        
+        <listEntry value="9">@Strings.lPaceper5km</listEntry>
+        <listEntry value="17">@Strings.lPaceper300km</listEntry>
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
         <listEntry value="12">@Strings.lAvgPace</listEntry>
@@ -369,6 +396,7 @@
 
         <listEntry value="20">@Strings.lSPower</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
+        <listEntry value="37">@Strings.lPowper300km</listEntry>
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>
@@ -382,6 +410,7 @@
 
       </settingConfig>
     </setting>
+    
     <setting propertyKey="@Properties.pBottomLeftMetric" title="@Strings.lBottomLeftMetric">
       <settingConfig type="list" required="true">
         <listEntry value="0">@Strings.lTimerTimer</listEntry>
@@ -393,7 +422,9 @@
         <listEntry value="6">@Strings.lDistLastLap</listEntry>
         <listEntry value="7">@Strings.lAvgLapD</listEntry>
         <listEntry value="8">@Strings.lCurrentPace</listEntry>        
-        <listEntry value="9">@Strings.lPaceperkm</listEntry>
+        <listEntry value="16">@Strings.lPaceper3km</listEntry>
+        <listEntry value="9">@Strings.lPaceper5km</listEntry>
+        <listEntry value="17">@Strings.lPaceper300km</listEntry>
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
         <listEntry value="12">@Strings.lAvgPace</listEntry>
@@ -415,6 +446,7 @@
 
         <listEntry value="20">@Strings.lSPower</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
+        <listEntry value="37">@Strings.lPowper300km</listEntry>
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>
@@ -438,8 +470,10 @@
         <listEntry value="5">@Strings.lDistLap</listEntry>
         <listEntry value="6">@Strings.lDistLastLap</listEntry>
         <listEntry value="7">@Strings.lAvgLapD</listEntry>
-        <listEntry value="8">@Strings.lCurrentPace</listEntry>        
-        <listEntry value="9">@Strings.lPaceperkm</listEntry>
+        <listEntry value="8">@Strings.lCurrentPace</listEntry>
+        <listEntry value="16">@Strings.lPaceper3km</listEntry>        
+        <listEntry value="9">@Strings.lPaceper5km</listEntry>
+        <listEntry value="17">@Strings.lPaceper300km</listEntry>
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
         <listEntry value="12">@Strings.lAvgPace</listEntry>
@@ -461,6 +495,7 @@
 
         <listEntry value="20">@Strings.lSPower</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
+        <listEntry value="37">@Strings.lPowper300km</listEntry>
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>

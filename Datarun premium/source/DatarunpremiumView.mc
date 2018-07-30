@@ -18,6 +18,7 @@ class DatarunpremiumApp extends Toybox.Application.AppBase {
 class DatarunpremiumView extends Ui.DataField {
 	hidden var stats = Sys.getSystemStats();
 	hidden var pwr = stats.battery;
+	hidden var appversion = "1.00";
 
 	//!Get device info
 	var mySettings = System.getDeviceSettings();
@@ -40,10 +41,10 @@ class DatarunpremiumView extends Ui.DataField {
 	
 	hidden var fieldValue = [1, 2, 3, 4, 5, 6, 7, 8];
 	hidden var fieldLabel = [1, 2, 3, 4, 5, 6, 7, 8];
-	hidden var fieldFormat = [1, 2, 3, 4, 5, 6, 7, 8];
-	hidden var mZone = [1, 2, 3, 4, 5, 6, 7, 8];	
+	hidden var fieldFormat = [1, 2, 3, 4, 5, 6, 7, 8];	
 
-    hidden var Averagespeedinmpersec 			= 0;
+    hidden var Averagespeedinmper3sec 			= 0;
+    hidden var Averagespeedinmper5sec 			= 0;
     hidden var mColour;
     hidden var mColourFont;
 	hidden var mColourFont1;
@@ -53,7 +54,6 @@ class DatarunpremiumView extends Ui.DataField {
     hidden var mLapTimerTime   = 0;
 	hidden var mElapsedDistance				= 0;
     hidden var mTimerRunning                = false;	
-    hidden var uHrZones                     = [ 93, 111, 130, 148, 167, 185 ];
     hidden var unitP                        = 1000.0;
     hidden var unitD                        = 1000.0;
     hidden var Pace1 								= 0;
@@ -105,9 +105,6 @@ class DatarunpremiumView extends Ui.DataField {
     function initialize() {
          DataField.initialize();
 
-         uHrZones = UserProfile.getHeartRateZones(UserProfile.getCurrentSport());
-
-
          var mApp = Application.getApp();
          metric[1]    	= mApp.getProperty("pUpperLeftMetric");
          metric[2]   	= mApp.getProperty("pUpperRightMetric");
@@ -127,6 +124,7 @@ class DatarunpremiumView extends Ui.DataField {
          uPowerZones		 = mApp.getProperty("pPowerZones");
          uRacedistance		 = mApp.getProperty("pRacedistance");
          uRacetime			 = mApp.getProperty("pRacetime");
+         appversion 		 = mApp.getProperty("pAppversion");
 
         if (System.getDeviceSettings().paceUnits == System.UNIT_STATUTE) {
             unitP = 1609.344;
@@ -183,6 +181,21 @@ class DatarunpremiumView extends Ui.DataField {
     //!! this is called whenever the screen needs to be updated
     function onUpdate(dc) {
 
+    	//! Setup back- and foregroundcolours
+		if (uBlackBackground == true ){
+			mColourFont = Graphics.COLOR_WHITE;
+			mColourFont1 = Graphics.COLOR_WHITE;
+			mColourLine = Graphics.COLOR_GREEN;
+			mColourBackGround = Graphics.COLOR_BLACK;
+		} else {
+			mColourFont = Graphics.COLOR_BLACK;
+			mColourFont1 = Graphics.COLOR_BLACK;
+			mColourLine = Graphics.COLOR_BLUE;
+			mColourBackGround = Graphics.COLOR_WHITE;
+		}
+		dc.setColor(mColourBackGround, Graphics.COLOR_TRANSPARENT);
+        dc.fillRectangle (0, 0, 240, 240);
+
         //! Calculate lap (HR) time and convert timers from milliseconds to seconds
 		var info = Activity.getActivityInfo();
         mLapTimerTime = jTimertime - mLastLapTimeMarker;
@@ -230,7 +243,8 @@ class DatarunpremiumView extends Ui.DataField {
         			Pace2 								= Pace1;
         			Pace1								= 0;
 				}
-				Averagespeedinmpersec= (uRoundedPace) ? unitP/(Math.round( (unitP/(Pace1+Pace2+Pace3+Pace4+Pace5)*5) / 5 ) * 5) : (Pace1+Pace2+Pace3+Pace4+Pace5)/5;
+				Averagespeedinmper5sec= (uRoundedPace) ? unitP/(Math.round( (unitP/(Pace1+Pace2+Pace3+Pace4+Pace5)*5) / 5 ) * 5) : (Pace1+Pace2+Pace3+Pace4+Pace5)/5;
+				Averagespeedinmper3sec= (uRoundedPace) ? unitP/(Math.round( (unitP/(Pace1+Pace2+Pace3)*3) / 5 ) * 5) : (Pace1+Pace2+Pace3)/3;
 				CurrentSpeedinmpersec= (uRoundedPace) ? unitP/(Math.round( unitP/currentSpeedtest / 5 ) * 5) : currentSpeedtest;
 			
 		}
@@ -288,8 +302,12 @@ class DatarunpremiumView extends Ui.DataField {
         	    fieldLabel[i] = "Pace";
             	fieldFormat[i] = "pace";   
 	        } else if (metric[i] == 9) {
-    	        fieldValue[i] = Averagespeedinmpersec; 
+    	        fieldValue[i] = Averagespeedinmper5sec; 
         	    fieldLabel[i] = "Pace 5s";
+            	fieldFormat[i] = "pace";
+	        } else if (metric[i] == 16) {
+    	        fieldValue[i] = Averagespeedinmper3sec; 
+        	    fieldLabel[i] = "Pace 3s";
             	fieldFormat[i] = "pace";
 	        } else if (metric[i] == 10) {
     	        fieldValue[i] = mLapSpeed;

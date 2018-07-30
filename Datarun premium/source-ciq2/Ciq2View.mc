@@ -32,12 +32,6 @@ class CiqView extends DatarunpremiumView {
 		//! call the parent onUpdate to do the base logic
 		DatarunpremiumView.onUpdate(dc);
 
-    	//! Setup back- and foregroundcolours
-		mColourFont = Graphics.COLOR_BLACK;
-		mColourFont1 = Graphics.COLOR_BLACK;
-		mColourLine = Graphics.COLOR_BLUE;
-		mColourBackGround = Graphics.COLOR_WHITE;
-
 //! specifieke code hierboven	
 //!====================================================================
 
@@ -51,20 +45,11 @@ class CiqView extends DatarunpremiumView {
 		//!Calculate HR-metrics
 		var info = Activity.getActivityInfo();
 		
-        mLapTimerTimeHR = jTimertime - mLastLapTimeHRMarker;
+        mLapTimerTimeHR = mHeartrateTime - mLastLapTimeHRMarker;
         var mLapElapsedHeartrate = mElapsedHeartrate - mLastLapHeartrateMarker;
 
 		AverageHeartrate = Math.round((mHeartrateTime != 0) ? mElapsedHeartrate/mHeartrateTime : 0);  		
-		
-		if (mLapTimerTimeHR == 1 ) {  
-			LapHeartrate = (info.currentPower != null) ? info.currentPower : 0;
-			mLapElapsedHeartrate = LapHeartrate;
-		} else if (mLapTimerTimeHR == 2 ) {
-			LapHeartrate = (info.currentPower != null) ? info.currentPower : 0;
-			mLapElapsedHeartrate = 2*LapHeartrate;		
-		} else {   
-			LapHeartrate = (mLapTimerTimeHR != 0) ? Math.round(mLapElapsedHeartrate/mLapTimerTimeHR) : 0; 	
-		}				
+		LapHeartrate = (mLapTimerTimeHR != 0) ? Math.round(mLapElapsedHeartrate/mLapTimerTimeHR) : 0; 					
 		LapHeartrate = (mLaps == 1) ? AverageHeartrate : LapHeartrate;
 		LastLapHeartrate			= (mLastLapTimerTime != 0) ? Math.round(mLastLapElapsedHeartrate/mLastLapTimerTime) : 0;		
 
@@ -138,10 +123,6 @@ class CiqView extends DatarunpremiumView {
         yh = yh.toNumber();
         xl = xl.toNumber();
         yl = yl.toNumber();
-
-		if ( metric[counter] == 46 or metric[counter] == 37 ) { 
-			fieldvalue = mZone[counter];
-		}
 
         if ( fieldformat.equals("0decimal" ) == true ) {
         	fieldvalue = Math.round(fieldvalue);

@@ -26,9 +26,11 @@ class DeviceView extends PowerView {
         dc.setColor(mColourLine, Graphics.COLOR_TRANSPARENT);
         dc.setPenWidth(2);
 
-        //! Horizontal thirds
+        //! Horizontal dividers
+        dc.drawLine(30,  26,  185, 26);
         dc.drawLine(0,   84,  215, 84);
         dc.drawLine(0,   142, 215, 142);
+        dc.drawLine(50, 202, 175, 202);
 
         //! Top vertical divider
         dc.drawLine(109, 28,  109, 84);
@@ -39,12 +41,6 @@ class DeviceView extends PowerView {
 
         //! Bottom vertical divider
         dc.drawLine(109, 142, 109, 202);
-                
-        //! Bottom horizontal divider
-        dc.drawLine(50, 202, 175, 202);
-
-        //! Top centre mini-field separator
-        dc.drawRoundedRectangle(75, -8, 68, 36, 4);
 
 		//! Display metrics
         dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
@@ -86,8 +82,8 @@ class DeviceView extends PowerView {
 		dc.fillRectangle(89, 206, 40, 7);
 		
 		dc.setColor(mColourBackGround, Graphics.COLOR_TRANSPARENT);
-		var Startstatuspwrbr = 89 + pwr*0.5  ;
-		var Endstatuspwrbr = 40 - pwr*0.5 ;
+		var Startstatuspwrbr = 89 + pwr*0.4  ;
+		var Endstatuspwrbr = 40 - pwr*0.4 ;
 		dc.fillRectangle(Startstatuspwrbr, 206, Endstatuspwrbr, 7);	
 
 	   } else {
@@ -96,7 +92,7 @@ class DeviceView extends PowerView {
 	
 		if (umyNumber == mtest) {
       		dc.drawText(109, 36, Graphics.FONT_XTINY, "Datarun premium", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-      		dc.drawText(109, 64, Graphics.FONT_XTINY, "Version 1.10", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+      		dc.drawText(109, 64, Graphics.FONT_XTINY, "Version " + appversion, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(109, 109, Graphics.FONT_TINY, "Registered !!", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(74, 145, Graphics.FONT_XTINY, "License code: ", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(164, 145, Graphics.FONT_XTINY, mtest, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
@@ -109,7 +105,7 @@ class DeviceView extends PowerView {
 			dc.drawText(146, 125, Graphics.FONT_NUMBER_MEDIUM, ID1, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(55, 168, Graphics.FONT_MEDIUM, "ID 2: " , Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(146, 162, Graphics.FONT_NUMBER_MEDIUM, ID2, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-			dc.drawText(109, 195, Graphics.FONT_XTINY, "Version 1.10", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+			dc.drawText(109, 195, Graphics.FONT_XTINY, "Version " + appversion, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
       	}
 	   }
 	   

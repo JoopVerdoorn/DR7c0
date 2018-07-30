@@ -11,8 +11,7 @@ class DeviceView extends PowerView {
 	function onUpdate(dc) {
 		//! call the parent function in order to execute the logic of the parent
 		PowerView.onUpdate(dc);
-
-
+                
 		//! Conditions for showing the demoscreen       
         if (uShowDemo == false) {
         	if (umyNumber != mtest && jTimertime > 900)  {
@@ -28,6 +27,7 @@ class DeviceView extends PowerView {
         dc.setPenWidth(2);
 
         //! Horizontal thirds
+        dc.drawLine(40,  28,  200, 28);
         dc.drawLine(0,   92,  237, 92);
         dc.drawLine(0,   156, 237, 156);
 
@@ -43,9 +43,6 @@ class DeviceView extends PowerView {
         
         //! Bottom horizontal divider
         dc.drawLine(53, 219, 187, 219);
-
-        //! Top centre mini-field separator
-        dc.drawRoundedRectangle(79, -11, 81, 40, 4);		
 
 		//! Display metrics
         dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
@@ -99,7 +96,7 @@ class DeviceView extends PowerView {
 	
 		if (umyNumber == mtest) {
       		dc.drawText(120, 40, Graphics.FONT_XTINY, "Datarun premium", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-      		dc.drawText(120, 70, Graphics.FONT_XTINY, "Version 1.13", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+      		dc.drawText(120, 70, Graphics.FONT_XTINY, "Version " + appversion, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(120, 120, Graphics.FONT_TINY, "Registered !!", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(81, 160, Graphics.FONT_XTINY, "License code: ", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(180, 160, Graphics.FONT_XTINY, mtest, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
@@ -112,7 +109,7 @@ class DeviceView extends PowerView {
 			dc.drawText(161, 138, Graphics.FONT_NUMBER_MEDIUM, ID1, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(60, 185, Graphics.FONT_MEDIUM, "ID 2: " , Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(161, 178, Graphics.FONT_NUMBER_MEDIUM, ID2, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-			dc.drawText(120, 215, Graphics.FONT_XTINY, "Version 1.13", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+			dc.drawText(120, 215, Graphics.FONT_XTINY, "Version " + appversion, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
       	}
 	   }
 	   
