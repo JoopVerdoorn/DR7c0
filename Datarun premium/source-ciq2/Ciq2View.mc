@@ -78,10 +78,6 @@ class CiqView extends DatarunpremiumView {
 	            fieldValue[i] = (info.averageSpeed != null) ? 3.6*info.averageSpeed*1000/unitP : 0;
     	        fieldLabel[i] = "Avg Spd";
         	    fieldFormat[i] = "2decimal";
-			} else if (metric[i] == 46) {
-	            fieldValue[i] = 0; //! becomes HR zone later
-    	        fieldLabel[i] = "HR zone";
-        	    fieldFormat[i] = "0decimal";
 			} else if (metric[i] == 47) {
     	        fieldValue[i] = LapHeartrate;
         	    fieldLabel[i] = "Lap HR";
