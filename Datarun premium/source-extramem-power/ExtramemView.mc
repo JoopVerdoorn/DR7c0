@@ -56,7 +56,6 @@ class ExtramemView extends DatarunpremiumView {
 			LastLapPower2HRRatio 		= (0.00001 + LastLapPower) / LastLapHeartrate;
 		}			
 
-
         //! Calculate ETA
         if (info.elapsedDistance != null && info.timerTime != null) {
             if (uETAfromLap == true ) {
@@ -217,7 +216,7 @@ class ExtramemView extends DatarunpremiumView {
         			fieldValue[i] = Math.round(mRacetime - mETA).toNumber() ;
 	        	}
     	    	if (fieldValue[i] < 0) {
-        			fieldValue[i] = - fieldValue;
+        			fieldValue[i] = - fieldValue[i];
         		}            	
 			}
 		}

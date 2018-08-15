@@ -31,7 +31,7 @@ class CiqView extends ExtramemView {
 		//! call the parent onUpdate to do the base logic
 		ExtramemView.onUpdate(dc);
 
-		var mHash = WatchID.hashCode();
+		var mHash = hashfunction(WatchID);	
 		mHash = (mHash > 0) ? mHash : -mHash;
 		ID2 = Math.round(mHash / 315127)+329;
 		ID1 = mHash % 315127+1864;
@@ -186,6 +186,14 @@ class CiqView extends ExtramemView {
 		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
     }
 
+	function hashfunction(string) {
+    	var val = 0;
+    	var bytes = string.toUtf8Array();
+    	for (var i = 0; i < bytes.size(); ++i) {
+        	val = (val * 997) + bytes[i];
+    	}
+    	return val + (val >> 5);
+	}
 
 }
 
