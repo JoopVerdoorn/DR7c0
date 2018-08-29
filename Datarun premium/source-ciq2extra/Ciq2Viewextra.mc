@@ -12,16 +12,7 @@ class CiqView extends ExtramemView {
 	hidden var LapHeartrate					= 0;
 	hidden var LastLapHeartrate				= 0;
 	hidden var AverageHeartrate 			= 0; 
-    var mlastaltitude = 0;
-    hidden var aaltitude = 0;
-	hidden var mElevationGain = 0;
-    hidden var mElevationLoss = 0;
-    var mElevationDiff = 0;
-    var mrealElevationGain = 0;
-    var mrealElevationLoss = 0;
-    var mrealElevationDiff = 0;
     hidden var ID0;
-    hidden var extraMem = false;
 
     function initialize() {
         ExtramemView.initialize();

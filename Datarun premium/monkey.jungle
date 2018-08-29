@@ -15,3 +15,5 @@ fenix5splus.sourcePath=source;source-extramem-power;source-ciq2extra;source-powe
 fenix5xplus.sourcePath=source;source-extramem-power;source-ciq2extra;source-power;source-round-240x240
 d2charlie.sourcePath=source;source-extramem-power;source-ciq2extra;source-power;source-round-240x240
 d2delta.sourcePath=source;source-extramem-power;source-ciq2extra;source-power;source-round-240x240
+fr645.sourcePath=source;source-ciq2;source-nopower-nofont;source-round-240x240
+fr645m.sourcePath=source;source-ciq2;source-nopower-nofont;source-round-240x240

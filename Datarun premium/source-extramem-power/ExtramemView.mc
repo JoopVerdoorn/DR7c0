@@ -14,7 +14,15 @@ class ExtramemView extends DatarunpremiumView {
 	var rolavPowmaxsecs = 30;
 	var Averagespeedinmpersec = 0;
 	var Averagepowerpersec = 0;
-
+    var mlastaltitude = 0;
+    hidden var aaltitude = 0;
+	hidden var mElevationGain = 0;
+    hidden var mElevationLoss = 0;
+    var mElevationDiff = 0;
+    var mrealElevationGain = 0;
+    var mrealElevationLoss = 0;
+    var mrealElevationDiff = 0;
+    
     function initialize() {
         DatarunpremiumView.initialize();
 		var mApp 		 = Application.getApp();
@@ -24,6 +32,22 @@ class ExtramemView extends DatarunpremiumView {
 		rolavPacmaxsecs  = mApp.getProperty("prolavPacmaxsecs");
 		uHrZones = UserProfile.getHeartRateZones(UserProfile.getCurrentSport());
     }
+
+    function compute(info) {
+        //! Calculate elevation differences and rounding altitude
+        if (info.altitude != null) {        
+          aaltitude = Math.round(info.altitude).toNumber();
+          mrealElevationDiff = aaltitude - mlastaltitude;
+          if (mrealElevationDiff > 0 ) {
+          	mrealElevationGain = mrealElevationDiff + mrealElevationGain;
+          } else {
+          	mrealElevationLoss =  mrealElevationLoss - mrealElevationDiff;
+          }  
+          mlastaltitude = aaltitude;
+          mElevationLoss = Math.round(mrealElevationLoss).toNumber();
+          mElevationGain = Math.round(mrealElevationGain).toNumber();
+        }  
+	}
 
 	function onUpdate(dc) {
 		//! call the parent onUpdate to do the base logic
@@ -136,7 +160,7 @@ class ExtramemView extends DatarunpremiumView {
         var i = 0; 
 	    for (i = 1; i < 8; ++i) {
 	        if (metric[i] == 38) {
-    	        fieldValue[i] = 0; //! becomes Power zone later
+    	        fieldValue[i] =  (info.currentPower != null) ? info.currentPower : 0;     	        
         	    fieldLabel[i] = "P zone";
             	fieldFormat[i] = "0decimal";
 			} else if (metric[i] == 17) {
@@ -291,7 +315,7 @@ class ExtramemView extends DatarunpremiumView {
             mZ4under = 174;
             mZ5under = 183;
             mZ5upper = 300; 
-        } else if (metric[counter] == 8 or metric[counter] == 9 or metric[counter] == 10 or metric[counter] == 16 or metric[counter] == 11 or metric[counter] == 12 or metric[counter] == 40 or metric[counter] == 41 or metric[counter] == 42 or metric[counter] == 43 or metric[counter] == 44) {  //! Pace=8, Pace 5s=9, L Pace=10, L-1 Pace=11, AvgPace=12, Speed=40, Spd 5s=41, L Spd=42, LL Spd=43, Avg Spd=44
+        } else if (metric[counter] == 20 or metric[counter] == 21 or metric[counter] == 22 or metric[counter] == 23 or metric[counter] == 24 or metric[counter] == 37 or metric[counter] == 38) {  //! Power=20, Powerzone=38, Pwr 5s=21, L Power=22, L-1 Pwr=23, A Power=24
         	mZ1under = uPowerZones.substring(0, 3);
         	mZ2under = uPowerZones.substring(7, 10);
         	mZ3under = uPowerZones.substring(14, 17);
@@ -303,7 +327,7 @@ class ExtramemView extends DatarunpremiumView {
     	    mZ3under = mZ3under.toNumber();
 	        mZ4under = mZ4under.toNumber();        
     	    mZ5under = mZ5under.toNumber();
-        	mZ5upper = mZ5upper.toNumber();
+        	mZ5upper = mZ5upper.toNumber();		
         } else if (metric[counter] == 8 or metric[counter] == 9 or metric[counter] == 10 or metric[counter] == 11 or metric[counter] == 12 or metric[counter] == 40 or metric[counter] == 41 or metric[counter] == 42 or metric[counter] == 43 or metric[counter] == 44) {  //! Pace=8, Pace 5s=9, L Pace=10, L-1 Pace=11, AvgPace=12, Speed=40, Spd 5s=41, L Spd=42, LL Spd=43, Avg Spd=44
             mZ1under = avgSpeed*0.9;
             mZ2under = avgSpeed*0.95;
@@ -322,20 +346,20 @@ class ExtramemView extends DatarunpremiumView {
         mZone[counter] = 0;
         if (testvalue >= mZ5upper) {
             mfillColour = Graphics.COLOR_PURPLE;
-			mZone[counter] = 6;
+			mZone[counter] = 6;			
 		} else if (testvalue >= mZ5under) {
 			mfillColour = Graphics.COLOR_RED;    	
-			mZone[counter] = 5;
+			mZone[counter] = 5;			
 		} else if (testvalue >= mZ4under) {
 			mfillColour = Graphics.COLOR_GREEN;    	
-			mZone[counter] = 4;
+			mZone[counter] = 4;			
 		} else if (testvalue >= mZ3under) {
 			mfillColour = Graphics.COLOR_BLUE;        
 			mZone[counter] = 3;
 		} else if (testvalue >= mZ2under) {
 			mfillColour = Graphics.COLOR_YELLOW;        
 			mZone[counter] = 2;
-		} else if (testvalue >= mZ1under) {
+		} else if (testvalue >= mZ1under) {			
 			mfillColour = Graphics.COLOR_LT_GRAY;        
 			mZone[counter] = 1;
 		} else {

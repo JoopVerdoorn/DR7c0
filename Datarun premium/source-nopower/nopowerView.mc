@@ -72,6 +72,19 @@ class PowerView extends CiqView {
         mLastLapTimeMarker           = info.timerTime;
     }
 
+	function onWorkoutStepComplete() {
+        var info = Activity.getActivityInfo();
+        mLastLapElapsedHeartrate = (info.currentHeartRate != null) ? mElapsedHeartrate - mLastLapHeartrateMarker : 0;
+        mLastLapTimerTime        = (info.timerTime - mLastLapTimeMarker) / 1000;
+        mLastLapTimerTimeHR		= mHeartrateTime - mLastLapTimeHRMarker;        
+        mLastLapElapsedDistance  = (info.elapsedDistance != null) ? info.elapsedDistance - mLastLapDistMarker : 0;
+        mLaps++;
+        mLastLapDistMarker           = info.elapsedDistance;
+        mLastLapHeartrateMarker      = mElapsedHeartrate;
+        mLastLapTimeHRMarker         = mHeartrateTime;
+        mLastLapTimeMarker           = info.timerTime;
+    }
+
     //! Current activity is ended
     function onTimerReset() {
         mPrevElapsedDistance        = 0;

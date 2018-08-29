@@ -18,12 +18,18 @@ class PowerView extends CiqView {
 	var Power1 									= 0;
     var Power2 									= 0;
     var Power3 									= 0;
-	var vibrateseconds = 0;
-	hidden var mT = 0;     
+	var vibrateseconds = 0;  
+    hidden var uPowerZones                  = "184:Z1:227:Z2:255:Z3:284:Z4:326:Z5:369";
     
 	//! it's good practice to always have an initialize, make sure to call your parent class here!
     function initialize() {
         CiqView.initialize();
+         var mApp = Application.getApp();
+         uRequiredPower		 = mApp.getProperty("pRequiredPower");
+         uWarningFreq		 = mApp.getProperty("pWarningFreq");
+         uAlertbeep			 = mApp.getProperty("pAlertbeep");
+         uPowerZones		 = mApp.getProperty("pPowerZones");
+        
     }
 
     //! Calculations we need to do every second even when the data field is not visible
@@ -45,43 +51,19 @@ class PowerView extends CiqView {
 			mElapsedPower    = (info.currentPower != null) ? mElapsedPower + info.currentPower : mElapsedPower;              
         }
         
-        //! Calculate elevation differences and rounding altitude
-        if (info.altitude != null) {        
-          aaltitude = Math.round(info.altitude).toNumber();
-          mrealElevationDiff = aaltitude - mlastaltitude;
-          if (mrealElevationDiff > 0 ) {
-          	mrealElevationGain = mrealElevationDiff + mrealElevationGain;
-          } else {
-          	mrealElevationLoss =  mrealElevationLoss - mrealElevationDiff;
-          }  
-          mlastaltitude = aaltitude;
-          mElevationLoss = Math.round(mrealElevationLoss).toNumber();
-          mElevationGain = Math.round(mrealElevationGain).toNumber();
-        }             
+           
 	}
 
-    //! Store last lap quantities and set lap markers
+    //! Store last lap quantities and set lap markers after a lap
     function onTimerLap() {
-        var info = Activity.getActivityInfo();
-        mLastLapTimerTime       	= jTimertime - mLastLapTimeMarker;
-        mLastLapElapsedDistance 	= (info.elapsedDistance != null) ? info.elapsedDistance - mLastLapDistMarker : 0;
-        mLastLapDistMarker      	= (info.elapsedDistance != null) ? info.elapsedDistance : 0;
-        mLastLapTimeMarker      	= jTimertime;
-
-        mLastLapTimerTimeHR			= mHeartrateTime - mLastLapTimeHRMarker;
-        mLastLapElapsedHeartrate 	= (info.currentHeartRate != null) ? mElapsedHeartrate - mLastLapHeartrateMarker : 0;
-        mLastLapHeartrateMarker     = mElapsedHeartrate;
-        mLastLapTimeHRMarker        = mHeartrateTime;
-
-        mLastLapTimerTimePwr		= mPowerTime - mLastLapTimePwrMarker;
-        mLastLapElapsedPower  		= (info.currentPower != null) ? mElapsedPower - mLastLapPowerMarker : 0;
-        mLastLapPowerMarker         = mElapsedPower;
-        mLastLapTimePwrMarker       = mPowerTime;        
-
-        mLaps++;
-
+		Lapaction ();
 	}
 
+	//! Store last lap quantities and set lap markers after a step within a structured workout
+	function onWorkoutStepComplete() {
+		Lapaction ();
+	}
+	
     //! Current activity is ended
     function onTimerReset() {
         mPrevElapsedDistance        = 0;
@@ -96,8 +78,7 @@ class PowerView extends CiqView {
         mLastLapTimerTimeHR     	= 0;   
         mLastLapPowerMarker      	= 0;
         mLastLapElapsedPower     	= 0; 
-        mLastLapTimerTimePwr     	= 0;
-        mT = 0;   
+        mLastLapTimerTimePwr     	= 0;  
     }
 	
 	function onUpdate(dc) {
@@ -204,6 +185,26 @@ class PowerView extends CiqView {
 		//!einde invullen field metrics
 		}
 
+	}
+
+	function Lapaction () {
+        var info = Activity.getActivityInfo();
+        mLastLapTimerTime       	= jTimertime - mLastLapTimeMarker;
+        mLastLapElapsedDistance 	= (info.elapsedDistance != null) ? info.elapsedDistance - mLastLapDistMarker : 0;
+        mLastLapDistMarker      	= (info.elapsedDistance != null) ? info.elapsedDistance : 0;
+        mLastLapTimeMarker      	= jTimertime;
+
+        mLastLapTimerTimeHR			= mHeartrateTime - mLastLapTimeHRMarker;
+        mLastLapElapsedHeartrate 	= (info.currentHeartRate != null) ? mElapsedHeartrate - mLastLapHeartrateMarker : 0;
+        mLastLapHeartrateMarker     = mElapsedHeartrate;
+        mLastLapTimeHRMarker        = mHeartrateTime;
+
+        mLastLapTimerTimePwr		= mPowerTime - mLastLapTimePwrMarker;
+        mLastLapElapsedPower  		= (info.currentPower != null) ? mElapsedPower - mLastLapPowerMarker : 0;
+        mLastLapPowerMarker         = mElapsedPower;
+        mLastLapTimePwrMarker       = mPowerTime;        
+
+        mLaps++;	
 	}
 
 }
