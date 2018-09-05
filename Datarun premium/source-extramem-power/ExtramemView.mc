@@ -187,6 +187,7 @@ class ExtramemView extends DatarunpremiumView {
     	        fieldValue[i] = LastLapEfficiencyFactor;
         	    fieldLabel[i] = "LL EF";
             	fieldFormat[i] = "2decimal";
+
 			} else if (metric[i] == 30) {
 	            fieldValue[i] = AverageEfficiencyFactor;
     	        fieldLabel[i] = "Avg EF";
