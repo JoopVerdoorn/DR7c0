@@ -22,19 +22,17 @@ class DatarunpremiumView extends Ui.DataField {
 
 	//!Get device info
 	var mySettings = System.getDeviceSettings();
-	hidden var ID1;
-	hidden var ID2;
-	hidden var WatchID = (mySettings.uniqueIdentifier != null) ? mySettings.uniqueIdentifier : 914;
+	hidden var ID0 = 999;
+	hidden var ID1 = 123;
+	hidden var ID2 = 456;
+	hidden var WatchID = mySettings.uniqueIdentifier;
 	hidden var watchType = mySettings.partNumber;
-	var screenWidth = mySettings.screenWidth;
-	var screenShape = mySettings.screenShape;
-	var screenHeight = mySettings.screenHeight;
-	var isTouchScreen = mySettings.isTouchScreen;  //!boolean
-	var numberisTouchScreen = 9;
-
+	hidden var licenseOK = false;
+	hidden var CCode = 12345678;
+	
 	hidden var uShowlaps = false;
 	hidden var uShowDemo = false;
-	hidden var umyNumber = 0;
+	hidden var umyNumber = 26429769;
 	hidden var mtest = 63869733;
 	hidden var jTimertime = 0;
 	hidden var uBlackBackground = false;
@@ -129,7 +127,23 @@ class DatarunpremiumView extends Ui.DataField {
             unitD = 1609.344;
         }
 
+		//! Setting ID's for licensing and testing license
+		ID0 = watchType.substring(5, 9);
+		ID0 = 511+ID0.toNumber();
+		var mHash = hashfunction(WatchID);	
+		mHash = (mHash > 0) ? mHash : -mHash;
+		ID2 = Math.round(mHash / 315127)+329;
+		ID1 = mHash % 315127+1864;
+		mtest = ((ID2-329)*315127 + ID1-1864) % 74539;
+		mtest = (mtest < 1000) ? mtest + 80000 : mtest;
         
+        licenseOK = (umyNumber == mtest) ? true : false;
+        
+		CCode = hashfunction(umyNumber.toString())+548831;                
+		CCode = CCode*hashfunction(watchType)-4785;
+        CCode = (CCode > 0) ? CCode : -CCode; 
+        CCode = CCode % 346898 + 54215;   
+             
     }
 
     //! Timer transitions from stopped to running state
@@ -192,15 +206,6 @@ class DatarunpremiumView extends Ui.DataField {
         //! Calculate lap (HR) time and convert timers from milliseconds to seconds
 		var info = Activity.getActivityInfo();
         mLapTimerTime = jTimertime - mLastLapTimeMarker;
-
-    	//! Check license (base, further check in CIQ1 and CIQ2)
-    	if (isTouchScreen == false) {
-        	numberisTouchScreen = 3;
-    	} else {
-    		numberisTouchScreen = 6;
-    	}
-		ID0 = watchType.substring(5, 9);
-		ID0 = 511+ID0.toNumber();
 		
         //! Calculate lap distance
         var mLapElapsedDistance = 0.0;
@@ -330,4 +335,12 @@ class DatarunpremiumView extends Ui.DataField {
 		
 	  }
     }
+	function hashfunction(string) {
+    	var val = 0;
+    	var bytes = string.toUtf8Array();
+    	for (var i = 0; i < bytes.size(); ++i) {
+        	val = (val * 997) + bytes[i];
+    	}
+    	return val + (val >> 5);
+	}    
 }

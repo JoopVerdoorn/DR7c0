@@ -3,7 +3,7 @@ class ExtramemView extends DatarunpremiumView {
 	hidden var mETA							= 0;
 	hidden var uETAfromLap 					= true;
 	var mZone 								= [1, 2, 3, 4, 5, 6, 7, 8];
-	var uHrZones   			                = [ 93, 111, 130, 148, 167, 185 ];
+	hidden var uHrZones   			                = [ 93, 111, 130, 148, 167, 185 ];
 	var counterPace 							= 0;
 	var counterPower 							= 0;
 	var rollingPaceValue = new [303];
@@ -30,7 +30,7 @@ class ExtramemView extends DatarunpremiumView {
 		uShowlaps		 = mApp.getProperty("pShowlaps");
 		rolavPowmaxsecs	 = mApp.getProperty("prolavPowmaxsecs");
 		rolavPacmaxsecs  = mApp.getProperty("prolavPacmaxsecs");
-		uHrZones = UserProfile.getHeartRateZones(UserProfile.getCurrentSport());
+        uHrZones = UserProfile.getHeartRateZones(UserProfile.getCurrentSport());		
     }
 
     function compute(info) {
@@ -248,7 +248,7 @@ class ExtramemView extends DatarunpremiumView {
 
 		//! Conditions for showing the demoscreen       
         if (uShowDemo == false) {
-        	if (umyNumber != mtest && jTimertime > 900)  {
+        	if (licenseOK == false && jTimertime > 900)  {
         		uShowDemo = true;        		
         	}
         }
