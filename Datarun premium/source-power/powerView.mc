@@ -49,9 +49,7 @@ class PowerView extends CiqView {
             //!Calculate lappower
             mPowerTime		 = (info.currentPower != null) ? mPowerTime+1 : mPowerTime;
 			mElapsedPower    = (info.currentPower != null) ? mElapsedPower + info.currentPower : mElapsedPower;              
-        }
-        
-           
+        }           
 	}
 
     //! Store last lap quantities and set lap markers after a lap

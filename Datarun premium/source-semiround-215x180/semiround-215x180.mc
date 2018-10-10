@@ -14,7 +14,7 @@ class DeviceView extends PowerView {
         
 		//! Conditions for showing the demoscreen       
         if (uShowDemo == false) {
-        	if (umyNumber != mtest && jTimertime > 900)  {
+        	if (licenseOK == false && jTimertime > 900)  {
         		uShowDemo = true;        		
         	}
         }
@@ -113,8 +113,6 @@ class DeviceView extends PowerView {
 			dc.drawText(146, 142, Graphics.FONT_NUMBER_MEDIUM, ID2, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(109, 170, Graphics.FONT_XTINY, "Version " + appversion, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
       	}
-	   }
-	   
+	   }  
 	}
-
 }

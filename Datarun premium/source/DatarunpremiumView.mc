@@ -98,7 +98,6 @@ class DatarunpremiumView extends Ui.DataField {
            
 	hidden var metric = [1, 2, 3, 4, 5, 6, 7,8];
 	
-
     function initialize() {
          DataField.initialize();
 
@@ -118,7 +117,8 @@ class DatarunpremiumView extends Ui.DataField {
          uRacedistance		 = mApp.getProperty("pRacedistance");
          uRacetime			 = mApp.getProperty("pRacetime");
          appversion 		 = mApp.getProperty("pAppversion");
-
+		 var uHrZones = UserProfile.getHeartRateZones(UserProfile.getCurrentSport());
+	 
         if (System.getDeviceSettings().paceUnits == System.UNIT_STATUTE) {
             unitP = 1609.344;
         }
@@ -137,13 +137,11 @@ class DatarunpremiumView extends Ui.DataField {
 		mtest = ((ID2-329)*315127 + ID1-1864) % 74539;
 		mtest = (mtest < 1000) ? mtest + 80000 : mtest;
         
-        licenseOK = (umyNumber == mtest) ? true : false;
-        
+        licenseOK = (umyNumber == mtest) ? true : false;      
 		CCode = hashfunction(umyNumber.toString())+548831;                
-		CCode = CCode*hashfunction(watchType)-4785;
+		CCode = CCode*hashfunction((uHrZones[2]*uHrZones[4]+uHrZones[1]+uHrZones[3]).toString())-4785;
         CCode = (CCode > 0) ? CCode : -CCode; 
         CCode = CCode % 346898 + 54215;   
-             
     }
 
     //! Timer transitions from stopped to running state
@@ -187,7 +185,6 @@ class DatarunpremiumView extends Ui.DataField {
     
     //!! this is called whenever the screen needs to be updated
     function onUpdate(dc) {
-
     	//! Setup back- and foregroundcolours
 		if (uBlackBackground == true ){
 			mColourFont = Graphics.COLOR_WHITE;
@@ -244,10 +241,7 @@ class DatarunpremiumView extends Ui.DataField {
 				Averagespeedinmper5sec= (uRoundedPace) ? unitP/(Math.round( (unitP/(Pace1+Pace2+Pace3+Pace4+Pace5)*5) / 5 ) * 5) : (Pace1+Pace2+Pace3+Pace4+Pace5)/5;
 				Averagespeedinmper3sec= (uRoundedPace) ? unitP/(Math.round( (unitP/(Pace1+Pace2+Pace3)*3) / 5 ) * 5) : (Pace1+Pace2+Pace3)/3;
 				CurrentSpeedinmpersec= (uRoundedPace) ? unitP/(Math.round( unitP/currentSpeedtest / 5 ) * 5) : currentSpeedtest;
-			
 		}
-
-
 
 		//! Determine required finish time and calculate required pace 	
 
@@ -258,7 +252,6 @@ class DatarunpremiumView extends Ui.DataField {
         mRacemin = mRacemin.toNumber();
         mRacesec = mRacesec.toNumber();
         mRacetime = mRacehour*3600 + mRacemin*60 + mRacesec;
-
 
 		//!Fill field metrics
 		var i = 0; 

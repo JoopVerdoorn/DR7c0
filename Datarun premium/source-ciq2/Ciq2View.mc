@@ -24,7 +24,6 @@ class CiqView extends DatarunpremiumView {
 //! specifieke code hierboven	
 //!====================================================================
 
-
 		//!Calculate HR-metrics
 		var info = Activity.getActivityInfo();
 		
@@ -155,7 +154,4 @@ class CiqView extends DatarunpremiumView {
         mColourFont = originalFontcolor;
 		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
     }
-
-
-
 }

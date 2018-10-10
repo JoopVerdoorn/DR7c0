@@ -61,7 +61,7 @@ class PowerView extends CiqView {
 		//! call the parent function in order to execute the logic of the parent
 		CiqView.onUpdate(dc);
 		var info = Activity.getActivityInfo();
-		
+	
         //! Calculate ETA
         if (info.elapsedDistance != null && info.timerTime != null) {
             if (uETAfromLap == true ) {
@@ -99,15 +99,7 @@ class PowerView extends CiqView {
 			}
 		}
 
-		//! Determine required finish time and calculate required pace 	
 
-        var mRacehour = uRacetime.substring(0, 2);
-        var mRacemin = uRacetime.substring(3, 5);
-        var mRacesec = uRacetime.substring(6, 8);
-        mRacehour = mRacehour.toNumber();
-        mRacemin = mRacemin.toNumber();
-        mRacesec = mRacesec.toNumber();
-        mRacetime = mRacehour*3600 + mRacemin*60 + mRacesec;		
 		
 		//! Display colored labels on screen
 		for (var i = 1; i < 8; ++i) {

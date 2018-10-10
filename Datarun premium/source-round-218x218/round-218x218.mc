@@ -44,8 +44,6 @@ class DeviceView extends PowerView {
 
 		//! Display metrics
         dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
-
-		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
  		
 		//! Show clock with current time in top
 		var myTime = Toybox.System.getClockTime(); 
@@ -111,7 +109,5 @@ class DeviceView extends PowerView {
 			dc.drawText(109, 195, Graphics.FONT_XTINY, "Version " + appversion, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
       	}
 	   }
-	   
 	}
-
 }

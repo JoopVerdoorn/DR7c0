@@ -22,7 +22,7 @@ class ExtramemView extends DatarunpremiumView {
     var mrealElevationGain = 0;
     var mrealElevationLoss = 0;
     var mrealElevationDiff = 0;
-    
+	    
     function initialize() {
         DatarunpremiumView.initialize();
 		var mApp 		 = Application.getApp();
@@ -187,7 +187,6 @@ class ExtramemView extends DatarunpremiumView {
     	        fieldValue[i] = LastLapEfficiencyFactor;
         	    fieldLabel[i] = "LL EF";
             	fieldFormat[i] = "2decimal";
-
 			} else if (metric[i] == 30) {
 	            fieldValue[i] = AverageEfficiencyFactor;
     	        fieldLabel[i] = "Avg EF";

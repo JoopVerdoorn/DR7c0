@@ -47,8 +47,6 @@ class DeviceView extends PowerView {
 		//! Display metrics
         dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
 
-		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
-
 		//! Show number of laps or clock with current time in top
 		if (uShowlaps == false) {
 			var myTime = Toybox.System.getClockTime(); 
@@ -113,8 +111,6 @@ class DeviceView extends PowerView {
 			dc.drawText(161, 178, Graphics.FONT_NUMBER_MEDIUM, ID2, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(120, 215, Graphics.FONT_XTINY, "Version " + appversion, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
       	}
-	   }
-	   
+	   }  
 	}
-
 }
