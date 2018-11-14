@@ -126,6 +126,8 @@ class DatarunpremiumView extends Ui.DataField {
         if (System.getDeviceSettings().distanceUnits == System.UNIT_STATUTE) {
             unitD = 1609.344;
         }
+        uRacedistance = (unitD/1000)*uRacedistance;
+
 
 		//! Setting ID's for licensing and testing license
 		ID0 = watchType.substring(5, 9);
