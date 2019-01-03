@@ -1,89 +1,39 @@
 using Toybox.Application as App;
 
 class CiqView extends DatarunpremiumView {  
-    hidden var mElapsedHeartrate   			= 0;
-	hidden var mLastLapHeartrateMarker      = 0;    
-    hidden var mCurrentHeartrate    		= 0; 
-    hidden var mLastLapElapsedHeartrate		= 0;
-    hidden var mHeartrateTime				= 0;
-    hidden var mLapTimerTimeHR				= 0;    
-	hidden var mLastLapTimeHRMarker			= 0;
-	hidden var mLastLapTimerTimeHR			= 0;
-	hidden var LapHeartrate					= 0;
-	hidden var LastLapHeartrate				= 0;
-	hidden var AverageHeartrate 			= 0; 
-
+	hidden var mETA							= 0;
+	hidden var uETAfromLap 					= true;
+	
     function initialize() {
         DatarunpremiumView.initialize();
     }
 
-	function onUpdate(dc) {
-		//! call the parent onUpdate to do the base logic
-		DatarunpremiumView.onUpdate(dc);
-
-//! specifieke code hierboven	
-//!====================================================================
-
-		//!Calculate HR-metrics
-		var info = Activity.getActivityInfo();
-		
-        mLapTimerTimeHR = mHeartrateTime - mLastLapTimeHRMarker;
-        var mLapElapsedHeartrate = mElapsedHeartrate - mLastLapHeartrateMarker;
-
-		AverageHeartrate = Math.round((mHeartrateTime != 0) ? mElapsedHeartrate/mHeartrateTime : 0);  		
-		LapHeartrate = (mLapTimerTimeHR != 0) ? Math.round(mLapElapsedHeartrate/mLapTimerTimeHR) : 0; 					
-		LapHeartrate = (mLaps == 1) ? AverageHeartrate : LapHeartrate;
-		LastLapHeartrate			= (mLastLapTimerTime != 0) ? Math.round(mLastLapElapsedHeartrate/mLastLapTimerTime) : 0;		
-
-
-		dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
-
-		var i = 0; 
-	    for (i = 1; i < 8; ++i) {
-	        if (metric[i] == 40) {
-    	        fieldValue[i] = (info.currentSpeed != null) ? 3.6*info.currentSpeed*1000/unitP : 0;
-        	    fieldLabel[i] = "Speed";
-            	fieldFormat[i] = "2decimal";   
-	        } else if (metric[i] == 41) {
-    	        fieldValue[i] = (info.currentSpeed != null) ? 3.6*((Pace1+Pace2+Pace3+Pace4+Pace5)/5)*1000/unitP : 0;
-        	    fieldLabel[i] = "Spd 5s";
-            	fieldFormat[i] = "2decimal";
-	        } else if (metric[i] == 42) {
-    	        fieldValue[i] = (mLapSpeed != null) ? 3.6*mLapSpeed*1000/unitP  : 0;
-        	    fieldLabel[i] = "L Spd";
-            	fieldFormat[i] = "2decimal";
-			} else if (metric[i] == 43) {
-    	        fieldValue[i] = (mLastLapSpeed != null) ? 3.6*mLastLapSpeed*1000/unitP : 0;
-        	    fieldLabel[i] = "LL Spd";
-            	fieldFormat[i] = "2decimal";
-			} else if (metric[i] == 44) {
-	            fieldValue[i] = (info.averageSpeed != null) ? 3.6*info.averageSpeed*1000/unitP : 0;
-    	        fieldLabel[i] = "Avg Spd";
-        	    fieldFormat[i] = "2decimal";
-			} else if (metric[i] == 47) {
-    	        fieldValue[i] = LapHeartrate;
-        	    fieldLabel[i] = "Lap HR";
-            	fieldFormat[i] = "0decimal";
-			} else if (metric[i] == 48) {
-    	        fieldValue[i] = LastLapHeartrate;
-        	    fieldLabel[i] = "LL HR";
-            	fieldFormat[i] = "0decimal";
-			} else if (metric[i] == 49) {
-	            fieldValue[i] = AverageHeartrate;
-    	        fieldLabel[i] = "Avg HR";
-        	    fieldFormat[i] = "0decimal";
-			} else if (metric[i] == 50) {
-				fieldValue[i] = (info.currentCadence != null) ? info.currentCadence : 0; 
-    	        fieldLabel[i] = "Cadence";
-        	    fieldFormat[i] = "0decimal";
-			} else if (metric[i] == 51) {
-		  		fieldValue[i] = (info.altitude != null) ? Math.round(info.altitude).toNumber() : 0;
-		       	fieldLabel[i] = "Altitude";
-		       	fieldFormat[i] = "0decimal";
-        	}
-		}
+    //! Calculations we need to do every second even when the data field is not visible
+    function compute(info) {
+        //! If enabled, switch the backlight on in order to make it stay on
+        if (uBacklight) {
+             Attention.backlight(true);
+        }
+		//! We only do some calculations if the timer is running
+		if (mTimerRunning) {  
+			jTimertime = jTimertime + 1;
+			//!Calculate lapheartrate
+            mHeartrateTime		 = (info.currentHeartRate != null) ? mHeartrateTime+1 : mHeartrateTime;				
+           	mElapsedHeartrate    = (info.currentHeartRate != null) ? mElapsedHeartrate + info.currentHeartRate : mElapsedHeartrate;
+        }
 	}
-	
+
+	function onUpdate(dc) {
+		DatarunpremiumView.onUpdate(dc);
+		
+		//! Setup back- and foregroundcolours
+		mColourFont = Graphics.COLOR_BLACK;
+		mColourFont1 = Graphics.COLOR_BLACK;
+		mColourLine = Graphics.COLOR_BLUE;
+		mColourBackGround = Graphics.COLOR_WHITE;
+		dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
+	}
+
     function Formatting(dc,counter,fieldvalue,fieldformat,fieldlabel,CorString) {    
         var originalFontcolor = mColourFont;
         var Temp; 
@@ -103,14 +53,11 @@ class CiqView extends DatarunpremiumView {
         yl = yl.toNumber();
 
         if ( fieldformat.equals("0decimal" ) == true ) {
-        	fieldvalue = Math.round(fieldvalue);
-        } else if ( fieldformat.equals("1decimal" ) == true ) {
-            Temp = Math.round(fieldvalue*10)/10;
-        	fieldvalue = Temp.format("%.1f");
+        	fieldvalue = fieldvalue.format("%.0f");        	
         } else if ( fieldformat.equals("2decimal" ) == true ) {
             Temp = Math.round(fieldvalue*100)/100;
             var fString = "%.2f";
-         	if (Temp > 10) {
+         	if (Temp > 9.99999) {
              	fString = "%.1f";
             }           
         	fieldvalue = Temp.format(fString);        	
@@ -154,4 +101,5 @@ class CiqView extends DatarunpremiumView {
         mColourFont = originalFontcolor;
 		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
     }
+	
 }

@@ -3,15 +3,8 @@ using Toybox.Graphics as Gfx;
 
 //! inherit from the view that contains the commonlogic
 class PowerView extends CiqView {
-    var mlastaltitude = 0;
-    var mElevationDiff = 0;
-    var mrealElevationGain = 0;
-    var mrealElevationLoss = 0;
-    var mrealElevationDiff = 0;
     var mfillColour = Graphics.COLOR_LT_GRAY;
-    var uETAfromLap = true;
-    var mETA = 0;
-	
+		
 	//! it's good practice to always have an initialize, make sure to call your parent class here!
     function initialize() {
         CiqView.initialize();
@@ -61,7 +54,25 @@ class PowerView extends CiqView {
 		//! call the parent function in order to execute the logic of the parent
 		CiqView.onUpdate(dc);
 		var info = Activity.getActivityInfo();
-	
+
+        var i = 0; 
+	    for (i = 1; i < 8; ++i) {
+	        if (metric[i] == 55) {   
+            	fieldValue[i] = (info.currentSpeed != null or info.currentSpeed!=0) ? 100/info.currentSpeed : 0;
+            	fieldLabel[i] = "s/100m";
+        	    fieldFormat[i] = "2decimal";        	    
+	        } 
+		}
+
+		//! Determine required finish time and calculate required pace 	
+        var mRacehour = uRacetime.substring(0, 2);
+        var mRacemin = uRacetime.substring(3, 5);
+        var mRacesec = uRacetime.substring(6, 8);
+        mRacehour = mRacehour.toNumber();
+        mRacemin = mRacemin.toNumber();
+        mRacesec = mRacesec.toNumber();
+        mRacetime = mRacehour*3600 + mRacemin*60 + mRacesec;
+		
         //! Calculate ETA
         if (info.elapsedDistance != null && info.timerTime != null) {
             if (uETAfromLap == true ) {
@@ -79,28 +90,7 @@ class PowerView extends CiqView {
             }
         }
 
-        var i = 0; 
-	    for (i = 1; i < 8; ++i) {
-	        if (metric[i] == 14) {
-    	        fieldValue[i] = Math.round(mETA).toNumber();
-        	    fieldLabel[i] = "ETA";
-            	fieldFormat[i] = "time";               	        	
-	        } else if (metric[i] == 15) {
-        	    fieldLabel[i] = "Deviation";
-            	fieldFormat[i] = "time";
-	        	if ( mLaps == 1 ) {
-    	    		fieldValue[i] = 0;
-        		} else {
-        			fieldValue[i] = Math.round(mRacetime - mETA).toNumber() ;
-	        	}
-    	    	if (fieldValue[i] < 0) {
-        			fieldValue[i] = - fieldValue;
-        		}            	
-			}
-		}
 
-
-		
 		//! Display colored labels on screen
 		for (var i = 1; i < 8; ++i) {
 		   	if ( i == 1 ) {			//!upper row, left    	

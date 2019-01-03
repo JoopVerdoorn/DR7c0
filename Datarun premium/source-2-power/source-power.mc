@@ -1,6 +1,3 @@
-using Toybox.Activity as info; 
-
-//! inherit from the view that contains the commonlogic
 class PowerView extends CiqView { 
     hidden var mElapsedPower	   				= 0;
     hidden var mLastLapElapsedPower				= 0;
@@ -19,48 +16,15 @@ class PowerView extends CiqView {
     var Power2 									= 0;
     var Power3 									= 0;
 	var vibrateseconds = 0;  
-    hidden var uPowerZones                  = "184:Z1:227:Z2:255:Z3:284:Z4:326:Z5:369";
+
     
-	//! it's good practice to always have an initialize, make sure to call your parent class here!
     function initialize() {
         CiqView.initialize();
          var mApp = Application.getApp();
          uRequiredPower		 = mApp.getProperty("pRequiredPower");
          uWarningFreq		 = mApp.getProperty("pWarningFreq");
-         uAlertbeep			 = mApp.getProperty("pAlertbeep");
-         uPowerZones		 = mApp.getProperty("pPowerZones");
-        
+         uAlertbeep			 = mApp.getProperty("pAlertbeep");       
     }
-
-    //! Calculations we need to do every second even when the data field is not visible
-    function compute(info) {
-        //! If enabled, switch the backlight on in order to make it stay on
-        if (uBacklight) {
-             Attention.backlight(true);
-        }
-
-		//! We only do some calculations if the timer is running
-		if (mTimerRunning) {  
-			jTimertime = jTimertime + 1;
-			//!Calculate lapheartrate
-            mHeartrateTime		 = (info.currentHeartRate != null) ? mHeartrateTime+1 : mHeartrateTime;				
-           	mElapsedHeartrate    = (info.currentHeartRate != null) ? mElapsedHeartrate + info.currentHeartRate : mElapsedHeartrate;
-
-            //!Calculate lappower
-            mPowerTime		 = (info.currentPower != null) ? mPowerTime+1 : mPowerTime;
-			mElapsedPower    = (info.currentPower != null) ? mElapsedPower + info.currentPower : mElapsedPower;              
-        }           
-	}
-
-    //! Store last lap quantities and set lap markers after a lap
-    function onTimerLap() {
-		Lapaction ();
-	}
-
-	//! Store last lap quantities and set lap markers after a step within a structured workout
-	function onWorkoutStepComplete() {
-		Lapaction ();
-	}
 	
     //! Current activity is ended
     function onTimerReset() {
@@ -92,7 +56,6 @@ class PowerView extends CiqView {
         
 		AveragePower = Math.round((mPowerTime != 0) ? mElapsedPower/mPowerTime : 0);  
 		LapPower = (mLapTimerTimePwr != 0) ? Math.round(mLapElapsedPower/mLapTimerTimePwr) : 0; 	
-		LapPower = (mLaps == 1) ? AveragePower : LapPower; 
 		LastLapPower = (mLastLapTimerTimePwr != 0) ? Math.round(mLastLapElapsedPower/mLastLapTimerTimePwr) : 0;
 
 		//!Calculate average power
@@ -156,7 +119,6 @@ class PowerView extends CiqView {
 			 }
 			 
 		}		
-
 		var i = 0; 
 	    for (i = 1; i < 8; ++i) {	    
         	if (metric[i] == 20) {
@@ -183,26 +145,6 @@ class PowerView extends CiqView {
 		//!einde invullen field metrics
 		}
 
-	}
-
-	function Lapaction () {
-        var info = Activity.getActivityInfo();
-        mLastLapTimerTime       	= jTimertime - mLastLapTimeMarker;
-        mLastLapElapsedDistance 	= (info.elapsedDistance != null) ? info.elapsedDistance - mLastLapDistMarker : 0;
-        mLastLapDistMarker      	= (info.elapsedDistance != null) ? info.elapsedDistance : 0;
-        mLastLapTimeMarker      	= jTimertime;
-
-        mLastLapTimerTimeHR			= mHeartrateTime - mLastLapTimeHRMarker;
-        mLastLapElapsedHeartrate 	= (info.currentHeartRate != null) ? mElapsedHeartrate - mLastLapHeartrateMarker : 0;
-        mLastLapHeartrateMarker     = mElapsedHeartrate;
-        mLastLapTimeHRMarker        = mHeartrateTime;
-
-        mLastLapTimerTimePwr		= mPowerTime - mLastLapTimePwrMarker;
-        mLastLapElapsedPower  		= (info.currentPower != null) ? mElapsedPower - mLastLapPowerMarker : 0;
-        mLastLapPowerMarker         = mElapsedPower;
-        mLastLapTimePwrMarker       = mPowerTime;        
-
-        mLaps++;	
 	}
 
 }
