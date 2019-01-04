@@ -1,7 +1,7 @@
 <resources>
 
   <properties>
-    <property id="pAppversion" type="string">1.70</property>
+    <property id="pAppversion" type="string">1.70a</property>
     <property id="pUpperLeftMetric" type="number">0</property>
     <property id="pUpperRightMetric" type="number">4</property>
     <property id="pMiddleLeftMetric" type="number">45</property>    
@@ -42,8 +42,8 @@
     <!-- Beta name:
     <string id="AppName">Datarun premium with 7 metrics</string>
     -->
-    <string id="AppVersion">1.70</string>
-    <string id="lDummysetting4version">Version 1.70 of Datarun premium with 7 metrics (dummy setting)</string>
+    <string id="AppVersion">1.70a</string>
+    <string id="lDummysetting4version">Version 1.70a of Datarun premium with 7 metrics (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>
@@ -122,13 +122,13 @@
 	<string id="lrolavPacmaxsecs">Pace or/and speed averaged over the last ... seconds (max is 300 seconds, only for FR645m, Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
 	<string id="lrolavPacmaxsecsError">This needs to be a number from 2 too 300</string>
 	<string id="lPaceper100m">Pace in seconds per 100 meter (for track running, only for FR645m, Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
-	<string id="lCurrentSpeed">Speed in km/mile per hour (only for FR645m, Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+	<string id="lCurrentSpeed">Speed in km/mile per hour</string>
 	<string id="lAverage3secSpeed">Speed averaged over the last 3 seconds in km/mile per hour (only for FR645m, Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
 	<string id="lAverage5secSpeed">Speed averaged over the last 5 seconds in km/mile per hour (only for FR645m, Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
 	<string id="lAverage30secSpeed">Speed averaged over the last .. seconds in km/mile per hour (max is 300 seconds, only for FR645m, Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
-	<string id="lLapSpeed">Lap speed in km/mile per hour (only for FR645m, Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
-	<string id="lLLSpeed">Last lap speed in km/mile per hour (only for FR645m, Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
-	<string id="lAverageSpeed">Average speed in km/mile per hour (only for FR645m, Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+	<string id="lLapSpeed">Lap speed in km/mile per hour</string>
+	<string id="lLLSpeed">Last lap speed in km/mile per hour</string>
+	<string id="lAverageSpeed">Average speed in km/mile per hour</string>
 	<string id="lCadence">Cadence in steps per minute</string>
 	<string id="lRCadence">Cadence in rotations per minute (for bike use, only for FR645m, Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
 	<string id="lAEFactor">Average efficiency factor (only for FR645m, Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
