@@ -15,28 +15,10 @@ class CiqView extends ExtramemView {
 	var fourthPowercounter 					= 0;
 	var mIntensityFactor					= 0;
 	var mTTS								= 0;
-	var uWorkoutType						= 0;
-	var uWorkoutAzones						= "100-190 ; 240-260 ; 100-190 ; 260-280 ; 100-190 ; 280-300 ; 100-190 ; 300-320 ; 100-190 ; 320-340 ; 3100-190 ; 00-320 ; 100-190 ; 280-300 ; 100-190 ; 260-280 ; 100-190 ; 100-150";
-	var uWorkoutRzones						= "0300s100-190 ; 8x(0120s240-260 ; 0060s190-210) ; 0900s100-190";
-	var uWorkoutrepeats						= 8;
-	var repeats								= 8;
-	var uWorkoutzones						= "0300s100-190 ; 0800d240-260 ; 0100d100-190 ; 0800d260-280 ; 0100d100-190 ; 0800d280-300 ; 0100d100-190 ; 0800d300-320 ; 0100d100-190 ; 0800d320-340 ; 0100d100-190 ; 0800d300-320 ; 0100d100-190 ; 0800d280-300 ; 0100d100-190 ; 0800d260-280 ; 0100d100-190 ; 0300s100-190";
-	var mWorkoutAmount						= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-	var mWorkoutType						= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-	var mWorkoutLzone						= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-	var mWorkoutHzone						= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-	var mWorkoutstepNumber					= 1;
-	var nextAlertD							= 0;
-	var nextAlertT							= 0;
-	var nextAlertType						= "t";
-	var workoutUnit							= "sec";
 	var i 									= 0;
-	var hideText 							= false;
-	var jDistance 							= 0;
 	var uspikeTreshold						= 2000;
 	var runPower							= 0;
 	var lastsrunPower						= 0;
-	var sethideText 						= false;
 	var setPowerWarning 					= 0;
 		
     function initialize() {
@@ -48,10 +30,6 @@ class CiqView extends ExtramemView {
 		uPower10Zones	 = mApp.getProperty("pPPPowerZones");
 		uFTP		 	 = mApp.getProperty("pFTP");
 		uCP		 	 	 = mApp.getProperty("pCP");
-		uWorkoutType	 = mApp.getProperty("pWorkoutType");
-		uWorkoutAzones	 = mApp.getProperty("pWorkoutAzones");
-		uWorkoutRzones	 = mApp.getProperty("pWorkoutRzones");
-		uWorkoutzones	 = mApp.getProperty("pWorkoutzones");
 		uspikeTreshold	 = mApp.getProperty("pspikeTreshold");
 		i = 0; 
 	    for (i = 1; i < 8; ++i) {		
@@ -92,7 +70,6 @@ class CiqView extends ExtramemView {
 	//! Store last lap quantities and set lap markers after a step within a structured workout
 	function onWorkoutStepComplete() {
 		Lapaction ();
-		Workoutstepalert();
 	}
 
 	function onUpdate(dc) {
@@ -101,8 +78,6 @@ class CiqView extends ExtramemView {
         		
 		//!Calculate HR-metrics
 		var info = Activity.getActivityInfo();
-
-		jDistance = (info.elapsedDistance != null) ? info.elapsedDistance : 0;
 		
 		var CurrentEfficiencyIndex   	= (info.currentPower != null && info.currentPower != 0) ? Averagespeedinmper3sec*60/info.currentPower : 0;
 		var AverageEfficiencyIndex   	= (info.averageSpeed != null && AveragePower != 0) ? info.averageSpeed*60/AveragePower : 0;
@@ -181,169 +156,6 @@ class CiqView extends ExtramemView {
 		mIntensityFactor = (uFTP != 0) ? mNormalizedPow / uFTP : 0;
 		mTTS = (jTimertime * mNormalizedPow * mIntensityFactor)/(uFTP * 3600) * 100;
 
-		//!Workout variables setup
-		if (uWorkoutType == 1) { 					//! Set up alerts for Connect workout 
-			i = 0; 
-	    	for (i = 1; i < 19; ++i) {			
-				mWorkoutLzone[i]	= uWorkoutAzones.substring(0+(i-1)*10, 3+(i-1)*10);
-				mWorkoutHzone[i]	= uWorkoutAzones.substring(4+(i-1)*10, 7+(i-1)*10);
-			}		
-		} else if (uWorkoutType == 2) { 			//! Set up powerbased workout repeats
-			uWorkoutrepeats		= uWorkoutRzones.substring(15, 16);
-		    mWorkoutAmount[1]	= uWorkoutRzones.substring(0, 4);
-		    mWorkoutType[1]		= uWorkoutRzones.substring(4, 5);
-		    mWorkoutLzone[1]	= uWorkoutRzones.substring(5, 8);
-		    mWorkoutHzone[1]	= uWorkoutRzones.substring(9, 12);
-			repeats		= 2*uWorkoutrepeats.toNumber();
-			i = 0; 
-	    	for (i = 2; i < repeats+2; ++i) {			
-				if (i % 2 == 0) { 
-					mWorkoutAmount[i]	= uWorkoutRzones.substring(18, 22);					
-			    	mWorkoutType[i]		= uWorkoutRzones.substring(22, 23);			    	
-			    	mWorkoutLzone[i]	= uWorkoutRzones.substring(23, 26);			    	
-		    		mWorkoutHzone[i]	= uWorkoutRzones.substring(27, 30);		    		
-		    	} else {
-		    		mWorkoutAmount[i]	= uWorkoutRzones.substring(33, 37);		    		
-			    	mWorkoutType[i]		= uWorkoutRzones.substring(37, 38);			    	
-			    	mWorkoutLzone[i]	= uWorkoutRzones.substring(38, 41);			    
-		    		mWorkoutHzone[i]	= uWorkoutRzones.substring(42, 45);		    		
-				}
-		    mWorkoutAmount[18]	= uWorkoutRzones.substring(49, 53);
-		    mWorkoutType[18]	= uWorkoutRzones.substring(53, 54);
-		    mWorkoutLzone[18]	= uWorkoutRzones.substring(54, 57);
-		    mWorkoutHzone[18]	= uWorkoutRzones.substring(58, 61);
-			}
-		} else if (uWorkoutType == 3) { 			//! Set up powerbased workout non-repeats
-			i = 0; 
-	    	for (i = 1; i < 19; ++i) {			
-		    	mWorkoutAmount[i]	= uWorkoutzones.substring(0+(i-1)*15, 4+(i-1)*15);		    	
-		    	mWorkoutType[i]		= uWorkoutzones.substring(4+(i-1)*15, 5+(i-1)*15);		    	
-				mWorkoutLzone[i]	= uWorkoutzones.substring(5+(i-1)*15, 8+(i-1)*15);				
-				mWorkoutHzone[i]	= uWorkoutzones.substring(9+(i-1)*15, 12+(i-1)*15);
-			}		
-		}
-
-
-		//!Setup workout notifcations
-		sethideText = false;
-		var vibrateData = [
-			new Attention.VibeProfile( 100, 100 )
-		    ];
-		dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
-		if (uWorkoutType == 2 or uWorkoutType == 3) {
-			if (jTimertime == 0) {  //! Activity not yet started
-				mWorkoutstepNumber = 1;
-				if (mWorkoutType[1].equals("t")) {
-					dc.drawText(120, 135, Graphics.FONT_MEDIUM,  mWorkoutAmount[mWorkoutstepNumber].toNumber() + " sec @ " + mWorkoutLzone[mWorkoutstepNumber].toNumber() + "-" + mWorkoutHzone[mWorkoutstepNumber].toNumber() , Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);	
-					nextAlertT = jTimertime + mWorkoutAmount[mWorkoutstepNumber].toNumber();
-					nextAlertType = "t";
-				} else if (mWorkoutType[1].equals("d")) {
-					dc.drawText(120, 135, Graphics.FONT_MEDIUM,  mWorkoutAmount[mWorkoutstepNumber].toNumber() + " met @ " + mWorkoutLzone[mWorkoutstepNumber].toNumber() + "-" + mWorkoutHzone[mWorkoutstepNumber].toNumber() , Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);	
-					nextAlertD = jDistance + mWorkoutAmount[mWorkoutstepNumber].toNumber();
-					nextAlertType = "d";
-				} 			
-			} else if (jTimertime > 0){  //! timer is running
-				setPowerWarning = 0;
-				//! Executing alerts
-				if (runPower > mWorkoutHzone[mWorkoutstepNumber].toNumber() or runPower < mWorkoutLzone[mWorkoutstepNumber].toNumber()) {		 
-					 if (Toybox.Attention has :vibrate && uNoAlerts == false) {
-					 	vibrateseconds = vibrateseconds + 1;	 		  			
-    					if (runPower>mWorkoutHzone[mWorkoutstepNumber].toNumber()) {
-    						setPowerWarning = 1;
-    						if (vibrateseconds == uWarningFreq) {
-    							Toybox.Attention.vibrate(vibrateData);
-    							if (uAlertbeep == true) {
-    								Attention.playTone(Attention.TONE_KEY);
-		    					}
-    							vibrateseconds = 0;
-    						}
-    					} else if (runPower<mWorkoutLzone[mWorkoutstepNumber].toNumber()){
-    						setPowerWarning = 2;
-    						if (vibrateseconds == uWarningFreq) {
-    							if (uAlertbeep == true) {
-    								Attention.playTone(Attention.TONE_LOUD_BEEP);
-	    						}
-    						Toybox.Attention.vibrate(vibrateData);
-    						vibrateseconds = 0;
-	    					}
-    					} 
-					 } 
-				}		
-				workoutUnit = (mWorkoutType[mWorkoutstepNumber+1].equals("t")) ? "sec" : "met";
-				if (nextAlertType.equals("t")) {
-					if (nextAlertT > jTimertime+5 and nextAlertT < jTimertime+10) {      //! Notification nearing the end of a time-based step 				 	
-					  if (mWorkoutAmount[mWorkoutstepNumber].equals("0000") == false or mWorkoutstepNumber < 18) {
-						dc.drawText(120, 135, Graphics.FONT_MEDIUM,  mWorkoutAmount[mWorkoutstepNumber+1].toNumber() + " " + workoutUnit + " @ " + mWorkoutLzone[mWorkoutstepNumber+1].toNumber() + "-" + mWorkoutHzone[mWorkoutstepNumber+1].toNumber() , Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);				
-						Toybox.Attention.vibrate(vibrateData);
-						Attention.playTone(Attention.TONE_LOUD_BEEP);
-						Attention.playTone(Attention.TONE_KEY);
-					  } else if (mWorkoutAmount[mWorkoutstepNumber].equals("0000") == true or mWorkoutstepNumber == 18) {
-					    dc.drawText(120, 135, Graphics.FONT_MEDIUM,  "Ending" , Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);				
-						Toybox.Attention.vibrate(vibrateData);
-						Attention.playTone(Attention.TONE_LOUD_BEEP);
-						Attention.playTone(Attention.TONE_KEY);
-						mWorkoutstepNumber = 18;
-					  }
-					}
-					  if (nextAlertT == jTimertime) {   //! After the notifications determine next workouttype
-						nextAlertType = mWorkoutType[mWorkoutstepNumber+1];
-					  } 
-				}			
-				if (nextAlertType.equals("d")) {
-					if (nextAlertD > jDistance+5*CurrentSpeedinmpersec and nextAlertD < jDistance+10*CurrentSpeedinmpersec) {       //! Notification nearing the end of a distance-based step 
-					  if (mWorkoutAmount[mWorkoutstepNumber].equals("0000") == false or mWorkoutstepNumber < 18) {
-						dc.drawText(120, 135, Graphics.FONT_MEDIUM,  mWorkoutAmount[mWorkoutstepNumber+1].toNumber() + " " + workoutUnit + " @ " + mWorkoutLzone[mWorkoutstepNumber+1].toNumber() + "-" + mWorkoutHzone[mWorkoutstepNumber+1].toNumber(), Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);				
-						Toybox.Attention.vibrate(vibrateData);
-						Attention.playTone(Attention.TONE_LOUD_BEEP);
-						Attention.playTone(Attention.TONE_KEY);
-					  } else if (mWorkoutAmount[mWorkoutstepNumber].equals("0000") == true or mWorkoutstepNumber == 18) {
-					    dc.drawText(120, 135, Graphics.FONT_MEDIUM,  "Ending" , Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);				
-						Toybox.Attention.vibrate(vibrateData);
-						Attention.playTone(Attention.TONE_LOUD_BEEP);
-						Attention.playTone(Attention.TONE_KEY);
-						mWorkoutstepNumber = 18;
-					  }
-					}
-					if (nextAlertD > jDistance) {   //! After the notifications determine next workouttype
-						nextAlertType = mWorkoutType[mWorkoutstepNumber+1];
-					}					 
-				}		
-				if (jTimertime == nextAlertT and nextAlertType.equals("t")) {			//! Setting up next alert at the end of a time-based step
-						onTimerLap();
-						Workoutstepalert(dc);
-						sethideText = true;
-						if (mWorkoutAmount[mWorkoutstepNumber].equals("0000") == false or mWorkoutstepNumber < 18) {
-						  if (mWorkoutType[mWorkoutstepNumber].equals("t")) { 	//! setting up next time-based alert       
-							mWorkoutstepNumber = mWorkoutstepNumber + 1;
-							nextAlertT = jTimertime + mWorkoutAmount[mWorkoutstepNumber].toNumber();
-							nextAlertType = "t";				
-						  } else if (mWorkoutType[mWorkoutstepNumber].equals("d")) {		//! setting up next distance-based alert
-							mWorkoutstepNumber = mWorkoutstepNumber + 1;
-							nextAlertD = jDistance + mWorkoutAmount[mWorkoutstepNumber].toNumber();
-							nextAlertType = "d";
-						  }
-						}
-				}
-				if ( jDistance > nextAlertD and nextAlertType.equals("d")) {			//! Setting up next alert at the end of a distance-based step			 
-					if (nextAlertD < jDistance + CurrentSpeedinmpersec) {
-						onTimerLap();
-						Workoutstepalert(dc);
-						sethideText = true;
-						if (mWorkoutAmount[mWorkoutstepNumber].equals("0000") == false or mWorkoutstepNumber < 18) {
-						  if (mWorkoutType[mWorkoutstepNumber].equals("t")) { 	//! setting up time-based next alert       
-							mWorkoutstepNumber = mWorkoutstepNumber + 1;
-							nextAlertT = jTimertime + mWorkoutAmount[mWorkoutstepNumber].toNumber();
-							nextAlertType = "t";	
-						  } else if (mWorkoutType[mWorkoutstepNumber].equals("d")) {	//! setting up next distance-based alert
-							mWorkoutstepNumber = mWorkoutstepNumber + 1;
-							nextAlertD = jDistance + mWorkoutAmount[mWorkoutstepNumber].toNumber();
-							nextAlertType = "d";
-						  }
-						}
-					}  
-				}
-			}			
-		}
 		
 		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
 		
@@ -482,29 +294,7 @@ class CiqView extends ExtramemView {
         	Temp = (fieldvalue != 0 ) ? (fieldvalue).toLong() : 0;
         	fieldvalue = (Temp /60000 % 60).format("%02d") + ":" + (Temp /1000 % 60).format("%02d");
         }
-        
-		//! Don't display middle row metrics, if there is a workout notification
-		hideText = false;
-		if (uWorkoutType == 2 or uWorkoutType == 3) {
-			if (counter == 3 or counter == 4 or counter == 5) { 
-				if (jTimertime == 0) {
-					hideText = true;
-				} 								
-				if (nextAlertT > jTimertime+5 and nextAlertT < jTimertime+10) {
-					hideText = true;
-				}
-				if (nextAlertD > jDistance+5*CurrentSpeedinmpersec and nextAlertD < jDistance+10*CurrentSpeedinmpersec) {
-					hideText = true;
-				}
-			}
-		}
-		
-		if (sethideText == true) {
-			if (counter == 3 or counter == 4 or counter == 5) {
-				hideText = true;
-			}
-		}
-		
+        		
 		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
         if ( fieldformat.equals("time" ) == true ) {    
 	    	if ( counter == 1 or counter == 2 or counter == 6 or counter == 7 ) {  
@@ -515,23 +305,15 @@ class CiqView extends ExtramemView {
 	    		if (fieldvalue > 3599) {
             		var fTimerHours = (fieldvalue / 3600).format("%d");
             		xx = xms;
-            		if (hideText == false) {
-            			dc.drawText(xh, yh, Graphics.FONT_NUMBER_MILD, fTimerHours, Graphics.TEXT_JUSTIFY_LEFT|Graphics.TEXT_JUSTIFY_VCENTER);
-            		}
+            		dc.drawText(xh, yh, Graphics.FONT_NUMBER_MILD, fTimerHours, Graphics.TEXT_JUSTIFY_LEFT|Graphics.TEXT_JUSTIFY_VCENTER);
             		fTimer = (fieldvalue / 60 % 60).format("%02d") + ":" + fTimerSecs;  
         		}
-        		if (hideText == false) {
-        			dc.drawText(xx, y, Graphics.FONT_NUMBER_MEDIUM, fTimer, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-        		}	
+       			dc.drawText(xx, y, Graphics.FONT_NUMBER_MEDIUM, fTimer, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
         	}
         } else {
-        	if (hideText == false) {
-        		dc.drawText(x, y, Graphics.FONT_NUMBER_MEDIUM, fieldvalue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-        	}
+       		dc.drawText(x, y, Graphics.FONT_NUMBER_MEDIUM, fieldvalue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
         }        
-        if (hideText == false) {
-        	dc.drawText(xl, yl, Graphics.FONT_XTINY,  fieldlabel, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-        }               
+       	dc.drawText(xl, yl, Graphics.FONT_XTINY,  fieldlabel, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
         mColourFont = originalFontcolor;
 		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
     }
@@ -565,24 +347,4 @@ class CiqView extends ExtramemView {
         mLaps++;	
 	}
 
-	function Workoutstepalert(dc) {
-		hideText = true;
-		dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
-		var vibrateData = [
-			new Attention.VibeProfile( 100, 100 )
-		];
-		if (mWorkoutstepNumber < 18 ) {
-			if (mWorkoutAmount[mWorkoutstepNumber].equals("0000") == false) { 
-				dc.drawText(120, 135, Graphics.FONT_MEDIUM,  " Next step " , Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-			} else { 
-				dc.drawText(120, 135, Graphics.FONT_MEDIUM,"The end", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-			}
-			Toybox.Attention.vibrate(vibrateData);
-			Attention.playTone(Attention.TONE_LOUD_BEEP);
-			Attention.playTone(Attention.TONE_KEY);
-		} else if (mWorkoutstepNumber == 18 ) {
-			dc.drawText(120, 135, Graphics.FONT_MEDIUM,"The end", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-		}
-		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
-	}
 }
