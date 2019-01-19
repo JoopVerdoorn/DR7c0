@@ -50,10 +50,16 @@ class CiqView extends ExtramemView {
         } else if ( fieldformat.equals("2decimal" ) == true ) {
             Temp = Math.round(fieldvalue*100)/100;
             var fString = "%.2f";
-         	if (Temp > 9.99999) {
-             	fString = "%.1f";
-            }           
-        	fieldvalue = Temp.format(fString);        	
+            if (counter == 3 or counter == 4 or counter ==5) {
+   	      		if (Temp > 9.99999) {
+    	         	fString = "%.1f";
+        	    }
+        	} else {
+        		if (Temp > 99.99999) {
+    	         	fString = "%.1f";
+        	    }  
+        	}        
+        	fieldvalue = Temp.format(fString);      	
         } else if ( fieldformat.equals("pace" ) == true ) {
         	Temp = (fieldvalue != 0 ) ? (unitP/fieldvalue).toLong() : 0;
         	fieldvalue = (Temp / 60).format("%0d") + ":" + Math.round(Temp % 60).format("%02d");
