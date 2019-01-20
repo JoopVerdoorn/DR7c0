@@ -39,11 +39,10 @@ class CiqView extends DatarunpremiumView {
 		DatarunpremiumView.onUpdate(dc);
 
     	//! Setup back- and foregroundcolours
-		mColourFont = Graphics.COLOR_BLACK;
-		mColourFont1 = Graphics.COLOR_BLACK;
+		mColourFont = (getBackgroundColor() == Graphics.COLOR_BLACK) ? Graphics.COLOR_WHITE : Graphics.COLOR_BLACK; 
 		mColourLine = Graphics.COLOR_BLUE;
-		mColourBackGround = Graphics.COLOR_WHITE;
-		dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_TRANSPARENT);
+		mColourBackGround = (getBackgroundColor() == Graphics.COLOR_WHITE) ? Graphics.COLOR_BLACK : Graphics.COLOR_WHITE;
+		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
 	}
 
     function Formatting(dc,counter,fieldvalue,fieldformat,fieldlabel,CorString) {    
@@ -69,9 +68,15 @@ class CiqView extends DatarunpremiumView {
         } else if ( fieldformat.equals("2decimal" ) == true ) {
             Temp = Math.round(fieldvalue*100)/100;
             var fString = "%.2f";
-         	if (Temp > 9.99999) {
-             	fString = "%.1f";
-            }           
+            if (counter == 3 or counter == 4 or counter ==5) {
+   	      		if (Temp > 9.99999) {
+    	         	fString = "%.1f";
+        	    }
+        	} else {
+        		if (Temp > 99.99999) {
+    	         	fString = "%.1f";
+        	    }  
+        	}        
         	fieldvalue = Temp.format(fString);        	
         } else if ( fieldformat.equals("pace" ) == true ) {
         	Temp = (fieldvalue != 0 ) ? (unitP/fieldvalue).toLong() : 0;
