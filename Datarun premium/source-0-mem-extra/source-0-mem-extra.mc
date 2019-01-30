@@ -143,7 +143,7 @@ class ExtramemView extends DatarunpremiumView {
 			} else if (metric[i] == 46) {
 	            fieldValue[i] = (info.currentHeartRate != null) ? info.currentHeartRate : 0;
     	        fieldLabel[i] = "HR zone";
-        	    fieldFormat[i] = "0decimal";        	    
+        	    fieldFormat[i] = "1decimal";        	    
         	} else if (metric[i] == 54) {
     	        fieldValue[i] = (info.trainingEffect != null) ? info.trainingEffect : 0;
         	    fieldLabel[i] = "T effect";
@@ -243,6 +243,10 @@ class ExtramemView extends DatarunpremiumView {
 	            CFMValue = (info.averageSpeed != null) ? 3.6*info.averageSpeed*1000/unitP : 0;
     	        CFMLabel = "Avg Spd";
         	    CFMFormat = "2decimal";
+			} else if (uClockFieldMetric == 46) {
+	            CFMValue = (info.currentHeartRate != null) ? info.currentHeartRate : 0;
+    	        CFMLabel = "HR zone";
+        	    CFMFormat = "1decimal";   
 			} else if (uClockFieldMetric == 47) {
     	        CFMValue = LapHeartrate;
         	    CFMLabel = "Lap HR";
@@ -376,6 +380,9 @@ class ExtramemView extends DatarunpremiumView {
 			CFMValue = (uClockFieldMetric==46) ? HRzone : CFMValue;
 			if ( CFMFormat.equals("0decimal" ) == true ) {
         		CFMValue = Math.round(CFMValue);
+	        } else if ( CFMFormat.equals("1decimal" ) == true ) {
+    	        Temp = Math.round(CFMValue*10)/10;
+				CFMValue = Temp.format("%.1f");				
 	        } else if ( CFMFormat.equals("2decimal" ) == true ) {
     	        Temp = Math.round(CFMValue*100)/100;
         	    var fString = "%.2f";
@@ -479,16 +486,16 @@ class ExtramemView extends DatarunpremiumView {
 			mZone[counter] = 6;			
 		} else if (testvalue >= mZ5under) {
 			mfillColour = Graphics.COLOR_RED;    	
-			mZone[counter] = 5;			
+			mZone[counter] = Math.round(10*(5+(testvalue-mZ5under+0.00001)/(mZ5upper-mZ5under+0.00001)))/10;			
 		} else if (testvalue >= mZ4under) {
 			mfillColour = Graphics.COLOR_GREEN;    	
-			mZone[counter] = 4;			
+			mZone[counter] = Math.round(10*(4+(testvalue-mZ4under+0.00001)/(mZ5under-mZ4under+0.00001)))/10;			
 		} else if (testvalue >= mZ3under) {
 			mfillColour = Graphics.COLOR_BLUE;        
-			mZone[counter] = 3;
+			mZone[counter] = Math.round(10*(3+(testvalue-mZ3under+0.00001)/(mZ4under-mZ3under+0.00001)))/10;
 		} else if (testvalue >= mZ2under) {
 			mfillColour = Graphics.COLOR_YELLOW;        
-			mZone[counter] = 2;
+			mZone[counter] = Math.round(10*(2+(testvalue-mZ2under+0.00001)/(mZ3under-mZ2under+0.00001)))/10;
 		} else if (testvalue >= mZ1under) {			
 			mfillColour = Graphics.COLOR_LT_GRAY;        
 			mZone[counter] = 1;
@@ -529,31 +536,31 @@ class ExtramemView extends DatarunpremiumView {
                     mZone[counter] = 11;
                 } else if (testvalue >= mZ10under) {
                     mfillColour = Graphics.COLOR_PURPLE;    	//! (Z10)
-                    mZone[counter] = 10;
+                    mZone[counter] = Math.round(10*(10+(testvalue-mZ10under+0.00001)/(mZ10upper-mZ10under+0.00001)))/10;
                 } else if (testvalue >= mZ9under) {
                     mfillColour = Graphics.COLOR_PURPLE;    	//! (Z9)
-                    mZone[counter] = 9;
+                    mZone[counter] = Math.round(10*(9+(testvalue-mZ9under+0.00001)/(mZ10under-mZ9under+0.00001)))/10;
                 } else if (testvalue >= mZ8under) {
                     mfillColour = Graphics.COLOR_PINK;    	//! (Z8)
-                    mZone[counter] = 8;
+                    mZone[counter] = Math.round(10*(8+(testvalue-mZ8under+0.00001)/(mZ9under-mZ8under+0.00001)))/10;
                 } else if (testvalue >= mZ7under) {
                     mfillColour = Graphics.COLOR_DK_RED;    	//! (Z7)
-                    mZone[counter] = 7;
+                    mZone[counter] = Math.round(10*(7+(testvalue-mZ7under+0.00001)/(mZ8under-mZ7under+0.00001)))/10;
                 } else if (testvalue >= mZ6under) {
                     mfillColour = Graphics.COLOR_RED;    	//! (Z6)
-                    mZone[counter] = 6;
+                    mZone[counter] = Math.round(10*(6+(testvalue-mZ6under+0.00001)/(mZ7under-mZ6under+0.00001)))/10;
                 } else if (testvalue >= mZ5under) {
                     mfillColour = Graphics.COLOR_ORANGE;    	//! (Z5)
-                    mZone[counter] = 5;
+                    mZone[counter] = Math.round(10*(5+(testvalue-mZ5under+0.00001)/(mZ6under-mZ5under+0.00001)))/10;
                 } else if (testvalue >= mZ4under) {
                     mfillColour = Graphics.COLOR_DK_GREEN;    	//! (Z4)
-                    mZone[counter] = 4;
+                    mZone[counter] = Math.round(10*(4+(testvalue-mZ4under+0.00001)/(mZ5under-mZ4under+0.00001)))/10;
                 } else if (testvalue >= mZ3under) {
                     mfillColour = Graphics.COLOR_GREEN;        //! (Z3)
-                    mZone[counter] = 3;
+                    mZone[counter] = Math.round(10*(3+(testvalue-mZ3under+0.00001)/(mZ4under-mZ3under+0.00001)))/10;
                 } else if (testvalue >= mZ2under) {
                     mfillColour = Graphics.COLOR_BLUE;        //! (Z2)
-                    mZone[counter] = 2;
+                    mZone[counter] = Math.round(10*(2+(testvalue-mZ2under+0.00001)/(mZ3under-mZ2under+0.00001)))/10;
                 } else if (testvalue >= mZ1under) {
                     mfillColour = Graphics.COLOR_DK_GRAY;        //! (Z1)
                     mZone[counter] = 1;

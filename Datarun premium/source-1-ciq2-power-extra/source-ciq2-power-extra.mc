@@ -164,7 +164,7 @@ class CiqView extends ExtramemView {
 	        if (metric[i] == 38) {
     	        fieldValue[i] =  (info.currentPower != null) ? info.currentPower : 0;     	        
         	    fieldLabel[i] = "P zone";
-            	fieldFormat[i] = "0decimal";
+            	fieldFormat[i] = "1decimal";
 			} else if (metric[i] == 56) {
 	            fieldValue[i] = FilteredCurPower;
     	        fieldLabel[i] = "Filt Pwr";
@@ -268,7 +268,10 @@ class CiqView extends ExtramemView {
 		fieldvalue = (metric[counter]==46) ? HRzone : fieldvalue;
 		
         if ( fieldformat.equals("0decimal" ) == true ) {
-        	fieldvalue = fieldvalue.format("%.0f");        	
+        	fieldvalue = fieldvalue.format("%.0f");  
+        } else if ( fieldformat.equals("1decimal" ) == true ) {
+            Temp = Math.round(fieldvalue*10)/10;
+			fieldvalue = Temp.format("%.1f");
         } else if ( fieldformat.equals("2decimal" ) == true ) {
             Temp = Math.round(fieldvalue*100)/100;
             var fString = "%.2f";

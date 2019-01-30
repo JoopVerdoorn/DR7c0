@@ -101,7 +101,7 @@ class PowerView extends CiqView {
     				if (vibrateseconds == uWarningFreq) {
     					Toybox.Attention.vibrate(vibrateData);
     					if (uAlertbeep == true) {
-    						Attention.playTone(Attention.TONE_KEY);
+    						Attention.playTone(Attention.TONE_LOW_BATTERY);
     					}
     					vibrateseconds = 0;
     				}
