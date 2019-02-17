@@ -15,6 +15,11 @@ class ExtramemView extends DatarunpremiumView {
 	var uETAfromLap 						= true;
 	var HRzone								= 0;
 	hidden var Powerzone					= 0;
+	var VertPace1							= 0;
+	var VertPace2							= 0;
+	var VertPace3							= 0;
+	var VertPace4							= 0;
+	var VertPace5							= 0;
 	
     function initialize() {
         DatarunpremiumView.initialize();
@@ -101,7 +106,20 @@ class ExtramemView extends DatarunpremiumView {
             	}
             }
         }
-
+        
+		//! Calculate vertical speed
+		var valueDesc = (info.totalDescent != null) ? info.totalDescent : 0;
+        valueDesc = (unitD == 1609.344) ? valueDesc*3.2808 : valueDesc;
+		var valueAsc = (info.totalAscent != null) ? info.totalAscent : 0;
+        valueAsc = (unitD == 1609.344) ? valueAsc*3.2808 : valueAsc;
+        var CurrentVertSpeedinmpersec = valueAsc-valueDesc;
+		VertPace5 								= VertPace4;
+		VertPace4 								= VertPace3;
+		VertPace3 								= VertPace2;
+        VertPace2 								= VertPace1;
+        VertPace1								= CurrentVertSpeedinmpersec; 
+		var AverageVertspeedinmper5sec= (VertPace1+VertPace2+VertPace3+VertPace4+VertPace5)/5;
+		
 
 		var i = 0; 
 	    for (i = 1; i < 8; ++i) {
@@ -149,13 +167,11 @@ class ExtramemView extends DatarunpremiumView {
         	    fieldLabel[i] = "T effect";
             	fieldFormat[i] = "2decimal";           	
 			} else if (metric[i] == 52) {
-           		fieldValue[i] = (info.totalAscent != null) ? info.totalAscent : 0;
-            	fieldValue[i] = (unitD == 1609.344) ? fieldValue[i]*3.2808 : fieldValue[i];
+           		fieldValue[i] = valueAsc;
             	fieldLabel[i] = "EL gain";
             	fieldFormat[i] = "0decimal";
         	}  else if (metric[i] == 53) {
-           		fieldValue[i] = (info.totalDescent != null) ? info.totalDescent : 0;
-           		fieldValue[i] = (unitD == 1609.344) ? fieldValue[i]*3.2808 : fieldValue[i];
+           		fieldValue[i] = valueDesc;
             	fieldLabel[i] = "EL loss";
             	fieldFormat[i] = "0decimal";           	
         	}  else if (metric[i] == 61) {
@@ -170,6 +186,10 @@ class ExtramemView extends DatarunpremiumView {
            		fieldValue[i] = 3.6*Averagespeedinmpersec*1000/unitP ;
             	fieldLabel[i] = "Spd ..s";
             	fieldFormat[i] = "2decimal";           	
+        	}  else if (metric[i] == 67) {
+           		fieldValue[i] = (unitD == 1609.344) ? AverageVertspeedinmper5sec*3.2808 : AverageVertspeedinmper5sec;
+            	fieldLabel[i] = "V speed";
+            	fieldFormat[i] = "1decimal";
 			} 
 		}
 
@@ -304,13 +324,11 @@ class ExtramemView extends DatarunpremiumView {
         	    CFMLabel = "T effect";
             	CFMFormat = "2decimal";           	
 			} else if (uClockFieldMetric == 52) {
-           		CFMValue = (info.totalAscent != null) ? info.totalAscent : 0;
-            	CFMValue = (unitD == 1609.344) ? CFMValue*3.2808 : CFMValue;
+           		CFMValue = valueAsc;
             	CFMLabel = "EL gain";
             	CFMFormat = "0decimal";
         	}  else if (uClockFieldMetric == 53) {
-           		CFMValue = (info.totalDescent != null) ? info.totalDescent : 0;
-           		CFMValue = (unitD == 1609.344) ? CFMValue*3.2808 : CFMValue; 
+           		CFMValue = valueDesc; 
             	CFMLabel = "EL loss";
             	CFMFormat = "0decimal";           	
         	}  else if (uClockFieldMetric == 61) {
@@ -325,6 +343,10 @@ class ExtramemView extends DatarunpremiumView {
            		CFMValue = 3.6*Averagespeedinmpersec*1000/unitP ;
             	CFMLabel = "Spd ..s";
             	CFMFormat = "2decimal";           	
+        	}  else if (uClockFieldMetric == 67) {
+           		CFMValue = (unitD == 1609.344) ? AverageVertspeedinmper5sec*3.2808 : AverageVertspeedinmper5sec;
+            	CFMLabel = "V speed";
+            	CFMFormat = "2decimal";  
 			}
 			 
 

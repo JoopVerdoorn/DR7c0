@@ -41,7 +41,7 @@ class CiqView extends DatarunpremiumView {
     	//! Setup back- and foregroundcolours
 		mColourFont = (getBackgroundColor() == Graphics.COLOR_BLACK) ? Graphics.COLOR_WHITE : Graphics.COLOR_BLACK; 
 		mColourLine = Graphics.COLOR_BLUE;
-		mColourBackGround = (getBackgroundColor() == Graphics.COLOR_WHITE) ? Graphics.COLOR_BLACK : Graphics.COLOR_WHITE;
+		mColourBackGround = (getBackgroundColor() == Graphics.COLOR_WHITE) ? Graphics.COLOR_WHITE : Graphics.COLOR_BLACK;
 		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
 	}
 
