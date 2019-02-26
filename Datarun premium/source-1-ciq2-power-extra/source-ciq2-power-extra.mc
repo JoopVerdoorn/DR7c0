@@ -154,7 +154,7 @@ class CiqView extends ExtramemView {
 
 		//! Calculate IF and TTS
 		mIntensityFactor = (uFTP != 0) ? mNormalizedPow / uFTP : 0;
-		mTTS = (jTimertime * mNormalizedPow * mIntensityFactor)/(uFTP * 3600) * 100;
+		mTTS = (uFTP != 0) ? (jTimertime * mNormalizedPow * mIntensityFactor)/(uFTP * 3600) * 100 : 999;
 
 		
 		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
