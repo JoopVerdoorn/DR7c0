@@ -363,7 +363,7 @@ class ExtramemView extends DatarunpremiumView {
 		//! Display colored labels on screen
 		for (var i = 1; i < 8; ++i) {
 		   	if ( i == 1 ) {			//!upper row, left    	
-	    		Coloring(dc,i,fieldValue[i],"018,029,100,019");
+	    		Coloring(dc,i,fieldValue[i],"018,029,100,019");	    		
 		   	} else if ( i == 2 ) {	//!upper row, right
 		   		Coloring(dc,i,fieldValue[i],"120,029,100,019");
 	       	} else if ( i == 3 ) {  //!middle row, left

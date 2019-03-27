@@ -43,10 +43,15 @@ class CiqView extends ExtramemView {
         yh = yh.toNumber();
         xl = xl.toNumber();
         yl = yl.toNumber();
- 
+
+		fieldvalue = (metric[counter]==38) ? Powerzone : fieldvalue; 
 		fieldvalue = (metric[counter]==46) ? HRzone : fieldvalue;
+		
         if ( fieldformat.equals("0decimal" ) == true ) {
-        	fieldvalue = fieldvalue.format("%.0f");        	
+        	fieldvalue = fieldvalue.format("%.0f");  
+        } else if ( fieldformat.equals("1decimal" ) == true ) {
+            Temp = Math.round(fieldvalue*10)/10;
+			fieldvalue = Temp.format("%.1f");
         } else if ( fieldformat.equals("2decimal" ) == true ) {
             Temp = Math.round(fieldvalue*100)/100;
             var fString = "%.2f";
@@ -59,26 +64,18 @@ class CiqView extends ExtramemView {
     	         	fString = "%.1f";
         	    }  
         	}        
-        	fieldvalue = Temp.format(fString);      	
+        	fieldvalue = Temp.format(fString);        	
         } else if ( fieldformat.equals("pace" ) == true ) {
         	Temp = (fieldvalue != 0 ) ? (unitP/fieldvalue).toLong() : 0;
         	fieldvalue = (Temp / 60).format("%0d") + ":" + Math.round(Temp % 60).format("%02d");
         } else if ( fieldformat.equals("power" ) == true ) {     
-        	fieldvalue = Math.round(fieldvalue);       	
-        	if (PowerWarning == 1) { 
-        		mColourFont = Graphics.COLOR_PURPLE;
-        	} else if (PowerWarning == 2) { 
-        		mColourFont = Graphics.COLOR_RED;
-        	} else if (PowerWarning == 0) { 
-        		mColourFont = originalFontcolor;
-        	}
+        	fieldvalue = Math.round(fieldvalue);
         } else if ( fieldformat.equals("timeshort" ) == true  ) {
         	Temp = (fieldvalue != 0 ) ? (fieldvalue).toLong() : 0;
         	fieldvalue = (Temp /60000 % 60).format("%02d") + ":" + (Temp /1000 % 60).format("%02d");
         }
-
-    	dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
-    	
+        		
+		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
         if ( fieldformat.equals("time" ) == true ) {    
 	    	if ( counter == 1 or counter == 2 or counter == 6 or counter == 7 ) {  
 	    		var fTimerSecs = (fieldvalue % 60).format("%02d");
@@ -91,12 +88,12 @@ class CiqView extends ExtramemView {
             		dc.drawText(xh, yh, Graphics.FONT_NUMBER_MILD, fTimerHours, Graphics.TEXT_JUSTIFY_LEFT|Graphics.TEXT_JUSTIFY_VCENTER);
             		fTimer = (fieldvalue / 60 % 60).format("%02d") + ":" + fTimerSecs;  
         		}
-        		dc.drawText(xx, y, Graphics.FONT_NUMBER_MEDIUM, fTimer, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);	
+       			dc.drawText(xx, y, Graphics.FONT_NUMBER_MEDIUM, fTimer, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
         	}
         } else {
-        	dc.drawText(x, y, Graphics.FONT_NUMBER_MEDIUM, fieldvalue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+       		dc.drawText(x, y, Graphics.FONT_NUMBER_MEDIUM, fieldvalue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
         }        
-        dc.drawText(xl, yl, Graphics.FONT_XTINY,  fieldlabel, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);               
+       	dc.drawText(xl, yl, Graphics.FONT_XTINY,  fieldlabel, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
         mColourFont = originalFontcolor;
 		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
     }

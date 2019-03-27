@@ -94,26 +94,26 @@ class PowerView extends CiqView {
 		//! Display colored labels on screen
 		for (var i = 1; i < 8; ++i) {
 		   	if ( i == 1 ) {			//!upper row, left    	
-	    		Coloring(dc,i,fieldValue[i],"018,029,100,019");
+	    		Coloring2(dc,i,fieldValue[i],"018,029,100,019");
 		   	} else if ( i == 2 ) {	//!upper row, right
-		   		Coloring(dc,i,fieldValue[i],"120,029,100,019");
+		   		Coloring2(dc,i,fieldValue[i],"120,029,100,019");
 	       	} else if ( i == 3 ) {  //!middle row, left
-	    		Coloring(dc,i,fieldValue[i],"000,093,072,019");
+	    		Coloring2(dc,i,fieldValue[i],"000,093,072,019");
 		   	} else if ( i == 4 ) {	//!middle row, middle
-		 		Coloring(dc,i,fieldValue[i],"074,093,089,019");
+		 		Coloring2(dc,i,fieldValue[i],"074,093,089,019");
 	      	} else if ( i == 5 ) {  //!middle row, right
-	    		Coloring(dc,i,fieldValue[i],"165,093,077,019");
+	    		Coloring2(dc,i,fieldValue[i],"165,093,077,019");
 		   	} else if ( i == 6 ) {	//!lower row, left
-		   		Coloring(dc,i,fieldValue[i],"018,199,100,019");
+		   		Coloring2(dc,i,fieldValue[i],"018,199,100,019");
 	      	} else if ( i == 7 ) {	//!lower row, right
-	    		Coloring(dc,i,fieldValue[i],"120,199,100,019");
+	    		Coloring2(dc,i,fieldValue[i],"120,199,100,019");
 	    	}       	
 		}
 	   
 	}
 	
 	
-	function Coloring(dc,counter,testvalue,CorString) {
+	function Coloring2(dc,counter,testvalue,CorString) {
 		var info = Activity.getActivityInfo();
         var x = CorString.substring(0, 3);
         var y = CorString.substring(4, 7);
