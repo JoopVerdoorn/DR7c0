@@ -1,0 +1,228 @@
+<resources>
+
+  <properties>
+    <property id="pPowerZones" type="string">184:Z1:227:Z2:255:Z3:284:Z4:326:Z5:369</property>
+    <property id="pMilClockAltern" type="number">0</property> 
+    <property id="prolavPowmaxsecs" type="number">30</property>
+    <property id="p10Powerzones" type="boolean">false</property>
+    <property id="pPPPowerZones" type="string">180:Z1:210:Z2:240:Z3:270:Z4:300:Z5:330:Z6:360:Z7:390:Z8:420:Z9:450:Z10:480</property>
+    <property id="pFTP" type="number">250</property>
+    <property id="pCP" type="number">250</property>
+    <property id="pspikeTreshold" type="number">2000</property>
+  </properties>
+
+	
+  <strings>
+	<string id="lFTP">Functional treshold power, needed for Intensity factor and Training stress score (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+	<string id="lCP">Critical power, needed for Running Stress Score (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+	<string id="lIntensityFactor">Intensity Factor (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+	<string id="lTTS">Training Stress Score (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+	<string id="lRSS">Running Stress Score (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+	<string id="lAEIndex">Average efficiency Index (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+	<string id="lLEIndex">Current lap efficiency Index (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+	<string id="lLLEIndex">Last lap efficiency Index (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+    <string id="lFilteredCurPower">Current running power, filtered for spikes above 2000 Watt (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+    <string id="lPowper300km">Power averaged over the last .. seconds</string>
+    <string id="lrolavPowmaxsecs">Power averaged over the last ... seconds (max is 300 seconds, only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+    <string id="lrolavPowmaxsecsError">This needs to be a number from 2 too 300</string>
+    <string id="lNPower">Normalized power (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+    <string id="lPowerZones">Power zones, a format required like 184:Z1:227:Z2:255:Z3:284:Z4:326:Z5:369 (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+    <string id="l10Powerzones">Use 10 power zones  instead of 5 (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+    <string id="lPPPowerZones">Power zones for 10 zone system, a format required like Power zones, a format required like 180:Z1:210:Z2:240:Z3:270:Z4:300:Z5:330:Z6:360:Z7:390:Z8:420:Z9:450:Z10:480 (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+	<string id="lCEIndex">Current lap efficiency factor (only for FR645m, Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+    <string id="lCP2HRratio">Current power to heartrate ratio (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+    <string id="lLP2HRratio">Lap power to heartrate ratio (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+    <string id="lLLP2HRratio">Last lap power to heartrate ratio (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+    <string id="lAP2HRratio">Average power to heartrate ratio (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+	<string id="lSPowerzone">Current powerzone (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+	<string id="lspikeTreshold">Treshhold value for supressing power spikes (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+ </strings>
+
+ <settings>
+    <setting propertyKey="@Properties.p10Powerzones" title="@Strings.l10Powerzones">
+      <settingConfig type="boolean" required="true" />
+    </setting>    
+    <setting propertyKey="@Properties.pPowerZones" title="@Strings.lPowerZones">
+      <settingConfig type="alphaNumeric"  required="true"/>
+    </setting>
+    <setting propertyKey="@Properties.pPPPowerZones" title="@Strings.lPPPowerZones">
+      <settingConfig type="alphaNumeric"  required="true"/>
+    </setting>
+    <setting propertyKey="@Properties.pFTP" title="@Strings.lFTP">
+      <settingConfig type="numeric"  required="true"/>
+    </setting>
+    <setting propertyKey="@Properties.pCP" title="@Strings.lCP">
+      <settingConfig type="numeric"  required="true"/>
+    </setting>    
+    <setting propertyKey="@Properties.pspikeTreshold" title="@Strings.lspikeTreshold">
+      <settingConfig type="numeric"  required="true"/>
+    </setting>    
+    <setting propertyKey="@Properties.prolavPowmaxsecs" title="@Strings.lrolavPowmaxsecs">
+      <settingConfig type="numeric" errorMessage="@Strings.lrolavPowmaxsecsError" />
+    </setting>
+    <setting propertyKey="@Properties.pUpperLeftMetric" title="@Strings.lUpperLeftMetric">
+      <settingConfig type="list" required="true">
+        <listEntry value="56">@Strings.lFilteredCurPower</listEntry>
+        <listEntry value="57">@Strings.lNPower</listEntry>
+        <listEntry value="38">@Strings.lSPowerzone</listEntry>
+        <listEntry value="37">@Strings.lPowper300km</listEntry>
+
+        <listEntry value="25">@Strings.lLEIndex</listEntry>
+        <listEntry value="26">@Strings.lLLEIndex</listEntry>
+        <listEntry value="27">@Strings.lAEIndex</listEntry>
+        <listEntry value="36">@Strings.lCP2HRratio</listEntry>
+        <listEntry value="33">@Strings.lLP2HRratio</listEntry>
+        <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
+        <listEntry value="35">@Strings.lAP2HRratio</listEntry>
+        <listEntry value="54">@Strings.lTEffect</listEntry>
+        <listEntry value="58">@Strings.lIntensityFactor</listEntry>
+        <listEntry value="59">@Strings.lTTS</listEntry>
+        <listEntry value="60">@Strings.lRSS</listEntry>
+      </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.pUpperRightMetric" title="@Strings.lUpperRightMetric">
+      <settingConfig type="list" required="true">
+        <listEntry value="56">@Strings.lFilteredCurPower</listEntry>
+        <listEntry value="57">@Strings.lNPower</listEntry>
+        <listEntry value="38">@Strings.lSPowerzone</listEntry>
+        <listEntry value="37">@Strings.lPowper300km</listEntry>
+
+        <listEntry value="25">@Strings.lLEIndex</listEntry>
+        <listEntry value="26">@Strings.lLLEIndex</listEntry>
+        <listEntry value="27">@Strings.lAEIndex</listEntry>
+        <listEntry value="36">@Strings.lCP2HRratio</listEntry>
+        <listEntry value="33">@Strings.lLP2HRratio</listEntry>
+        <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
+        <listEntry value="35">@Strings.lAP2HRratio</listEntry>
+        <listEntry value="54">@Strings.lTEffect</listEntry>
+        <listEntry value="58">@Strings.lIntensityFactor</listEntry>
+        <listEntry value="59">@Strings.lTTS</listEntry>
+        <listEntry value="60">@Strings.lRSS</listEntry>
+      </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.pMiddleLeftMetric" title="@Strings.lMiddleLeftMetric">
+      <settingConfig type="list" required="true">
+        <listEntry value="56">@Strings.lFilteredCurPower</listEntry>
+        <listEntry value="57">@Strings.lNPower</listEntry>
+        <listEntry value="38">@Strings.lSPowerzone</listEntry>
+        <listEntry value="37">@Strings.lPowper300km</listEntry>
+
+        <listEntry value="25">@Strings.lLEIndex</listEntry>
+        <listEntry value="26">@Strings.lLLEIndex</listEntry>
+        <listEntry value="27">@Strings.lAEIndex</listEntry>
+        <listEntry value="36">@Strings.lCP2HRratio</listEntry>
+        <listEntry value="33">@Strings.lLP2HRratio</listEntry>
+        <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
+        <listEntry value="35">@Strings.lAP2HRratio</listEntry>
+        <listEntry value="54">@Strings.lTEffect</listEntry>
+        <listEntry value="58">@Strings.lIntensityFactor</listEntry>
+        <listEntry value="59">@Strings.lTTS</listEntry>
+        <listEntry value="60">@Strings.lRSS</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.pMiddleMiddleMetric" title="@Strings.lMiddleMiddleMetric">
+      <settingConfig type="list" required="true">
+        <listEntry value="56">@Strings.lFilteredCurPower</listEntry>
+        <listEntry value="57">@Strings.lNPower</listEntry>
+        <listEntry value="38">@Strings.lSPowerzone</listEntry>
+        <listEntry value="37">@Strings.lPowper300km</listEntry>
+
+        <listEntry value="25">@Strings.lLEIndex</listEntry>
+        <listEntry value="26">@Strings.lLLEIndex</listEntry>
+        <listEntry value="27">@Strings.lAEIndex</listEntry>
+        <listEntry value="36">@Strings.lCP2HRratio</listEntry>
+        <listEntry value="33">@Strings.lLP2HRratio</listEntry>
+        <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
+        <listEntry value="35">@Strings.lAP2HRratio</listEntry>
+        <listEntry value="54">@Strings.lTEffect</listEntry>
+        <listEntry value="58">@Strings.lIntensityFactor</listEntry>
+        <listEntry value="59">@Strings.lTTS</listEntry>
+        <listEntry value="60">@Strings.lRSS</listEntry>
+      </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.pMiddleRightMetric" title="@Strings.lMiddleRightMetric">
+      <settingConfig type="list" required="true">
+        <listEntry value="56">@Strings.lFilteredCurPower</listEntry>
+        <listEntry value="57">@Strings.lNPower</listEntry>
+        <listEntry value="38">@Strings.lSPowerzone</listEntry>
+        <listEntry value="37">@Strings.lPowper300km</listEntry>
+
+        <listEntry value="25">@Strings.lLEIndex</listEntry>
+        <listEntry value="26">@Strings.lLLEIndex</listEntry>
+        <listEntry value="27">@Strings.lAEIndex</listEntry>
+        <listEntry value="36">@Strings.lCP2HRratio</listEntry>
+        <listEntry value="33">@Strings.lLP2HRratio</listEntry>
+        <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
+        <listEntry value="35">@Strings.lAP2HRratio</listEntry>
+        <listEntry value="54">@Strings.lTEffect</listEntry>
+        <listEntry value="58">@Strings.lIntensityFactor</listEntry>
+        <listEntry value="59">@Strings.lTTS</listEntry>
+        <listEntry value="60">@Strings.lRSS</listEntry>
+      </settingConfig>
+    </setting>
+    
+    <setting propertyKey="@Properties.pBottomLeftMetric" title="@Strings.lBottomLeftMetric">
+      <settingConfig type="list" required="true">
+        <listEntry value="56">@Strings.lFilteredCurPower</listEntry>
+        <listEntry value="57">@Strings.lNPower</listEntry>
+        <listEntry value="38">@Strings.lSPowerzone</listEntry>
+        <listEntry value="37">@Strings.lPowper300km</listEntry>
+
+        <listEntry value="25">@Strings.lLEIndex</listEntry>
+        <listEntry value="26">@Strings.lLLEIndex</listEntry>
+        <listEntry value="27">@Strings.lAEIndex</listEntry>
+        <listEntry value="36">@Strings.lCP2HRratio</listEntry>
+        <listEntry value="33">@Strings.lLP2HRratio</listEntry>
+        <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
+        <listEntry value="35">@Strings.lAP2HRratio</listEntry>
+        <listEntry value="54">@Strings.lTEffect</listEntry>
+        <listEntry value="58">@Strings.lIntensityFactor</listEntry>
+        <listEntry value="59">@Strings.lTTS</listEntry>
+        <listEntry value="60">@Strings.lRSS</listEntry>
+      </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.pBottomRightMetric" title="@Strings.lBottomRightMetric">
+      <settingConfig type="list" required="true">
+        <listEntry value="56">@Strings.lFilteredCurPower</listEntry>
+        <listEntry value="57">@Strings.lNPower</listEntry>
+        <listEntry value="38">@Strings.lSPowerzone</listEntry>
+        <listEntry value="37">@Strings.lPowper300km</listEntry>
+
+        <listEntry value="25">@Strings.lLEIndex</listEntry>
+        <listEntry value="26">@Strings.lLLEIndex</listEntry>
+        <listEntry value="27">@Strings.lAEIndex</listEntry>
+        <listEntry value="36">@Strings.lCP2HRratio</listEntry>
+        <listEntry value="33">@Strings.lLP2HRratio</listEntry>
+        <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
+        <listEntry value="35">@Strings.lAP2HRratio</listEntry>
+        <listEntry value="54">@Strings.lTEffect</listEntry>
+        <listEntry value="58">@Strings.lIntensityFactor</listEntry>
+        <listEntry value="59">@Strings.lTTS</listEntry>
+        <listEntry value="60">@Strings.lRSS</listEntry>
+       </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.pClockFieldMetric" title="@Strings.lClockFieldMetric">
+      <settingConfig type="list" required="true">
+        <listEntry value="56">@Strings.lFilteredCurPower</listEntry>
+        <listEntry value="57">@Strings.lNPower</listEntry>
+        <listEntry value="38">@Strings.lSPowerzone</listEntry>
+        <listEntry value="37">@Strings.lPowper300km</listEntry>
+
+        <listEntry value="25">@Strings.lLEIndex</listEntry>
+        <listEntry value="26">@Strings.lLLEIndex</listEntry>
+        <listEntry value="27">@Strings.lAEIndex</listEntry>
+        <listEntry value="36">@Strings.lCP2HRratio</listEntry>
+        <listEntry value="33">@Strings.lLP2HRratio</listEntry>
+        <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
+        <listEntry value="35">@Strings.lAP2HRratio</listEntry>
+        <listEntry value="54">@Strings.lTEffect</listEntry>
+        <listEntry value="58">@Strings.lIntensityFactor</listEntry>
+        <listEntry value="59">@Strings.lTTS</listEntry>
+        <listEntry value="60">@Strings.lRSS</listEntry>
+      </settingConfig>
+    </setting>
+  </settings>
+
+
+</resources>

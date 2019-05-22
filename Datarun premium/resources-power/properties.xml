@@ -1,0 +1,102 @@
+<resources>
+
+  <properties>
+    <property id="pRequiredPower" type="string">000:999</property>
+    <property id="pWarningFreq" type="number">5</property>
+    <property id="pAlertbeep" type="boolean">false</property>
+  </properties>
+
+	
+  <strings>
+    <string id="lRequiredPower">Boundaries for warning signal, a format required like (227:284)</string> 
+    <string id="lWarningFreq">Frequency for the warning signal for operating out of powerzone</string>
+    <string id="lAlertbeep">Play sound as warning signal for operating out of powerzone</string>   
+    <string id="lSPower">Current running power</string>
+    <string id="lAsecPower">Power averaged over the last 3 seconds</string>
+    <string id="lPowper300km">Power averaged over the last .. seconds</string>
+    <string id="lrolavPowmaxsecs">Power averaged over the last ... seconds (max is 300 seconds, only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+    <string id="lrolavPowmaxsecsError">This needs to be a number from 2 too 300</string>
+    <string id="lNPower">Normalized power (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
+    <string id="lAPower">Average running power</string>
+	<string id="lLPower">Current lap running power</string>
+	<string id="lLLPower">Last lap running power</string>
+ </strings>
+
+  <settings>
+    <setting propertyKey="@Properties.pRequiredPower" title="@Strings.lRequiredPower">
+      <settingConfig type="alphaNumeric"  required="true"/>
+    </setting>   
+    <setting propertyKey="@Properties.pWarningFreq" title="@Strings.lWarningFreq">
+      <settingConfig type="numeric" />
+    </setting>    
+    <setting propertyKey="@Properties.pAlertbeep" title="@Strings.lAlertbeep">
+      <settingConfig type="boolean" required="true" />
+    </setting>
+    <setting propertyKey="@Properties.pUpperLeftMetric" title="@Strings.lUpperLeftMetric">
+      <settingConfig type="list" required="true">
+        <listEntry value="20">@Strings.lSPower</listEntry>
+        <listEntry value="21">@Strings.lAsecPower</listEntry>
+        <listEntry value="22">@Strings.lLPower</listEntry>
+        <listEntry value="23">@Strings.lLLPower</listEntry>
+        <listEntry value="24">@Strings.lAPower</listEntry>
+      </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.pUpperRightMetric" title="@Strings.lUpperRightMetric">
+      <settingConfig type="list" required="true">
+        <listEntry value="20">@Strings.lSPower</listEntry>
+        <listEntry value="21">@Strings.lAsecPower</listEntry>
+        <listEntry value="22">@Strings.lLPower</listEntry>
+        <listEntry value="23">@Strings.lLLPower</listEntry>
+        <listEntry value="24">@Strings.lAPower</listEntry>
+      </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.pMiddleLeftMetric" title="@Strings.lMiddleLeftMetric">
+      <settingConfig type="list" required="true">
+        <listEntry value="20">@Strings.lSPower</listEntry>
+        <listEntry value="21">@Strings.lAsecPower</listEntry>
+        <listEntry value="22">@Strings.lLPower</listEntry>
+        <listEntry value="23">@Strings.lLLPower</listEntry>
+        <listEntry value="24">@Strings.lAPower</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.pMiddleMiddleMetric" title="@Strings.lMiddleMiddleMetric">
+      <settingConfig type="list" required="true">
+        <listEntry value="20">@Strings.lSPower</listEntry>
+        <listEntry value="21">@Strings.lAsecPower</listEntry>
+        <listEntry value="22">@Strings.lLPower</listEntry>
+        <listEntry value="23">@Strings.lLLPower</listEntry>
+        <listEntry value="24">@Strings.lAPower</listEntry>
+      </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.pMiddleRightMetric" title="@Strings.lMiddleRightMetric">
+      <settingConfig type="list" required="true">
+        <listEntry value="20">@Strings.lSPower</listEntry>
+        <listEntry value="21">@Strings.lAsecPower</listEntry>
+        <listEntry value="22">@Strings.lLPower</listEntry>
+        <listEntry value="23">@Strings.lLLPower</listEntry>
+        <listEntry value="24">@Strings.lAPower</listEntry>
+      </settingConfig>
+    </setting>
+    
+    <setting propertyKey="@Properties.pBottomLeftMetric" title="@Strings.lBottomLeftMetric">
+      <settingConfig type="list" required="true">
+        <listEntry value="20">@Strings.lSPower</listEntry>
+        <listEntry value="21">@Strings.lAsecPower</listEntry>
+        <listEntry value="22">@Strings.lLPower</listEntry>
+        <listEntry value="23">@Strings.lLLPower</listEntry>
+        <listEntry value="24">@Strings.lAPower</listEntry>
+      </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.pBottomRightMetric" title="@Strings.lBottomRightMetric">
+      <settingConfig type="list" required="true">
+        <listEntry value="20">@Strings.lSPower</listEntry>
+        <listEntry value="21">@Strings.lAsecPower</listEntry>
+        <listEntry value="22">@Strings.lLPower</listEntry>
+        <listEntry value="23">@Strings.lLLPower</listEntry>
+        <listEntry value="24">@Strings.lAPower</listEntry>
+       </settingConfig>
+    </setting>
+  </settings>
+
+</resources>
