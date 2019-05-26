@@ -33,29 +33,29 @@ marqexpedition.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra
 
 
 
-fr245.resourcePath 			= $(fr245.resourcePath)
-fr645.resourcePath 			= $(fr645.resourcePath)
+fr245.resourcePath 			= resources
+fr645.resourcePath 			= resources
 
-fr245m.resourcePath 		= $(fr245m.resourcePath);resources-mem-extra
-fr645m.resourcePath 		= $(fr645m.resourcePath);resources-mem-extra
+fr245m.resourcePath 		= resources-mem-extra
+fr645m.resourcePath 		= resources-mem-extra
 
-fr935.resourcePath 			= $(fr935.resourcePath);resources-power
-fr735xt.resourcePath 		= $(fr735xt.resourcePath);resources-power
-fenix5.resourcePath 		= $(fenix5.resourcePath);resources-power
-fenix5s.resourcePath 		= $(fenix5s.resourcePath);resources-power
-fenixchronos.resourcePath 	= $(fenix5chronos.resourcePath);resources-power
+fr935.resourcePath 			= resources-power
+fr735xt.resourcePath 		= resources-power
+fenix5.resourcePath 		= resources-power
+fenix5s.resourcePath 		= resources-power
+fenixchronos.resourcePath 	= resources-power
 
-fenix5x.resourcePath 		= $(fenix5x.resourcePath);resources-power-extra;resources-mem-extra;resources-power 
-fenix5plus.resourcePath 	= $(fenix5plus.resourcePath);resources-power-extra;resources-mem-extra;resources-power
-fenix5splus.resourcePath 	= $(fenix5splus.resourcePath);resources-power-extra;resources-mem-extra;resources-power
-fenix5xplus.resourcePath 	= $(fenix5xplus.resourcePath);resources-power-extra;resources-mem-extra;resources-power
-d2charlie.resourcePath		= $(d2charlie.resourcePath);resources-power-extra;resources-mem-extra;resources-power
-d2delta.resourcePath		= $(d2delta.resourcePath);resources-power-extra;resources-mem-extra;resources-power
-d2deltapx.resourcePath		= $(d2deltapx.resourcePath);resources-power-extra;resources-mem-extra;resources-power
-d2deltas.resourcePath		= $(d2deltas.resourcePath);resources-power-extra;resources-mem-extra;resources-power
-fr945.resourcePath			= $(fr945.resourcePath);resources-power-extra;resources-mem-extra;resources-power
-marqathlete.resourcePath	= $(marqathlete.resourcePath);resources-power-extra;resources-mem-extra;resources-power
-marqaviator.resourcePath	= $(marqaviator.resourcePath);resources-power-extra;resources-mem-extra;resources-power
-marqcaptain.resourcePath	= $(marqcaptain.resourcePath);resources-power-extra;resources-mem-extra;resources-power
-marqdriver.resourcePath		= $(marqdriver.resourcePath);resources-power-extra;resources-mem-extra;resources-power
-marqexpedition.resourcePath	= $(marqexpedition.resourcePath);resources-power-extra;resources-mem-extra;resources-power
+fenix5x.resourcePath 		= resources-power-extra 
+fenix5plus.resourcePath 	= resources-power-extra
+fenix5splus.resourcePath 	= resources-power-extra
+fenix5xplus.resourcePath 	= resources-power-extra
+d2charlie.resourcePath		= resources-power-extra
+d2delta.resourcePath		= resources-power-extra
+d2deltapx.resourcePath		= resources-power-extra
+d2deltas.resourcePath		= resources-power-extra
+fr945.resourcePath			= resources-power-extra
+marqathlete.resourcePath	= resources-power-extra
+marqaviator.resourcePath	= resources-power-extra
+marqcaptain.resourcePath	= resources-power-extra
+marqdriver.resourcePath		= resources-power-extra
+marqexpedition.resourcePath	= resources-power-extra

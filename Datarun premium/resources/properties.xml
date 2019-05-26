@@ -12,25 +12,11 @@
     <property id="pMilClockAltern" type="number">0</property>
     <property id="pRacedistance" type="number">42195</property>
     <property id="pRacetime" type="string">03:59:48</property>
- 
     <property id="pRoundedPace" type="boolean">true</property>
-
     <property id="pBacklight" type="boolean">false</property>
     <property id="myNumber" type="number">12345678</property>
     <property id="pShowDemo" type="boolean">false</property>
     <property id="pDummysetting4version" type="boolean">true</property>
-
-    <property id="pPowerZones" type="string">184:Z1:227:Z2:255:Z3:284:Z4:326:Z5:369</property>
- 
-    <property id="prolavPowmaxsecs" type="number">30</property>
-    <property id="pCCnumber" type="number">9999999</property>
-
-    <property id="p10Powerzones" type="boolean">false</property>
-    <property id="pPPPowerZones" type="string">180:Z1:210:Z2:240:Z3:270:Z4:300:Z5:330:Z6:360:Z7:390:Z8:420:Z9:450:Z10:480</property>
-
-    <property id="pFTP" type="number">250</property>
-    <property id="pCP" type="number">250</property>
-    <property id="pspikeTreshold" type="number">2000</property>
   </properties>
 
 	
@@ -233,13 +219,7 @@
     </setting>
 
     <setting propertyKey="@Properties.pMiddleLeftMetric" title="@Strings.lMiddleLeftMetric">
-      <settingConfig type="list" required="true">
-        <listEntry value="990">@Strings.lTimeMenu</listEntry>
-        <listEntry value="0">@Strings.lTimerTimer</listEntry>
-        <listEntry value="1">@Strings.lTimerLap</listEntry>
-        <listEntry value="2">@Strings.lTimerLastLap</listEntry>
-        <listEntry value="3">@Strings.lTimerAvgLap</listEntry>
-        
+      <settingConfig type="list" required="true">       
         <listEntry value="991">@Strings.lDistanceMenu</listEntry>
         <listEntry value="4">@Strings.lDistDistance</listEntry>
         <listEntry value="5">@Strings.lDistLap</listEntry>
@@ -277,12 +257,6 @@
     </setting>
     <setting propertyKey="@Properties.pMiddleMiddleMetric" title="@Strings.lMiddleMiddleMetric">
       <settingConfig type="list" required="true">
-        <listEntry value="990">@Strings.lTimeMenu</listEntry>
-        <listEntry value="0">@Strings.lTimerTimer</listEntry>
-        <listEntry value="1">@Strings.lTimerLap</listEntry>
-        <listEntry value="2">@Strings.lTimerLastLap</listEntry>
-        <listEntry value="3">@Strings.lTimerAvgLap</listEntry>
-        
         <listEntry value="991">@Strings.lDistanceMenu</listEntry>
         <listEntry value="4">@Strings.lDistDistance</listEntry>
         <listEntry value="5">@Strings.lDistLap</listEntry>
@@ -319,13 +293,7 @@
       </settingConfig>
     </setting>
     <setting propertyKey="@Properties.pMiddleRightMetric" title="@Strings.lMiddleRightMetric">
-      <settingConfig type="list" required="true">
-        <listEntry value="990">@Strings.lTimeMenu</listEntry>
-        <listEntry value="0">@Strings.lTimerTimer</listEntry>
-        <listEntry value="1">@Strings.lTimerLap</listEntry>
-        <listEntry value="2">@Strings.lTimerLastLap</listEntry>
-        <listEntry value="3">@Strings.lTimerAvgLap</listEntry>
-        
+      <settingConfig type="list" required="true">     
         <listEntry value="991">@Strings.lDistanceMenu</listEntry>
         <listEntry value="4">@Strings.lDistDistance</listEntry>
         <listEntry value="5">@Strings.lDistLap</listEntry>
