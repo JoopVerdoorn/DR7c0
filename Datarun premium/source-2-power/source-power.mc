@@ -92,7 +92,8 @@ class PowerView extends CiqView {
 		
 		//!var DisplayPower  = (info.currentPower != null) ? info.currentPower : 0;
 		PowerWarning = 0;
-		if (AveragePower3sec>mPowerWarningupper or AveragePower3sec<mPowerWarningunder) {
+		if (jTimertime != 0) {
+		  if (AveragePower3sec>mPowerWarningupper or AveragePower3sec<mPowerWarningunder) {
 			 //!Toybox.Attention.playTone(TONE_LOUD_BEEP);		 
 			 if (Toybox.Attention has :vibrate && uNoAlerts == false) {
 			 	vibrateseconds = vibrateseconds + 1;	 		  			
@@ -117,7 +118,7 @@ class PowerView extends CiqView {
     				}
     			} 
 			 }
-			 
+		  }	 
 		}		
 		var i = 0; 
 	    for (i = 1; i < 8; ++i) {	    

@@ -118,6 +118,7 @@ class DatarunpremiumView extends Ui.DataField {
     	 metric[5]		= mApp.getProperty("pMiddleRightMetric");
          metric[6]   	= mApp.getProperty("pBottomLeftMetric");
          metric[7]  	= mApp.getProperty("pBottomRightMetric");
+metric[1]    	= 1;         
          uRoundedPace        = mApp.getProperty("pRoundedPace");
          uBacklight          = mApp.getProperty("pBacklight");
          umyNumber			 = mApp.getProperty("myNumber");
@@ -262,7 +263,7 @@ class DatarunpremiumView extends Ui.DataField {
 		var i = 0; 
 	    for (i = 1; i < 8; ++i) {	    
         	if (metric[i] == 0) {
-            	fieldValue[i] = jTimertime;
+            	fieldValue[i] = (info.timerTime != null) ? info.timerTime/1000 : 0;
             	fieldLabel[i] = "Timer";
             	fieldFormat[i] = "time";   
 	        } else if (metric[i] == 1) {

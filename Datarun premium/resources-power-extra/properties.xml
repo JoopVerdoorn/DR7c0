@@ -1,5 +1,7 @@
 <resources>
-
+	<fonts>
+    	<font id="Garmin1" filename="fonts/Roadway53-alleencijfers.fnt"/>
+	</fonts>
   <properties>
     <property id="pAppversion" type="string">2.00</property>
     <property id="pUpperLeftMetric" type="number">0</property>

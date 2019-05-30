@@ -56,9 +56,9 @@ class DeviceView extends PowerView {
 
 		for (var i = 1; i < 8; ++i) {
 	    	if ( i == 1 ) {			//!upper row, left
-	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"069,069,073,013,074,073,037");
+	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"069,069,073,013,077,073,037");
 	       	} else if ( i == 2 ) {	//!upper row, right
-	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"170,069,180,121,074,167,037");
+	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"170,069,180,121,077,167,037");
 	       	} else if ( i == 3 ) {  //!middle row, left
 	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"036,133,000,000,000,036,101");
 	       	} else if ( i == 4 ) {	//!middle row, middle
@@ -66,12 +66,21 @@ class DeviceView extends PowerView {
 	       	} else if ( i == 5 ) {  //!middle row, right
 	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"202,133,000,000,000,201,101");
 	       	} else if ( i == 6 ) {	//!lower row, left
-	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"070,177,073,014,172,080,207");
+	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"070,177,073,014,170,080,207");
 	       	} else if ( i == 7 ) {	//!lower row, right
-	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"170,177,180,121,182,157,207");
+	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"170,177,180,121,185,157,207");
        		}       	
 		}
-
+		
+		if (jTimertime == 0) {
+        	var myTime = Toybox.System.getClockTime(); 
+	    	var strTime = myTime.hour.format("%02d") + ":" + myTime.min.format("%02d");
+	    	if (ID0 != 3624 and ID0 != 3588 and ID0 != 3762 and ID0 != 3761 and ID0 != 3757 and ID0 != 3758 and ID0 != 3759) {
+		    	dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
+				dc.drawText(120, 160, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
+		    }
+		}
+		
 		//! Bottom battery indicator
 		var mBattcolor = (pwr > 15) ? mColourFont : Graphics.COLOR_RED;
 		dc.setColor(mBattcolor, Graphics.COLOR_TRANSPARENT);

@@ -1,4 +1,5 @@
 using Toybox.Math;
+using Toybox.WatchUi as Ui;
 class CiqView extends ExtramemView {  
 	var mfillColour 						= Graphics.COLOR_LT_GRAY;
 	var counterPower 						= 0;
@@ -20,6 +21,7 @@ class CiqView extends ExtramemView {
 	var runPower							= 0;
 	var lastsrunPower						= 0;
 	var setPowerWarning 					= 0;
+	var Garminfont = Ui.loadResource(Rez.Fonts.Garmin1);
 		
     function initialize() {
         ExtramemView.initialize();
@@ -36,7 +38,8 @@ class CiqView extends ExtramemView {
 			if (metric[i] == 57 or metric[i] == 58 or metric[i] == 59) {
 				rolavPowmaxsecs = (rolavPowmaxsecs < 30) ? 30 : rolavPowmaxsecs;
 			}
-		}			
+		}	
+		Garminfont = (ID0 == 3624 or ID0 == 3588 or ID0 == 3762 or ID0 == 3761 or ID0 == 3757 or ID0 == 3758 or ID0 == 3759) ? Ui.loadResource(Rez.Fonts.Garmin1) : Graphics.FONT_NUMBER_MEDIUM;		
     }
 
     //! Calculations we need to do every second even when the data field is not visible
@@ -314,13 +317,13 @@ class CiqView extends ExtramemView {
 	    		if (fieldvalue > 3599) {
             		var fTimerHours = (fieldvalue / 3600).format("%d");
             		xx = xms;
-            		dc.drawText(xh, yh, Graphics.FONT_NUMBER_MILD, fTimerHours, Graphics.TEXT_JUSTIFY_LEFT|Graphics.TEXT_JUSTIFY_VCENTER);
+            		dc.drawText(xh, yh, Graphics.FONT_LARGE, fTimerHours, Graphics.TEXT_JUSTIFY_LEFT|Graphics.TEXT_JUSTIFY_VCENTER);
             		fTimer = (fieldvalue / 60 % 60).format("%02d") + ":" + fTimerSecs;  
         		}
-       			dc.drawText(xx, y, Graphics.FONT_NUMBER_MEDIUM, fTimer, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+       			dc.drawText(xx, y, Garminfont, fTimer, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
         	}
         } else {
-       		dc.drawText(x, y, Graphics.FONT_NUMBER_MEDIUM, fieldvalue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+       		dc.drawText(x, y, Garminfont, fieldvalue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
         }        
        	dc.drawText(xl, yl, Graphics.FONT_XTINY,  fieldlabel, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
         mColourFont = originalFontcolor;

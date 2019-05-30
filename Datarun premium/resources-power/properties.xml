@@ -85,7 +85,7 @@
     <string id="lCCnumber">C-Code generated on the watch by the corresponding main Datarun premium datafield</string> 
     <string id="lRacedistanceTitle">Enter race distance in meters for estimated finish time</string>
     <string id="lRacedistanceError">Not valid, only numbers allowed!</string>
-    <string id="lRacetimeTitle">Enter desired finish time for estimated deviation of finish time (format like 03:59:00 required!)</string>
+    <string id="lRacetimeTitle">Enter desired finish time(format like 03:59:00 required!)</string>
 	<string id="lHeartratefield">Heartrate field on middle row</string>
     <string id="lHeartrate">Heartrate</string>
 
@@ -98,7 +98,7 @@
 	<string id="lPaceper5km">Pace averaged over the last 5 seconds</string>
 
 	<string id="lCurrentSpeed">Speed in km/mile per hour</string>
-	<string id="lAverage5secSpeed">Speed averaged over the last 5 seconds in km/mile per hour (only for FR645m, Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>	
+	<string id="lAverage5secSpeed">Speed averaged over the last 5 seconds in km/mile per hour</string>	
 	<string id="lLapSpeed">Lap speed in km/mile per hour</string>
 	<string id="lLLSpeed">Last lap speed in km/mile per hour</string>
 	<string id="lAverageSpeed">Average speed in km/mile per hour</string>
@@ -109,10 +109,6 @@
     <string id="lAlertbeep">Play sound as warning signal for operating out of powerzone</string>   
     <string id="lSPower">Current running power</string>
     <string id="lAsecPower">Power averaged over the last 3 seconds</string>
-    <string id="lPowper300km">Power averaged over the last .. seconds</string>
-    <string id="lrolavPowmaxsecs">Power averaged over the last ... seconds (max is 300 seconds, only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
-    <string id="lrolavPowmaxsecsError">This needs to be a number from 2 too 300</string>
-    <string id="lNPower">Normalized power (only for Fenix 5x, Fenix 5 plus series and D2 Charlie/Delta)</string>
     <string id="lAPower">Average running power</string>
 	<string id="lLPower">Current lap running power</string>
 	<string id="lLLPower">Last lap running power</string>

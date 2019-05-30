@@ -33,7 +33,6 @@ marqexpedition.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra
 
 
 
-fr245.resourcePath 			= resources
 fr645.resourcePath 			= resources
 
 fr245m.resourcePath 		= resources-mem-extra

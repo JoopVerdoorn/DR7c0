@@ -433,13 +433,6 @@ class ExtramemView extends DatarunpremiumView {
     	    mColourFont = originalFontcolor;
 			dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
 		}
-		
-		if (jTimertime == 0) {
-        	var myTime = Toybox.System.getClockTime(); 
-	    	var strTime = myTime.hour.format("%02d") + ":" + myTime.min.format("%02d");
-	    	dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
-			dc.drawText(120, 160, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
-		}
 	   }		
 	}
 
