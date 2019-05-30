@@ -1,4 +1,5 @@
 using Toybox.Graphics as Gfx;
+using Toybox.System as Sys;
 
 //! inherit from the view that contains the commonlogic
 class DeviceView extends PowerView {
@@ -78,6 +79,8 @@ class DeviceView extends PowerView {
 
 
 		//! Top battery indicator
+	 	var stats = Sys.getSystemStats();
+		var pwr = stats.battery;
 		var mBattcolor = (pwr > 15) ? mColourFont : Graphics.COLOR_RED;
 		dc.setColor(mBattcolor, Graphics.COLOR_TRANSPARENT);
 		dc.fillRectangle(125, 3, 15, 19);

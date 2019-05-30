@@ -12,8 +12,6 @@ class DatarunpremiumApp extends Toybox.Application.AppBase {
 }
 
 class DatarunpremiumView extends Ui.DataField {
-	hidden var stats = Sys.getSystemStats();
-	hidden var pwr = stats.battery;
 	hidden var appversion = "1.00";
 
 	//!Get device info
@@ -117,8 +115,7 @@ class DatarunpremiumView extends Ui.DataField {
     	 metric[4] 		= mApp.getProperty("pMiddleMiddleMetric");    
     	 metric[5]		= mApp.getProperty("pMiddleRightMetric");
          metric[6]   	= mApp.getProperty("pBottomLeftMetric");
-         metric[7]  	= mApp.getProperty("pBottomRightMetric");
-metric[1]    	= 1;         
+         metric[7]  	= mApp.getProperty("pBottomRightMetric");         
          uRoundedPace        = mApp.getProperty("pRoundedPace");
          uBacklight          = mApp.getProperty("pBacklight");
          umyNumber			 = mApp.getProperty("myNumber");
