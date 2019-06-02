@@ -1,7 +1,7 @@
 <resources>
 
   <properties>
-    <property id="pAppversion" type="string">2.02</property>
+    <property id="pAppversion" type="string">2.04</property>
     <property id="pUpperLeftMetric" type="number">0</property>
     <property id="pUpperRightMetric" type="number">4</property>
     <property id="pMiddleLeftMetric" type="number">45</property>    
@@ -17,6 +17,7 @@
 
     <property id="pBacklight" type="boolean">false</property>
     <property id="myNumber" type="number">12345678</property>
+	
     <property id="pShowDemo" type="boolean">false</property>
     <property id="pDummysetting4version" type="boolean">true</property>
 
@@ -32,8 +33,8 @@
     <!-- Beta name:
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
     -->
-    <string id="AppVersion">2.02</string>
-    <string id="lDummysetting4version">Version 2.02 of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="AppVersion">2.04</string>
+    <string id="lDummysetting4version">Version 2.04 of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>
@@ -126,7 +127,7 @@
     </setting>
     <setting propertyKey="@Properties.myNumber" title="@Strings.MyNumberTitle">
         <settingConfig type="numeric" errorMessage="@Strings.MyNumberError" />
-    </setting>
+    </setting>  
     <setting propertyKey="@Properties.pRoundedPace" title="@Strings.lRoundedPace">
       <settingConfig type="boolean" required="true" />
     </setting>

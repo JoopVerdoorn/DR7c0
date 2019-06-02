@@ -1,9 +1,9 @@
 <resources>
 	<fonts>
-    	<font id="Garmin1" filename="fonts/Roadway53-alleencijfers.fnt"/>
+    	<font id="Garmin1" filename="fonts/Roadway53-alleencijfers.fnt" antialias="true"/>
 	</fonts>
   <properties>
-    <property id="pAppversion" type="string">2.02</property>
+    <property id="pAppversion" type="string">2.04</property>
     <property id="pUpperLeftMetric" type="number">0</property>
     <property id="pUpperRightMetric" type="number">4</property>
     <property id="pMiddleLeftMetric" type="number">45</property>    
@@ -27,7 +27,7 @@
     <property id="pMilClockAltern" type="number">0</property>
     <property id="prolavPacmaxsecs" type="number">30</property> 
     <property id="prolavPowmaxsecs" type="number">30</property>
-    <property id="pCCnumber" type="number">9999999</property>
+    
     <property id="pClockFieldMetric" type="number">38</property>
     <property id="p10Powerzones" type="boolean">false</property>
     <property id="pPPPowerZones" type="string">180:Z1:210:Z2:240:Z3:270:Z4:300:Z5:330:Z6:360:Z7:390:Z8:420:Z9:450:Z10:480</property>
@@ -44,8 +44,8 @@
     <!-- Beta name:
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
     -->
-    <string id="AppVersion">2.02</string>
-    <string id="lDummysetting4version">Version 2.02 of Datarun premium with 7 metrics, copy 2 (dummy setting)</string>
+    <string id="AppVersion">2.04</string>
+    <string id="lDummysetting4version">Version 2.04 of Datarun premium with 7 metrics, copy 2 (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>
@@ -99,7 +99,7 @@
     <string id="lShowmetric">Show metric </string>
     <string id="MyNumberTitle">Enter license key</string>
     <string id="MyNumberError">Not valid, only numbers allowed!</string>
-    <string id="lCCnumber">C-Code generated on the watch by the corresponding main Datarun premium datafield</string> 
+    <string id="l">C-Code generated on the watch by the corresponding main Datarun premium datafield</string> 
     <string id="lRacedistanceTitle">Enter race distance in meters for estimated finish time</string>
     <string id="lRacedistanceError">Not valid, only numbers allowed!</string>
     <string id="lRacetimeTitle">Enter desired finish time for estimated deviation of finish time (format like 03:59:00 required!)</string>
@@ -185,9 +185,6 @@
       <settingConfig type="boolean" required="true" />
     </setting>
     <setting propertyKey="@Properties.myNumber" title="@Strings.MyNumberTitle">
-        <settingConfig type="numeric" errorMessage="@Strings.MyNumberError" />
-    </setting>
-    <setting propertyKey="@Properties.pCCnumber" title="@Strings.lCCnumber">
         <settingConfig type="numeric" errorMessage="@Strings.MyNumberError" />
     </setting>
     <setting propertyKey="@Properties.pRoundedPace" title="@Strings.lRoundedPace">

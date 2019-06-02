@@ -1,7 +1,9 @@
 <resources>
-
+	<fonts>
+    	<font id="Garmin1" filename="fonts/Roadway53-alleencijfers.fnt" antialias="true"/>
+	</fonts>
   <properties>
-    <property id="pAppversion" type="string">2.02</property>
+    <property id="pAppversion" type="string">2.04</property>
     <property id="pUpperLeftMetric" type="number">0</property>
     <property id="pUpperRightMetric" type="number">4</property>
     <property id="pMiddleLeftMetric" type="number">45</property>    
@@ -32,8 +34,8 @@
     <!-- Beta name:
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
     -->
-    <string id="AppVersion">2.02</string>
-    <string id="lDummysetting4version">Version 2.02 of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="AppVersion">2.04</string>
+    <string id="lDummysetting4version">Version 2.04 of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>
@@ -141,6 +143,35 @@
  </strings>
 
   <settings>
+  	<setting propertyKey="@Properties.pDummysetting4version" title="@Strings.lDummysetting4version">
+      <settingConfig type="boolean" required="true" />
+    </setting>  	
+  	<setting propertyKey="@Properties.pShowDemo" title="@Strings.lShowDemo">
+      <settingConfig type="boolean" required="true" />
+    </setting>
+    <setting propertyKey="@Properties.pBacklight" title="@Strings.lBacklight">
+      <settingConfig type="boolean" required="true" />
+    </setting>
+    <setting propertyKey="@Properties.myNumber" title="@Strings.MyNumberTitle">
+        <settingConfig type="numeric" errorMessage="@Strings.MyNumberError" />
+    </setting>
+    <setting propertyKey="@Properties.pRoundedPace" title="@Strings.lRoundedPace">
+      <settingConfig type="boolean" required="true" />
+    </setting>
+    <setting propertyKey="@Properties.pRacedistance" title="@Strings.lRacedistanceTitle">
+      <settingConfig type="numeric" errorMessage="@Strings.lRacedistanceError" />
+    </setting>
+    <setting propertyKey="@Properties.pRacetime" title="@Strings.lRacetimeTitle">
+      <settingConfig type="alphaNumeric"  required="true"/>
+    </setting>
+    <setting propertyKey="@Properties.pMilClockAltern" title="@Strings.lMilClockAltern">
+      <settingConfig type="list" required="true">
+        <listEntry value="0">@Strings.lShowMilClock</listEntry>
+        <listEntry value="1">@Strings.lShowAMPM</listEntry>
+        <listEntry value="2">@Strings.lShowlaps</listEntry>
+        <listEntry value="3">@Strings.lShowmetric</listEntry>
+      </settingConfig>
+    </setting>
     <setting propertyKey="@Properties.pBlackBackground" title="@Strings.lBlackBackground">
       <settingConfig type="boolean" required="true" />
     </setting>
