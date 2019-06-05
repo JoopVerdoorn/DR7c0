@@ -3,7 +3,9 @@ using Toybox.System as Sys;
 
 //! inherit from the view that contains the commonlogic
 class DeviceView extends PowerView {
-
+	var myTime;
+	var strTime;
+	
 	//! it's good practice to always have an initialize, make sure to call your parent class here!
     function initialize() {
         PowerView.initialize();
@@ -46,12 +48,10 @@ class DeviceView extends PowerView {
 		//! Display metrics
         dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
 
-		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
- 		
+		myTime = Toybox.System.getClockTime(); 
+    	strTime = myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"); 		
 		//! Show clock with current time in top
 		if (uMilClockAltern == 0) {	
-			var myTime = Toybox.System.getClockTime(); 
-	   		var strTime = myTime.hour.format("%02d") + ":" + myTime.min.format("%02d");
 			dc.drawText(108, -4, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
 		}
 	
@@ -74,8 +74,6 @@ class DeviceView extends PowerView {
 		}
 
 		if (jTimertime == 0) {
-        	var myTime = Toybox.System.getClockTime(); 
-	    	var strTime = myTime.hour.format("%02d") + ":" + myTime.min.format("%02d");
 	    	if (ID0 != 3624 and ID0 != 3588 and ID0 != 3762 and ID0 != 3761 and ID0 != 3757 and ID0 != 3758 and ID0 != 3759) {
 		    	dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
 				dc.drawText(109, 150, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);

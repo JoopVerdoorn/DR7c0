@@ -3,7 +3,7 @@
     	<font id="Garmin1" filename="fonts/Roadway53-alleencijfers.fnt" antialias="true"/>
 	</fonts>
   <properties>
-    <property id="pAppversion" type="string">2.05</property>
+    <property id="pAppversion" type="string">2.06</property>
     <property id="pUpperLeftMetric" type="number">0</property>
     <property id="pUpperRightMetric" type="number">4</property>
     <property id="pMiddleLeftMetric" type="number">45</property>    
@@ -43,8 +43,8 @@
     <!-- Beta name:
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
     -->
-    <string id="AppVersion">2.05</string>
-    <string id="lDummysetting4version">Version 2.05 of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="AppVersion">2.06</string>
+    <string id="lDummysetting4version">Version 2.06 of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>

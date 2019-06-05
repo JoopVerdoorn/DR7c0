@@ -1,7 +1,7 @@
 <resources>
 
   <properties>
-    <property id="pAppversion" type="string">2.05</property>
+    <property id="pAppversion" type="string">2.06</property>
     <property id="pUpperLeftMetric" type="number">0</property>
     <property id="pUpperRightMetric" type="number">4</property>
     <property id="pMiddleLeftMetric" type="number">45</property>    
@@ -20,6 +20,7 @@
     <property id="pRequiredPower" type="string">000:999</property>
     <property id="pWarningFreq" type="number">5</property>
     <property id="pAlertbeep" type="boolean">false</property>
+    <property id="pETAfromLap" type="boolean">true</property>
   </properties>
 
 	
@@ -29,8 +30,8 @@
     <!-- Beta name:
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
     -->
-    <string id="AppVersion">2.05</string>
-    <string id="lDummysetting4version">Version 2.05 of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="AppVersion">2.06</string>
+    <string id="lDummysetting4version">Version 2.06 of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>
@@ -64,15 +65,13 @@
     <string id="lLastLapPace">Last lap pace</string>
     <string id="lAltitude">Altitude</string>
 	<string id="lETArequiredpace">Required pace to meet required finish time</string>
-
+	<string id="lETAfromLap">Calculation of ETA based on elapsed time of last lap</string>
+    <string id="lETA">Estimated time of arrival</string>
+    <string id="lETAfrompace">Estimated finished time based on average or last lap pace</string>
+	<string id="lETAdeviation">Deviation from required finish in hours, minutes and seconds</string>
+	
     <string id="lRoundedPace">Show current pace as Rounded Pace</string>
-    
-    <string id="lMilClockAltern">Alternative for default military clock in upper field</string>    
-    <string id="lShowMilClock">Keep clock with military time</string>
-    <string id="lShowlaps">Show number of laps</string>
-    <string id="lShowAMPM">Show clock with AM or PM instead of military time</string>
-    <string id="lShowmetric">Show metric</string>
-
+   
     <string id="lShowDemo">Show demo view for ID's and check license</string>
     
     <string id="lBacklight">Force backlight on, regardless of device settings</string>
@@ -133,15 +132,9 @@
     <setting propertyKey="@Properties.pRacetime" title="@Strings.lRacetimeTitle">
       <settingConfig type="alphaNumeric"  required="true"/>
     </setting>
-    <setting propertyKey="@Properties.pMilClockAltern" title="@Strings.lMilClockAltern">
-      <settingConfig type="list" required="true">
-        <listEntry value="0">@Strings.lShowMilClock</listEntry>
-        <listEntry value="1">@Strings.lShowAMPM</listEntry>
-        <listEntry value="2">@Strings.lShowlaps</listEntry>
-        <listEntry value="3">@Strings.lShowmetric</listEntry>
-      </settingConfig>
+    <setting propertyKey="@Properties.pETAfromLap" title="@Strings.lETAfromLap">
+      <settingConfig type="boolean" required="true" />
     </setting>
-
     <setting propertyKey="@Properties.pRequiredPower" title="@Strings.lRequiredPower">
       <settingConfig type="alphaNumeric"  required="true"/>
     </setting>   
@@ -176,6 +169,8 @@
         
         <listEntry value="993">@Strings.lETAMenu</listEntry>
         <listEntry value="13">@Strings.lETArequiredpace</listEntry>
+        <listEntry value="14">@Strings.lETA</listEntry>
+        <listEntry value="15">@Strings.lETAdeviation</listEntry>
 
         <listEntry value="994">@Strings.lSpeedMenu</listEntry>
         <listEntry value="40">@Strings.lCurrentSpeed</listEntry>
@@ -226,6 +221,8 @@
         
         <listEntry value="993">@Strings.lETAMenu</listEntry>
         <listEntry value="13">@Strings.lETArequiredpace</listEntry>
+        <listEntry value="14">@Strings.lETA</listEntry>
+        <listEntry value="15">@Strings.lETAdeviation</listEntry>
 
         <listEntry value="994">@Strings.lSpeedMenu</listEntry>
         <listEntry value="40">@Strings.lCurrentSpeed</listEntry>
@@ -410,6 +407,8 @@
         
         <listEntry value="993">@Strings.lETAMenu</listEntry>
         <listEntry value="13">@Strings.lETArequiredpace</listEntry>
+        <listEntry value="14">@Strings.lETA</listEntry>
+        <listEntry value="15">@Strings.lETAdeviation</listEntry>
 
         <listEntry value="994">@Strings.lSpeedMenu</listEntry>
         <listEntry value="40">@Strings.lCurrentSpeed</listEntry>
@@ -460,6 +459,8 @@
         
         <listEntry value="993">@Strings.lETAMenu</listEntry>
         <listEntry value="13">@Strings.lETArequiredpace</listEntry>
+        <listEntry value="14">@Strings.lETA</listEntry>
+        <listEntry value="15">@Strings.lETAdeviation</listEntry>
 
         <listEntry value="994">@Strings.lSpeedMenu</listEntry>
         <listEntry value="40">@Strings.lCurrentSpeed</listEntry>

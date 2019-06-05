@@ -1,5 +1,5 @@
 using Toybox.WatchUi as Ui;
-using Toybox.System as Sys;
+
 class DatarunpremiumApp extends Toybox.Application.AppBase {
     function initialize() {
         AppBase.initialize();
@@ -79,7 +79,9 @@ class DatarunpremiumView extends Ui.DataField {
     hidden var uRacedistance                = 42195;
     hidden var uRacetime					= "03:59:48";
 	hidden var mRacetime  					= 0;
-
+	var mETA								= 0;
+	var uETAfromLap 						= true;
+	
     hidden var mLastLapDistMarker           = 0;
     hidden var mLastLapTimeMarker           = 0;
     hidden var mLastLapStoppedTimeMarker    = 0;
@@ -90,7 +92,6 @@ class DatarunpremiumView extends Ui.DataField {
     hidden var mLastLapSpeed 				= 0;
 	hidden var mLaps                        = 1;           
 	hidden var metric 						= [1, 2, 3, 4, 5, 6, 7,8];
-	hidden var pMilClockAltern				= false;
 	
     hidden var mElapsedHeartrate   			= 0;
 	hidden var mLastLapHeartrateMarker      = 0;    
@@ -125,8 +126,9 @@ class DatarunpremiumView extends Ui.DataField {
          uRacedistance		 = mApp.getProperty("pRacedistance");
          uRacetime			 = mApp.getProperty("pRacetime");
          appversion 		 = mApp.getProperty("pAppversion");
+         uETAfromLap		 = mApp.getProperty("pETAfromLap");
          var uHrZones = UserProfile.getHeartRateZones(UserProfile.getCurrentSport());
-	 
+          	 
         if (System.getDeviceSettings().paceUnits == System.UNIT_STATUTE) {
             unitP = 1609.344;
         }
@@ -241,12 +243,10 @@ class DatarunpremiumView extends Ui.DataField {
         			Pace2 								= Pace1;
         			Pace1								= 0;
 				}
-				Averagespeedinmper5sec= (uRoundedPace) ? unitP/(Math.round( (unitP/(Pace1+Pace2+Pace3+Pace4+Pace5)*5) / 5 ) * 5) : (Pace1+Pace2+Pace3+Pace4+Pace5)/5;
+				Averagespeedinmper5sec= (Pace1+Pace2+Pace3+Pace4+Pace5)/5;
 				Averagespeedinmper3sec= (uRoundedPace) ? unitP/(Math.round( (unitP/(Pace1+Pace2+Pace3)*3) / 5 ) * 5) : (Pace1+Pace2+Pace3)/3;
 				CurrentSpeedinmpersec= (uRoundedPace) ? unitP/(Math.round( unitP/CurrentSpeedinmpersec / 5 ) * 5) : CurrentSpeedinmpersec;
 		}
-
-		//! Determine required finish time and calculate required pace 	
 
         var mRacehour = uRacetime.substring(0, 2);
         var mRacemin = uRacetime.substring(3, 5);
@@ -255,6 +255,23 @@ class DatarunpremiumView extends Ui.DataField {
         mRacemin = mRacemin.toNumber();
         mRacesec = mRacesec.toNumber();
         mRacetime = mRacehour*3600 + mRacemin*60 + mRacesec;
+
+        //! Calculate ETA
+        if (info.elapsedDistance != null && info.timerTime != null) {
+            if (uETAfromLap == true ) {
+            	if (mLastLapTimerTime > 0 && mLastLapElapsedDistance > 0 && mLaps > 1) {
+            		if (uRacedistance > info.elapsedDistance) {
+            			mETA = info.timerTime/1000 + (uRacedistance - info.elapsedDistance)/ mLastLapSpeed;
+            		} else {
+            			mETA = 0;
+            		}
+            	}
+            } else {
+            	if (info.elapsedDistance > 5) {
+            		mETA = uRacedistance / (1000*info.elapsedDistance/info.timerTime);
+            	}
+            }
+        }
 
 		//!Fill field metrics
 		var i = 0; 
@@ -321,7 +338,22 @@ class DatarunpremiumView extends Ui.DataField {
         		if (info.elapsedDistance != null and mRacetime != jTimertime and mRacetime > jTimertime) {
         			fieldValue[i] = (uRacedistance - info.elapsedDistance) / (mRacetime - jTimertime);
         		} 
-	        } else if (metric[i] == 40) {
+	        } else if (metric[i] == 14) {
+    	        fieldValue[i] = Math.round(mETA).toNumber();
+        	    fieldLabel[i] = "ETA";
+            	fieldFormat[i] = "time";               	        	
+            } else if (metric[i] == 15) {
+        	    fieldLabel[i] = "Deviation";
+            	fieldFormat[i] = "time";
+	        	if ( mLaps == 1 ) {
+    	    		fieldValue[i] = 0;
+        		} else {
+        			fieldValue[i] = Math.round(mRacetime - mETA).toNumber() ;
+	        	}
+    	    	if (fieldValue[i] < 0) {
+        			fieldValue[i] = - fieldValue[i];
+        		}            	
+			} else if (metric[i] == 40) {
     	        fieldValue[i] = (info.currentSpeed != null) ? 3.6*info.currentSpeed*1000/unitP : 0;
         	    fieldLabel[i] = "Speed";
             	fieldFormat[i] = "2decimal";   

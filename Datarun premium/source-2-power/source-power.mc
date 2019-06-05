@@ -46,6 +46,7 @@ class PowerView extends CiqView {
 	function onUpdate(dc) {
 		//! call the parent function in order to execute the logic of the parent
 		CiqView.onUpdate(dc);
+		uMilClockAltern=0;
 
         //! Calculate power-lap time and convert timers from milliseconds to seconds
 		var info = Activity.getActivityInfo();
