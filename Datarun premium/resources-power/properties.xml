@@ -1,7 +1,7 @@
 <resources>
 
   <properties>
-    <property id="pAppversion" type="string">2.04</property>
+    <property id="pAppversion" type="string">2.05</property>
     <property id="pUpperLeftMetric" type="number">0</property>
     <property id="pUpperRightMetric" type="number">4</property>
     <property id="pMiddleLeftMetric" type="number">45</property>    
@@ -12,15 +12,11 @@
     <property id="pMilClockAltern" type="number">0</property>
     <property id="pRacedistance" type="number">42195</property>
     <property id="pRacetime" type="string">03:59:48</property>
- 
     <property id="pRoundedPace" type="boolean">true</property>
-
     <property id="pBacklight" type="boolean">false</property>
     <property id="myNumber" type="number">12345678</property>
-	
     <property id="pShowDemo" type="boolean">false</property>
     <property id="pDummysetting4version" type="boolean">true</property>
-
     <property id="pRequiredPower" type="string">000:999</property>
     <property id="pWarningFreq" type="number">5</property>
     <property id="pAlertbeep" type="boolean">false</property>
@@ -33,8 +29,8 @@
     <!-- Beta name:
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
     -->
-    <string id="AppVersion">2.04</string>
-    <string id="lDummysetting4version">Version 2.04 of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="AppVersion">2.05</string>
+    <string id="lDummysetting4version">Version 2.05 of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>

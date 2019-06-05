@@ -3,7 +3,7 @@
     	<font id="Garmin1" filename="fonts/Roadway53-alleencijfers.fnt" antialias="true"/>
 	</fonts>
   <properties>
-    <property id="pAppversion" type="string">2.04</property>
+    <property id="pAppversion" type="string">2.05</property>
     <property id="pUpperLeftMetric" type="number">0</property>
     <property id="pUpperRightMetric" type="number">4</property>
     <property id="pMiddleLeftMetric" type="number">45</property>    
@@ -34,7 +34,6 @@
     <property id="pClockFieldMetric" type="number">46</property>
     <property id="pFTP" type="number">250</property>
     <property id="pCP" type="number">250</property>
-    <property id="pspikeTreshold" type="number">2000</property>
   </properties>
 
 	
@@ -44,8 +43,8 @@
     <!-- Beta name:
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
     -->
-    <string id="AppVersion">2.04</string>
-    <string id="lDummysetting4version">Version 2.04 of Datarun premium with 7 metrics, copy 2 (dummy setting)</string>
+    <string id="AppVersion">2.05</string>
+    <string id="lDummysetting4version">Version 2.05 of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>
@@ -141,7 +140,6 @@
 	<string id="lLLEFactor">Last lap average efficiency factor </string>
 	<string id="lLLEIndex">Last lap efficiency Index</string>
     <string id="lSPower">Current running power</string>
-    <string id="lFilteredCurPower">Current running power, filtered for spikes above 2000 Watt</string>
     <string id="lAsecPower">Power averaged over the last 3 seconds</string>
     <string id="lPowper300km">Power averaged over the last .. seconds</string>
     <string id="lrolavPowmaxsecs">Power averaged over the last ... seconds (max is 300 seconds)</string>
@@ -168,7 +166,6 @@
     <string id="lLLP2HRratio">Last lap power to heartrate ratio</string>
     <string id="lAP2HRratio">Average power to heartrate ratio</string>
 	<string id="lSPowerzone">Current powerzone</string>
-	<string id="lspikeTreshold">Treshhold value for supressing power spikes</string>
  </strings>
 
   <settings>
@@ -207,10 +204,7 @@
     </setting>
     <setting propertyKey="@Properties.pCP" title="@Strings.lCP">
       <settingConfig type="numeric"  required="true"/>
-    </setting>    
-    <setting propertyKey="@Properties.pspikeTreshold" title="@Strings.lspikeTreshold">
-      <settingConfig type="numeric"  required="true"/>
-    </setting>    
+    </setting>      
     <setting propertyKey="@Properties.pRequiredPower" title="@Strings.lRequiredPower">
       <settingConfig type="alphaNumeric"  required="true"/>
     </setting>   
@@ -290,7 +284,7 @@
                 
         <listEntry value="996">@Strings.lSPowerMenu</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
-        <listEntry value="56">@Strings.lFilteredCurPower</listEntry>
+
         <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
@@ -374,7 +368,7 @@
                 
         <listEntry value="996">@Strings.lSPowerMenu</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
-        <listEntry value="56">@Strings.lFilteredCurPower</listEntry>
+
         <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
@@ -449,7 +443,7 @@
                 
         <listEntry value="996">@Strings.lSPowerMenu</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
-        <listEntry value="56">@Strings.lFilteredCurPower</listEntry>
+
         <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
@@ -525,7 +519,7 @@
                 
         <listEntry value="996">@Strings.lSPowerMenu</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
-        <listEntry value="56">@Strings.lFilteredCurPower</listEntry>
+
         <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
@@ -601,7 +595,7 @@
                 
         <listEntry value="996">@Strings.lSPowerMenu</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
-        <listEntry value="56">@Strings.lFilteredCurPower</listEntry>
+
         <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
@@ -686,7 +680,7 @@
                 
         <listEntry value="996">@Strings.lSPowerMenu</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
-        <listEntry value="56">@Strings.lFilteredCurPower</listEntry>
+
         <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
@@ -769,7 +763,7 @@
                 
         <listEntry value="996">@Strings.lSPowerMenu</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
-        <listEntry value="56">@Strings.lFilteredCurPower</listEntry>
+
         <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>

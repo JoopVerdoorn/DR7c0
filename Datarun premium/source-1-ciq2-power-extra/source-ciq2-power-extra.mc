@@ -17,7 +17,6 @@ class CiqView extends ExtramemView {
 	var mIntensityFactor					= 0;
 	var mTTS								= 0;
 	var i 									= 0;
-	var uspikeTreshold						= 2000;
 	var runPower							= 0;
 	var lastsrunPower						= 0;
 	var setPowerWarning 					= 0;
@@ -32,7 +31,6 @@ class CiqView extends ExtramemView {
 		uPower10Zones	 = mApp.getProperty("pPPPowerZones");
 		uFTP		 	 = mApp.getProperty("pFTP");
 		uCP		 	 	 = mApp.getProperty("pCP");
-		uspikeTreshold	 = mApp.getProperty("pspikeTreshold");
 		i = 0; 
 	    for (i = 1; i < 8; ++i) {		
 			if (metric[i] == 57 or metric[i] == 58 or metric[i] == 59) {
@@ -55,10 +53,8 @@ class CiqView extends ExtramemView {
             mHeartrateTime	 = (info.currentHeartRate != null) ? mHeartrateTime+1 : mHeartrateTime;				
            	mElapsedHeartrate= (info.currentHeartRate != null) ? mElapsedHeartrate + info.currentHeartRate : mElapsedHeartrate;
             //!Calculate lappower
-            mPowerTime		 = (info.currentPower != null) ? mPowerTime+1 : mPowerTime;
-//!temporary solution for power spikes > spikeTreshold Watt 		
+            mPowerTime		 = (info.currentPower != null) ? mPowerTime+1 : mPowerTime; 		
             runPower 		 = (info.currentPower != null) ? info.currentPower : 0;
-            runPower 		 = (runPower > uspikeTreshold) ? lastsrunPower : runPower;
 			mElapsedPower    = mElapsedPower + runPower;
 			lastsrunPower 	 = runPower;
 			RSS 			 = (info.currentPower != null) ? RSS + 0.03 * Math.pow(((runPower+0.001)/uCP),3.5) : RSS; 			             
@@ -113,8 +109,6 @@ class CiqView extends ExtramemView {
 		}
 		counterPower = counterPower + 1;
 		rollingPwrValue [rolavPowmaxsecs+1] = (info.currentPower != null) ? info.currentPower : 0;
-//!temporary solution for power spikes > spikeTreshold Wat 		
-		rollingPwrValue [rolavPowmaxsecs+1] = (rollingPwrValue [rolavPowmaxsecs+1] > uspikeTreshold) ? rollingPwrValue [rolavPowmaxsecs] : rollingPwrValue [rolavPowmaxsecs+1];
 		FilteredCurPower = rollingPwrValue [rolavPowmaxsecs+1]; 
 		for (var i = 1; i < rolavPowmaxsecs+1; ++i) {
 			rollingPwrValue[i] = rollingPwrValue[i+1];
@@ -167,11 +161,7 @@ class CiqView extends ExtramemView {
 	        if (metric[i] == 38) {
     	        fieldValue[i] =  (info.currentPower != null) ? info.currentPower : 0;     	        
         	    fieldLabel[i] = "P zone";
-            	fieldFormat[i] = "1decimal";
-			} else if (metric[i] == 56) {
-	            fieldValue[i] = FilteredCurPower;
-    	        fieldLabel[i] = "Filt Pwr";
-        	    fieldFormat[i] = "0decimal";            	
+            	fieldFormat[i] = "1decimal";          	
 			} else if (metric[i] == 17) {
 	            fieldValue[i] = Averagespeedinmpersec;
     	        fieldLabel[i] = "Pc ..sec";
