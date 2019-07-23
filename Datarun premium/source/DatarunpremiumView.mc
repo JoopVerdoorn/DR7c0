@@ -12,7 +12,6 @@ class DatarunpremiumApp extends Toybox.Application.AppBase {
 }
 
 class DatarunpremiumView extends Ui.DataField {
-	hidden var appversion = "1.00";
 
 	//!Get device info
 	var mySettings = System.getDeviceSettings();
@@ -125,7 +124,6 @@ class DatarunpremiumView extends Ui.DataField {
          uMilClockAltern	 = mApp.getProperty("pMilClockAltern");
          uRacedistance		 = mApp.getProperty("pRacedistance");
          uRacetime			 = mApp.getProperty("pRacetime");
-         appversion 		 = mApp.getProperty("pAppversion");
          uETAfromLap		 = mApp.getProperty("pETAfromLap");
          var uHrZones = UserProfile.getHeartRateZones(UserProfile.getCurrentSport());
           	 
