@@ -480,7 +480,7 @@ class ExtramemView extends DatarunpremiumView {
 			mZone[counter] = Math.round(10*(2+(testvalue-mZ2under+0.00001)/(mZ3under-mZ2under+0.00001)))/10;
 		} else if (testvalue >= mZ1under) {			
 			mfillColour = Graphics.COLOR_LT_GRAY;        
-			mZone[counter] = Math.round(10*(2+(testvalue-mZ1under+0.00001)/(mZ2under-mZ1under+0.00001)))/10;
+			mZone[counter] = Math.round(10*(1+(testvalue-mZ1under+0.00001)/(mZ2under-mZ1under+0.00001)))/10;
 		} else {
 			mfillColour = mColourBackGround;        
             mZone[counter] = 0;
@@ -545,7 +545,7 @@ class ExtramemView extends DatarunpremiumView {
                     mZone[counter] = Math.round(10*(2+(testvalue-mZ2under+0.00001)/(mZ3under-mZ2under+0.00001)))/10;
                 } else if (testvalue >= mZ1under) {
                     mfillColour = Graphics.COLOR_DK_GRAY;        //! (Z1)
-                    mZone[counter] = 1;
+                    mZone[counter] = Math.round(10*(1+(testvalue-mZ1under+0.00001)/(mZ2under-mZ1under+0.00001)))/10;
                 } else {
                     mfillColour = Graphics.COLOR_LT_GRAY;        //! (Z0)
                     mZone[counter] = 0;
