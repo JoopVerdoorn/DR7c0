@@ -72,7 +72,7 @@ class DeviceView extends PowerView {
 	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"150,163,161,112,167,140,191");
        		}       	
 		}
-
+ 
 		if (jTimertime == 0) {
 	    	if (ID0 != 3624 and ID0 != 3588 and ID0 != 3762 and ID0 != 3761 and ID0 != 3757 and ID0 != 3758 and ID0 != 3759) {
 		    	dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);

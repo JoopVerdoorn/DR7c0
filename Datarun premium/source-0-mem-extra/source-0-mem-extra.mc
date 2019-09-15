@@ -327,23 +327,61 @@ class ExtramemView extends DatarunpremiumView {
 	   //! Check whether demoscreen is showed or the metrics 
 	   if (uShowDemo == false ) {
 
-		//! Display colored labels on screen
-		for (var i = 1; i < 8; ++i) {
-		   	if ( i == 1 ) {			//!upper row, left    	
-	    		Coloring(dc,i,fieldValue[i],"018,029,100,019");	    		
-		   	} else if ( i == 2 ) {	//!upper row, right
-		   		Coloring(dc,i,fieldValue[i],"120,029,100,019");
-	       	} else if ( i == 3 ) {  //!middle row, left
-	    		Coloring(dc,i,fieldValue[i],"000,093,072,019");
-		   	} else if ( i == 4 ) {	//!middle row, middle
-		 		Coloring(dc,i,fieldValue[i],"074,093,089,019");
-	      	} else if ( i == 5 ) {  //!middle row, right
-	    		Coloring(dc,i,fieldValue[i],"165,093,077,019");
-		   	} else if ( i == 6 ) {	//!lower row, left
-		   		Coloring(dc,i,fieldValue[i],"018,199,100,019");
-	      	} else if ( i == 7 ) {	//!lower row, right
-	    		Coloring(dc,i,fieldValue[i],"120,199,100,019");
-	    	}       	
+		//! Display colored labels on screen	
+		if (ID0 == 3801 or ID0 == 4026 ) {  //! Fenix 6 pro labels
+			for (var i = 1; i < 8; ++i) {
+			   	if ( i == 1 ) {			//!upper row, left    	
+	    			Coloring(dc,i,fieldValue[i],"018,031,110,020");	    		
+		   		} else if ( i == 2 ) {	//!upper row, right
+		   			Coloring(dc,i,fieldValue[i],"130,031,108,020");
+		       	} else if ( i == 3 ) {  //!middle row, left
+		    		Coloring(dc,i,fieldValue[i],"000,101,078,019");
+			   	} else if ( i == 4 ) {	//!middle row, middle
+		 			Coloring(dc,i,fieldValue[i],"079,101,098,019");
+		      	} else if ( i == 5 ) {  //!middle row, right
+		    		Coloring(dc,i,fieldValue[i],"179,101,083,019");
+			   	} else if ( i == 6 ) {	//!lower row, left
+		   			Coloring(dc,i,fieldValue[i],"018,217,110,019");
+		      	} else if ( i == 7 ) {	//!lower row, right
+		    		Coloring(dc,i,fieldValue[i],"130,217,108,019");
+	    		}       	
+			}		
+		} else if (ID0 == 3802 or ID0 == 4027 ) {     //! Fenix 6x pro labels
+			for (var i = 1; i < 8; ++i) {
+			   	if ( i == 1 ) {			//!upper row, left    	
+					Coloring(dc,i,fieldValue[i],"021,034,117,020");	    
+			   	} else if ( i == 2 ) {	//!upper row, right
+					Coloring(dc,i,fieldValue[i],"140,034,117,020");
+				} else if ( i == 3 ) {  //!middle row, left		
+					Coloring(dc,i,fieldValue[i],"000,108,084,020");	
+		   		} else if ( i == 4 ) {	//!middle row, middle
+					Coloring(dc,i,fieldValue[i],"086,108,104,020");
+				} else if ( i == 5 ) {  //!middle row, right		
+					Coloring(dc,i,fieldValue[i],"192,108,090,020");	
+			   	} else if ( i == 6 ) {	//!lower row, left
+					Coloring(dc,i,fieldValue[i],"021,235,117,020");
+				} else if ( i == 7 ) {	//!lower row, right	
+					Coloring(dc,i,fieldValue[i],"140,235,117,020");	
+	    		}        	
+			}	
+		} else {
+			for (var i = 1; i < 8; ++i) {
+			   	if ( i == 1 ) {			//!upper row, left    	
+		    		Coloring(dc,i,fieldValue[i],"018,029,100,019");	    		
+			   	} else if ( i == 2 ) {	//!upper row, right
+		   			Coloring(dc,i,fieldValue[i],"120,029,100,019");
+		       	} else if ( i == 3 ) {  //!middle row, left
+		    		Coloring(dc,i,fieldValue[i],"000,093,072,019");
+			   	} else if ( i == 4 ) {	//!middle row, middle
+		 			Coloring(dc,i,fieldValue[i],"074,093,089,019");
+		      	} else if ( i == 5 ) {  //!middle row, right
+		    		Coloring(dc,i,fieldValue[i],"165,093,077,019");
+			   	} else if ( i == 6 ) {	//!lower row, left
+		   			Coloring(dc,i,fieldValue[i],"018,199,100,019");
+		      	} else if ( i == 7 ) {	//!lower row, right
+		    		Coloring(dc,i,fieldValue[i],"120,199,100,019");
+	    		}        	
+			}	
 		}
 
 		//! Show number of laps or clock with current time in top
