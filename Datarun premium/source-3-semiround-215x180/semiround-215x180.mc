@@ -88,9 +88,6 @@ class DeviceView extends PowerView {
 		dc.fillRectangle(125, 3, 15, 19);
 		dc.fillRectangle(128, 1, 9, 3);
 		
-		dc.setColor(mBattcolor, Graphics.COLOR_TRANSPARENT);
-		dc.fillRectangle(127, 5, 11, 15);
-		
 		dc.setColor(mColourBackGround, Graphics.COLOR_TRANSPARENT);
 		var Endstatuspwrbr = 0.15*(100-pwr)  ;
 		var Startstatuspwrbr = 5  ;
