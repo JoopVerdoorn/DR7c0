@@ -45,7 +45,7 @@ class ExtramemView extends DatarunpremiumView {
 			mColourBackGround = Graphics.COLOR_WHITE;
 		}
 		dc.setColor(mColourBackGround, Graphics.COLOR_TRANSPARENT);
-        dc.fillRectangle (0, 0, 240, 240);
+        dc.fillRectangle (0, 0, 280, 280);
        
 		//! Calculation of rolling average of pace
 		var info = Activity.getActivityInfo();

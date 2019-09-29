@@ -174,9 +174,13 @@ class CiqView extends ExtramemView {
     	        fieldLabel[i] = "Pc ..sec";
         	    fieldFormat[i] = "pace";            	
 			} else if (metric[i] == 55) {   
-            	fieldValue[i] = (info.currentSpeed != null or info.currentSpeed!=0) ? 100/info.currentSpeed : 0;
+            	if (info.currentSpeed == null or info.currentSpeed==0) {
+            		fieldValue[i] = 0;
+            	} else {
+            		fieldValue[i] = (info.currentSpeed > 0.001) ? 100/info.currentSpeed : 0;
+            	}
             	fieldLabel[i] = "s/100m";
-        	    fieldFormat[i] = "2decimal";
+        	    fieldFormat[i] = "1decimal";
         	} else if (metric[i] == 25) {
     	        fieldValue[i] = LapEfficiencyIndex;
         	    fieldLabel[i] = "Lap EI";

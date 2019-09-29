@@ -58,7 +58,11 @@ class PowerView extends CiqView {
         var i = 0; 
 	    for (i = 1; i < 8; ++i) {
 	        if (metric[i] == 55) {   
-            	fieldValue[i] = (info.currentSpeed != null or info.currentSpeed!=0) ? 100/info.currentSpeed : 0;
+            	if (info.currentSpeed == null or info.currentSpeed==0) {
+            		fieldValue[i] = 0;
+            	} else {
+            		fieldValue[i] = (info.currentSpeed > 0.001) ? 100/info.currentSpeed : 0;
+            	}
             	fieldLabel[i] = "s/100m";
         	    fieldFormat[i] = "2decimal";        	    
 	        } 
