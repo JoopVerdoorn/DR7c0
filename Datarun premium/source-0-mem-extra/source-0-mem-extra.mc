@@ -35,6 +35,13 @@ class ExtramemView extends DatarunpremiumView {
 		rolavPacmaxsecs  = mApp.getProperty("prolavPacmaxsecs");
 		uBlackBackground    = mApp.getProperty("pBlackBackground");
         uHrZones = UserProfile.getHeartRateZones(UserProfile.getCurrentSport());
+        disablelabel1 						= mApp.getProperty("pdisablelabel1");
+		disablelabel2 						= mApp.getProperty("pdisablelabel2");
+		disablelabel3 						= mApp.getProperty("pdisablelabel3");
+		disablelabel4 						= mApp.getProperty("pdisablelabel4");
+		disablelabel5 						= mApp.getProperty("pdisablelabel5");
+		disablelabel6 						= mApp.getProperty("pdisablelabel6");
+		disablelabel7 						= mApp.getProperty("pdisablelabel7");        
     }
 
 	function onUpdate(dc) {

@@ -148,10 +148,6 @@ class PowerView extends CiqView {
     	        fieldValue[i] = AveragePower;
         	    fieldLabel[i] = "A Power";
             	fieldFormat[i] = "power";   
-	        } else if (metric[i] == 80) {
-    	        fieldValue[i] = (info.maxPower != null) ? info.maxPower : 0;
-        	    fieldLabel[i] = "Max Pwr";
-            	fieldFormat[i] = "power";  
 			}
 		}
 	}

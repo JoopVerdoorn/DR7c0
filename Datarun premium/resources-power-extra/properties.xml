@@ -150,6 +150,8 @@
 	<string id="lLLEIndex">Last lap efficiency Index</string>
     <string id="lSPower">Current running power</string>
     <string id="lAsecPower">Power averaged over the last 3 seconds</string>
+    <string id="lPowper5sec">Power averaged over the last 5 seconds</string>
+    <string id="lPowper10sec">Power averaged over the last 10 seconds</string>
     <string id="lPowper300km">Power averaged over the last .. seconds</string>
     <string id="lrolavPowmaxsecs">Power averaged over the last ... seconds (max is 300 seconds)</string>
     <string id="lrolavPowmaxsecsError">This needs to be a number from 2 too 300</string>
@@ -324,6 +326,8 @@
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
         <listEntry value="37">@Strings.lPowper300km</listEntry>
+        <listEntry value="70">@Strings.lPowper5sec</listEntry>
+        <listEntry value="39">@Strings.lPowper10sec</listEntry>
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>
@@ -425,6 +429,8 @@
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
         <listEntry value="37">@Strings.lPowper300km</listEntry>
+        <listEntry value="70">@Strings.lPowper5sec</listEntry>
+        <listEntry value="39">@Strings.lPowper10sec</listEntry>
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>
@@ -517,6 +523,8 @@
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
         <listEntry value="37">@Strings.lPowper300km</listEntry>
+        <listEntry value="70">@Strings.lPowper5sec</listEntry>
+        <listEntry value="39">@Strings.lPowper10sec</listEntry>
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>
@@ -610,6 +618,8 @@
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
         <listEntry value="37">@Strings.lPowper300km</listEntry>
+        <listEntry value="70">@Strings.lPowper5sec</listEntry>
+        <listEntry value="39">@Strings.lPowper10sec</listEntry>
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>
@@ -703,6 +713,8 @@
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
         <listEntry value="37">@Strings.lPowper300km</listEntry>
+        <listEntry value="70">@Strings.lPowper5sec</listEntry>
+        <listEntry value="39">@Strings.lPowper10sec</listEntry>
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>
@@ -805,6 +817,8 @@
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
         <listEntry value="37">@Strings.lPowper300km</listEntry>
+        <listEntry value="70">@Strings.lPowper5sec</listEntry>
+        <listEntry value="39">@Strings.lPowper10sec</listEntry>
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>
@@ -905,6 +919,8 @@
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
         <listEntry value="21">@Strings.lAsecPower</listEntry>
         <listEntry value="37">@Strings.lPowper300km</listEntry>
+        <listEntry value="70">@Strings.lPowper5sec</listEntry>
+        <listEntry value="39">@Strings.lPowper10sec</listEntry>
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>

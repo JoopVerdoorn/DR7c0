@@ -21,6 +21,16 @@ class CiqView extends ExtramemView {
 	var lastsrunPower						= 0;
 	var setPowerWarning 					= 0;
 	var Garminfont = Ui.loadResource(Rez.Fonts.Garmin1);
+	var Power1 									= 0;
+    var Power2 									= 0;
+    var Power3 									= 0;	
+	var Power4 									= 0;
+    var Power5 									= 0;
+    var Power6 									= 0;
+	var Power7 									= 0;
+    var Power8 									= 0;
+    var Power9 									= 0;
+    var Power10									= 0;
 		
     function initialize() {
         ExtramemView.initialize();
@@ -107,6 +117,34 @@ class CiqView extends ExtramemView {
 			LastLapPower2HRRatio 		= (0.00001 + LastLapPower) / LastLapHeartrate;
 		}			
 
+		//!Calculate 10sec averaged power
+        var AveragePower5sec  	 			= 0;
+        var AveragePower10sec  	 			= 0;
+        var currentPowertest				= 0;
+		if (info.currentSpeed != null && info.currentPower != null) {
+        	currentPowertest = info.currentPower; 
+        }
+        if (currentPowertest > 0) {
+            if (currentPowertest > 0) {
+				if (info.currentPower != null) {
+        			Power1								= info.currentPower; 
+        		} else {
+        			Power1								= 0;
+				}
+        		Power10 							= Power9;
+        		Power9 								= Power8;
+        		Power8 								= Power7;
+        		Power7 								= Power6;
+        		Power6 								= Power5;
+        		Power5 								= Power4;
+        		Power4 								= Power3;
+        		Power3 								= Power2;
+        		Power2 								= Power1;
+				AveragePower10sec= (Power1+Power2+Power3+Power4+Power5+Power6+Power7+Power8+Power9+Power10)/10;
+				AveragePower5sec= (Power1+Power2+Power3+Power4+Power5)/5;
+			}
+ 		}
+
 		//! Calculation of rolling average of power 
 		var zeroValueSecs = 0;
 		if (counterPower < 1) {
@@ -162,6 +200,7 @@ class CiqView extends ExtramemView {
 
 		
 		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
+		var Actualpower = (info.currentPower != null) ? info.currentPower : 0;
 		
 		i = 0; 
 	    for (i = 1; i < 8; ++i) {
@@ -213,6 +252,14 @@ class CiqView extends ExtramemView {
 	            fieldValue[i] = CurrentPower2HRRatio;
     	        fieldLabel[i] = "C P2HR";
         	    fieldFormat[i] = "2decimal";
+        	} else if (metric[i] == 70) {
+    	        fieldValue[i] = AveragePower5sec;
+        	    fieldLabel[i] = "Pwr 5s";
+            	fieldFormat[i] = "power";
+			} else if (metric[i] == 39) {
+    	        fieldValue[i] = AveragePower10sec;
+        	    fieldLabel[i] = "Pwr 10s";
+            	fieldFormat[i] = "power";
 			} else if (metric[i] == 37) {
 	            fieldValue[i] = Averagepowerpersec;
     	        fieldLabel[i] = "Pw ..sec";
@@ -221,6 +268,10 @@ class CiqView extends ExtramemView {
 	            fieldValue[i] = mNormalizedPow;
     	        fieldLabel[i] = "N Power";
         	    fieldFormat[i] = "0decimal";
+	        } else if (metric[i] == 80) {
+    	        fieldValue[i] = (info.maxPower != null) ? info.maxPower : 0;
+        	    fieldLabel[i] = "Max Pwr";
+            	fieldFormat[i] = "power";  
 			} else if (metric[i] == 71) {
             	fieldValue[i] = (uFTP != 0) ? Actualpower*100/uFTP : 0;
             	fieldLabel[i] = "%FTP";
