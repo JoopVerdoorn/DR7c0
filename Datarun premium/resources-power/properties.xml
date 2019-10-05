@@ -20,6 +20,7 @@
     <property id="pWarningFreq" type="number">5</property>
     <property id="pAlertbeep" type="boolean">false</property>
     <property id="pETAfromLap" type="boolean">true</property>
+    <property id="pLapPwr4alerts" type="boolean">false</property>
   </properties>
 
 	
@@ -29,8 +30,8 @@
     <!-- Beta name:
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
     -->
-    <string id="AppVersion">2.09c</string>
-    <string id="lDummysetting4version">Version 2.09c of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="AppVersion">2.20</string>
+    <string id="lDummysetting4version">Version 2.20 of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>
@@ -57,7 +58,6 @@
     <string id="lMiddleRightMetric">Middle right field</string> 
     <string id="lBottomLeftMetric">Bottom left field</string>
     <string id="lBottomRightMetric">Bottom right field</string>
-
     <string id="lCurrentPace">Current pace</string>
     <string id="lAvgPace">Overall average pace</string>
     <string id="lLapPace">Current lap pace</string>
@@ -68,11 +68,8 @@
     <string id="lETA">Estimated time of arrival</string>
     <string id="lETAfrompace">Estimated finished time based on average or last lap pace</string>
 	<string id="lETAdeviation">Deviation from required finish in hours, minutes and seconds</string>
-	
     <string id="lRoundedPace">Show current pace as Rounded Pace</string>
-   
     <string id="lShowDemo">Show demo view for ID's and check license</string>
-    
     <string id="lBacklight">Force backlight on, regardless of device settings</string>
     <string id="MyNumberTitle">Enter license key</string>
     <string id="MyNumberError">Not valid, only numbers allowed!</string>
@@ -82,30 +79,28 @@
     <string id="lRacetimeTitle">Enter desired finish time(format like 03:59:00 required!)</string>
 	<string id="lHeartratefield">Heartrate field on middle row</string>
     <string id="lHeartrate">Heartrate</string>
-
     <string id="lAveraHeartrate">Average heartrate</string>
 	<string id="lLapHeartrate">Current lap heartrate</string>
 	<string id="lLLHeartrate">Last lap heartrate</string>   
-
 	<string id="lPacefield">Pace field on middle row</string>
 	<string id="lPaceper3km">Pace averaged over the last 3 seconds</string>
 	<string id="lPaceper5km">Pace averaged over the last 5 seconds</string>
-
 	<string id="lCurrentSpeed">Speed in km/mile per hour</string>
 	<string id="lAverage5secSpeed">Speed averaged over the last 5 seconds in km/mile per hour</string>	
 	<string id="lLapSpeed">Lap speed in km/mile per hour</string>
 	<string id="lLLSpeed">Last lap speed in km/mile per hour</string>
 	<string id="lAverageSpeed">Average speed in km/mile per hour</string>
 	<string id="lCadence">Cadence in steps per minute</string>
-
     <string id="lRequiredPower">Boundaries for warning signal, a format required like (227:284)</string> 
     <string id="lWarningFreq">Frequency for the warning signal for operating out of powerzone</string>
-    <string id="lAlertbeep">Play sound as warning signal for operating out of powerzone</string>   
+    <string id="lAlertbeep">Play sound as warning signal for operating out of powerzone</string>
+    <string id="lLapPwr4alerts">Use lap power for alerts instead of current power</string>   
     <string id="lSPower">Current running power</string>
     <string id="lAsecPower">Power averaged over the last 3 seconds</string>
     <string id="lAPower">Average running power</string>
 	<string id="lLPower">Current lap running power</string>
 	<string id="lLLPower">Last lap running power</string>
+	<string id="lMaxPwr">Maximum produced power during activity</string>
  </strings>
 
   <settings>
@@ -140,6 +135,9 @@
       <settingConfig type="numeric" />
     </setting>    
     <setting propertyKey="@Properties.pAlertbeep" title="@Strings.lAlertbeep">
+      <settingConfig type="boolean" required="true" />
+    </setting>
+    <setting propertyKey="@Properties.pLapPwr4alerts" title="@Strings.lLapPwr4alerts">
       <settingConfig type="boolean" required="true" />
     </setting>
     <setting propertyKey="@Properties.pUpperLeftMetric" title="@Strings.lUpperLeftMetric">
@@ -189,6 +187,7 @@
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>
+        <listEntry value="80">@Strings.lMaxPwr</listEntry>
         
         <listEntry value="998">@Strings.lAltitudeMenu</listEntry>
         <listEntry value="51">@Strings.lAltitude</listEntry>
@@ -241,6 +240,7 @@
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>
+        <listEntry value="80">@Strings.lMaxPwr</listEntry>
         
         <listEntry value="998">@Strings.lAltitudeMenu</listEntry>
         <listEntry value="51">@Strings.lAltitude</listEntry>
@@ -286,6 +286,7 @@
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>
+        <listEntry value="80">@Strings.lMaxPwr</listEntry>
         
         <listEntry value="998">@Strings.lAltitudeMenu</listEntry>
         <listEntry value="51">@Strings.lAltitude</listEntry>
@@ -330,6 +331,7 @@
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>
+        <listEntry value="80">@Strings.lMaxPwr</listEntry>
         
         <listEntry value="998">@Strings.lAltitudeMenu</listEntry>
         <listEntry value="51">@Strings.lAltitude</listEntry>
@@ -374,6 +376,7 @@
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>
+        <listEntry value="80">@Strings.lMaxPwr</listEntry>
         
         <listEntry value="998">@Strings.lAltitudeMenu</listEntry>
         <listEntry value="51">@Strings.lAltitude</listEntry>
@@ -427,6 +430,7 @@
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>
+        <listEntry value="80">@Strings.lMaxPwr</listEntry>
         
         <listEntry value="998">@Strings.lAltitudeMenu</listEntry>
         <listEntry value="51">@Strings.lAltitude</listEntry>
@@ -479,6 +483,7 @@
         <listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="24">@Strings.lAPower</listEntry>
+        <listEntry value="80">@Strings.lMaxPwr</listEntry>
         
         <listEntry value="998">@Strings.lAltitudeMenu</listEntry>
         <listEntry value="51">@Strings.lAltitude</listEntry>

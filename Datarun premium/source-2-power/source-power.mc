@@ -8,14 +8,15 @@ class PowerView extends CiqView {
 	hidden var mLastLapTimePwrMarker			= 0;
     hidden var mLapTimerTimePwr					= 0;	
     hidden var mLastLapTimerTimePwr				= 0;
-	hidden var AveragePower 							= 0; 
-	hidden var LapPower 								= 0; 
-	hidden var LastLapPower 							= 0; 
+	hidden var AveragePower 					= 0; 
+	hidden var LapPower 						= 0; 
+	hidden var LastLapPower 					= 0; 
     var AveragePower3sec  	 					= 0;
 	var Power1 									= 0;
     var Power2 									= 0;
     var Power3 									= 0;
-	var vibrateseconds = 0;  
+	var vibrateseconds 							= 0;  
+	hidden var uLapPwr4alerts 					= false;
 
     
     function initialize() {
@@ -23,7 +24,8 @@ class PowerView extends CiqView {
          var mApp = Application.getApp();
          uRequiredPower		 = mApp.getProperty("pRequiredPower");
          uWarningFreq		 = mApp.getProperty("pWarningFreq");
-         uAlertbeep			 = mApp.getProperty("pAlertbeep");       
+         uAlertbeep			 = mApp.getProperty("pAlertbeep");
+         uLapPwr4alerts    = mApp.getProperty("pLapPwr4alerts");       
     }
 	
     //! Current activity is ended
@@ -88,25 +90,29 @@ class PowerView extends CiqView {
 			new Attention.VibeProfile( 100, 100 )
 		];
 		
-
-		
-		//!var DisplayPower  = (info.currentPower != null) ? info.currentPower : 0;
+		var runalertPower = 0;
+		if ( uLapPwr4alerts == true ) {
+	    	runalertPower 	 = LapPower;
+	    } else {
+	    	runalertPower 	 = AveragePower3sec;
+		}
 		PowerWarning = 0;
 		if (jTimertime != 0) {
-		  if (AveragePower3sec>mPowerWarningupper or AveragePower3sec<mPowerWarningunder) {
+		  if (runalertPower>mPowerWarningupper or runalertPower<mPowerWarningunder) {
 			 //!Toybox.Attention.playTone(TONE_LOUD_BEEP);		 
 			 if (Toybox.Attention has :vibrate && uNoAlerts == false) {
 			 	vibrateseconds = vibrateseconds + 1;	 		  			
-    			if (AveragePower3sec>mPowerWarningupper) {
+    			if (runalertPower>mPowerWarningupper) {
     				PowerWarning = 1;
     				if (vibrateseconds == uWarningFreq) {
     					Toybox.Attention.vibrate(vibrateData);
     					if (uAlertbeep == true) {
     						Attention.playTone(Attention.TONE_LOW_BATTERY);
     					}
+    					Toybox.Attention.vibrate(vibrateData);
     					vibrateseconds = 0;
     				}
-    			} else if (AveragePower3sec<mPowerWarningunder){
+    			} else if (runalertPower<mPowerWarningunder){
     				PowerWarning = 2;
     				if (vibrateseconds == uWarningFreq) {
     					
@@ -142,10 +148,11 @@ class PowerView extends CiqView {
     	        fieldValue[i] = AveragePower;
         	    fieldLabel[i] = "A Power";
             	fieldFormat[i] = "power";   
+	        } else if (metric[i] == 80) {
+    	        fieldValue[i] = (info.maxPower != null) ? info.maxPower : 0;
+        	    fieldLabel[i] = "Max Pwr";
+            	fieldFormat[i] = "power";  
 			}
-		//!einde invullen field metrics
 		}
-
 	}
-
 }

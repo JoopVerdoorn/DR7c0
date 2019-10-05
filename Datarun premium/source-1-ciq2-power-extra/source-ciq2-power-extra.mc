@@ -221,6 +221,38 @@ class CiqView extends ExtramemView {
 	            fieldValue[i] = mNormalizedPow;
     	        fieldLabel[i] = "N Power";
         	    fieldFormat[i] = "0decimal";
+			} else if (metric[i] == 71) {
+            	fieldValue[i] = (uFTP != 0) ? Actualpower*100/uFTP : 0;
+            	fieldLabel[i] = "%FTP";
+            	fieldFormat[i] = "power";   
+	        } else if (metric[i] == 72) {
+    	        fieldValue[i] = (uFTP != 0) ? AveragePower3sec*100/uFTP : 0;
+        	    fieldLabel[i] = "%FTP 3s";
+            	fieldFormat[i] = "power";
+			} else if (metric[i] == 73) {
+    	        fieldValue[i] = (uFTP != 0) ? LapPower*100/uFTP : 0;
+        	    fieldLabel[i] = "L %FTP";
+            	fieldFormat[i] = "power";
+			} else if (metric[i] == 74) {
+        	    fieldValue[i] = (uFTP != 0) ? LastLapPower*100/uFTP : 0;
+            	fieldLabel[i] = "LL %FTP";
+            	fieldFormat[i] = "power";
+	        } else if (metric[i] == 75) {
+    	        fieldValue[i] = (uFTP != 0) ? AveragePower*100/uFTP : 0;
+        	    fieldLabel[i] = "A %FTP";
+            	fieldFormat[i] = "power";  
+	        } else if (metric[i] == 76) {
+    	        fieldValue[i] = (uFTP != 0) ? AveragePower5sec*100/uFTP : 0;
+        	    fieldLabel[i] = "%FTP 5s";
+            	fieldFormat[i] = "power";
+			} else if (metric[i] == 77) {
+    	        fieldValue[i] = (uFTP != 0) ? AveragePower10sec*100/uFTP : 0;
+        	    fieldLabel[i] = "%FTP 10s";
+            	fieldFormat[i] = "power";
+			} else if (metric[i] == 78) {
+	            fieldValue[i] = (uFTP != 0) ? Averagepowerpersec*100/uFTP : 0;
+    	        fieldLabel[i] = "%FTP ..sec";
+        	    fieldFormat[i] = "power";
 			} else if (metric[i] == 58) {
 	            fieldValue[i] = mIntensityFactor;
     	        fieldLabel[i] = "IF";

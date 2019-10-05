@@ -18,6 +18,15 @@ class ExtramemView extends DatarunpremiumView {
 	var VertPace3							= 0;
 	var VertPace4							= 0;
 	var VertPace5							= 0;
+	var disablelabel1 						= false;
+	var disablelabel2 						= false;
+	var disablelabel3 						= false;
+	var disablelabel4 						= false;
+	var disablelabel5 						= false;
+	var disablelabel6 						= false;
+	var disablelabel7 						= false;
+	var maxHR								= 999;
+	var kCalories							= 0;
 	
     function initialize() {
         DatarunpremiumView.initialize();
@@ -102,13 +111,25 @@ class ExtramemView extends DatarunpremiumView {
         VertPace1								= CurrentVertSpeedinmpersec; 
 		var AverageVertspeedinmper5sec= (VertPace1+VertPace2+VertPace3+VertPace4+VertPace5)/5;
 		
-
+		maxHR = uHrZones[5];
 		var i = 0; 
 	    for (i = 1; i < 8; ++i) {
 	        if (metric[i] == 17) {
 	            fieldValue[i] = Averagespeedinmpersec;
     	        fieldLabel[i] = "Pc ..sec";
         	    fieldFormat[i] = "pace";  
+        	} else if (metric[i] == 81) {
+	        	if (Toybox.Activity.Info has :distanceToNextPoint) {
+    	        	fieldValue[i] = (info.distanceToNextPoint != null) ? info.distanceToNextPoint / unitD : 0;
+    	        }
+        	    fieldLabel[i] = "DistNext";
+            	fieldFormat[i] = "2decimal";
+			} else if (metric[i] == 82) {
+    	        if (Toybox.Activity.Info has :distanceToDestination) {
+    	        	fieldValue[i] = (info.distanceToDestination != null) ? info.distanceToNextPoint / unitD : 0;
+    	        }
+        	    fieldLabel[i] = "DistDest";
+            	fieldFormat[i] = "2decimal";
 	        } else if (metric[i] == 28) {
     	        fieldValue[i] = LapEfficiencyFactor;
         	    fieldLabel[i] = "Lap EF";
@@ -157,6 +178,34 @@ class ExtramemView extends DatarunpremiumView {
            		fieldValue[i] = (unitD == 1609.344) ? AverageVertspeedinmper5sec*3.2808 : AverageVertspeedinmper5sec;
             	fieldLabel[i] = "V speed";
             	fieldFormat[i] = "1decimal";
+			} else if (metric[i] == 83) {
+            	fieldValue[i] = (maxHR != 0) ? currentHR*100/maxHR : 0;
+            	fieldLabel[i] = "%MaxHR";
+            	fieldFormat[i] = "0decimal";   
+			} else if (metric[i] == 84) {
+    	        fieldValue[i] = (maxHR != 0) ? LapHeartrate*100/maxHR : 0;
+        	    fieldLabel[i] = "L %MaxHR";
+            	fieldFormat[i] = "0decimal";
+			} else if (metric[i] == 85) {
+        	    fieldValue[i] = (maxHR != 0) ? LastLapHeartrate*100/maxHR : 0;
+            	fieldLabel[i] = "LL %MaxHR";
+            	fieldFormat[i] = "0decimal";
+	        } else if (metric[i] == 86) {
+    	        fieldValue[i] = (maxHR != 0) ? AverageHeartrate*100/maxHR : 0;
+        	    fieldLabel[i] = "A %MaxHR";
+            	fieldFormat[i] = "0decimal";  
+			} else if (metric[i] == 88) {   
+            	if (mLastLapSpeed == null or info.currentSpeed==0) {
+            		fieldValue[i] = 0;
+            	} else {
+            		fieldValue[i] = (mLastLapSpeed > 0.001) ? 100/mLastLapSpeed : 0;
+            	}
+            	fieldLabel[i] = "LL s/100m";
+        	    fieldFormat[i] = "1decimal";
+	        } else if (metric[i] == 87) {
+    	        fieldValue[i] = (info.calories != null) ? info.calories : 0;
+        	    fieldLabel[i] = "kCal";
+            	fieldFormat[i] = "0decimal";
 			} 
 		}
 
@@ -313,7 +362,11 @@ class ExtramemView extends DatarunpremiumView {
         	}  else if (uClockFieldMetric == 67) {
            		CFMValue = (unitD == 1609.344) ? AverageVertspeedinmper5sec*3.2808 : AverageVertspeedinmper5sec;
             	CFMLabel = "V speed";
-            	CFMFormat = "2decimal";  
+            	CFMFormat = "2decimal";
+            } else if (metric[i] == 87) {
+    	        fieldValue[i] = (info.calories != null) ? info.calories : 0;
+        	    fieldLabel[i] = "kCal";
+            	fieldFormat[i] = "0decimal";  
 			}
 			 
 
@@ -331,55 +384,97 @@ class ExtramemView extends DatarunpremiumView {
 		if (ID0 == 3801 or ID0 == 4026 ) {  //! Fenix 6 pro labels
 			for (var i = 1; i < 8; ++i) {
 			   	if ( i == 1 ) {			//!upper row, left    	
-	    			Coloring(dc,i,fieldValue[i],"018,031,110,020");	    		
+	    			if (disablelabel1 == false) {
+	    				Coloring(dc,i,fieldValue[i],"018,031,110,020");
+	    			}	    		
 		   		} else if ( i == 2 ) {	//!upper row, right
-		   			Coloring(dc,i,fieldValue[i],"130,031,108,020");
+		   			if (disablelabel2 == false) {
+		   				Coloring(dc,i,fieldValue[i],"130,031,108,020");
+		   			}
 		       	} else if ( i == 3 ) {  //!middle row, left
-		    		Coloring(dc,i,fieldValue[i],"000,101,078,019");
+		    		if (disablelabel3 == false) {
+		    			Coloring(dc,i,fieldValue[i],"000,101,078,019");
+		    		}
 			   	} else if ( i == 4 ) {	//!middle row, middle
-		 			Coloring(dc,i,fieldValue[i],"079,101,098,019");
+		 			if (disablelabel4 == false) {
+		 				Coloring(dc,i,fieldValue[i],"079,101,098,019");
+		 			}
 		      	} else if ( i == 5 ) {  //!middle row, right
-		    		Coloring(dc,i,fieldValue[i],"179,101,083,019");
+		    		if (disablelabel5 == false) {
+		    			Coloring(dc,i,fieldValue[i],"179,101,083,019");
+		    		}
 			   	} else if ( i == 6 ) {	//!lower row, left
-		   			Coloring(dc,i,fieldValue[i],"018,217,110,019");
+		   			if (disablelabel6 == false) {
+		   				Coloring(dc,i,fieldValue[i],"018,217,110,019");
+		   			}
 		      	} else if ( i == 7 ) {	//!lower row, right
-		    		Coloring(dc,i,fieldValue[i],"130,217,108,019");
+		    		if (disablelabel7 == false) {
+		    			Coloring(dc,i,fieldValue[i],"130,217,108,019");
+		    		}
 	    		}       	
 			}		
 		} else if (ID0 == 3802 or ID0 == 4027 ) {     //! Fenix 6x pro labels
 			for (var i = 1; i < 8; ++i) {
 			   	if ( i == 1 ) {			//!upper row, left    	
-					Coloring(dc,i,fieldValue[i],"021,034,117,020");	    
+					if (disablelabel1 == false) {
+						Coloring(dc,i,fieldValue[i],"021,034,117,020");
+					}	    
 			   	} else if ( i == 2 ) {	//!upper row, right
-					Coloring(dc,i,fieldValue[i],"140,034,117,020");
+					if (disablelabel2 == false) {
+						Coloring(dc,i,fieldValue[i],"140,034,117,020");
+					}
 				} else if ( i == 3 ) {  //!middle row, left		
-					Coloring(dc,i,fieldValue[i],"000,108,084,020");	
+					if (disablelabel3 == false) {
+						Coloring(dc,i,fieldValue[i],"000,108,084,020");
+					}	
 		   		} else if ( i == 4 ) {	//!middle row, middle
-					Coloring(dc,i,fieldValue[i],"086,108,104,020");
+					if (disablelabel4 == false) {
+						Coloring(dc,i,fieldValue[i],"086,108,104,020");
+					}
 				} else if ( i == 5 ) {  //!middle row, right		
-					Coloring(dc,i,fieldValue[i],"192,108,090,020");	
+					if (disablelabel5 == false) {
+						Coloring(dc,i,fieldValue[i],"192,108,090,020");
+					}	
 			   	} else if ( i == 6 ) {	//!lower row, left
-					Coloring(dc,i,fieldValue[i],"021,235,117,020");
+					if (disablelabel6 == false) {
+						Coloring(dc,i,fieldValue[i],"021,235,117,020");
+					}
 				} else if ( i == 7 ) {	//!lower row, right	
-					Coloring(dc,i,fieldValue[i],"140,235,117,020");	
+					if (disablelabel7 == false) {
+						Coloring(dc,i,fieldValue[i],"140,235,117,020");
+					}	
 	    		}        	
 			}	
 		} else {
 			for (var i = 1; i < 8; ++i) {
 			   	if ( i == 1 ) {			//!upper row, left    	
-		    		Coloring(dc,i,fieldValue[i],"018,029,100,019");	    		
+		    		if (disablelabel1 == false) {
+		    			Coloring(dc,i,fieldValue[i],"018,029,100,019");	
+		    		}    		
 			   	} else if ( i == 2 ) {	//!upper row, right
-		   			Coloring(dc,i,fieldValue[i],"120,029,100,019");
+		   			if (disablelabel2 == false) {
+		   				Coloring(dc,i,fieldValue[i],"120,029,100,019");
+		   			}
 		       	} else if ( i == 3 ) {  //!middle row, left
-		    		Coloring(dc,i,fieldValue[i],"000,093,072,019");
+		    		if (disablelabel3 == false) {
+		    			Coloring(dc,i,fieldValue[i],"000,093,072,019");
+		    		}
 			   	} else if ( i == 4 ) {	//!middle row, middle
-		 			Coloring(dc,i,fieldValue[i],"074,093,089,019");
+		 			if (disablelabel4 == false) {
+		 				Coloring(dc,i,fieldValue[i],"074,093,089,019");
+		 			}
 		      	} else if ( i == 5 ) {  //!middle row, right
-		    		Coloring(dc,i,fieldValue[i],"165,093,077,019");
+		    		if (disablelabel5 == false) {
+		    			Coloring(dc,i,fieldValue[i],"165,093,077,019");
+		    		}
 			   	} else if ( i == 6 ) {	//!lower row, left
-		   			Coloring(dc,i,fieldValue[i],"018,199,100,019");
+		   			if (disablelabel6 == false) {
+		   				Coloring(dc,i,fieldValue[i],"018,199,100,019");
+		   			}
 		      	} else if ( i == 7 ) {	//!lower row, right
-		    		Coloring(dc,i,fieldValue[i],"120,199,100,019");
+		    		if (disablelabel7 == false) {
+		    			Coloring(dc,i,fieldValue[i],"120,199,100,019");
+		    		}
 	    		}        	
 			}	
 		}
