@@ -595,7 +595,7 @@ class ExtramemView extends DatarunpremiumView {
             mZ4under = 174;
             mZ5under = 183;
             mZ5upper = 300; 
-        } else if (metric[counter] == 20 or metric[counter] == 21 or metric[counter] == 22 or metric[counter] == 23 or metric[counter] == 24 or metric[counter] == 37 or metric[counter] == 38) {  //! Power=20, Powerzone=38, Pwr 5s=21, L Power=22, L-1 Pwr=23, A Power=24
+        } else if (metric[counter] == 20 or metric[counter] == 21 or metric[counter] == 22 or metric[counter] == 23 or metric[counter] == 24 or metric[counter] == 37 or metric[counter] == 38 or metric[counter] == 70 or metric[counter] == 39 or metric[counter] == 80) {  //! Power=20, Powerzone=38, Pwr 5s=21, L Power=22, L-1 Pwr=23, A Power=24
         	mZ1under = uPowerZones.substring(0, 3);
         	mZ2under = uPowerZones.substring(7, 10);
         	mZ3under = uPowerZones.substring(14, 17);
