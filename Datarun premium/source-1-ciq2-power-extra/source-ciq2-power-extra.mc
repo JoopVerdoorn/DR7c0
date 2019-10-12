@@ -140,8 +140,9 @@ class CiqView extends ExtramemView {
         		Power4 								= Power3;
         		Power3 								= Power2;
         		Power2 								= Power1;
-				AveragePower10sec= (Power1+Power2+Power3+Power4+Power5+Power6+Power7+Power8+Power9+Power10)/10;
-				AveragePower5sec= (Power1+Power2+Power3+Power4+Power5)/5;
+				AveragePower10sec	= (Power1+Power2+Power3+Power4+Power5+Power6+Power7+Power8+Power9+Power10)/10;
+				AveragePower5sec	= (Power1+Power2+Power3+Power4+Power5)/5;
+				AveragePower3sec	= (Power1+Power2+Power3)/5;
 			}
  		}
 
@@ -279,7 +280,7 @@ class CiqView extends ExtramemView {
 	        } else if (metric[i] == 72) {
     	        fieldValue[i] = (uFTP != 0) ? AveragePower3sec*100/uFTP : 0;
         	    fieldLabel[i] = "%FTP 3s";
-            	fieldFormat[i] = "power";
+            	fieldFormat[i] = "power";     	
 			} else if (metric[i] == 73) {
     	        fieldValue[i] = (uFTP != 0) ? LapPower*100/uFTP : 0;
         	    fieldLabel[i] = "L %FTP";
