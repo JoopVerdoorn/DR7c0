@@ -142,7 +142,7 @@ class CiqView extends ExtramemView {
         		Power2 								= Power1;
 				AveragePower10sec	= (Power1+Power2+Power3+Power4+Power5+Power6+Power7+Power8+Power9+Power10)/10;
 				AveragePower5sec	= (Power1+Power2+Power3+Power4+Power5)/5;
-				AveragePower3sec	= (Power1+Power2+Power3)/5;
+				AveragePower3sec	= (Power1+Power2+Power3)/3;
 			}
  		}
 

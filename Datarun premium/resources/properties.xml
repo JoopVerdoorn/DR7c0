@@ -26,8 +26,8 @@
     <!-- Beta name:
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
     -->
-    <string id="AppVersion">2.20c</string>
-    <string id="lDummysetting4version">Version 2.20c of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="AppVersion">2.20d</string>
+    <string id="lDummysetting4version">Version 2.20d of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>
@@ -74,7 +74,7 @@
     <string id="MyNumberTitle">Enter license key</string>
     <string id="MyNumberError">Not valid, only numbers allowed!</string>
     <string id="lCCnumber">C-Code generated on the watch by the corresponding main Datarun premium datafield</string> 
-    <string id="lRacedistanceTitle">Enter race distance in meters for estimated finish time</string>
+    <string id="lRacedistanceTitle">Enter race distance in meters or thousands of a mile (imperial/statute watch settings) for estimated finish time</string>
     <string id="lRacedistanceError">Not valid, only numbers allowed!</string>
     <string id="lRacetimeTitle">Enter desired finish time(format like 03:59:00 required!)</string>
 	<string id="lHeartratefield">Heartrate field on middle row</string>

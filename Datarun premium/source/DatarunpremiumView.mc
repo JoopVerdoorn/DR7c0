@@ -120,7 +120,6 @@ class DatarunpremiumView extends Ui.DataField {
          uRoundedPace        = mApp.getProperty("pRoundedPace");
          uBacklight          = mApp.getProperty("pBacklight");
          umyNumber			 = mApp.getProperty("myNumber");
-         var uCCnumber	     = mApp.getProperty("pCCnumber");
          uShowDemo			 = mApp.getProperty("pShowDemo");
          uMilClockAltern	 = mApp.getProperty("pMilClockAltern");
          uRacedistance		 = mApp.getProperty("pRacedistance");

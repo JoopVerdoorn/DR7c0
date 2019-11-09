@@ -51,8 +51,8 @@
     <!-- Beta name:
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
     -->
-    <string id="AppVersion">2.20c</string>
-    <string id="lDummysetting4version">Version 2.20c of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="AppVersion">2.20d</string>
+    <string id="lDummysetting4version">Version 2.20d of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>
@@ -107,7 +107,7 @@
     <string id="MyNumberTitle">Enter license key</string>
     <string id="MyNumberError">Not valid, only numbers allowed!</string>
     <string id="l">C-Code generated on the watch by the corresponding main Datarun premium datafield</string> 
-    <string id="lRacedistanceTitle">Enter race distance in meters for estimated finish time</string>
+    <string id="lRacedistanceTitle">Enter race distance in meters or thousands of a mile (imperial/statute watch settings) for estimated finish time</string>
     <string id="lRacedistanceError">Not valid, only numbers allowed!</string>
     <string id="lRacetimeTitle">Enter desired finish time for estimated deviation of finish time (format like 03:59:00 required!)</string>
 	<string id="lHeartratefield">Heartrate field on middle row</string>
@@ -965,13 +965,11 @@
         <listEntry value="5">@Strings.lDistLap</listEntry>
         <listEntry value="6">@Strings.lDistLastLap</listEntry>
         <listEntry value="7">@Strings.lAvgLapD</listEntry>
-        <listEntry value="81">@Strings.ldistanceToNextPoint</listEntry>
-        <listEntry value="82">@Strings.ldistanceToDestination</listEntry>
         
         <listEntry value="992">@Strings.lPaceMenu</listEntry>
         <listEntry value="8">@Strings.lCurrentPace</listEntry>
-        <listEntry value="55">@Strings.lPaceper100m</listEntry>  
-        <listEntry value="88">@Strings.lLLPaceper100m</listEntry>      
+        <listEntry value="55">@Strings.lPaceper100m</listEntry>   
+        <listEntry value="88">@Strings.lLLPaceper100m</listEntry>     
         <listEntry value="16">@Strings.lPaceper3km</listEntry>
         <listEntry value="9">@Strings.lPaceper5km</listEntry>
         <listEntry value="17">@Strings.lPaceper300km</listEntry>
@@ -979,6 +977,8 @@
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
         <listEntry value="12">@Strings.lAvgPace</listEntry>
+        <listEntry value="81">@Strings.ldistanceToNextPoint</listEntry>
+        <listEntry value="82">@Strings.ldistanceToDestination</listEntry>
         <listEntry value="50">@Strings.lCadence</listEntry>
         <listEntry value="13">@Strings.lETArequiredpace</listEntry>
 
@@ -1009,12 +1009,12 @@
         <listEntry value="53">@Strings.lElevationLoss</listEntry>
         
         <listEntry value="997">@Strings.lPIMenu</listEntry>
-        <listEntry value="32">@Strings.lCEFactor</listEntry>
-        
+        <listEntry value="31">@Strings.lCEFactor</listEntry>
+        <listEntry value="32">@Strings.lAEFactor</listEntry>
         <listEntry value="28">@Strings.lLEFactor</listEntry>
         <listEntry value="29">@Strings.lLLEFactor</listEntry>
         <listEntry value="30">@Strings.lAEFactor</listEntry>
-        <listEntry value="54">@Strings.lTEffect</listEntry>
+        <listEntry value="54">@Strings.lTEffect</listEntry>  
         <listEntry value="87">@Strings.lkCalories</listEntry>
       </settingConfig>
     </setting>
