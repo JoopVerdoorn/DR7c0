@@ -586,7 +586,6 @@ class ExtramemView extends DatarunpremiumView {
         		Temp = (CFMValue != 0 ) ? (CFMValue).toLong() : 0;
         		CFMValue = (Temp /60000 % 60).format("%02d") + ":" + (Temp /1000 % 60).format("%02d");
 	        }
-	    	dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
 	    	if (ID0 == 3801 or ID0 == 4026 ) {
 	    	   	dc.drawText(130, 14, Graphics.FONT_MEDIUM, CFMValue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 	    	} else if (ID0 == 3802 or ID0 == 4027 ) {
@@ -595,7 +594,7 @@ class ExtramemView extends DatarunpremiumView {
 		       	dc.drawText(120, 13, Graphics.FONT_MEDIUM, CFMValue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
     	    }
     	    mColourFont = originalFontcolor;
-			dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
+	    	dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
 		}
 	   }		
 	}
