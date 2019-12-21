@@ -59,13 +59,6 @@ class DatarunpremiumView extends Ui.DataField {
 
     hidden var uBacklight                   = false;
 
-    hidden var uUpperLeftMetric            = 0;    //! Timer is default
-    hidden var uUpperRightMetric           = 4;    //! Distance is default
-    hidden var uMiddleLeftMetric           = 45;    //! HR is default
-    hidden var uMiddleMiddleMetric           = 8;    //! Pace is default    
-    hidden var uMiddleRightMetric           = 50;    //! Cadence is default
-    hidden var uBottomLeftMetric            = 10;    //! Power is default
-    hidden var uBottomRightMetric           = 20;    //! Lap power is default
     hidden var uRequiredPower		 		= "000:999";
     hidden var uWarningFreq		 			= 5;
     hidden var uAlertbeep			 		= false;
