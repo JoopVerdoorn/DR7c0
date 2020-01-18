@@ -43,6 +43,7 @@
     <property id="pdisablelabel6" type="boolean">false</property>
     <property id="pdisablelabel7" type="boolean">false</property>
     <property id="pGarminColors" type="boolean">false</property>
+    <property id="pWeight" type="number">70</property>
   </properties>
 
 	
@@ -52,8 +53,8 @@
     <!-- Beta name:
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
     -->
-    <string id="AppVersion">2.21</string>
-    <string id="lDummysetting4version">Version 2.21 of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="AppVersion">2.22</string>
+    <string id="lDummysetting4version">Version 2.22 of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>
@@ -196,6 +197,12 @@
     <string id="lLLPaceper100m">Pace of last lap in seconds per 100 meter (for track running)</string>
     <string id="lTemp">Current temperature</string>
 	<string id="lGarminColors">Use Garmin color scheme for label colors (not applicable for Palladino 10 powerzones)</string>
+	<string id="lWeight">Weight in kilo's (needed for running efficiency as used by Steve Palladino)</string>
+    <string id="lCurRE">Current running efficiency (as used by Steve Palladino)</string>
+    <string id="l3secRE">Rolling average over the last 3 seconds of running efficiency (as used by Steve Palladino)</string>
+    <string id="l5secRE">Rolling average over the last 5 seconds of running efficiency (as used by Steve Palladino)</string>
+    <string id="lLapE">Lap running efficiency (as used by Steve Palladino)</string>
+    <string id="lAverRE">Average running efficiency (as used by Steve Palladino)</string>
  </strings>
 
   <settings>
@@ -234,7 +241,10 @@
     </setting>
     <setting propertyKey="@Properties.pCP" title="@Strings.lCP">
       <settingConfig type="numeric"  required="true"/>
-    </setting>      
+    </setting>  
+    <setting propertyKey="@Properties.pWeight" title="@Strings.lWeight">
+      <settingConfig type="numeric"  required="true"/>
+    </setting>    
     <setting propertyKey="@Properties.pRequiredPower" title="@Strings.lRequiredPower">
       <settingConfig type="alphaNumeric"  required="true"/>
     </setting>   
@@ -353,6 +363,11 @@
         <listEntry value="28">@Strings.lLEFactor</listEntry>
         <listEntry value="29">@Strings.lLLEFactor</listEntry>
         <listEntry value="30">@Strings.lAEFactor</listEntry>
+        <listEntry value="93">@Strings.lCurRE</listEntry>
+        <listEntry value="94">@Strings.l3secRE</listEntry>
+        <listEntry value="95">@Strings.l5secRE</listEntry>
+        <listEntry value="96">@Strings.lLapE</listEntry>
+        <listEntry value="98">@Strings.lAverRE</listEntry>
         <listEntry value="36">@Strings.lCP2HRratio</listEntry>
         <listEntry value="33">@Strings.lLP2HRratio</listEntry>
         <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
@@ -457,6 +472,11 @@
         <listEntry value="28">@Strings.lLEFactor</listEntry>
         <listEntry value="29">@Strings.lLLEFactor</listEntry>
         <listEntry value="30">@Strings.lAEFactor</listEntry>
+        <listEntry value="93">@Strings.lCurRE</listEntry>
+        <listEntry value="94">@Strings.l3secRE</listEntry>
+        <listEntry value="95">@Strings.l5secRE</listEntry>
+        <listEntry value="96">@Strings.lLapE</listEntry>
+        <listEntry value="98">@Strings.lAverRE</listEntry>
         <listEntry value="36">@Strings.lCP2HRratio</listEntry>
         <listEntry value="33">@Strings.lLP2HRratio</listEntry>
         <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
@@ -553,6 +573,11 @@
         <listEntry value="28">@Strings.lLEFactor</listEntry>
         <listEntry value="29">@Strings.lLLEFactor</listEntry>
         <listEntry value="30">@Strings.lAEFactor</listEntry>
+        <listEntry value="93">@Strings.lCurRE</listEntry>
+        <listEntry value="94">@Strings.l3secRE</listEntry>
+        <listEntry value="95">@Strings.l5secRE</listEntry>
+        <listEntry value="96">@Strings.lLapE</listEntry>
+        <listEntry value="98">@Strings.lAverRE</listEntry>
         <listEntry value="36">@Strings.lCP2HRratio</listEntry>
         <listEntry value="33">@Strings.lLP2HRratio</listEntry>
         <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
@@ -649,6 +674,11 @@
         <listEntry value="28">@Strings.lLEFactor</listEntry>
         <listEntry value="29">@Strings.lLLEFactor</listEntry>
         <listEntry value="30">@Strings.lAEFactor</listEntry>
+        <listEntry value="93">@Strings.lCurRE</listEntry>
+        <listEntry value="94">@Strings.l3secRE</listEntry>
+        <listEntry value="95">@Strings.l5secRE</listEntry>
+        <listEntry value="96">@Strings.lLapE</listEntry>
+        <listEntry value="98">@Strings.lAverRE</listEntry>
         <listEntry value="36">@Strings.lCP2HRratio</listEntry>
         <listEntry value="33">@Strings.lLP2HRratio</listEntry>
         <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
@@ -745,6 +775,11 @@
         <listEntry value="28">@Strings.lLEFactor</listEntry>
         <listEntry value="29">@Strings.lLLEFactor</listEntry>
         <listEntry value="30">@Strings.lAEFactor</listEntry>
+        <listEntry value="93">@Strings.lCurRE</listEntry>
+        <listEntry value="94">@Strings.l3secRE</listEntry>
+        <listEntry value="95">@Strings.l5secRE</listEntry>
+        <listEntry value="96">@Strings.lLapE</listEntry>
+        <listEntry value="98">@Strings.lAverRE</listEntry>
         <listEntry value="36">@Strings.lCP2HRratio</listEntry>
         <listEntry value="33">@Strings.lLP2HRratio</listEntry>
         <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
@@ -850,6 +885,11 @@
         <listEntry value="28">@Strings.lLEFactor</listEntry>
         <listEntry value="29">@Strings.lLLEFactor</listEntry>
         <listEntry value="30">@Strings.lAEFactor</listEntry>
+        <listEntry value="93">@Strings.lCurRE</listEntry>
+        <listEntry value="94">@Strings.l3secRE</listEntry>
+        <listEntry value="95">@Strings.l5secRE</listEntry>
+        <listEntry value="96">@Strings.lLapE</listEntry>
+        <listEntry value="98">@Strings.lAverRE</listEntry>
         <listEntry value="36">@Strings.lCP2HRratio</listEntry>
         <listEntry value="33">@Strings.lLP2HRratio</listEntry>
         <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
@@ -954,6 +994,11 @@
         <listEntry value="28">@Strings.lLEFactor</listEntry>
         <listEntry value="29">@Strings.lLLEFactor</listEntry>
         <listEntry value="30">@Strings.lAEFactor</listEntry>
+        <listEntry value="93">@Strings.lCurRE</listEntry>
+        <listEntry value="94">@Strings.l3secRE</listEntry>
+        <listEntry value="95">@Strings.l5secRE</listEntry>
+        <listEntry value="96">@Strings.lLapE</listEntry>
+        <listEntry value="98">@Strings.lAverRE</listEntry>
         <listEntry value="36">@Strings.lCP2HRratio</listEntry>
         <listEntry value="33">@Strings.lLP2HRratio</listEntry>
         <listEntry value="34">@Strings.lLLP2HRratio</listEntry>

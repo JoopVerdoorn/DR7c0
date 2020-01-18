@@ -31,6 +31,7 @@ class CiqView extends ExtramemView {
     var Power8 									= 0;
     var Power9 									= 0;
     var Power10									= 0;
+    var uWeight								= 70;
 		
     function initialize() {
         ExtramemView.initialize();
@@ -41,6 +42,7 @@ class CiqView extends ExtramemView {
 		uPower10Zones	 = mApp.getProperty("pPPPowerZones");
 		uFTP		 	 = mApp.getProperty("pFTP");
 		uCP		 	 	 = mApp.getProperty("pCP");
+		uWeight			 = mApp.getProperty("pWeight");
 		i = 0; 
 	    for (i = 1; i < 8; ++i) {		
 			if (metric[i] == 57 or metric[i] == 58 or metric[i] == 59) {
@@ -317,6 +319,46 @@ class CiqView extends ExtramemView {
 	            fieldValue[i] = RSS;
     	        fieldLabel[i] = "RSS";
         	    fieldFormat[i] = "0decimal";
+        	} else if (metric[i] == 93) {
+				if (info.currentPower != null and info.currentPower != 0 and uWeight != 0) {
+            		fieldValue[i] = CurrentSpeedinmpersec/(info.currentPower/uWeight);
+            	} else {
+            		fieldValue[i] = 0;
+            	}
+            	fieldLabel[i] = "RE cur";
+            	fieldFormat[i] = "2decimal";   
+			} else if (metric[i] == 94) {
+				if (AveragePower3sec != 0 and uWeight != 0) {
+            		fieldValue[i] = Averagespeedinmper3sec/(AveragePower3sec/uWeight);
+            	} else {
+            		fieldValue[i] = 0;
+            	}
+            	fieldLabel[i] = "RE 3sec";
+            	fieldFormat[i] = "2decimal";
+			} else if (metric[i] == 95) {
+				if (LapPower != 0 and uWeight != 0) {
+            		fieldValue[i] = Averagespeedinmper5sec/(LapPower/uWeight);
+            	} else {
+            		fieldValue[i] = 0;
+            	}
+            	fieldLabel[i] = "RE 5sec";
+            	fieldFormat[i] = "2decimal";
+			} else if (metric[i] == 96) {
+				if (LapPower != 0 and uWeight != 0) {
+            		fieldValue[i] = mLapSpeed/(LapPower/uWeight);
+            	} else {
+            		fieldValue[i] = 0;
+            	}
+            	fieldLabel[i] = "RE lap";
+            	fieldFormat[i] = "2decimal";
+			} else if (metric[i] == 98) {
+				if (info.averageSpeed != null and AveragePower != 0 and uWeight != 0) {
+            		fieldValue[i] = info.averageSpeed/(AveragePower/uWeight);
+            	} else {
+            		fieldValue[i] = 0;
+            	}
+            	fieldLabel[i] = "RE Aver";
+            	fieldFormat[i] = "2decimal";
         	} 
         	//!einde invullen field metrics
 		}
