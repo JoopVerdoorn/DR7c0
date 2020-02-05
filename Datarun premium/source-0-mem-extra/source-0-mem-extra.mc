@@ -816,15 +816,7 @@ class ExtramemView extends DatarunpremiumView {
 		   }
 		}
 
-		if (metric[counter] == 20 or metric[counter] == 21 or metric[counter] == 22 or metric[counter] == 23 or metric[counter] == 24 or metric[counter] == 37 or metric[counter] == 38 or metric[counter] == 99 or metric[counter] == 100 or metric[counter] == 101 or metric[counter] == 102 or metric[counter] == 103 or metric[counter] == 104) {
-			Powerzone = mZone[counter];
-System.println("counter = " + counter);
-System.println("mZone[counter] = " + mZone[counter]);
-System.println("______" );			
-		}
-		if (metric[counter] == 45 or metric[counter] == 46 or metric[counter] == 47 or metric[counter] == 48 or metric[counter] == 49) {		
-			HRzone = mZone[counter];
-		}
+
 		if (metric[counter] == 13 or metric[counter] == 14 or metric[counter] == 15) {
 			if (mETA < mRacetime) {
     	    	mfillColour = Graphics.COLOR_GREEN;
