@@ -7,7 +7,7 @@ class ExtramemView extends DatarunpremiumView {
 	hidden var uPowerZones                  = "184:Z1:227:Z2:255:Z3:284:Z4:326:Z5:369";
 	hidden var uPower10Zones				= "180:Z1:210:Z2:240:Z3:270:Z4:300:Z5:330:Z6:360:Z7:390:Z8:420:Z9:450:Z10:480";
 	hidden var PalPowerzones 				= false;
-	var mZone 								= [1, 2, 3, 4, 5, 6, 7, 8];
+	hidden var mZone 								= [1, 2, 3, 4, 5, 6, 7, 8];
 	var uBlackBackground 					= false;    	
 	var counterPace 						= 0;
 	var rollingPaceValue 					= new [303];
@@ -681,7 +681,7 @@ class ExtramemView extends DatarunpremiumView {
         		Z5color = Graphics.COLOR_RED;
         		Z6color = Graphics.COLOR_PURPLE;
     		}
-        } else if (metric[counter] == 20 or metric[counter] == 21 or metric[counter] == 22 or metric[counter] == 23 or metric[counter] == 24 or metric[counter] == 37 or metric[counter] == 38 or metric[counter] == 70 or metric[counter] == 39 or metric[counter] == 80) {  //! Power=20, Powerzone=38, Pwr 5s=21, L Power=22, L-1 Pwr=23, A Power=24
+        } else if (metric[counter] == 20 or metric[counter] == 21 or metric[counter] == 22 or metric[counter] == 23 or metric[counter] == 24 or metric[counter] == 37 or metric[counter] == 38 or metric[counter] == 70 or metric[counter] == 39 or metric[counter] == 80  or metric[counter] == 99 or metric[counter] == 100 or metric[counter] == 101 or metric[counter] == 102 or metric[counter] == 103 or metric[counter] == 104) {  //! Power=20, Powerzone=38, Pwr 5s=21, L Power=22, L-1 Pwr=23, A Power=24
         	mZ1under = uPowerZones.substring(0, 3);
         	mZ2under = uPowerZones.substring(7, 10);
         	mZ3under = uPowerZones.substring(14, 17);
@@ -749,7 +749,7 @@ class ExtramemView extends DatarunpremiumView {
 		}		
 
 		if ( PalPowerzones == true) {
-		  if (metric[counter] == 20 or metric[counter] == 21 or metric[counter] == 22 or metric[counter] == 23 or metric[counter] == 24 or metric[counter] == 37 or metric[counter] == 38) {  //! Power=20, Powerzone=38, Pwr 5s=21, L Power=22, L-1 Pwr=23, A Power=24		
+		  if (metric[counter] == 20 or metric[counter] == 21 or metric[counter] == 22 or metric[counter] == 23 or metric[counter] == 24 or metric[counter] == 37 or metric[counter] == 38  or metric[counter] == 99 or metric[counter] == 100 or metric[counter] == 101 or metric[counter] == 102 or metric[counter] == 103 or metric[counter] == 104) {  //! Power=20, Powerzone=38, Pwr 5s=21, L Power=22, L-1 Pwr=23, A Power=24		
         	mZ1under = uPower10Zones.substring(0, 3);
         	mZ2under = uPower10Zones.substring(7, 10);
         	mZ3under = uPower10Zones.substring(14, 17);
@@ -816,8 +816,11 @@ class ExtramemView extends DatarunpremiumView {
 		   }
 		}
 
-		if (metric[counter] == 20 or metric[counter] == 21 or metric[counter] == 22 or metric[counter] == 23 or metric[counter] == 24 or metric[counter] == 37 or metric[counter] == 38) {
+		if (metric[counter] == 20 or metric[counter] == 21 or metric[counter] == 22 or metric[counter] == 23 or metric[counter] == 24 or metric[counter] == 37 or metric[counter] == 38 or metric[counter] == 99 or metric[counter] == 100 or metric[counter] == 101 or metric[counter] == 102 or metric[counter] == 103 or metric[counter] == 104) {
 			Powerzone = mZone[counter];
+System.println("counter = " + counter);
+System.println("mZone[counter] = " + mZone[counter]);
+System.println("______" );			
 		}
 		if (metric[counter] == 45 or metric[counter] == 46 or metric[counter] == 47 or metric[counter] == 48 or metric[counter] == 49) {		
 			HRzone = mZone[counter];

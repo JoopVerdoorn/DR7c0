@@ -209,8 +209,32 @@ class CiqView extends ExtramemView {
 	    for (i = 1; i < 8; ++i) {
 	        if (metric[i] == 38) {
     	        fieldValue[i] =  (info.currentPower != null) ? info.currentPower : 0;     	        
-        	    fieldLabel[i] = "P zone";
-            	fieldFormat[i] = "1decimal";          	
+        	    fieldLabel[i] = "Cur Pzone";
+            	fieldFormat[i] = "1decimal";
+            } else if (metric[i] == 99) {
+    	        fieldValue[i] =  AveragePower3sec;     	        
+        	    fieldLabel[i] = "3s P zone";
+            	fieldFormat[i] = "1decimal";
+            } else if (metric[i] == 100) {
+    	        fieldValue[i] =  AveragePower5sec;     	        
+        	    fieldLabel[i] = "5s P zone";
+            	fieldFormat[i] = "1decimal"; 
+            } else if (metric[i] == 101) {
+    	        fieldValue[i] =  AveragePower10sec;     	        
+        	    fieldLabel[i] = "10s P zone";
+            	fieldFormat[i] = "1decimal";  
+            } else if (metric[i] == 102) {
+    	        fieldValue[i] =  LapPower;     	        
+        	    fieldLabel[i] = "Lap Pzone";
+            	fieldFormat[i] = "1decimal";  
+            } else if (metric[i] == 103) {
+    	        fieldValue[i] =  LastLapPower;     	        
+        	    fieldLabel[i] = "LL Pzone";
+            	fieldFormat[i] = "1decimal";
+            } else if (metric[i] == 104) {
+    	        fieldValue[i] =  AveragePower;     	        
+        	    fieldLabel[i] = "Av Pzone";
+            	fieldFormat[i] = "1decimal";           	
 			} else if (metric[i] == 17) {
 	            fieldValue[i] = Averagespeedinmpersec;
     	        fieldLabel[i] = "Pc ..sec";
@@ -320,40 +344,40 @@ class CiqView extends ExtramemView {
     	        fieldLabel[i] = "RSS";
         	    fieldFormat[i] = "0decimal";
         	} else if (metric[i] == 93) {
-				if (info.currentPower != null and info.currentPower != 0 and uWeight != 0) {
-            		fieldValue[i] = CurrentSpeedinmpersec/(info.currentPower/uWeight);
+				if (info.currentPower != null and info.currentPower != 0) {
+            		fieldValue[i] = CurrentSpeedinmpersec*uWeight/info.currentPower;
             	} else {
             		fieldValue[i] = 0;
             	}
             	fieldLabel[i] = "RE cur";
             	fieldFormat[i] = "2decimal";   
 			} else if (metric[i] == 94) {
-				if (AveragePower3sec != 0 and uWeight != 0) {
-            		fieldValue[i] = Averagespeedinmper3sec/(AveragePower3sec/uWeight);
+				if (AveragePower3sec) {
+            		fieldValue[i] = Averagespeedinmper3sec*uWeight/AveragePower3sec;
             	} else {
             		fieldValue[i] = 0;
             	}
             	fieldLabel[i] = "RE 3sec";
             	fieldFormat[i] = "2decimal";
 			} else if (metric[i] == 95) {
-				if (LapPower != 0 and uWeight != 0) {
-            		fieldValue[i] = Averagespeedinmper5sec/(LapPower/uWeight);
+				if (AveragePower5sec != 0) {
+            		fieldValue[i] = Averagespeedinmper5sec*uWeight/AveragePower5sec;
             	} else {
             		fieldValue[i] = 0;
             	}
             	fieldLabel[i] = "RE 5sec";
             	fieldFormat[i] = "2decimal";
 			} else if (metric[i] == 96) {
-				if (LapPower != 0 and uWeight != 0) {
-            		fieldValue[i] = mLapSpeed/(LapPower/uWeight);
+				if (LapPower != 0) {
+            		fieldValue[i] = mLapSpeed*uWeight/LapPower;
             	} else {
             		fieldValue[i] = 0;
             	}
             	fieldLabel[i] = "RE lap";
             	fieldFormat[i] = "2decimal";
 			} else if (metric[i] == 98) {
-				if (info.averageSpeed != null and AveragePower != 0 and uWeight != 0) {
-            		fieldValue[i] = info.averageSpeed/(AveragePower/uWeight);
+				if (AveragePower != 0) {
+            		fieldValue[i] = info.averageSpeed*uWeight/AveragePower;
             	} else {
             		fieldValue[i] = 0;
             	}
@@ -394,8 +418,14 @@ class CiqView extends ExtramemView {
         xl = xl.toNumber();
         yl = yl.toNumber();
 
-		fieldvalue = (metric[counter]==38) ? Powerzone : fieldvalue; 
-		fieldvalue = (metric[counter]==46) ? HRzone : fieldvalue;
+		fieldvalue = (metric[counter]==38) ? mZone[counter] : fieldvalue;
+		fieldvalue = (metric[counter]==99) ? mZone[counter] : fieldvalue;
+		fieldvalue = (metric[counter]==100) ? mZone[counter] : fieldvalue;
+		fieldvalue = (metric[counter]==101) ? mZone[counter] : fieldvalue;
+		fieldvalue = (metric[counter]==102) ? mZone[counter] : fieldvalue;
+		fieldvalue = (metric[counter]==103) ? mZone[counter] : fieldvalue;
+		fieldvalue = (metric[counter]==104) ? mZone[counter] : fieldvalue;  
+		fieldvalue = (metric[counter]==46) ? mZone[counter] : fieldvalue;
 		
         if ( fieldformat.equals("0decimal" ) == true ) {
         	fieldvalue = fieldvalue.format("%.0f");  
