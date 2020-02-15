@@ -352,7 +352,7 @@ class CiqView extends ExtramemView {
             	fieldLabel[i] = "RE cur";
             	fieldFormat[i] = "2decimal";   
 			} else if (metric[i] == 94) {
-				if (AveragePower3sec) {
+				if (AveragePower3sec != 0) {
             		fieldValue[i] = Averagespeedinmper3sec*uWeight/AveragePower3sec;
             	} else {
             		fieldValue[i] = 0;
