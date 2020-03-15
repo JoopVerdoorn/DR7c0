@@ -1,6 +1,7 @@
 using Toybox.SensorHistory;
 using Toybox.Lang;
 using Toybox.System;
+using Toybox.Application.Storage;
 
 class ExtramemView extends DatarunpremiumView {   
 	hidden var uHrZones   			        = [ 93, 111, 130, 148, 167, 185 ];	
@@ -38,6 +39,8 @@ class ExtramemView extends DatarunpremiumView {
 	var disablelabel7 						= false;
 	var maxHR								= 999;
 	var kCalories							= 0;
+	var tempeTemp 							= 0;
+	var utempunits							= false;
 	
     function initialize() {
         DatarunpremiumView.initialize();
@@ -47,6 +50,7 @@ class ExtramemView extends DatarunpremiumView {
 		uBlackBackground    	= mApp.getProperty("pBlackBackground");
 		uGarminColors			= mApp.getProperty("pGarminColors");
         uHrZones 				= UserProfile.getHeartRateZones(UserProfile.getCurrentSport());
+        utempunits	 						= mApp.getProperty("ptempunits");
         disablelabel1 			= mApp.getProperty("pdisablelabel1");
 		disablelabel2 			= mApp.getProperty("pdisablelabel2");
 		disablelabel3 			= mApp.getProperty("pdisablelabel3");
@@ -59,6 +63,8 @@ class ExtramemView extends DatarunpremiumView {
 	function onUpdate(dc) {
 		//! call the parent onUpdate to do the base logic
 		DatarunpremiumView.onUpdate(dc);
+		
+		tempeTemp = (Storage.getValue("mytemp") != null) ? Storage.getValue("mytemp") : 0;
 
     	//! Setup back- and foregroundcolours
 		if (uBlackBackground == true ){
@@ -228,8 +234,14 @@ class ExtramemView extends DatarunpremiumView {
             	fieldFormat[i] = "0decimal";
             } else if (metric[i] == 89) {
     	        fieldValue[i] = (sensorIter != null) ? sensorIter.next().data : 0;
+    	        fieldValue[i] = (utempunits == false) ? fieldValue[i] : fieldValue[i]*1.8+32;
         	    fieldLabel[i] = "Temp";
             	fieldFormat[i] = "1decimal";
+            } else if (metric[i] == 105) {
+	            fieldValue[i] = tempeTemp;
+	            fieldValue[i] = (utempunits == false) ? fieldValue[i] : fieldValue[i]*1.8+32;
+    	        fieldLabel[i] = "Tempe T";
+    	        fieldFormat[i] = "0decimal";
 			} 
 		}
 
@@ -429,8 +441,14 @@ class ExtramemView extends DatarunpremiumView {
         	    CFMFormat = "1decimal";
         	} else if (uClockFieldMetric == 89) {
     	        CFMValue = (sensorIter != null) ? sensorIter.next().data : 0;
+    	        CFMValue = (utempunits == false) ? CFMValue : CFMValue*1.8+32;
         	    CFMLabel = "Temp";
             	CFMFormat = "1decimal";
+            } else if (uClockFieldMetric == 105) {
+	            CFMValue = tempeTemp;
+	            CFMValue = (utempunits == false) ? CFMValue : CFMValue*1.8+32;
+    	        CFMLabel = "Tempe T";
+        	    CFMFormat = "0decimal";
 			}
 			 
 
@@ -836,4 +854,17 @@ function getIterator() {
         return Toybox.SensorHistory.getTemperatureHistory({});
     }
     return null;
+}
+
+(:background)
+class TempBgServiceDelegate extends Toybox.System.ServiceDelegate {
+
+	function initialize() {
+		System.ServiceDelegate.initialize();
+	}
+
+	function onTemporalEvent() {
+		var si=Sensor.getInfo();
+		Background.exit(si.temperature);
+	}
 }

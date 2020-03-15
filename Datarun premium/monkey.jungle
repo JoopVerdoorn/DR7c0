@@ -5,19 +5,19 @@ base.sourcePath=$(fr935.sourcePath)
 base.resourcePath=$(fr935.sourcePath)
  
 # define the actual sourcePaths
-fr245.sourcePath		=source;					source-1-ciq2-nopower;			source-2-nopower-nofont;	source-3-round-240x240
-fr645.sourcePath		=source;					source-1-ciq2-nopower;			source-2-nopower-nofont;	source-3-round-240x240
+fr245.sourcePath		=source-32kB;					source-1-ciq2-nopower;			source-2-nopower-nofont;	source-3-round-240x240
+fr645.sourcePath		=source-32kB;					source-1-ciq2-nopower;			source-2-nopower-nofont;	source-3-round-240x240
 
 fr245m.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-nopower-extra;	source-2-nopower-nofont;	source-3-round-240x240
 fr645m.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-nopower-extra;	source-2-nopower-nofont;	source-3-round-240x240
 
-fr935.sourcePath		=source;					source-1-ciq2-power;			source-2-power;				source-3-round-240x240
-fr735xt.sourcePath		=source;					source-1-ciq2-power;			source-2-power;				source-3-semiround-215x180
-fenix5.sourcePath		=source;					source-1-ciq2-power;			source-2-power;				source-3-round-240x240
-fenix5s.sourcePath		=source;					source-1-ciq2-power;			source-2-power;				source-3-round-218x218
-fenixchronos.sourcePath	=source;					source-1-ciq2-power;			source-2-power;				source-3-round-218x218
-fenix6s.sourcePath		=source;					source-1-ciq2-power;			source-2-power;				source-3-round-240x240
-fenix6.sourcePath		=source;					source-1-ciq2-power;			source-2-power;				source-3-round-260x260
+fr935.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power;				source-3-round-240x240
+fr735xt.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power;				source-3-semiround-215x180
+fenix5.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power;				source-3-round-240x240
+fenix5s.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power;				source-3-round-218x218
+fenixchronos.sourcePath	=source-32kB;					source-1-ciq2-power;			source-2-power;				source-3-round-218x218
+fenix6s.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power;				source-3-round-240x240
+fenix6.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power;				source-3-round-260x260
 
 
 fenix5x.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240

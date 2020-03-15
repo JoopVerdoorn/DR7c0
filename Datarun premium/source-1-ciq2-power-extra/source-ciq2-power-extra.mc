@@ -76,7 +76,15 @@ class CiqView extends ExtramemView {
             runPower 		 = (info.currentPower != null) ? info.currentPower : 0;
 			mElapsedPower    = mElapsedPower + runPower;
 			lastsrunPower 	 = runPower;
-			RSS 			 = (info.currentPower != null) ? RSS + 0.03 * Math.pow(((runPower+0.001)/uCP),3.5) : RSS; 			             
+			if (uCP != 0) {
+				if ((runPower+0.001)/uCP < 0.5 ) {
+					RSS = RSS + 0.0026516504294491;
+				} else if ((runPower+0.001)/uCP > 1.5 ) {
+					RSS = RSS + 0.1240054182283927;
+				} else {
+					RSS = RSS + + 0.03 * Math.pow(((runPower+0.001)/uCP),3.5);
+				}
+			}	 			             
         }
 	}
 

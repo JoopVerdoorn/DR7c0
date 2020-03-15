@@ -1,31 +1,14 @@
 using Toybox.WatchUi as Ui;
-using Toybox.Application.Storage;
-using Toybox.Background;
-using Toybox.Communications;
-using Toybox.System;
 
 class DatarunpremiumApp extends Toybox.Application.AppBase {
-    hidden var temp;
     function initialize() {
         AppBase.initialize();
     }
 
     //! Return the initial view of your application here
     function getInitialView() {
-        if(Toybox.System has :ServiceDelegate) {
-			Background.registerForTemporalEvent(new Time.Duration(5 * 60));
-		}
-   		return [ new DeviceView() ];
-	}
-
-	function onBackgroundData(data) {
-		temp=data;
-		Storage.setValue("mytemp", temp);	
-	}
-
-	function getServiceDelegate(){
-		return [new TempBgServiceDelegate()];
-	}
+        return [ new DeviceView() ];  
+    }
 }
 
 class DatarunpremiumView extends Ui.DataField {
