@@ -17,15 +17,15 @@ class PowerView extends CiqView {
     var Power3 									= 0;
 	var vibrateseconds 							= 0;  
 	hidden var uLapPwr4alerts 					= false;
-
-    
+    hidden var runPower							= 0;
+        
     function initialize() {
         CiqView.initialize();
          var mApp = Application.getApp();
          uRequiredPower		 = mApp.getProperty("pRequiredPower");
          uWarningFreq		 = mApp.getProperty("pWarningFreq");
          uAlertbeep			 = mApp.getProperty("pAlertbeep");
-         uLapPwr4alerts    = mApp.getProperty("pLapPwr4alerts");       
+         uLapPwr4alerts      = mApp.getProperty("pLapPwr4alerts");       
     }
 	
     //! Current activity is ended
@@ -64,13 +64,13 @@ class PowerView extends CiqView {
         var AveragePower3sec  	 			= 0;
         var currentPowertest				= 0;
 		if (info.currentSpeed != null && info.currentPower != null) {
-        	currentPowertest = info.currentPower; 
+        	currentPowertest = runPower; 
         }
         if (currentPowertest > 0) {
             if (currentPowertest > 0) {
             	//! Calculate average power
 				if (info.currentPower != null) {
-        			Power1								= info.currentPower; 
+        			Power1								= runPower; 
         		} else {
         			Power1								= 0;
 				}
@@ -128,25 +128,25 @@ class PowerView extends CiqView {
 		var i = 0; 
 	    for (i = 1; i < 8; ++i) {	    
         	if (metric[i] == 20) {
-            	fieldValue[i] = (info.currentPower != null) ? info.currentPower : 0;
+            	fieldValue[i] = (info.currentPower != null) ? runPower : 0;
             	fieldLabel[i] = "Power";
-            	fieldFormat[i] = "power";   
+            	fieldFormat[i] = "0decimal";   
 	        } else if (metric[i] == 21) {
     	        fieldValue[i] = AveragePower3sec;
         	    fieldLabel[i] = "Pwr 3s";
-            	fieldFormat[i] = "power";
+            	fieldFormat[i] = "0decimal";
 			} else if (metric[i] == 22) {
     	        fieldValue[i] = LapPower;
         	    fieldLabel[i] = "L Power";
-            	fieldFormat[i] = "power";
+            	fieldFormat[i] = "0decimal";
 			} else if (metric[i] == 23) {
         	    fieldValue[i] = LastLapPower;
             	fieldLabel[i] = "LL Pwr";
-            	fieldFormat[i] = "power";
+            	fieldFormat[i] = "0decimal";
 	        } else if (metric[i] == 24) {
     	        fieldValue[i] = AveragePower;
         	    fieldLabel[i] = "A Power";
-            	fieldFormat[i] = "power";   
+            	fieldFormat[i] = "0decimal";   
 			}
 		}
 	}

@@ -45,6 +45,9 @@
     <property id="pGarminColors" type="boolean">false</property>
     <property id="pWeight" type="number">70</property>
     <property id="ptempunits" type="boolean">false</property>
+    <property id="pPwrTempcorrect" type="number">0</property>
+    <property id="pFTPTemp" type="number">20</property>
+    <property id="pManTemp" type="number">20</property>
   </properties>
 
 	
@@ -54,8 +57,8 @@
     <!-- Beta name:
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
     -->
-    <string id="AppVersion">2.24</string>
-    <string id="lDummysetting4version">Version 2.24 of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="AppVersion">2.25</string>
+    <string id="lDummysetting4version">Version 2.25 of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>
@@ -212,6 +215,13 @@
     <string id="l5secRE">Rolling average over the last 5 seconds of Running Effectiveness (as used by Steve Palladino)</string>
     <string id="lLapE">Lap Running Effectiveness (as used by Steve Palladino)</string>
     <string id="lAverRE">Average Running Effectiveness (as used by Steve Palladino)</string>
+    <string id="lPwrTempcorrect">Power correction based on temperature</string>
+    <string id="lNoPwrTempcorrect">No power correction based on temperature</string>
+    <string id="lTempePwrTempcorrect">Correction based on temperature delivered by the Tempe (no correction during first 5 minutes!)</string>
+    <string id="lManPwrTempcorrect">Correction based on temperature as manually set in settings</string>
+    <string id="lFTPTemp">Temperature by which Critical power or FTP is determined (used for power correction based on temperature)</string>
+    <string id="lManTemp">Temperature for power correction based on temperature (manual setting instead of being delivered by Tempe))</string>
+    <string id="lCalcPwrTempcorrect">Calculated power correction percentage based on temperature</string>
  </strings>
 
   <settings>
@@ -251,6 +261,19 @@
     <setting propertyKey="@Properties.pCP" title="@Strings.lCP">
       <settingConfig type="numeric"  required="true"/>
     </setting>  
+    <setting propertyKey="@Properties.pFTPTemp" title="@Strings.lFTPTemp">
+      <settingConfig type="numeric"  required="true"/>
+    </setting>      
+    <setting propertyKey="@Properties.pPwrTempcorrect" title="@Strings.lPwrTempcorrect">
+      <settingConfig type="list" required="true">
+        <listEntry value="0">@Strings.lNoPwrTempcorrect</listEntry>
+        <listEntry value="1">@Strings.lTempePwrTempcorrect</listEntry>
+        <listEntry value="2">@Strings.lManPwrTempcorrect</listEntry>
+      </settingConfig>
+    </setting>    
+    <setting propertyKey="@Properties.pManTemp" title="@Strings.lManTemp">
+      <settingConfig type="numeric"  required="true"/>
+    </setting>      
     <setting propertyKey="@Properties.pWeight" title="@Strings.lWeight">
       <settingConfig type="numeric"  required="true"/>
     </setting>    
@@ -345,6 +368,7 @@
         <listEntry value="86">@Strings.lApercMaxHR</listEntry>
                 
         <listEntry value="996">@Strings.lSPowerMenu</listEntry>
+        <listEntry value="106">@Strings.lCalcPwrTempcorrect</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
         <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
@@ -460,6 +484,7 @@
         <listEntry value="86">@Strings.lApercMaxHR</listEntry>
                 
         <listEntry value="996">@Strings.lSPowerMenu</listEntry>
+        <listEntry value="106">@Strings.lCalcPwrTempcorrect</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
         <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
@@ -567,6 +592,7 @@
         <listEntry value="86">@Strings.lApercMaxHR</listEntry>
                 
         <listEntry value="996">@Strings.lSPowerMenu</listEntry>
+        <listEntry value="106">@Strings.lCalcPwrTempcorrect</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
         <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
@@ -674,6 +700,7 @@
         <listEntry value="86">@Strings.lApercMaxHR</listEntry>
                 
         <listEntry value="996">@Strings.lSPowerMenu</listEntry>
+        <listEntry value="106">@Strings.lCalcPwrTempcorrect</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
         <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
@@ -781,6 +808,7 @@
         <listEntry value="86">@Strings.lApercMaxHR</listEntry>
                 
         <listEntry value="996">@Strings.lSPowerMenu</listEntry>
+        <listEntry value="106">@Strings.lCalcPwrTempcorrect</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
         <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
@@ -897,6 +925,7 @@
         <listEntry value="86">@Strings.lApercMaxHR</listEntry>
                 
         <listEntry value="996">@Strings.lSPowerMenu</listEntry>
+        <listEntry value="106">@Strings.lCalcPwrTempcorrect</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
         <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
@@ -1012,6 +1041,7 @@
         <listEntry value="86">@Strings.lApercMaxHR</listEntry>
                 
         <listEntry value="996">@Strings.lSPowerMenu</listEntry>
+        <listEntry value="106">@Strings.lCalcPwrTempcorrect</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
         <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>

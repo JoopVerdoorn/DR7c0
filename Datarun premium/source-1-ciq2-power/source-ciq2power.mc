@@ -20,7 +20,8 @@ class CiqView extends DatarunpremiumView {
            	mElapsedHeartrate    = (info.currentHeartRate != null) ? mElapsedHeartrate + info.currentHeartRate : mElapsedHeartrate;
             //!Calculate lappower
             mPowerTime		 = (info.currentPower != null) ? mPowerTime+1 : mPowerTime;
-			mElapsedPower    = (info.currentPower != null) ? mElapsedPower + info.currentPower : mElapsedPower;              
+			runPower 		 = (info.currentPower != null) ? info.currentPower : 0;
+			mElapsedPower    = mElapsedPower + runPower;              
         }
 	}
 
