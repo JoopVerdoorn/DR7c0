@@ -40,6 +40,11 @@ class CiqView extends ExtramemView {
 		uFTPTemp	 	 = mApp.getProperty("pFTPTemp");
 		uManTemp	 	 = mApp.getProperty("pManTemp");
 		
+		if (utempunits == false ) {
+			uFTPTemp = (uFTPTemp-32)/1.8;
+			uManTemp = (uManTemp-32)/1.8;
+		}
+		
 		i = 0; 
 	    for (i = 1; i < 8; ++i) {		
 			if (metric[i] == 57 or metric[i] == 58 or metric[i] == 59) {
