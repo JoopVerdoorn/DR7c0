@@ -25,7 +25,11 @@ class CiqView extends ExtramemView {
     var uFTPTemp							= 20;
     var uManTemp							= 20;
 	var TempfactorP							= 1;
-		
+    var uRealHumid 							= 40;
+    var uFTPHumid 							= 70;
+    var uRealAltitude 						= 2;
+    var uFTPAltitude 						= 200;
+            		            				
     function initialize() {
         ExtramemView.initialize();
 		var mApp 		 = Application.getApp();
@@ -39,8 +43,12 @@ class CiqView extends ExtramemView {
 		uPwrTempcorrect	 = mApp.getProperty("pPwrTempcorrect");
 		uFTPTemp	 	 = mApp.getProperty("pFTPTemp");
 		uManTemp	 	 = mApp.getProperty("pManTemp");
+		uRealHumid 		 = mApp.getProperty("pRealHumid");
+    	uFTPHumid 		 = mApp.getProperty("pFTPHumid");
+    	uRealAltitude 	 = mApp.getProperty("pRealAltitude");
+    	uFTPAltitude	 = mApp.getProperty("pFTPAltitude");
 		
-		if (utempunits == false ) {
+		if (utempunits == true ) {
 			uFTPTemp = (uFTPTemp-32)/1.8;
 			uManTemp = (uManTemp-32)/1.8;
 		}
@@ -77,7 +85,7 @@ class CiqView extends ExtramemView {
 			//!Calculate lapheartrate
             mHeartrateTime	 = (info.currentHeartRate != null) ? mHeartrateTime+1 : mHeartrateTime;				
            	mElapsedHeartrate= (info.currentHeartRate != null) ? mElapsedHeartrate + info.currentHeartRate : mElapsedHeartrate;
-            
+         
             //! Calculate temperature compensation, B-variables reference cell number from cells of conversion excelsheet  		
             var B6 = 22; 			//! is cell B6
             if (uPwrTempcorrect == 0) {
@@ -85,14 +93,14 @@ class CiqView extends ExtramemView {
             } else {
             	if (jTimertime < 300 and uPwrTempcorrect == 1) {
             		TempfactorP = 1;  //! no temperature compensation
-            	} else {
-            		B6 = (uPwrTempcorrect == 1) ? tempeTemp : uManTemp; //! temperature compensation based on Tempe or temperature compensation based on manual given temperature
-					var B22 = 101325 * Math.pow((B6+273.15)/((B6+273.15)+(-0.0065 * 200)) , ((9.80665 * 0.0289644) / (8.31432 * -0.0065))) * 0.00750062;
-					var B23 = 101325 * Math.pow((uFTPTemp+273.15)/((uFTPTemp+273.15)+(-0.0065 * 200)) , ((9.80665 * 0.0289644) / (8.31432 * -0.0065))) * 0.00750062;
+            	} else {            		            		           	
+            		B6 = (uPwrTempcorrect == 1) ? tempeTemp : uManTemp; //! temperature compensation based on Tempe or temperature compensation based on manual given temperature            		
+					var B22 = 101325 * Math.pow((B6+273.15)/((B6+273.15)+(-0.0065 * uRealAltitude)) , ((9.80665 * 0.0289644) / (8.31432 * -0.0065))) * 0.00750062;
+					var B23 = 101325 * Math.pow((uFTPTemp+273.15)/((uFTPTemp+273.15)+(-0.0065 * uFTPAltitude)) , ((9.80665 * 0.0289644) / (8.31432 * -0.0065))) * 0.00750062;
 					var B24 = (-174.1448622 + 1.0899959 * B22 + -1.5119*0.001 * Math.pow(B22 , 2) + 0.72674 * Math.pow(10 , -6) * Math.pow(B22 , 3)) / 100;
 					var B25 = (-174.1448622 + 1.0899959 * B23 + -1.5119*0.001 * Math.pow(B23 , 2) + 0.72674 * Math.pow(10 , -6) * Math.pow(B23 , 3)) / 100;
-					var B36 = (257.14 * (Math.ln(Math.pow(2.718281828459, ((18.678-B6/234.5)*(B6/(257.14+B6))))*70/100)) / (18.678-(Math.ln(Math.pow(2.718281828459, ((18.678-B6/234.5)*(B6/(257.14+B6))))*70/100)))) * 1.8 + 32;
-					var B37 = (257.14 * (Math.ln(Math.pow(2.718281828459, ((18.678-uFTPTemp/234.5)*(uFTPTemp/(257.14+uFTPTemp))))*70/100)) / (18.678-(Math.ln(Math.pow(2.718281828459, ((18.678-uFTPTemp/234.5)*(uFTPTemp/(257.14+uFTPTemp))))*70/100)))) * 1.8 + 32;
+					var B36 = (257.14 * (Math.ln(Math.pow(2.718281828459, ((18.678-B6/234.5)*(B6/(257.14+B6))))*uRealHumid/100)) / (18.678-(Math.ln(Math.pow(2.718281828459, ((18.678-B6/234.5)*(B6/(257.14+B6))))*uRealHumid/100)))) * 1.8 + 32;
+					var B37 = (257.14 * (Math.ln(Math.pow(2.718281828459, ((18.678-uFTPTemp/234.5)*(uFTPTemp/(257.14+uFTPTemp))))*uFTPHumid/100)) / (18.678-(Math.ln(Math.pow(2.718281828459, ((18.678-uFTPTemp/234.5)*(uFTPTemp/(257.14+uFTPTemp))))*uFTPHumid/100)))) * 1.8 + 32;
 					var B38;
 					var Btemp = B36+B6*1.8+32; 
 					if ((Btemp) > 100) {
@@ -115,7 +123,6 @@ class CiqView extends ExtramemView {
             mPowerTime		 = (info.currentPower != null) ? mPowerTime+1 : mPowerTime;
             runPower 		 = (info.currentPower != null) ? (info.currentPower+0.001)*TempfactorP : 0;
 			mElapsedPower    = mElapsedPower + runPower;
-			
 			
 			if (uCP != 0) {
 				if ((runPower+0.001)/uCP < 0.5 ) {
@@ -491,8 +498,8 @@ class CiqView extends ExtramemView {
         } else if ( fieldformat.equals("pace" ) == true ) {
         	Temp = (fieldvalue != 0 ) ? (unitP/fieldvalue).toLong() : 0;
         	fieldvalue = (Temp / 60).format("%0d") + ":" + Math.round(Temp % 60).format("%02d");
-        } else if ( fieldformat.equals("power" ) == true ) {     
-        	fieldvalue = Math.round(fieldvalue);
+        } else if ( fieldformat.equals("power" ) == true ) {   
+        	fieldvalue = Math.round(fieldvalue).toNumber();                 
         	PowerWarning = (setPowerWarning == 1) ? 1 : PowerWarning;    	
         	PowerWarning = (setPowerWarning == 2) ? 2 : PowerWarning;
         	if (PowerWarning == 1) { 

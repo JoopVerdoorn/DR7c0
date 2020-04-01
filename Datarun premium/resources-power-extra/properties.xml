@@ -48,6 +48,10 @@
     <property id="pPwrTempcorrect" type="number">0</property>
     <property id="pFTPTemp" type="number">20</property>
     <property id="pManTemp" type="number">20</property>
+    <property id="pRealHumid" type="number">70</property>
+    <property id="pFTPHumid" type="number">70</property>
+    <property id="pRealAltitude" type="number">200</property>
+    <property id="pFTPAltitude" type="number">200</property>
   </properties>
 
 	
@@ -57,8 +61,8 @@
     <!-- Beta name:
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
     -->
-    <string id="AppVersion">2.25b</string>
-    <string id="lDummysetting4version">Version 2.25b of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="AppVersion">2.26</string>
+    <string id="lDummysetting4version">Version 2.26 of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>
@@ -215,13 +219,17 @@
     <string id="l5secRE">Rolling average over the last 5 seconds of Running Effectiveness (as used by Steve Palladino)</string>
     <string id="lLapE">Lap Running Effectiveness (as used by Steve Palladino)</string>
     <string id="lAverRE">Average Running Effectiveness (as used by Steve Palladino)</string>
-    <string id="lPwrTempcorrect">Power correction based on temperature</string>
-    <string id="lNoPwrTempcorrect">No power correction based on temperature</string>
-    <string id="lTempePwrTempcorrect">Correction based on temperature delivered by the Tempe (no correction during first 5 minutes!)</string>
-    <string id="lManPwrTempcorrect">Correction based on temperature as manually set in settings</string>
-    <string id="lFTPTemp">Temperature in F or C by which Critical power or FTP is determined (used for power correction based on temperature)</string>
-    <string id="lManTemp">Temperature in F or C for power correction based on temperature (manual setting instead of being delivered by Tempe))</string>
+    <string id="lPwrTempcorrect">Power correction based on temperature, humidity and/or altitude</string>
+    <string id="lNoPwrTempcorrect">No correction</string>
+    <string id="lTempePwrTempcorrect">Correction based on Tempe temperature, manual set humidity and/or altitude (no correction for temperature during first 5 minutes!)</string>
+    <string id="lManPwrTempcorrect">Correction based on manual set temperature, humidity and/or altitude (all manually set in settings)</string>
+    <string id="lFTPTemp">Temperature in F or C by which Critical power or FTP is determined, for power correction based on temperature</string>
+    <string id="lManTemp">Current temperature in F or C, for power correction based on temperature (manual setting instead of being delivered by Tempe)</string>
     <string id="lCalcPwrTempcorrect">Calculated power correction percentage based on temperature</string>
+    <string id="lRealHumid">Current humidity in %, for power correction based on humidity</string>
+    <string id="lFTPHumid">Humidity in % by which Critical power or FTP is determined, for power correction based on humidity</string>
+    <string id="lRealAltitude">Current altitude, for power correction based on altitude</string>
+    <string id="lFTPAltitude">Altitude at which Critical power or FTP is determined, for power correction based on altitude</string>    
  </strings>
 
   <settings>
@@ -264,6 +272,12 @@
     <setting propertyKey="@Properties.pFTPTemp" title="@Strings.lFTPTemp">
       <settingConfig type="numeric"  required="true"/>
     </setting>      
+    <setting propertyKey="@Properties.pFTPHumid" title="@Strings.lFTPHumid">
+      <settingConfig type="numeric"  required="true"/>
+    </setting>     
+    <setting propertyKey="@Properties.pFTPAltitude" title="@Strings.lFTPAltitude">
+      <settingConfig type="numeric"  required="true"/>
+    </setting> 
     <setting propertyKey="@Properties.pPwrTempcorrect" title="@Strings.lPwrTempcorrect">
       <settingConfig type="list" required="true">
         <listEntry value="0">@Strings.lNoPwrTempcorrect</listEntry>
@@ -274,6 +288,12 @@
     <setting propertyKey="@Properties.pManTemp" title="@Strings.lManTemp">
       <settingConfig type="numeric"  required="true"/>
     </setting>      
+    <setting propertyKey="@Properties.pRealHumid" title="@Strings.lRealHumid">
+      <settingConfig type="numeric"  required="true"/>
+    </setting> 
+    <setting propertyKey="@Properties.pRealAltitude" title="@Strings.lRealAltitude">
+      <settingConfig type="numeric"  required="true"/>
+    </setting> 
     <setting propertyKey="@Properties.pWeight" title="@Strings.lWeight">
       <settingConfig type="numeric"  required="true"/>
     </setting>    
