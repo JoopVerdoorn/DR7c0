@@ -55,7 +55,7 @@ class CiqView extends ExtramemView {
     	uPwrAlticorrect  = mApp.getProperty("pPwrAlticorrect");
     	uRealAltitude 	 = mApp.getProperty("pRealAltitude");
     	uFTPAltitude	 = mApp.getProperty("pFTPAltitude");
-		
+	
 		uRealHumid = (uRealHumid != 0 ) ? uRealHumid : 1;
 		uFTPHumid = (uFTPHumid != 0 ) ? uFTPHumid : 1;
 		
@@ -160,29 +160,29 @@ class CiqView extends ExtramemView {
             		} else if (uPwrTempcorrect == 1 and uPwrHumidcorrect == 2 and uPwrAlticorrect == 2) {
             			B6 = tempeTemp ;  
             		} else if (uPwrTempcorrect == 2 and uPwrHumidcorrect == 0 and uPwrAlticorrect == 0) {
-            			B6 = uFTPTemp;  
+            			B6 = uManTemp;  
 	            		uFTPHumid = 70;
     	        		uRealHumid = 70;
         	    		uFTPAltitude = 200;
             			uRealAltitude =	200;
             		} else if (uPwrTempcorrect == 2 and uPwrHumidcorrect == 0 and uPwrAlticorrect == 1) {
-            			B6 = uFTPTemp;  
+            			B6 = uManTemp;  
 	            		uFTPHumid = 70;
     	        		uRealHumid = 70;
     	        		uRealAltitude =	(info.altitude != null) ? info.altitude : 0;
             		} else if (uPwrTempcorrect == 2 and uPwrHumidcorrect == 0 and uPwrAlticorrect == 2) {
-            			B6 = uFTPTemp;  
+            			B6 = uManTemp;  
 	            		uFTPHumid = 70;
     	        		uRealHumid = 70;
             		} else if (uPwrTempcorrect == 2 and uPwrHumidcorrect == 2 and uPwrAlticorrect == 0) {
-            			B6 = uFTPTemp;  
+            			B6 = uManTemp;  
         	    		uFTPAltitude = 200;
             			uRealAltitude =	200;
             		} else if (uPwrTempcorrect == 2 and uPwrHumidcorrect == 2 and uPwrAlticorrect == 1) {
-            			B6 = uFTPTemp;
+            			B6 = uManTemp;
             			uRealAltitude =	(info.altitude != null) ? info.altitude : 0;  
             		} else if (uPwrTempcorrect == 2 and uPwrHumidcorrect == 2 and uPwrAlticorrect == 2) {
-            			B6 = uFTPTemp;  
+            			B6 = uManTemp;  
             		}
 
 					var B22 = 101325 * Math.pow((B6+273.15)/((B6+273.15)+(-0.0065 * uRealAltitude)) , ((9.80665 * 0.0289644) / (8.31432 * -0.0065))) * 0.00750062;
@@ -524,7 +524,7 @@ class CiqView extends ExtramemView {
     	        fieldLabel[i] = "Pw cor%";
         	    fieldFormat[i] = "2decimal";
         	} else if (metric[i] == 107) {
-	            fieldValue[i] = PwrCorrFactor*uPowerTarget;
+	            fieldValue[i] = uPowerTarget/PwrCorrFactor;
     	        fieldLabel[i] = "Ptarget";
         	    fieldFormat[i] = "power";        	    
         	} 
