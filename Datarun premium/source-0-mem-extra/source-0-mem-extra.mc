@@ -52,11 +52,7 @@ class ExtramemView extends DatarunpremiumView {
 		var i; 
 		for (i = 1; i < 6; ++i) {
 			VertPace[i] = 0;
-		}
-		for (i = 1; i < 8; ++i) {
-			disablelabel[i] = false;
-		}        
-		        
+		}       
     }
 
 	function onUpdate(dc) {

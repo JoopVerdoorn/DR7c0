@@ -21,10 +21,14 @@ class CiqView extends ExtramemView {
 	var Garminfont = Ui.loadResource(Rez.Fonts.Garmin1);
 	var Power 								= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
     var uWeight								= 70;
-    hidden var uPwrTempcorrect 				= 0;
+    var uPowerTarget						= 225;
+    var uOnlyPwrCorrFactor					= false;
+    var uPwrTempcorrect 					= 0;
+    var uPwrHumidcorrect 					= 0;
+    var uPwrAlticorrect 					= 0; 
     var uFTPTemp							= 20;
     var uManTemp							= 20;
-	var TempfactorP							= 1;
+	var PwrCorrFactor							= 1;
     var uRealHumid 							= 40;
     var uFTPHumid 							= 70;
     var uRealAltitude 						= 2;
@@ -40,13 +44,20 @@ class CiqView extends ExtramemView {
 		uFTP		 	 = mApp.getProperty("pFTP");
 		uCP		 	 	 = mApp.getProperty("pCP");
 		uWeight			 = mApp.getProperty("pWeight");
+		uPowerTarget	 = mApp.getProperty("pPowerTarget");
+		uOnlyPwrCorrFactor= mApp.getProperty("pOnlyPwrCorrFactor");
 		uPwrTempcorrect	 = mApp.getProperty("pPwrTempcorrect");
 		uFTPTemp	 	 = mApp.getProperty("pFTPTemp");
 		uManTemp	 	 = mApp.getProperty("pManTemp");
+		uPwrHumidcorrect = mApp.getProperty("pPwrHumidcorrect");
 		uRealHumid 		 = mApp.getProperty("pRealHumid");
     	uFTPHumid 		 = mApp.getProperty("pFTPHumid");
+    	uPwrAlticorrect  = mApp.getProperty("pPwrAlticorrect");
     	uRealAltitude 	 = mApp.getProperty("pRealAltitude");
     	uFTPAltitude	 = mApp.getProperty("pFTPAltitude");
+		
+		uRealHumid = (uRealHumid != 0 ) ? uRealHumid : 1;
+		uFTPHumid = (uFTPHumid != 0 ) ? uFTPHumid : 1;
 		
 		if (utempunits == true ) {
 			uFTPTemp = (uFTPTemp-32)/1.8;
@@ -85,16 +96,95 @@ class CiqView extends ExtramemView {
 			//!Calculate lapheartrate
             mHeartrateTime	 = (info.currentHeartRate != null) ? mHeartrateTime+1 : mHeartrateTime;				
            	mElapsedHeartrate= (info.currentHeartRate != null) ? mElapsedHeartrate + info.currentHeartRate : mElapsedHeartrate;
-         
+  
             //! Calculate temperature compensation, B-variables reference cell number from cells of conversion excelsheet  		
             var B6 = 22; 			//! is cell B6
-            if (uPwrTempcorrect == 0) {
-            	TempfactorP = 1;  //! no temperature compensation
+            if (uPwrTempcorrect == 0 and uPwrHumidcorrect == 0 and uPwrAlticorrect == 0) {
+            	PwrCorrFactor = 1;  //! no temperature compensation
             } else {
-            	if (jTimertime < 300 and uPwrTempcorrect == 1) {
-            		TempfactorP = 1;  //! no temperature compensation
-            	} else {            		            		           	
-            		B6 = (uPwrTempcorrect == 1) ? tempeTemp : uManTemp; //! temperature compensation based on Tempe or temperature compensation based on manual given temperature            		
+            	if (jTimertime < 300 and uPwrTempcorrect == 1 and uPwrHumidcorrect == 0 and uPwrAlticorrect == 0) {
+            		PwrCorrFactor = 1;  //! no temperature compensation
+            	} else {
+            		if (uPwrTempcorrect == 0 and uPwrHumidcorrect == 0 and uPwrAlticorrect == 0) {
+            			uFTPTemp = 18;
+            			B6 = 18;  
+	            		uFTPHumid = 70;
+    	        		uRealHumid = 70;
+        	    		uFTPAltitude = 200;
+            			uRealAltitude =	200;
+            		} else if (uPwrTempcorrect == 0 and uPwrHumidcorrect == 0 and uPwrAlticorrect == 1) {
+            			uFTPTemp = 18;
+            			B6 = 18;  
+	            		uFTPHumid = 70;
+    	        		uRealHumid = 70;
+    	        		uRealAltitude =	(info.altitude != null) ? info.altitude : 0;
+            		} else if (uPwrTempcorrect == 0 and uPwrHumidcorrect == 0 and uPwrAlticorrect == 2) {
+            			uFTPTemp = 18;
+            			B6 = 18;  
+	            		uFTPHumid = 70;
+    	        		uRealHumid = 70;
+            		} else if (uPwrTempcorrect == 0 and uPwrHumidcorrect == 2 and uPwrAlticorrect == 0) {
+            			uFTPTemp = 18;
+            			B6 = 18;  
+        	    		uFTPAltitude = 200;
+            			uRealAltitude =	200;
+            		} else if (uPwrTempcorrect == 0 and uPwrHumidcorrect == 2 and uPwrAlticorrect == 1) {
+            			uFTPTemp = 18;
+            			B6 = 18;  
+            			uRealAltitude =	(info.altitude != null) ? info.altitude : 0;
+            		} else if (uPwrTempcorrect == 0 and uPwrHumidcorrect == 2 and uPwrAlticorrect == 2) {
+            			uFTPTemp = 18;
+            			B6 = 18;  
+            		} else if (uPwrTempcorrect == 1 and uPwrHumidcorrect == 0 and uPwrAlticorrect == 0) {
+            			B6 = tempeTemp ;  
+	            		uFTPHumid = 70;
+    	        		uRealHumid = 70;
+        	    		uFTPAltitude = 200;
+            			uRealAltitude =	200;
+            		} else if (uPwrTempcorrect == 1 and uPwrHumidcorrect == 0 and uPwrAlticorrect == 1) {
+            			B6 = tempeTemp ;  
+	            		uFTPHumid = 70;
+    	        		uRealHumid = 70;
+    	        		uRealAltitude =	(info.altitude != null) ? info.altitude : 0;
+            		} else if (uPwrTempcorrect == 1 and uPwrHumidcorrect == 0 and uPwrAlticorrect == 2) {
+            			B6 = tempeTemp ;  
+	            		uFTPHumid = 70;
+    	        		uRealHumid = 70;
+            		} else if (uPwrTempcorrect == 1 and uPwrHumidcorrect == 2 and uPwrAlticorrect == 0) {
+            			B6 = tempeTemp ;  
+        	    		uFTPAltitude = 200;
+            			uRealAltitude =	200;
+            		} else if (uPwrTempcorrect == 1 and uPwrHumidcorrect == 2 and uPwrAlticorrect == 1) {
+            			B6 = tempeTemp ;
+            			uRealAltitude =	(info.altitude != null) ? info.altitude : 0;  
+            		} else if (uPwrTempcorrect == 1 and uPwrHumidcorrect == 2 and uPwrAlticorrect == 2) {
+            			B6 = tempeTemp ;  
+            		} else if (uPwrTempcorrect == 2 and uPwrHumidcorrect == 0 and uPwrAlticorrect == 0) {
+            			B6 = uFTPTemp;  
+	            		uFTPHumid = 70;
+    	        		uRealHumid = 70;
+        	    		uFTPAltitude = 200;
+            			uRealAltitude =	200;
+            		} else if (uPwrTempcorrect == 2 and uPwrHumidcorrect == 0 and uPwrAlticorrect == 1) {
+            			B6 = uFTPTemp;  
+	            		uFTPHumid = 70;
+    	        		uRealHumid = 70;
+    	        		uRealAltitude =	(info.altitude != null) ? info.altitude : 0;
+            		} else if (uPwrTempcorrect == 2 and uPwrHumidcorrect == 0 and uPwrAlticorrect == 2) {
+            			B6 = uFTPTemp;  
+	            		uFTPHumid = 70;
+    	        		uRealHumid = 70;
+            		} else if (uPwrTempcorrect == 2 and uPwrHumidcorrect == 2 and uPwrAlticorrect == 0) {
+            			B6 = uFTPTemp;  
+        	    		uFTPAltitude = 200;
+            			uRealAltitude =	200;
+            		} else if (uPwrTempcorrect == 2 and uPwrHumidcorrect == 2 and uPwrAlticorrect == 1) {
+            			B6 = uFTPTemp;
+            			uRealAltitude =	(info.altitude != null) ? info.altitude : 0;  
+            		} else if (uPwrTempcorrect == 2 and uPwrHumidcorrect == 2 and uPwrAlticorrect == 2) {
+            			B6 = uFTPTemp;  
+            		}
+
 					var B22 = 101325 * Math.pow((B6+273.15)/((B6+273.15)+(-0.0065 * uRealAltitude)) , ((9.80665 * 0.0289644) / (8.31432 * -0.0065))) * 0.00750062;
 					var B23 = 101325 * Math.pow((uFTPTemp+273.15)/((uFTPTemp+273.15)+(-0.0065 * uFTPAltitude)) , ((9.80665 * 0.0289644) / (8.31432 * -0.0065))) * 0.00750062;
 					var B24 = (-174.1448622 + 1.0899959 * B22 + -1.5119*0.001 * Math.pow(B22 , 2) + 0.72674 * Math.pow(10 , -6) * Math.pow(B22 , 3)) / 100;
@@ -115,13 +205,13 @@ class CiqView extends ExtramemView {
 					} else {
 				    	B39 = 0;
 					}      
-					TempfactorP = 1- (B24 - B25) - (B39-B38)/100;
+					PwrCorrFactor = 1- (B24 - B25) - (B39-B38)/100;
 				}
 			}
            	
             //!Calculate lappower
             mPowerTime		 = (info.currentPower != null) ? mPowerTime+1 : mPowerTime;
-            runPower 		 = (info.currentPower != null) ? (info.currentPower+0.001)*TempfactorP : 0;
+            runPower 		 = (info.currentPower != null) ? (info.currentPower+0.001)*PwrCorrFactor : 0;
 			mElapsedPower    = mElapsedPower + runPower;
 			
 			if (uCP != 0) {
@@ -430,9 +520,13 @@ class CiqView extends ExtramemView {
             	fieldLabel[i] = "RE Aver";
             	fieldFormat[i] = "2decimal";
             } else if (metric[i] == 106) {
-	            fieldValue[i] = (TempfactorP-1)*100;
+	            fieldValue[i] = (PwrCorrFactor-1)*100;
     	        fieldLabel[i] = "Pw cor%";
-        	    fieldFormat[i] = "2decimal";      	    
+        	    fieldFormat[i] = "2decimal";
+        	} else if (metric[i] == 107) {
+	            fieldValue[i] = PwrCorrFactor*uPowerTarget;
+    	        fieldLabel[i] = "Ptarget";
+        	    fieldFormat[i] = "power";        	    
         	} 
         	//!einde invullen field metrics
 		}
