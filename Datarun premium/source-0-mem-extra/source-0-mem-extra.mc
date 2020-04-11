@@ -588,7 +588,8 @@ class ExtramemView extends DatarunpremiumView {
 			CFMValue = (uClockFieldMetric==38) ? Powerzone : CFMValue; 
 			CFMValue = (uClockFieldMetric==46) ? HRzone : CFMValue;
 			if ( CFMFormat.equals("0decimal" ) == true ) {
-        		CFMValue = Math.round(CFMValue);
+        		Temp = Math.round(CFMValue);
+        		CFMValue = Temp.format("%.0f");
 	        } else if ( CFMFormat.equals("1decimal" ) == true ) {
     	        Temp = Math.round(CFMValue*10)/10;
 				CFMValue = Temp.format("%.1f");				
