@@ -422,3 +422,16 @@ class DatarunpremiumView extends Ui.DataField {
 	}    
 
 }
+
+(:background)
+class TempBgServiceDelegate extends Toybox.System.ServiceDelegate {
+
+	function initialize() {
+		System.ServiceDelegate.initialize();
+	}
+
+	function onTemporalEvent() {
+		var si=Sensor.getInfo();
+		Background.exit(si.temperature);
+	}
+}

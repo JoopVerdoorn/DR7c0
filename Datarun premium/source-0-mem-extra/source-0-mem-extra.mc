@@ -1,7 +1,6 @@
 using Toybox.SensorHistory;
 using Toybox.Lang;
 using Toybox.System;
-using Toybox.Application.Storage;
 
 class ExtramemView extends DatarunpremiumView {   
 	hidden var uHrZones   			        = [ 93, 111, 130, 148, 167, 185 ];	
@@ -59,7 +58,6 @@ class ExtramemView extends DatarunpremiumView {
 		//! call the parent onUpdate to do the base logic
 		DatarunpremiumView.onUpdate(dc);
 		
-		tempeTemp = (Storage.getValue("mytemp") != null) ? Storage.getValue("mytemp") : 0;
 
     	//! Setup back- and foregroundcolours
 		if (uBlackBackground == true ){
@@ -847,15 +845,3 @@ function getIterator() {
     return null;
 }
 
-(:background)
-class TempBgServiceDelegate extends Toybox.System.ServiceDelegate {
-
-	function initialize() {
-		System.ServiceDelegate.initialize();
-	}
-
-	function onTemporalEvent() {
-		var si=Sensor.getInfo();
-		Background.exit(si.temperature);
-	}
-}

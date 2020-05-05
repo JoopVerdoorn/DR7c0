@@ -60,11 +60,7 @@
 
 	
   <strings>
-    <!-- Release name: -->
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
-    <!-- Beta name:
-    <string id="AppName">Datarun premium with 7 metrics, main version</string>
-    -->
     <string id="AppVersion">2.27c</string>
     <string id="lDummysetting4version">Version 2.27c of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>

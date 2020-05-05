@@ -11,7 +11,6 @@ class CiqView extends ExtramemView {
 	var uFTP								= 250;    
 	var uCP									= 250;
 	var RSS									= 0;
-	hidden var FilteredCurPower				= 0;
 	var sum4thPowers						= 0;
 	var fourthPowercounter 					= 0;
 	var mIntensityFactor					= 0;
@@ -283,7 +282,6 @@ class CiqView extends ExtramemView {
 		}
 		counterPower = counterPower + 1;
 		rollingPwrValue [rolavPowmaxsecs+1] = runPower;
-		FilteredCurPower = rollingPwrValue [rolavPowmaxsecs+1]; 
 		for (var i = 1; i < rolavPowmaxsecs+1; ++i) {
 			rollingPwrValue[i] = rollingPwrValue[i+1];
 		}
