@@ -34,6 +34,7 @@ marqaviator.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		
 marqcaptain.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 marqdriver.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 marqexpedition.sourcePath	=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
+marqadventurer.sourcePath	=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 descentmk1.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 fenix6spro.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 
@@ -67,6 +68,7 @@ marqaviator.resourcePath	= resources-power-extra
 marqcaptain.resourcePath	= resources-power-extra
 marqdriver.resourcePath		= resources-power-extra
 marqexpedition.resourcePath	= resources-power-extra
+marqadventurer.resourcePath	= resources-power-extra
 descentmk1.resourcePath		= resources-power-extra
 fenix6spro.resourcePath		= resources-power-extra
 fenix6pro.resourcePath		= resources-power-extra
