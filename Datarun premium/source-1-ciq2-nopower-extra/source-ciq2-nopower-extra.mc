@@ -21,6 +21,10 @@ class CiqView extends ExtramemView {
 			//!Calculate lapheartrate
             mHeartrateTime		 = (info.currentHeartRate != null) ? mHeartrateTime+1 : mHeartrateTime;				
            	mElapsedHeartrate    = (info.currentHeartRate != null) ? mElapsedHeartrate + info.currentHeartRate : mElapsedHeartrate;
+           	
+           	//!Calculate lapCadence
+            mCadenceTime	 = (info.currentCadence != null) ? mCadenceTime+1 : mCadenceTime;
+            mElapsedCadence= (info.currentCadence != null) ? mElapsedCadence + info.currentCadence : mElapsedCadence;
         } 
 	}
 
@@ -100,4 +104,23 @@ class CiqView extends ExtramemView {
 		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
     }
 	
+	function LapactionNoPower () {
+        var info = Activity.getActivityInfo();
+        mLastLapTimerTime       	= jTimertime - mLastLapTimeMarker;
+        mLastLapElapsedDistance 	= (info.elapsedDistance != null) ? info.elapsedDistance - mLastLapDistMarker : 0;
+        mLastLapDistMarker      	= (info.elapsedDistance != null) ? info.elapsedDistance : 0;
+        mLastLapTimeMarker      	= jTimertime;
+
+        mLastLapTimerTimeHR			= mHeartrateTime - mLastLapTimeHRMarker;
+        mLastLapElapsedHeartrate 	= (info.currentHeartRate != null) ? mElapsedHeartrate - mLastLapHeartrateMarker : 0;
+        mLastLapHeartrateMarker     = mElapsedHeartrate;
+        mLastLapTimeHRMarker        = mHeartrateTime;
+        mLaps++;
+        
+        mLastLapTimerTimeCadence	= mHeartrateTime - mLastLapTimeCadenceMarker;
+        mLastLapElapsedCadence 		= (info.currentCadence != null) ? mElapsedCadence - mLastLapCadenceMarker : 0;
+        mLastLapCadenceMarker     	= mElapsedCadence;
+        mLastLapTimeCadenceMarker   = mCadenceTime;
+    }
+
 }

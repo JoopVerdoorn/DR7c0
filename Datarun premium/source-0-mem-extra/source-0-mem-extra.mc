@@ -28,6 +28,18 @@ class ExtramemView extends DatarunpremiumView {
 	var disablelabel 						= [1, 2, 3, 4, 5, 6, 7, 8];
 	var maxHR								= 999;
 	var kCalories							= 0;
+	var mElapsedCadence   					= 0;
+	var mLastLapCadenceMarker      			= 0;    
+    var mCurrentCadence    					= 0; 
+    var mLastLapElapsedCadence				= 0;
+    var mCadenceTime						= 0;
+    var mLapTimerTimeCadence				= 0;    
+	var mLastLapTimeCadenceMarker			= 0;
+	var mLastLapTimerTimeCadence			= 0;
+	var currentCadence						= 0;
+	var LapCadence							= 0;
+	var LastLapCadence						= 0;
+	var AverageCadence 						= 0;
 	hidden var tempeTemp 					= 20;
 	var utempunits							= false;
 	
@@ -73,6 +85,13 @@ class ExtramemView extends DatarunpremiumView {
 		}
 		dc.setColor(mColourBackGround, Graphics.COLOR_TRANSPARENT);
         dc.fillRectangle (0, 0, 280, 280);
+        
+        //! Calculate lap (Cadence) time
+        mLapTimerTimeCadence 	= mCadenceTime - mLastLapTimeCadenceMarker;
+        var mLapElapsedCadence 	= mElapsedCadence - mLastLapCadenceMarker;
+		AverageCadence 			= Math.round((mCadenceTime != 0) ? mElapsedCadence/mCadenceTime : 0);  		
+		LapCadence 				= (mLapTimerTimeCadence != 0) ? Math.round(mLapElapsedCadence/mLapTimerTimeCadence) : 0; 					
+		LastLapCadence			= (mLastLapTimerTime != 0) ? Math.round(mLastLapElapsedCadence/mLastLapTimerTime) : 0;
        
 		//! Calculation of rolling average of pace
 		var info = Activity.getActivityInfo();
@@ -177,7 +196,7 @@ class ExtramemView extends DatarunpremiumView {
             	fieldLabel[i] = "EL loss";
             	fieldFormat[i] = "0decimal";           	
         	}  else if (metric[i] == 61) {
-           		fieldValue[i] = (info.currentCadence != null) ? info.currentCadence/2 : 0;
+           		fieldValue[i] = (info.currentCadence != null) ? Math.round(info.currentCadence/2) : 0;
             	fieldLabel[i] = "RCadence";
             	fieldFormat[i] = "0decimal";           	
         	}  else if (metric[i] == 62) {
@@ -225,6 +244,18 @@ class ExtramemView extends DatarunpremiumView {
     	        fieldValue[i] = (utempunits == false) ? fieldValue[i] : fieldValue[i]*1.8+32;
         	    fieldLabel[i] = "Temp";
             	fieldFormat[i] = "1decimal";
+            } else if (metric[i] == 90) {
+    	        fieldValue[i] = LapCadence;
+        	    fieldLabel[i] = "Lap Cad";
+            	fieldFormat[i] = "0decimal";
+			} else if (metric[i] == 91) {
+    	        fieldValue[i] = LastLapCadence;
+        	    fieldLabel[i] = "LL Cad";
+            	fieldFormat[i] = "0decimal";
+			} else if (metric[i] == 92) {
+	            fieldValue[i] = AverageCadence;
+    	        fieldLabel[i] = "Avg Cad";
+        	    fieldFormat[i] = "0decimal";
             } else if (metric[i] == 105) {
 	            fieldValue[i] = tempeTemp;
 	            fieldValue[i] = (utempunits == false) ? fieldValue[i] : fieldValue[i]*1.8+32;
@@ -372,7 +403,7 @@ class ExtramemView extends DatarunpremiumView {
             	CFMLabel = "EL loss";
             	CFMFormat = "0decimal";           	
         	}  else if (uClockFieldMetric == 61) {
-           		CFMValue = (info.currentCadence != null) ? info.currentCadence/2 : 0;
+           		CFMValue = (info.currentCadence != null) ? Math.round(info.currentCadence/2) : 0;
             	CFMLabel = "RCadence";
             	CFMFormat = "0decimal";           	
         	}  else if (uClockFieldMetric == 62) {
@@ -437,6 +468,18 @@ class ExtramemView extends DatarunpremiumView {
 	            CFMValue = (utempunits == false) ? CFMValue : CFMValue*1.8+32;
     	        CFMLabel = "Tempe T";
         	    CFMFormat = "0decimal";
+        	} else if (uClockFieldMetric == 90) {
+    	        CFMValue = LapCadence;
+        	    CFMValue = "Lap Cad";
+            	CFMValue = "0decimal";
+			} else if (uClockFieldMetric == 91) {
+    	        CFMValue = LastLapCadence;
+        	    CFMValue = "LL Cad";
+            	CFMValue = "0decimal";
+			} else if (uClockFieldMetric == 92) {
+	            CFMValue = AverageCadence;
+    	        CFMValue = "Avg Cad";
+        	    CFMValue = "0decimal";
 			}
 			 
 

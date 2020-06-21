@@ -10,22 +10,6 @@ class PowerView extends CiqView {
         CiqView.initialize();
     }
 
-    //! Calculations we need to do every second even when the data field is not visible
-    function compute(info) {
-        //! If enabled, switch the backlight on in order to make it stay on
-        if (uBacklight) {
-             Attention.backlight(true);
-        }
-
-		//! We only do some calculations if the timer is running
-		if (mTimerRunning) {  
-			jTimertime = jTimertime + 1;
-			//!Calculate lapheartrate
-            mHeartrateTime		 = (info.currentHeartRate != null) ? mHeartrateTime+1 : mHeartrateTime;				
-           	mElapsedHeartrate    = (info.currentHeartRate != null) ? mElapsedHeartrate + info.currentHeartRate : mElapsedHeartrate;
-        }
-    }
-
     //! Store last lap quantities and set lap markers
     function onTimerLap() {
 		LapactionNoPower ();
@@ -139,19 +123,5 @@ class PowerView extends CiqView {
         	dc.fillRectangle(x, y, w, h);
         }
 	}
-
-	function LapactionNoPower () {
-        var info = Activity.getActivityInfo();
-        mLastLapTimerTime       	= jTimertime - mLastLapTimeMarker;
-        mLastLapElapsedDistance 	= (info.elapsedDistance != null) ? info.elapsedDistance - mLastLapDistMarker : 0;
-        mLastLapDistMarker      	= (info.elapsedDistance != null) ? info.elapsedDistance : 0;
-        mLastLapTimeMarker      	= jTimertime;
-
-        mLastLapTimerTimeHR			= mHeartrateTime - mLastLapTimeHRMarker;
-        mLastLapElapsedHeartrate 	= (info.currentHeartRate != null) ? mElapsedHeartrate - mLastLapHeartrateMarker : 0;
-        mLastLapHeartrateMarker     = mElapsedHeartrate;
-        mLastLapTimeHRMarker        = mHeartrateTime;
-        mLaps++;
-    }
 
 }

@@ -95,6 +95,10 @@ class CiqView extends ExtramemView {
 			//!Calculate lapheartrate
             mHeartrateTime	 = (info.currentHeartRate != null) ? mHeartrateTime+1 : mHeartrateTime;				
            	mElapsedHeartrate= (info.currentHeartRate != null) ? mElapsedHeartrate + info.currentHeartRate : mElapsedHeartrate;
+           	
+           	//!Calculate lapCadence
+            mCadenceTime	 = (info.currentCadence != null) ? mCadenceTime+1 : mCadenceTime;
+            mElapsedCadence= (info.currentCadence != null) ? mElapsedCadence + info.currentCadence : mElapsedCadence;
   
             //! Calculate temperature compensation, B-variables reference cell number from cells of conversion excelsheet  		
             var B6 = 22; 			//! is cell B6
@@ -653,6 +657,11 @@ class CiqView extends ExtramemView {
         mLastLapElapsedHeartrate 	= (info.currentHeartRate != null) ? mElapsedHeartrate - mLastLapHeartrateMarker : 0;
         mLastLapHeartrateMarker     = mElapsedHeartrate;
         mLastLapTimeHRMarker        = mHeartrateTime;
+        
+        mLastLapTimerTimeCadence	= mHeartrateTime - mLastLapTimeCadenceMarker;
+        mLastLapElapsedCadence 		= (info.currentCadence != null) ? mElapsedCadence - mLastLapCadenceMarker : 0;
+        mLastLapCadenceMarker     	= mElapsedCadence;
+        mLastLapTimeCadenceMarker   = mCadenceTime;
 
         mLastLapTimerTimePwr		= mPowerTime - mLastLapTimePwrMarker;
         mLastLapElapsedPower  		= (info.currentPower != null) ? mElapsedPower - mLastLapPowerMarker : 0;
