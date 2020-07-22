@@ -63,6 +63,16 @@ class CiqView extends DatarunpremiumView {
         yh = yh.toNumber();
         xl = xl.toNumber();
         yl = yl.toNumber();
+        var ycorrectionFenix6or6s = 0;
+        
+        if ( counter == 6 or counter == 7 ) {
+        	if ( ID0 == 3798 or ID0 == 4023 ) { //! Fenix 6s
+        		ycorrectionFenix6or6s = 3;
+        	} else if ( ID0 == 3800 or ID0 == 4025 ) { //! Fenix 6
+        		ycorrectionFenix6or6s = 4;
+        	}
+        	y = y + ycorrectionFenix6or6s;
+        }
 
         if ( fieldformat.equals("0decimal" ) == true ) {
         	fieldvalue = fieldvalue.format("%.0f");        	
@@ -110,10 +120,18 @@ class CiqView extends DatarunpremiumView {
             		dc.drawText(xh, yh, Graphics.FONT_LARGE, fTimerHours, Graphics.TEXT_JUSTIFY_LEFT|Graphics.TEXT_JUSTIFY_VCENTER);
             		fTimer = (fieldvalue / 60 % 60).format("%02d") + ":" + fTimerSecs;  
         		}
-        		dc.drawText(xx, y, Graphics.FONT_NUMBER_MEDIUM, fTimer, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);	
+        		if ( ID0 == 3798 or ID0 == 4023 or ID0 == 3800 or ID0 == 4025) { //! Fenix 6(s)
+        			dc.drawText(xx, y, Graphics.FONT_NUMBER_MILD, fTimer, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+        		} else {
+        			dc.drawText(xx, y, Graphics.FONT_NUMBER_MEDIUM, fTimer, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+        		}	
         	}
         } else {
-        	dc.drawText(x, y, Graphics.FONT_NUMBER_MEDIUM, fieldvalue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+        	if ( ID0 == 3798 or ID0 == 4023 or ID0 == 3800 or ID0 == 4025) { //! Fenix 6(s)
+        		dc.drawText(x, y, Graphics.FONT_NUMBER_MILD, fieldvalue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+        	} else {
+        		dc.drawText(x, y, Graphics.FONT_NUMBER_MEDIUM, fieldvalue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+        	}
         }        
         dc.drawText(xl, yl, Graphics.FONT_XTINY,  fieldlabel, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);               
         mColourFont = originalFontcolor;
