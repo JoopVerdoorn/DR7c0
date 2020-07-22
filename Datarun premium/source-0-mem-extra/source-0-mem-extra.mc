@@ -42,6 +42,10 @@ class ExtramemView extends DatarunpremiumView {
 	var AverageCadence 						= 0;
 	hidden var tempeTemp 					= 20;
 	var utempunits							= false;
+	var valueAsclast						= 0;
+	var valueDesclast						= 0;
+	var Diff1 								= 0;
+	var Diff2 								= 0;
 	
     function initialize() {
         DatarunpremiumView.initialize();
@@ -133,9 +137,13 @@ class ExtramemView extends DatarunpremiumView {
 		//! Calculate vertical speed
 		var valueDesc = (info.totalDescent != null) ? info.totalDescent : 0;
         valueDesc = (unitD == 1609.344) ? valueDesc*3.2808 : valueDesc;
+        Diff1 = valueDesc - valueDesclast;
 		var valueAsc = (info.totalAscent != null) ? info.totalAscent : 0;
         valueAsc = (unitD == 1609.344) ? valueAsc*3.2808 : valueAsc;
-        var CurrentVertSpeedinmpersec = valueAsc-valueDesc;
+        Diff2 = valueAsc - valueAsclast;
+        valueDesclast = valueDesc;
+        valueAsclast = valueAsc;
+        var CurrentVertSpeedinmpersec = Diff2-Diff1;
 		VertPace[5] 								= VertPace[4];
 		VertPace[4] 								= VertPace[3];
 		VertPace[3] 								= VertPace[2];
