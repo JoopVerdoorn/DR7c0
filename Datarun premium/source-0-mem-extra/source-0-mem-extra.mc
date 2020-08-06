@@ -273,7 +273,7 @@ class ExtramemView extends DatarunpremiumView {
 	            fieldValue[i] = tempeTemp;
 	            fieldValue[i] = (utempunits == false) ? fieldValue[i]+utempcalibration : fieldValue[i]*1.8+32+utempcalibration;
     	        fieldLabel[i] = "Tempe T";
-    	        fieldFormat[i] = "0decimal";
+    	        fieldFormat[i] = "1decimal";
 			} 
 		}
 
@@ -480,7 +480,7 @@ class ExtramemView extends DatarunpremiumView {
 	            CFMValue = tempeTemp;
 	            CFMValue = (utempunits == false) ? CFMValue+utempcalibration : CFMValue*1.8+32+utempcalibration;
     	        CFMLabel = "Tempe T";
-        	    CFMFormat = "0decimal";
+        	    CFMFormat = "1decimal";
         	} else if (uClockFieldMetric == 90) {
     	        CFMValue = LapCadence;
         	    CFMValue = "Lap Cad";
