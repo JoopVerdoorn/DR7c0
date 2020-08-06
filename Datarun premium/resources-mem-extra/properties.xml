@@ -32,13 +32,14 @@
     <property id="pdisablelabel6" type="boolean">false</property>
     <property id="pdisablelabel7" type="boolean">false</property>
     <property id="ptempunits" type="boolean">false</property>
+    <property id="pTempeCalibration" type="number">0</property>
   </properties>
 
 	
   <strings>
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
-    <string id="AppVersion">2.28e</string>
-    <string id="lDummysetting4version">Version 2.28e of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="AppVersion">2.28f</string>
+    <string id="lDummysetting4version">Version 2.28f of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>
@@ -146,6 +147,7 @@
     <string id="lLLPaceper100m">Pace of last lap in seconds per 100 meter (for track running)</string>
     <string id="lTemp">Current watch temperature</string>
 	<string id="lTempeTemp">Current Tempe temperature (requires Tempe!)</string>
+	<string id="lTempeCalibration">Calibration factor for Tempe temperature in tenths of degrees (3 means 0.3 added, -4 means 0.4 subtracted)</string>
 	<string id="ltempunits">Use Fahrenheit instead of Celsius for temperature metrics (Celsius is default)</string>
 	<string id="lGarminColors">Use Garmin color scheme for label colors (not applicable for Palladino 10 powerzones)</string>
  </strings>
@@ -174,6 +176,9 @@
     </setting>
     <setting propertyKey="@Properties.ptempunits" title="@Strings.ltempunits">
       <settingConfig type="boolean" required="true" />
+    </setting>
+    <setting propertyKey="@Properties.pTempeCalibration" title="@Strings.lTempeCalibration">
+      <settingConfig type="numeric"  required="true"/>
     </setting>
     <setting propertyKey="@Properties.pMilClockAltern" title="@Strings.lMilClockAltern">
       <settingConfig type="list" required="true">

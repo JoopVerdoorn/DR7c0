@@ -139,29 +139,29 @@ class CiqView extends ExtramemView {
             			uFTPTemp = 18;
             			B6 = 18;  
             		} else if (uPwrTempcorrect == 1 and uPwrHumidcorrect == 0 and uPwrAlticorrect == 0) {
-            			B6 = tempeTemp ;  
+            			B6 = (utempunits == false) ? tempeTemp : tempeTemp + utempcalibration/1.8 ;  
 	            		uFTPHumid = 70;
     	        		uRealHumid = 70;
         	    		uFTPAltitude = 200;
             			uRealAltitude =	200;
             		} else if (uPwrTempcorrect == 1 and uPwrHumidcorrect == 0 and uPwrAlticorrect == 1) {
-            			B6 = tempeTemp ;  
+            			B6 = (utempunits == false) ? tempeTemp : tempeTemp + utempcalibration/1.8 ;  
 	            		uFTPHumid = 70;
     	        		uRealHumid = 70;
     	        		uRealAltitude =	(info.altitude != null) ? info.altitude : 0;
             		} else if (uPwrTempcorrect == 1 and uPwrHumidcorrect == 0 and uPwrAlticorrect == 2) {
-            			B6 = tempeTemp ;  
+            			B6 = (utempunits == false) ? tempeTemp : tempeTemp + utempcalibration/1.8 ;  
 	            		uFTPHumid = 70;
     	        		uRealHumid = 70;
             		} else if (uPwrTempcorrect == 1 and uPwrHumidcorrect == 2 and uPwrAlticorrect == 0) {
-            			B6 = tempeTemp ;  
+            			B6 = (utempunits == false) ? tempeTemp : tempeTemp + utempcalibration/1.8 ;  
         	    		uFTPAltitude = 200;
             			uRealAltitude =	200;
             		} else if (uPwrTempcorrect == 1 and uPwrHumidcorrect == 2 and uPwrAlticorrect == 1) {
-            			B6 = tempeTemp ;
+            			B6 = (utempunits == false) ? tempeTemp : tempeTemp + utempcalibration/1.8 ;
             			uRealAltitude =	(info.altitude != null) ? info.altitude : 0;  
             		} else if (uPwrTempcorrect == 1 and uPwrHumidcorrect == 2 and uPwrAlticorrect == 2) {
-            			B6 = tempeTemp ;  
+            			B6 = (utempunits == false) ? tempeTemp : tempeTemp + utempcalibration/1.8 ;  
             		} else if (uPwrTempcorrect == 2 and uPwrHumidcorrect == 0 and uPwrAlticorrect == 0) {
             			B6 = uManTemp;  
 	            		uFTPHumid = 70;
