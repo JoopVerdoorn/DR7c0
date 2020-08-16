@@ -51,7 +51,14 @@ class CiqView extends ExtramemView {
         xl = xl.toNumber();
         yl = yl.toNumber();
  
-		fieldvalue = (metric[counter]==46) ? HRzone : fieldvalue;
+		fieldvalue = (metric[counter]==38) ? mZone[counter] : fieldvalue;
+		fieldvalue = (metric[counter]==99) ? mZone[counter] : fieldvalue;
+		fieldvalue = (metric[counter]==100) ? mZone[counter] : fieldvalue;
+		fieldvalue = (metric[counter]==101) ? mZone[counter] : fieldvalue;
+		fieldvalue = (metric[counter]==102) ? mZone[counter] : fieldvalue;
+		fieldvalue = (metric[counter]==103) ? mZone[counter] : fieldvalue;
+		fieldvalue = (metric[counter]==104) ? mZone[counter] : fieldvalue;  
+		fieldvalue = (metric[counter]==46) ? mZone[counter] : fieldvalue;
 		
         if ( fieldformat.equals("0decimal" ) == true ) {
         	fieldvalue = fieldvalue.format("%.0f");  
