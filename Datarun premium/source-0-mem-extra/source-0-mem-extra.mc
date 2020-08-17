@@ -48,7 +48,7 @@ class ExtramemView extends DatarunpremiumView {
 	var Diff1 								= 0;
 	var Diff2 								= 0;
 	var utempcalibration					= 0;
-	
+	var hrRest;
 	
     function initialize() {
         DatarunpremiumView.initialize();
@@ -72,6 +72,10 @@ class ExtramemView extends DatarunpremiumView {
 		for (i = 1; i < 6; ++i) {
 			VertPace[i] = 0;
 		}       
+		
+		var uProfile = Toybox.UserProfile.getProfile();
+		hrRest = (uProfile.restingHeartRate != null) ? uProfile.restingHeartRate : 50;	
+		hrRest = stringOrNumber(hrRest);
     }
 
 	function onUpdate(dc) {
@@ -684,12 +688,12 @@ class ExtramemView extends DatarunpremiumView {
 	}
 
 	function Coloring(dc,counter,testvalue,CorString) {
-	testvalue = 50;
 		var info = Activity.getActivityInfo();
         var x = CorString.substring(0, 3);
         var y = CorString.substring(4, 7);
         var w = CorString.substring(8, 11);
         var h = CorString.substring(12, 15);
+        var baseline = 0;
         x = x.toNumber();
         y = y.toNumber();
         w = w.toNumber();
@@ -708,6 +712,7 @@ class ExtramemView extends DatarunpremiumView {
             mZ4under = uHrZones[3];
             mZ5under = uHrZones[4];
             mZ5upper = uHrZones[5];
+            baseline = hrRest;
             if (uGarminColors == true) {
         		Z1color = Graphics.COLOR_LT_GRAY;
         		Z2color = Graphics.COLOR_BLUE;
@@ -809,7 +814,7 @@ class ExtramemView extends DatarunpremiumView {
 			mZone[counter] = Math.round(10*(1+(testvalue-mZ1under+0.00001)/(mZ2under-mZ1under+0.00001)))/10;
 		} else {
 			mfillColour = mColourBackGround;        
-            mZone[counter] = Math.round(10*((testvalue+0.00001)/(mZ1under-0.00001)))/10;
+            mZone[counter] = Math.round(10*((testvalue-baseline+0.00001)/(mZ1under-0.00001)))/10;
 		}		
 
 		if ( PalPowerzones == true) {
@@ -902,3 +907,12 @@ function getIterator() {
     return null;
 }
 
+function stringOrNumber(valueorcharacter) {
+	if (valueorcharacter instanceof Toybox.Lang.Number) {
+		//!process Number	
+		return valueorcharacter;
+	} else {
+		//!process String	
+		return 50;
+	}
+}
