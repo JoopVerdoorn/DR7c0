@@ -21,13 +21,14 @@
     <property id="pAlertbeep" type="boolean">false</property>
     <property id="pETAfromLap" type="boolean">true</property>
     <property id="pLapPwr4alerts" type="boolean">false</property>
+    
   </properties>
 
 	
   <strings>
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
-    <string id="AppVersion">2.28j</string>
-    <string id="lDummysetting4version">Version 2.28j of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="AppVersion">2.30d</string>
+    <string id="lDummysetting4version">Version 2.30d of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>
@@ -96,6 +97,7 @@
     <string id="lAPower">Average running power</string>
 	<string id="lLPower">Current lap running power</string>
 	<string id="lLLPower">Last lap running power</string>
+	<string id="lCCnumber">C-Code generated on the watch by the corresponding main Datarun premium datafield</string>
  </strings>
 
   <settings>
@@ -110,7 +112,7 @@
     </setting>
     <setting propertyKey="@Properties.myNumber" title="@Strings.MyNumberTitle">
         <settingConfig type="numeric" errorMessage="@Strings.MyNumberError" />
-    </setting>  
+    </setting>     
     <setting propertyKey="@Properties.pRoundedPace" title="@Strings.lRoundedPace">
       <settingConfig type="boolean" required="true" />
     </setting>

@@ -1,8 +1,6 @@
 <resources>
 	<fonts>
     	<font id="Garmin1" filename="fonts/Roadway53-alleencijfers.fnt" antialias="true"/>
-    	<font id="Garmin2" filename="fonts/Roadway57-alleencijfers.fnt" antialias="true"/>
-    	<font id="Garmin3" filename="fonts/Roadway62-alleencijfers.fnt" antialias="true"/>
 	</fonts>
   <properties>
     <property id="pUpperLeftMetric" type="number">0</property>
@@ -27,9 +25,6 @@
     <property id="pLapPwr4alerts" type="boolean">false</property>
     <property id="pPowerZones" type="string">184:Z1:227:Z2:255:Z3:284:Z4:326:Z5:369</property>
     <property id="pMilClockAltern" type="number">0</property>
-    <property id="prolavPacmaxsecs" type="number">30</property> 
-    <property id="prolavPowmaxsecs" type="number">30</property>
-    <property id="pClockFieldMetric" type="number">38</property>
     <property id="p10Powerzones" type="boolean">false</property>
     <property id="pPPPowerZones" type="string">180:Z1:210:Z2:240:Z3:270:Z4:300:Z5:330:Z6:360:Z7:390:Z8:420:Z9:450:Z10:480</property>
     <property id="pClockFieldMetric" type="number">46</property>
@@ -57,8 +52,8 @@
     <property id="pRealAltitude" type="number">200</property>
     <property id="pFTPAltitude" type="number">200</property>
     <property id="pTempeCalibration" type="number">0</property>
-    <property id="poverruleWourkout" type="boolean">false</property>
     
+    <property id="poverruleWourkout" type="boolean">false</property>
   </properties>
 
 	
@@ -132,9 +127,6 @@
 	<string id="lLLHeartrate">Last lap heartrate</string>   
 	<string id="lFTP">Functional treshold power, needed for Intensity factor and Training stress score</string>
 	<string id="lCP">Critical power, needed for Running Stress Score</string>
-	<string id="lIntensityFactor">Intensity Factor</string>
-	<string id="lTTS">Training Stress Score</string>
-	<string id="lRSS">Running Stress Score</string>
     <string id="lRequiredPower">Boundaries of a static powerzone for warning signal, a format required like (227:284)</string> 
     <string id="lWarningFreq">Frequency for the warning signal for operating out of powerzone</string>
     <string id="lAlertbeep">Play sound as warning signal for operating out of powerzone</string> 
@@ -142,7 +134,6 @@
 	<string id="lPacefield">Pace field on middle row</string>
 	<string id="lPaceper3km">Pace averaged over the last 3 seconds</string>
 	<string id="lPaceper5km">Pace averaged over the last 5 seconds</string>
-	<string id="lPaceper300km">Pace averaged over the last .. seconds (max is 300 seconds)</string>
 	<string id="lVertpace">Vertical speed averaged over the last 5 seconds </string>
 	<string id="lrolavPacmaxsecs">Pace or/and speed averaged over the last ... seconds (max is 300 seconds)</string>
 	<string id="lrolavPacmaxsecsError">This needs to be a number from 2 too 300</string>
@@ -155,10 +146,6 @@
 	<string id="lLLSpeed">Last lap speed in km/mile per hour</string>
 	<string id="lAverageSpeed">Average speed in km/mile per hour</string>
 	<string id="lCadence">Cadence in steps per minute</string>
-	<string id="lRCadence">Cadence in rotations per minute (for bike use)</string>
-	<string id="lAveraCadence">Average cadence</string>
-	<string id="lLapCadence">Current lap cadence</string>
-	<string id="lLLCadence">Last lap cadence</string>
 	<string id="lAEFactor">Average efficiency factor </string>
 	<string id="lAEIndex">Average efficiency index</string>
 	<string id="lLEFactor">Current lap efficiency factor </string>
@@ -169,10 +156,8 @@
     <string id="lAsecPower">Power averaged over the last 3 seconds</string>
     <string id="lPowper5sec">Power averaged over the last 5 seconds</string>
     <string id="lPowper10sec">Power averaged over the last 10 seconds</string>
-    <string id="lPowper300km">Power averaged over the last .. seconds</string>
     <string id="lrolavPowmaxsecs">Power averaged over the last ... seconds (max is 300 seconds)</string>
     <string id="lrolavPowmaxsecsError">This needs to be a number from 2 too 300</string>
-    <string id="lNPower">Normalized power</string>
     <string id="lAPower">Average running power</string>
 	<string id="lLPower">Current lap running power</string>
 	<string id="lLLPower">Last lap running power</string>
@@ -182,11 +167,7 @@
     <string id="lPPPowerZones">Power zones for 10 zone system, a format required like Power zones, a format required like 180:Z1:210:Z2:240:Z3:270:Z4:300:Z5:330:Z6:360:Z7:390:Z8:420:Z9:450:Z10:480</string>
 	<string id="lCEFactor">Current efficiency factor</string>
 	<string id="lCEIndex">Current efficiency index </string>
-    <string id="lCP2HRratio">Current power to heartrate ratio</string>
-    <string id="lLP2HRratio">Lap power to heartrate ratio</string>
-    <string id="lLLP2HRratio">Last lap power to heartrate ratio</string>
-    <string id="lAP2HRratio">Average power to heartrate ratio</string>
-	<string id="lSPowerzone">Current powerzone</string>
+    <string id="lSPowerzone">Current powerzone</string>
 	<string id="l3secPowerzone">Powerzone over the last 3 seconds</string>
 	<string id="l5secPowerzone">Powerzone over the last 5 seconds</string>
 	<string id="l10secPowerzone">Powerzone over the last 10 seconds</string>
@@ -200,8 +181,7 @@
     <string id="lApercFTP">Average power in percentage of FTP</string>
     <string id="lpercFTP5s">Power averaged over 5 seconds in percentage of FTP</string>
     <string id="lpercFTP10s">Power averaged over 10 seconds in percentage of FTP</string>
-    <string id="lpercFTPsec">Power averaged over .. seconds in percentage of FTP (depends on the value of power averaged over the last ... seconds [max is 300 seconds]</string>
-	<string id="ldisablelabel1">Disable colored label for upper left metric</string>
+    <string id="ldisablelabel1">Disable colored label for upper left metric</string>
 	<string id="ldisablelabel2">Disable colored label for upper right metric</string>
 	<string id="ldisablelabel3">Disable colored label for middle left metric</string>
 	<string id="ldisablelabel4">Disable colored label for middle middle metric</string>
@@ -222,11 +202,6 @@
 	<string id="ltempunits">Use Fahrenheit instead of Celsius for temperature metrics (Celsius is default)</string>
 	<string id="lGarminColors">Use Garmin color scheme for label colors (not applicable for Palladino 10 powerzones)</string>
 	<string id="lWeight">Weight in kilo's (needed for Running Effectiveness as used by Steve Palladino)</string>
-    <string id="lCurRE">Current Running Effectiveness (as used by Steve Palladino)</string>
-    <string id="l3secRE">Rolling average over the last 3 seconds of Running Effectiveness (as used by Steve Palladino)</string>
-    <string id="l5secRE">Rolling average over the last 5 seconds of Running Effectiveness (as used by Steve Palladino)</string>
-    <string id="lLapE">Lap Running Effectiveness (as used by Steve Palladino)</string>
-    <string id="lAverRE">Average Running Effectiveness (as used by Steve Palladino)</string>
     <string id="lPowerTarget">Powertarget in Watt, useful when power correction is set only to influence powertarget</string>
     <string id="lPtargetcorrect">Powertarget in Watt as set in settings, corrected by temperature/humidity/altitude if set in settings</string>
     <string id="lOnlyPwrCorrFactor">Use correction factors for running power only to change powertarget</string>
@@ -252,8 +227,8 @@
     <string id="lLtarget">Lower power boundary of a workout step, from Training peaks etc, corrected by temperature/humidity/altitude if set in settings</string> 
     <string id="lHtarget">Upper power boundary of a workout step, from Training peaks etc, corrected by temperature/humidity/altitude if set in settings</string>
     <string id="lLperctarget">Lower power boundary of a workout step in % van FTP, from Training peaks etc, corrected by temperature/humidity/altitude if set in settings</string> 
-    <string id="lHperctarget">Upper power boundary of a workout step in % van FTP, from Training peaks etc, corrected by temperature/humidity/altitude if set in settings</string>
-    <string id="loverruleWourkout">Use a static powerzone for alerts, not powerzones from workout steps</string>      
+    <string id="lHperctarget">Upper power boundary of a workout step in % van FTP, from Training peaks etc, corrected by temperature/humidity/altitude if set in settings</string>   
+    <string id="loverruleWourkout">Use a static powerzone for alerts, not powerzones from workout steps</string>   
 </strings>
 
   <settings>
@@ -271,7 +246,7 @@
     </setting>
     <setting propertyKey="@Properties.myNumber" title="@Strings.MyNumberTitle">
         <settingConfig type="numeric" errorMessage="@Strings.MyNumberError" />
-    </setting>
+    </setting> 
     <setting propertyKey="@Properties.pRoundedPace" title="@Strings.lRoundedPace">
       <settingConfig type="boolean" required="true" />
     </setting>
@@ -367,18 +342,11 @@
     <setting propertyKey="@Properties.pRacetime" title="@Strings.lRacetimeTitle">
       <settingConfig type="alphaNumeric"  required="true"/>
     </setting>
-    <setting propertyKey="@Properties.prolavPacmaxsecs" title="@Strings.lrolavPacmaxsecs">
-      <settingConfig type="numeric" errorMessage="@Strings.lrolavPacmaxsecsError" />
-    </setting>
-    <setting propertyKey="@Properties.prolavPowmaxsecs" title="@Strings.lrolavPowmaxsecs">
-      <settingConfig type="numeric" errorMessage="@Strings.lrolavPowmaxsecsError" />
-    </setting>
     <setting propertyKey="@Properties.pMilClockAltern" title="@Strings.lMilClockAltern">
       <settingConfig type="list" required="true">
         <listEntry value="0">@Strings.lShowMilClock</listEntry>
         <listEntry value="1">@Strings.lShowAMPM</listEntry>
         <listEntry value="2">@Strings.lShowlaps</listEntry>
-        <listEntry value="3">@Strings.lShowmetric</listEntry>
       </settingConfig>
     </setting>
     <setting propertyKey="@Properties.pUpperLeftMetric" title="@Strings.lUpperLeftMetric">
@@ -403,7 +371,6 @@
         <listEntry value="88">@Strings.lLLPaceper100m</listEntry>
         <listEntry value="16">@Strings.lPaceper3km</listEntry>        
         <listEntry value="9">@Strings.lPaceper5km</listEntry>
-        <listEntry value="17">@Strings.lPaceper300km</listEntry>
         <listEntry value="67">@Strings.lVertpace</listEntry>
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
@@ -420,10 +387,6 @@
 
         <listEntry value="999">@Strings.lCadenceMenu</listEntry>
         <listEntry value="50">@Strings.lCadence</listEntry>
-        <listEntry value="61">@Strings.lRCadence</listEntry>
-        <listEntry value="90">@Strings.lLapCadence</listEntry>
-        <listEntry value="91">@Strings.lLLCadence</listEntry>
-        <listEntry value="92">@Strings.lAveraCadence</listEntry>
         
         <listEntry value="993">@Strings.lETAMenu</listEntry>
         <listEntry value="13">@Strings.lETArequiredpace</listEntry>
@@ -449,7 +412,6 @@
         <listEntry value="119">@Strings.lLperctarget</listEntry>
         <listEntry value="120">@Strings.lHperctarget</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
-        <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
 		<listEntry value="21">@Strings.lAsecPower</listEntry>
         <listEntry value="99">@Strings.l3secPowerzone</listEntry>
@@ -457,8 +419,7 @@
         <listEntry value="100">@Strings.l5secPowerzone</listEntry>
         <listEntry value="39">@Strings.lPowper10sec</listEntry>
         <listEntry value="101">@Strings.l10secPowerzone</listEntry>
-		<listEntry value="37">@Strings.lPowper300km</listEntry>
-        <listEntry value="22">@Strings.lLPower</listEntry>
+		<listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="102">@Strings.lLapPowerzone</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="103">@Strings.lLLapPowerzone</listEntry>
@@ -472,8 +433,7 @@
         <listEntry value="72">@Strings.lpercFTP3s</listEntry>
         <listEntry value="76">@Strings.lpercFTP5s</listEntry>
         <listEntry value="77">@Strings.lpercFTP10s</listEntry>
-        <listEntry value="78">@Strings.lpercFTPsec</listEntry>
-
+        
         <listEntry value="997">@Strings.lPIMenu</listEntry>
         <listEntry value="31">@Strings.lCEIndex</listEntry>
         <listEntry value="25">@Strings.lLEIndex</listEntry>
@@ -483,20 +443,8 @@
         <listEntry value="28">@Strings.lLEFactor</listEntry>
         <listEntry value="29">@Strings.lLLEFactor</listEntry>
         <listEntry value="30">@Strings.lAEFactor</listEntry>
-        <listEntry value="93">@Strings.lCurRE</listEntry>
-        <listEntry value="94">@Strings.l3secRE</listEntry>
-        <listEntry value="95">@Strings.l5secRE</listEntry>
-        <listEntry value="96">@Strings.lLapE</listEntry>
-        <listEntry value="98">@Strings.lAverRE</listEntry>
-        <listEntry value="36">@Strings.lCP2HRratio</listEntry>
-        <listEntry value="33">@Strings.lLP2HRratio</listEntry>
-        <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
-        <listEntry value="35">@Strings.lAP2HRratio</listEntry>
         <listEntry value="54">@Strings.lTEffect</listEntry>
         <listEntry value="87">@Strings.lkCalories</listEntry>
-        <listEntry value="58">@Strings.lIntensityFactor</listEntry>
-        <listEntry value="59">@Strings.lTTS</listEntry>
-        <listEntry value="60">@Strings.lRSS</listEntry>
 
         <listEntry value="998">@Strings.lAltitudeMenu</listEntry>
         <listEntry value="51">@Strings.lAltitude</listEntry>
@@ -528,7 +476,6 @@
         <listEntry value="88">@Strings.lLLPaceper100m</listEntry>
         <listEntry value="16">@Strings.lPaceper3km</listEntry>        
         <listEntry value="9">@Strings.lPaceper5km</listEntry>
-        <listEntry value="17">@Strings.lPaceper300km</listEntry>
         <listEntry value="67">@Strings.lVertpace</listEntry>
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
@@ -545,16 +492,12 @@
 
         <listEntry value="999">@Strings.lCadenceMenu</listEntry>
         <listEntry value="50">@Strings.lCadence</listEntry>
-        <listEntry value="61">@Strings.lRCadence</listEntry>
-        <listEntry value="90">@Strings.lLapCadence</listEntry>
-        <listEntry value="91">@Strings.lLLCadence</listEntry>
-        <listEntry value="92">@Strings.lAveraCadence</listEntry>
         
         <listEntry value="993">@Strings.lETAMenu</listEntry>
         <listEntry value="13">@Strings.lETArequiredpace</listEntry>
         <listEntry value="14">@Strings.lETA</listEntry>
         <listEntry value="15">@Strings.lETAdeviation</listEntry>
-        
+
         <listEntry value="995">@Strings.lHRMenu</listEntry>
         <listEntry value="45">@Strings.lHeartrate</listEntry>
         <listEntry value="46">@Strings.lHeartrateZone</listEntry>
@@ -574,7 +517,6 @@
         <listEntry value="119">@Strings.lLperctarget</listEntry>
         <listEntry value="120">@Strings.lHperctarget</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
-        <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
 		<listEntry value="21">@Strings.lAsecPower</listEntry>
         <listEntry value="99">@Strings.l3secPowerzone</listEntry>
@@ -582,8 +524,7 @@
         <listEntry value="100">@Strings.l5secPowerzone</listEntry>
         <listEntry value="39">@Strings.lPowper10sec</listEntry>
         <listEntry value="101">@Strings.l10secPowerzone</listEntry>
-		<listEntry value="37">@Strings.lPowper300km</listEntry>
-        <listEntry value="22">@Strings.lLPower</listEntry>
+		<listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="102">@Strings.lLapPowerzone</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="103">@Strings.lLLapPowerzone</listEntry>
@@ -597,8 +538,7 @@
         <listEntry value="72">@Strings.lpercFTP3s</listEntry>
         <listEntry value="76">@Strings.lpercFTP5s</listEntry>
         <listEntry value="77">@Strings.lpercFTP10s</listEntry>
-        <listEntry value="78">@Strings.lpercFTPsec</listEntry>
-
+        
         <listEntry value="997">@Strings.lPIMenu</listEntry>
         <listEntry value="31">@Strings.lCEIndex</listEntry>
         <listEntry value="25">@Strings.lLEIndex</listEntry>
@@ -608,25 +548,13 @@
         <listEntry value="28">@Strings.lLEFactor</listEntry>
         <listEntry value="29">@Strings.lLLEFactor</listEntry>
         <listEntry value="30">@Strings.lAEFactor</listEntry>
-        <listEntry value="93">@Strings.lCurRE</listEntry>
-        <listEntry value="94">@Strings.l3secRE</listEntry>
-        <listEntry value="95">@Strings.l5secRE</listEntry>
-        <listEntry value="96">@Strings.lLapE</listEntry>
-        <listEntry value="98">@Strings.lAverRE</listEntry>
-        <listEntry value="36">@Strings.lCP2HRratio</listEntry>
-        <listEntry value="33">@Strings.lLP2HRratio</listEntry>
-        <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
-        <listEntry value="35">@Strings.lAP2HRratio</listEntry>
         <listEntry value="54">@Strings.lTEffect</listEntry>
         <listEntry value="87">@Strings.lkCalories</listEntry>
-        <listEntry value="58">@Strings.lIntensityFactor</listEntry>
-        <listEntry value="59">@Strings.lTTS</listEntry>
-        <listEntry value="60">@Strings.lRSS</listEntry>
 
         <listEntry value="998">@Strings.lAltitudeMenu</listEntry>
         <listEntry value="51">@Strings.lAltitude</listEntry>
         <listEntry value="52">@Strings.lElevationGain</listEntry>
-        <listEntry value="53">@Strings.lElevationLoss</listEntry>   
+        <listEntry value="53">@Strings.lElevationLoss</listEntry>
         <listEntry value="89">@Strings.lTemp</listEntry>
         <listEntry value="105">@Strings.lTempeTemp</listEntry>
       </settingConfig>
@@ -648,7 +576,6 @@
         <listEntry value="88">@Strings.lLLPaceper100m</listEntry>
         <listEntry value="16">@Strings.lPaceper3km</listEntry>        
         <listEntry value="9">@Strings.lPaceper5km</listEntry>
-        <listEntry value="17">@Strings.lPaceper300km</listEntry>
         <listEntry value="67">@Strings.lVertpace</listEntry>
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
@@ -665,14 +592,10 @@
 
         <listEntry value="999">@Strings.lCadenceMenu</listEntry>
         <listEntry value="50">@Strings.lCadence</listEntry>
-        <listEntry value="61">@Strings.lRCadence</listEntry>
-        <listEntry value="90">@Strings.lLapCadence</listEntry>
-        <listEntry value="91">@Strings.lLLCadence</listEntry>
-        <listEntry value="92">@Strings.lAveraCadence</listEntry>
         
         <listEntry value="993">@Strings.lETAMenu</listEntry>
         <listEntry value="13">@Strings.lETArequiredpace</listEntry>
-        
+
         <listEntry value="995">@Strings.lHRMenu</listEntry>
         <listEntry value="45">@Strings.lHeartrate</listEntry>
         <listEntry value="46">@Strings.lHeartrateZone</listEntry>
@@ -692,7 +615,6 @@
         <listEntry value="119">@Strings.lLperctarget</listEntry>
         <listEntry value="120">@Strings.lHperctarget</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
-        <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
 		<listEntry value="21">@Strings.lAsecPower</listEntry>
         <listEntry value="99">@Strings.l3secPowerzone</listEntry>
@@ -700,8 +622,7 @@
         <listEntry value="100">@Strings.l5secPowerzone</listEntry>
         <listEntry value="39">@Strings.lPowper10sec</listEntry>
         <listEntry value="101">@Strings.l10secPowerzone</listEntry>
-		<listEntry value="37">@Strings.lPowper300km</listEntry>
-        <listEntry value="22">@Strings.lLPower</listEntry>
+		<listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="102">@Strings.lLapPowerzone</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="103">@Strings.lLLapPowerzone</listEntry>
@@ -715,8 +636,7 @@
         <listEntry value="72">@Strings.lpercFTP3s</listEntry>
         <listEntry value="76">@Strings.lpercFTP5s</listEntry>
         <listEntry value="77">@Strings.lpercFTP10s</listEntry>
-        <listEntry value="78">@Strings.lpercFTPsec</listEntry>
-
+        
         <listEntry value="997">@Strings.lPIMenu</listEntry>
         <listEntry value="31">@Strings.lCEIndex</listEntry>
         <listEntry value="25">@Strings.lLEIndex</listEntry>
@@ -726,27 +646,15 @@
         <listEntry value="28">@Strings.lLEFactor</listEntry>
         <listEntry value="29">@Strings.lLLEFactor</listEntry>
         <listEntry value="30">@Strings.lAEFactor</listEntry>
-        <listEntry value="93">@Strings.lCurRE</listEntry>
-        <listEntry value="94">@Strings.l3secRE</listEntry>
-        <listEntry value="95">@Strings.l5secRE</listEntry>
-        <listEntry value="96">@Strings.lLapE</listEntry>
-        <listEntry value="98">@Strings.lAverRE</listEntry>
-        <listEntry value="36">@Strings.lCP2HRratio</listEntry>
-        <listEntry value="33">@Strings.lLP2HRratio</listEntry>
-        <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
-        <listEntry value="35">@Strings.lAP2HRratio</listEntry>
         <listEntry value="54">@Strings.lTEffect</listEntry>
         <listEntry value="87">@Strings.lkCalories</listEntry>
-        <listEntry value="58">@Strings.lIntensityFactor</listEntry>
-        <listEntry value="59">@Strings.lTTS</listEntry>
-        <listEntry value="60">@Strings.lRSS</listEntry>
 
         <listEntry value="998">@Strings.lAltitudeMenu</listEntry>
         <listEntry value="51">@Strings.lAltitude</listEntry>
         <listEntry value="52">@Strings.lElevationGain</listEntry>
         <listEntry value="53">@Strings.lElevationLoss</listEntry>
-        <listEntry value="89">@Strings.lTemp</listEntry>   
-        <listEntry value="105">@Strings.lTempeTemp</listEntry>   
+        <listEntry value="89">@Strings.lTemp</listEntry>
+        <listEntry value="105">@Strings.lTempeTemp</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.pMiddleMiddleMetric" title="@Strings.lMiddleMiddleMetric">
@@ -765,13 +673,12 @@
         <listEntry value="88">@Strings.lLLPaceper100m</listEntry>
         <listEntry value="16">@Strings.lPaceper3km</listEntry>        
         <listEntry value="9">@Strings.lPaceper5km</listEntry>
-        <listEntry value="17">@Strings.lPaceper300km</listEntry>
         <listEntry value="67">@Strings.lVertpace</listEntry>
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
         <listEntry value="12">@Strings.lAvgPace</listEntry>
-
-		<listEntry value="994">@Strings.lSpeedMenu</listEntry>
+        
+        <listEntry value="994">@Strings.lSpeedMenu</listEntry>
         <listEntry value="40">@Strings.lCurrentSpeed</listEntry>
         <listEntry value="62">@Strings.lAverage3secSpeed</listEntry>
         <listEntry value="41">@Strings.lAverage5secSpeed</listEntry>
@@ -782,14 +689,10 @@
 
         <listEntry value="999">@Strings.lCadenceMenu</listEntry>
         <listEntry value="50">@Strings.lCadence</listEntry>
-        <listEntry value="61">@Strings.lRCadence</listEntry>
-        <listEntry value="90">@Strings.lLapCadence</listEntry>
-        <listEntry value="91">@Strings.lLLCadence</listEntry>
-        <listEntry value="92">@Strings.lAveraCadence</listEntry>
         
         <listEntry value="993">@Strings.lETAMenu</listEntry>
         <listEntry value="13">@Strings.lETArequiredpace</listEntry>
-        
+
         <listEntry value="995">@Strings.lHRMenu</listEntry>
         <listEntry value="45">@Strings.lHeartrate</listEntry>
         <listEntry value="46">@Strings.lHeartrateZone</listEntry>
@@ -809,7 +712,6 @@
         <listEntry value="119">@Strings.lLperctarget</listEntry>
         <listEntry value="120">@Strings.lHperctarget</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
-        <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
 		<listEntry value="21">@Strings.lAsecPower</listEntry>
         <listEntry value="99">@Strings.l3secPowerzone</listEntry>
@@ -817,8 +719,7 @@
         <listEntry value="100">@Strings.l5secPowerzone</listEntry>
         <listEntry value="39">@Strings.lPowper10sec</listEntry>
         <listEntry value="101">@Strings.l10secPowerzone</listEntry>
-		<listEntry value="37">@Strings.lPowper300km</listEntry>
-        <listEntry value="22">@Strings.lLPower</listEntry>
+		<listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="102">@Strings.lLapPowerzone</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="103">@Strings.lLLapPowerzone</listEntry>
@@ -832,8 +733,7 @@
         <listEntry value="72">@Strings.lpercFTP3s</listEntry>
         <listEntry value="76">@Strings.lpercFTP5s</listEntry>
         <listEntry value="77">@Strings.lpercFTP10s</listEntry>
-        <listEntry value="78">@Strings.lpercFTPsec</listEntry>
-
+        
         <listEntry value="997">@Strings.lPIMenu</listEntry>
         <listEntry value="31">@Strings.lCEIndex</listEntry>
         <listEntry value="25">@Strings.lLEIndex</listEntry>
@@ -843,26 +743,14 @@
         <listEntry value="28">@Strings.lLEFactor</listEntry>
         <listEntry value="29">@Strings.lLLEFactor</listEntry>
         <listEntry value="30">@Strings.lAEFactor</listEntry>
-        <listEntry value="93">@Strings.lCurRE</listEntry>
-        <listEntry value="94">@Strings.l3secRE</listEntry>
-        <listEntry value="95">@Strings.l5secRE</listEntry>
-        <listEntry value="96">@Strings.lLapE</listEntry>
-        <listEntry value="98">@Strings.lAverRE</listEntry>
-        <listEntry value="36">@Strings.lCP2HRratio</listEntry>
-        <listEntry value="33">@Strings.lLP2HRratio</listEntry>
-        <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
-        <listEntry value="35">@Strings.lAP2HRratio</listEntry>
         <listEntry value="54">@Strings.lTEffect</listEntry>
         <listEntry value="87">@Strings.lkCalories</listEntry>
-        <listEntry value="58">@Strings.lIntensityFactor</listEntry>
-        <listEntry value="59">@Strings.lTTS</listEntry>
-        <listEntry value="60">@Strings.lRSS</listEntry>
 
         <listEntry value="998">@Strings.lAltitudeMenu</listEntry>
         <listEntry value="51">@Strings.lAltitude</listEntry>
         <listEntry value="52">@Strings.lElevationGain</listEntry>
-        <listEntry value="53">@Strings.lElevationLoss</listEntry>  
-        <listEntry value="89">@Strings.lTemp</listEntry> 
+        <listEntry value="53">@Strings.lElevationLoss</listEntry>
+        <listEntry value="89">@Strings.lTemp</listEntry>
         <listEntry value="105">@Strings.lTempeTemp</listEntry>   
       </settingConfig>
     </setting>
@@ -882,13 +770,12 @@
         <listEntry value="88">@Strings.lLLPaceper100m</listEntry>
         <listEntry value="16">@Strings.lPaceper3km</listEntry>        
         <listEntry value="9">@Strings.lPaceper5km</listEntry>
-        <listEntry value="17">@Strings.lPaceper300km</listEntry>
         <listEntry value="67">@Strings.lVertpace</listEntry>
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
         <listEntry value="12">@Strings.lAvgPace</listEntry>
         
-		<listEntry value="994">@Strings.lSpeedMenu</listEntry>
+        <listEntry value="994">@Strings.lSpeedMenu</listEntry>
         <listEntry value="40">@Strings.lCurrentSpeed</listEntry>
         <listEntry value="62">@Strings.lAverage3secSpeed</listEntry>
         <listEntry value="41">@Strings.lAverage5secSpeed</listEntry>
@@ -899,14 +786,10 @@
 
         <listEntry value="999">@Strings.lCadenceMenu</listEntry>
         <listEntry value="50">@Strings.lCadence</listEntry>
-        <listEntry value="61">@Strings.lRCadence</listEntry>
-        <listEntry value="90">@Strings.lLapCadence</listEntry>
-        <listEntry value="91">@Strings.lLLCadence</listEntry>
-        <listEntry value="92">@Strings.lAveraCadence</listEntry>
         
         <listEntry value="993">@Strings.lETAMenu</listEntry>
         <listEntry value="13">@Strings.lETArequiredpace</listEntry>
-        
+
         <listEntry value="995">@Strings.lHRMenu</listEntry>
         <listEntry value="45">@Strings.lHeartrate</listEntry>
         <listEntry value="46">@Strings.lHeartrateZone</listEntry>
@@ -926,7 +809,6 @@
         <listEntry value="119">@Strings.lLperctarget</listEntry>
         <listEntry value="120">@Strings.lHperctarget</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
-        <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
 		<listEntry value="21">@Strings.lAsecPower</listEntry>
         <listEntry value="99">@Strings.l3secPowerzone</listEntry>
@@ -934,8 +816,7 @@
         <listEntry value="100">@Strings.l5secPowerzone</listEntry>
         <listEntry value="39">@Strings.lPowper10sec</listEntry>
         <listEntry value="101">@Strings.l10secPowerzone</listEntry>
-		<listEntry value="37">@Strings.lPowper300km</listEntry>
-        <listEntry value="22">@Strings.lLPower</listEntry>
+		<listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="102">@Strings.lLapPowerzone</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="103">@Strings.lLLapPowerzone</listEntry>
@@ -949,8 +830,7 @@
         <listEntry value="72">@Strings.lpercFTP3s</listEntry>
         <listEntry value="76">@Strings.lpercFTP5s</listEntry>
         <listEntry value="77">@Strings.lpercFTP10s</listEntry>
-        <listEntry value="78">@Strings.lpercFTPsec</listEntry>
-
+        
         <listEntry value="997">@Strings.lPIMenu</listEntry>
         <listEntry value="31">@Strings.lCEIndex</listEntry>
         <listEntry value="25">@Strings.lLEIndex</listEntry>
@@ -960,27 +840,15 @@
         <listEntry value="28">@Strings.lLEFactor</listEntry>
         <listEntry value="29">@Strings.lLLEFactor</listEntry>
         <listEntry value="30">@Strings.lAEFactor</listEntry>
-        <listEntry value="93">@Strings.lCurRE</listEntry>
-        <listEntry value="94">@Strings.l3secRE</listEntry>
-        <listEntry value="95">@Strings.l5secRE</listEntry>
-        <listEntry value="96">@Strings.lLapE</listEntry>
-        <listEntry value="98">@Strings.lAverRE</listEntry>
-        <listEntry value="36">@Strings.lCP2HRratio</listEntry>
-        <listEntry value="33">@Strings.lLP2HRratio</listEntry>
-        <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
-        <listEntry value="35">@Strings.lAP2HRratio</listEntry>
         <listEntry value="54">@Strings.lTEffect</listEntry>
         <listEntry value="87">@Strings.lkCalories</listEntry>
-        <listEntry value="58">@Strings.lIntensityFactor</listEntry>
-        <listEntry value="59">@Strings.lTTS</listEntry>
-        <listEntry value="60">@Strings.lRSS</listEntry>
 
         <listEntry value="998">@Strings.lAltitudeMenu</listEntry>
         <listEntry value="51">@Strings.lAltitude</listEntry>
         <listEntry value="52">@Strings.lElevationGain</listEntry>
-        <listEntry value="53">@Strings.lElevationLoss</listEntry>    
-        <listEntry value="89">@Strings.lTemp</listEntry> 
-        <listEntry value="105">@Strings.lTempeTemp</listEntry> 
+        <listEntry value="53">@Strings.lElevationLoss</listEntry>
+        <listEntry value="89">@Strings.lTemp</listEntry>
+        <listEntry value="105">@Strings.lTempeTemp</listEntry>
       </settingConfig>
     </setting>
     
@@ -1006,7 +874,6 @@
         <listEntry value="88">@Strings.lLLPaceper100m</listEntry>
         <listEntry value="16">@Strings.lPaceper3km</listEntry>        
         <listEntry value="9">@Strings.lPaceper5km</listEntry>
-        <listEntry value="17">@Strings.lPaceper300km</listEntry>
         <listEntry value="67">@Strings.lVertpace</listEntry>
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
@@ -1023,16 +890,12 @@
 
         <listEntry value="999">@Strings.lCadenceMenu</listEntry>
         <listEntry value="50">@Strings.lCadence</listEntry>
-        <listEntry value="61">@Strings.lRCadence</listEntry>
-        <listEntry value="90">@Strings.lLapCadence</listEntry>
-        <listEntry value="91">@Strings.lLLCadence</listEntry>
-        <listEntry value="92">@Strings.lAveraCadence</listEntry>
         
         <listEntry value="993">@Strings.lETAMenu</listEntry>
         <listEntry value="13">@Strings.lETArequiredpace</listEntry>
         <listEntry value="14">@Strings.lETA</listEntry>
         <listEntry value="15">@Strings.lETAdeviation</listEntry>
-        
+
         <listEntry value="995">@Strings.lHRMenu</listEntry>
         <listEntry value="45">@Strings.lHeartrate</listEntry>
         <listEntry value="46">@Strings.lHeartrateZone</listEntry>
@@ -1052,7 +915,6 @@
         <listEntry value="119">@Strings.lLperctarget</listEntry>
         <listEntry value="120">@Strings.lHperctarget</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
-        <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
 		<listEntry value="21">@Strings.lAsecPower</listEntry>
         <listEntry value="99">@Strings.l3secPowerzone</listEntry>
@@ -1060,8 +922,7 @@
         <listEntry value="100">@Strings.l5secPowerzone</listEntry>
         <listEntry value="39">@Strings.lPowper10sec</listEntry>
         <listEntry value="101">@Strings.l10secPowerzone</listEntry>
-		<listEntry value="37">@Strings.lPowper300km</listEntry>
-        <listEntry value="22">@Strings.lLPower</listEntry>
+		<listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="102">@Strings.lLapPowerzone</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="103">@Strings.lLLapPowerzone</listEntry>
@@ -1075,8 +936,7 @@
         <listEntry value="72">@Strings.lpercFTP3s</listEntry>
         <listEntry value="76">@Strings.lpercFTP5s</listEntry>
         <listEntry value="77">@Strings.lpercFTP10s</listEntry>
-        <listEntry value="78">@Strings.lpercFTPsec</listEntry>
-
+        
         <listEntry value="997">@Strings.lPIMenu</listEntry>
         <listEntry value="31">@Strings.lCEIndex</listEntry>
         <listEntry value="25">@Strings.lLEIndex</listEntry>
@@ -1086,20 +946,8 @@
         <listEntry value="28">@Strings.lLEFactor</listEntry>
         <listEntry value="29">@Strings.lLLEFactor</listEntry>
         <listEntry value="30">@Strings.lAEFactor</listEntry>
-        <listEntry value="93">@Strings.lCurRE</listEntry>
-        <listEntry value="94">@Strings.l3secRE</listEntry>
-        <listEntry value="95">@Strings.l5secRE</listEntry>
-        <listEntry value="96">@Strings.lLapE</listEntry>
-        <listEntry value="98">@Strings.lAverRE</listEntry>
-        <listEntry value="36">@Strings.lCP2HRratio</listEntry>
-        <listEntry value="33">@Strings.lLP2HRratio</listEntry>
-        <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
-        <listEntry value="35">@Strings.lAP2HRratio</listEntry>
         <listEntry value="54">@Strings.lTEffect</listEntry>
         <listEntry value="87">@Strings.lkCalories</listEntry>
-        <listEntry value="58">@Strings.lIntensityFactor</listEntry>
-        <listEntry value="59">@Strings.lTTS</listEntry>
-        <listEntry value="60">@Strings.lRSS</listEntry>
 
         <listEntry value="998">@Strings.lAltitudeMenu</listEntry>
         <listEntry value="51">@Strings.lAltitude</listEntry>
@@ -1131,13 +979,12 @@
         <listEntry value="88">@Strings.lLLPaceper100m</listEntry>
         <listEntry value="16">@Strings.lPaceper3km</listEntry>        
         <listEntry value="9">@Strings.lPaceper5km</listEntry>
-        <listEntry value="17">@Strings.lPaceper300km</listEntry>
         <listEntry value="67">@Strings.lVertpace</listEntry>
         <listEntry value="10">@Strings.lLapPace</listEntry>
         <listEntry value="11">@Strings.lLastLapPace</listEntry>
         <listEntry value="12">@Strings.lAvgPace</listEntry>
         
-		<listEntry value="994">@Strings.lSpeedMenu</listEntry>
+        <listEntry value="994">@Strings.lSpeedMenu</listEntry>
         <listEntry value="40">@Strings.lCurrentSpeed</listEntry>
         <listEntry value="62">@Strings.lAverage3secSpeed</listEntry>
         <listEntry value="41">@Strings.lAverage5secSpeed</listEntry>
@@ -1148,16 +995,12 @@
 
         <listEntry value="999">@Strings.lCadenceMenu</listEntry>
         <listEntry value="50">@Strings.lCadence</listEntry>
-        <listEntry value="61">@Strings.lRCadence</listEntry>
-        <listEntry value="90">@Strings.lLapCadence</listEntry>
-        <listEntry value="91">@Strings.lLLCadence</listEntry>
-        <listEntry value="92">@Strings.lAveraCadence</listEntry>
         
         <listEntry value="993">@Strings.lETAMenu</listEntry>
         <listEntry value="13">@Strings.lETArequiredpace</listEntry>
         <listEntry value="14">@Strings.lETA</listEntry>
         <listEntry value="15">@Strings.lETAdeviation</listEntry>
-        
+
         <listEntry value="995">@Strings.lHRMenu</listEntry>
         <listEntry value="45">@Strings.lHeartrate</listEntry>
         <listEntry value="46">@Strings.lHeartrateZone</listEntry>
@@ -1177,7 +1020,6 @@
         <listEntry value="119">@Strings.lLperctarget</listEntry>
         <listEntry value="120">@Strings.lHperctarget</listEntry>
         <listEntry value="20">@Strings.lSPower</listEntry>
-        <listEntry value="57">@Strings.lNPower</listEntry>
         <listEntry value="38">@Strings.lSPowerzone</listEntry>
 		<listEntry value="21">@Strings.lAsecPower</listEntry>
         <listEntry value="99">@Strings.l3secPowerzone</listEntry>
@@ -1185,8 +1027,7 @@
         <listEntry value="100">@Strings.l5secPowerzone</listEntry>
         <listEntry value="39">@Strings.lPowper10sec</listEntry>
         <listEntry value="101">@Strings.l10secPowerzone</listEntry>
-		<listEntry value="37">@Strings.lPowper300km</listEntry>
-        <listEntry value="22">@Strings.lLPower</listEntry>
+		<listEntry value="22">@Strings.lLPower</listEntry>
         <listEntry value="102">@Strings.lLapPowerzone</listEntry>
         <listEntry value="23">@Strings.lLLPower</listEntry>
         <listEntry value="103">@Strings.lLLapPowerzone</listEntry>
@@ -1200,8 +1041,7 @@
         <listEntry value="72">@Strings.lpercFTP3s</listEntry>
         <listEntry value="76">@Strings.lpercFTP5s</listEntry>
         <listEntry value="77">@Strings.lpercFTP10s</listEntry>
-        <listEntry value="78">@Strings.lpercFTPsec</listEntry>
-
+        
         <listEntry value="997">@Strings.lPIMenu</listEntry>
         <listEntry value="31">@Strings.lCEIndex</listEntry>
         <listEntry value="25">@Strings.lLEIndex</listEntry>
@@ -1211,20 +1051,8 @@
         <listEntry value="28">@Strings.lLEFactor</listEntry>
         <listEntry value="29">@Strings.lLLEFactor</listEntry>
         <listEntry value="30">@Strings.lAEFactor</listEntry>
-        <listEntry value="93">@Strings.lCurRE</listEntry>
-        <listEntry value="94">@Strings.l3secRE</listEntry>
-        <listEntry value="95">@Strings.l5secRE</listEntry>
-        <listEntry value="96">@Strings.lLapE</listEntry>
-        <listEntry value="98">@Strings.lAverRE</listEntry>
-        <listEntry value="36">@Strings.lCP2HRratio</listEntry>
-        <listEntry value="33">@Strings.lLP2HRratio</listEntry>
-        <listEntry value="34">@Strings.lLLP2HRratio</listEntry>
-        <listEntry value="35">@Strings.lAP2HRratio</listEntry>
         <listEntry value="54">@Strings.lTEffect</listEntry>
         <listEntry value="87">@Strings.lkCalories</listEntry>
-        <listEntry value="58">@Strings.lIntensityFactor</listEntry>
-        <listEntry value="59">@Strings.lTTS</listEntry>
-        <listEntry value="60">@Strings.lRSS</listEntry>
 
         <listEntry value="998">@Strings.lAltitudeMenu</listEntry>
         <listEntry value="51">@Strings.lAltitude</listEntry>
@@ -1233,72 +1061,6 @@
         <listEntry value="89">@Strings.lTemp</listEntry>
         <listEntry value="105">@Strings.lTempeTemp</listEntry>
        </settingConfig>
-    </setting>
-    <setting propertyKey="@Properties.pClockFieldMetric" title="@Strings.lClockFieldMetric">
-      <settingConfig type="list" required="true">
-        <listEntry value="991">@Strings.lDistanceMenu</listEntry>
-        <listEntry value="4">@Strings.lDistDistance</listEntry>
-        <listEntry value="5">@Strings.lDistLap</listEntry>
-        <listEntry value="6">@Strings.lDistLastLap</listEntry>
-        <listEntry value="7">@Strings.lAvgLapD</listEntry>
-        
-        <listEntry value="992">@Strings.lPaceMenu</listEntry>
-        <listEntry value="8">@Strings.lCurrentPace</listEntry>
-        <listEntry value="55">@Strings.lPaceper100m</listEntry>   
-        <listEntry value="88">@Strings.lLLPaceper100m</listEntry>     
-        <listEntry value="16">@Strings.lPaceper3km</listEntry>
-        <listEntry value="9">@Strings.lPaceper5km</listEntry>
-        <listEntry value="17">@Strings.lPaceper300km</listEntry>
-        <listEntry value="67">@Strings.lVertpace</listEntry>
-        <listEntry value="10">@Strings.lLapPace</listEntry>
-        <listEntry value="11">@Strings.lLastLapPace</listEntry>
-        <listEntry value="12">@Strings.lAvgPace</listEntry>
-        <listEntry value="81">@Strings.ldistanceToNextPoint</listEntry>
-        <listEntry value="82">@Strings.ldistanceToDestination</listEntry>
-        <listEntry value="13">@Strings.lETArequiredpace</listEntry>
-
-        <listEntry value="994">@Strings.lSpeedMenu</listEntry>
-        <listEntry value="40">@Strings.lCurrentSpeed</listEntry>
-        <listEntry value="62">@Strings.lAverage3secSpeed</listEntry>
-        <listEntry value="41">@Strings.lAverage5secSpeed</listEntry>
-        <listEntry value="63">@Strings.lAverage30secSpeed</listEntry>
-        <listEntry value="42">@Strings.lLapSpeed</listEntry>
-        <listEntry value="43">@Strings.lLLSpeed</listEntry>
-        <listEntry value="44">@Strings.lAverageSpeed</listEntry>
-        
-		<listEntry value="999">@Strings.lCadenceMenu</listEntry>
-        <listEntry value="50">@Strings.lCadence</listEntry>
-        <listEntry value="61">@Strings.lRCadence</listEntry>
-        <listEntry value="90">@Strings.lLapCadence</listEntry>
-        <listEntry value="91">@Strings.lLLCadence</listEntry>
-        <listEntry value="92">@Strings.lAveraCadence</listEntry>
-        
-        <listEntry value="995">@Strings.lHRMenu</listEntry>
-        <listEntry value="45">@Strings.lHeartrate</listEntry>
-        <listEntry value="46">@Strings.lHeartrateZone</listEntry>
-        <listEntry value="47">@Strings.lLapHeartrate</listEntry>
-        <listEntry value="48">@Strings.lLLHeartrate</listEntry>
-        <listEntry value="49">@Strings.lAveraHeartrate</listEntry>
-        <listEntry value="83">@Strings.lpercMaxHR</listEntry>
-        <listEntry value="84">@Strings.lLpercMaxHR</listEntry>
-        <listEntry value="85">@Strings.lLLpercMaxHR</listEntry>
-        <listEntry value="86">@Strings.lApercMaxHR</listEntry>
-        
-        <listEntry value="998">@Strings.lAltitudeMenu</listEntry>
-        <listEntry value="51">@Strings.lAltitude</listEntry>
-        <listEntry value="52">@Strings.lElevationGain</listEntry>
-        <listEntry value="53">@Strings.lElevationLoss</listEntry>
-        <listEntry value="89">@Strings.lTemp</listEntry>
-        <listEntry value="105">@Strings.lTempeTemp</listEntry>
-        
-        <listEntry value="997">@Strings.lPIMenu</listEntry>
-        <listEntry value="32">@Strings.lCEFactor</listEntry>
-        <listEntry value="28">@Strings.lLEFactor</listEntry>
-        <listEntry value="29">@Strings.lLLEFactor</listEntry>
-        <listEntry value="30">@Strings.lAEFactor</listEntry>
-        <listEntry value="54">@Strings.lTEffect</listEntry>  
-        <listEntry value="87">@Strings.lkCalories</listEntry>
-      </settingConfig>
     </setting>
     <setting propertyKey="@Properties.pGarminColors" title="@Strings.lGarminColors">
       <settingConfig type="boolean" required="true" />

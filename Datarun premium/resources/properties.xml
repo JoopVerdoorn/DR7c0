@@ -17,13 +17,14 @@
     <property id="pETAfromLap" type="boolean">true</property>
     <property id="pShowDemo" type="boolean">false</property>
     <property id="pDummysetting4version" type="boolean">true</property>
+    
   </properties>
 
 	
   <strings>
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
-    <string id="AppVersion">2.28j</string>
-    <string id="lDummysetting4version">Version 2.28j of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="AppVersion">2.30d</string>
+    <string id="lDummysetting4version">Version 2.30d of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>
@@ -90,7 +91,7 @@
 	<string id="lLLSpeed">Last lap speed in km/mile per hour</string>
 	<string id="lAverageSpeed">Average speed in km/mile per hour</string>
 	<string id="lCadence">Cadence in steps per minute</string>
-
+	<string id="lCCnumber">C-Code generated on the watch by the corresponding main Datarun premium datafield</string>
  </strings>
 
   <settings>
