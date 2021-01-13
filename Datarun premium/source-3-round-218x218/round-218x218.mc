@@ -98,7 +98,7 @@ class DeviceView extends PowerView {
 		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
 	
 		if (licenseOK == true) {
-      		dc.drawText(109, 36, Graphics.FONT_XTINY, "Datarun prem 7m c0", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+      		dc.drawText(109, 36, Graphics.FONT_XTINY, "DR7c0", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(109, 109, Graphics.FONT_TINY, "Registered !!", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(74, 145, Graphics.FONT_XTINY, "License code: ", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 			dc.drawText(164, 145, Graphics.FONT_XTINY, mtest, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
