@@ -20,6 +20,7 @@ class PowerView extends CiqView {
     var overruleWourkout					= false;
     hidden var mPowerWarningunder				= 0;
     hidden var mPowerWarningupper 				= 999;
+    hidden var AveragePower 					= 0;
         
     function initialize() {
         CiqView.initialize();
@@ -58,7 +59,7 @@ class PowerView extends CiqView {
 
 		//!Calculate powermetrics
 		var mLapElapsedPower = mElapsedPower - mLastLapPowerMarker;
-        
+        AveragePower = Math.round((mPowerTime != 0) ? mElapsedPower/mPowerTime : 0);
 		LapPower = (mLapTimerTimePwr != 0) ? Math.round(mLapElapsedPower/mLapTimerTimePwr) : 0; 	
 		LastLapPower = (mLastLapTimerTimePwr != 0) ? Math.round(mLastLapElapsedPower/mLastLapTimerTimePwr) : 0;
 
@@ -159,7 +160,7 @@ class PowerView extends CiqView {
             	fieldLabel[i] = "LL Pwr";
             	fieldFormat[i] = "power";
 	        } else if (metric[i] == 24) {
-    	        fieldValue[i] = (info.averagePower != null) ? info.averagePower : 0;
+    	        fieldValue[i] = AveragePower;
         	    fieldLabel[i] = "A Power";
             	fieldFormat[i] = "power";   
 			}

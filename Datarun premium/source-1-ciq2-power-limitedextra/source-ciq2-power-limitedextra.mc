@@ -26,7 +26,6 @@ class CiqView extends ExtramemView {
     hidden var WorkoutStepLowBoundary		= 0;
     hidden var WorkoutStepHighBoundary		= 999;
     hidden var is32kBdevice					= false;
-    var AveragePower						= 0;
 
             		            				
     function initialize() {
@@ -182,13 +181,13 @@ class CiqView extends ExtramemView {
 			}
            	
             //!Calculate lappower
-            mPowerTime		 = (info.currentPower != null) ? mPowerTime+1 : mPowerTime;
+            mPowerTime		 = (info.currentPower != null and mTimerRunning) ? mPowerTime+1 : mPowerTime;
             if (uOnlyPwrCorrFactor == false) {
             	runPower 		 = (info.currentPower != null) ? (info.currentPower+0.001)*PwrCorrFactor : 0;
             } else {
             	runPower 		 = (info.currentPower != null) ? info.currentPower : 0;
             }
-			mElapsedPower    = mElapsedPower + runPower;
+			mElapsedPower    = (mTimerRunning) ? mElapsedPower + runPower : mElapsedPower;
 				 			             
         }
 	}
@@ -251,8 +250,6 @@ class CiqView extends ExtramemView {
 		}
 		
 		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
-		
-		AveragePower = (info.averagePower != null) ? info.averagePower : 0;
 		
 		i = 0; 
 	    for (i = 1; i < 8; ++i) {

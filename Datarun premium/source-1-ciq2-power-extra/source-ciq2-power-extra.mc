@@ -220,13 +220,13 @@ class CiqView extends ExtramemView {
 			}
            	
             //!Calculate lappower
-            mPowerTime		 = (info.currentPower != null) ? mPowerTime+1 : mPowerTime;
+            mPowerTime		 = (info.currentPower != null and mTimerRunning) ? mPowerTime+1 : mPowerTime;
             if (uOnlyPwrCorrFactor == false) {
             	runPower 		 = (info.currentPower != null) ? (info.currentPower+0.001)*PwrCorrFactor : 0;
             } else {
             	runPower 		 = (info.currentPower != null) ? info.currentPower : 0;
             }
-			mElapsedPower    = mElapsedPower + runPower;
+			mElapsedPower    = (mTimerRunning) ? mElapsedPower + runPower : mElapsedPower;
 			
 			if (uCP != 0) {
 				if ((runPower+0.001)/uCP < 0.5 ) {
@@ -349,7 +349,6 @@ class CiqView extends ExtramemView {
 		}
 		
 		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
-		AveragePower = (info.averagePower != null) ? info.averagePower : 0;
 		
 		i = 0; 
 	    for (i = 1; i < 8; ++i) {
