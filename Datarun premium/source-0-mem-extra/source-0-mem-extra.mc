@@ -879,7 +879,7 @@ class ExtramemView extends DatarunpremiumView {
                     mZone[counter] = Math.round(10*(1+(testvalue-mZ1under+0.00001)/(mZ2under-mZ1under+0.00001)))/10;
                 } else {
                     mfillColour = Graphics.COLOR_LT_GRAY;        //! (Z0)
-                    mZone[counter] = Math.round(10*((testvalue+0.00001)/(mZ1under-0.00001)))/10;
+                    mZone[counter] = Math.round(10*((testvalue-baseline+0.00001)/(mZ1under-0.00001)))/10;
                 }
 		 	  }
 		   }

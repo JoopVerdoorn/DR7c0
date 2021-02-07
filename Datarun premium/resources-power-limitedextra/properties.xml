@@ -29,7 +29,6 @@
     <property id="pPPPowerZones" type="string">180:Z1:210:Z2:240:Z3:270:Z4:300:Z5:330:Z6:360:Z7:390:Z8:420:Z9:450:Z10:480</property>
     <property id="pClockFieldMetric" type="number">46</property>
     <property id="pFTP" type="number">250</property>
-    <property id="pCP" type="number">250</property>
     <property id="pdisablelabel1" type="boolean">false</property>
     <property id="pdisablelabel2" type="boolean">false</property>
     <property id="pdisablelabel3" type="boolean">false</property>
@@ -38,7 +37,6 @@
     <property id="pdisablelabel6" type="boolean">false</property>
     <property id="pdisablelabel7" type="boolean">false</property>
     <property id="pGarminColors" type="boolean">false</property>
-    <property id="pWeight" type="number">70</property>
     <property id="ptempunits" type="boolean">false</property>
 	<property id="pPowerTarget" type="number">225</property>
     <property id="pOnlyPwrCorrFactor" type="boolean">false</property>
@@ -126,7 +124,6 @@
 	<string id="lLapHeartrate">Current lap heartrate</string>
 	<string id="lLLHeartrate">Last lap heartrate</string>   
 	<string id="lFTP">Functional treshold power, needed for Intensity factor and Training stress score</string>
-	<string id="lCP">Critical power, needed for Running Stress Score</string>
     <string id="lRequiredPower">Boundaries of a static powerzone for warning signal, a format required like (227:284)</string> 
     <string id="lWarningFreq">Frequency for the warning signal for operating out of powerzone</string>
     <string id="lAlertbeep">Play sound as warning signal for operating out of powerzone</string> 
@@ -135,8 +132,6 @@
 	<string id="lPaceper3km">Pace averaged over the last 3 seconds</string>
 	<string id="lPaceper5km">Pace averaged over the last 5 seconds</string>
 	<string id="lVertpace">Vertical speed averaged over the last 5 seconds </string>
-	<string id="lrolavPacmaxsecs">Pace or/and speed averaged over the last ... seconds (max is 300 seconds)</string>
-	<string id="lrolavPacmaxsecsError">This needs to be a number from 2 too 300</string>
 	<string id="lPaceper100m">Pace in seconds per 100 meter (for track running)</string>
 	<string id="lCurrentSpeed">Speed in km/mile per hour</string>
 	<string id="lAverage3secSpeed">Speed averaged over the last 3 seconds in km/mile per hour </string>
@@ -271,9 +266,6 @@
     <setting propertyKey="@Properties.pFTP" title="@Strings.lFTP">
       <settingConfig type="numeric"  required="true"/>
     </setting>
-    <setting propertyKey="@Properties.pCP" title="@Strings.lCP">
-      <settingConfig type="numeric"  required="true"/>
-    </setting>  
     <setting propertyKey="@Properties.pPowerTarget" title="@Strings.lPowerTarget">
       <settingConfig type="numeric"  required="true"/>
     </setting> 
@@ -318,9 +310,6 @@
     <setting propertyKey="@Properties.pRealAltitude" title="@Strings.lRealAltitude">
       <settingConfig type="numeric"  required="true"/>
     </setting> 
-    <setting propertyKey="@Properties.pWeight" title="@Strings.lWeight">
-      <settingConfig type="numeric"  required="true"/>
-    </setting>    
     <setting propertyKey="@Properties.pRequiredPower" title="@Strings.lRequiredPower">
       <settingConfig type="alphaNumeric"  required="true"/>
     </setting>   

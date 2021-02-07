@@ -115,19 +115,7 @@ class ExtramemView extends DatarunpremiumView {
 	            fieldValue[i] = (info.currentHeartRate != null) ? info.currentHeartRate : 0;
     	        fieldLabel[i] = "HR zone";
         	    fieldFormat[i] = "1decimal";      
-        	} else if (metric[i] == 81) {
-	        	if (Toybox.Activity.Info has :distanceToNextPoint) {
-    	        	fieldValue[i] = (info.distanceToNextPoint != null) ? info.distanceToNextPoint / unitD : 0;
-    	        }
-        	    fieldLabel[i] = "DistNext";
-            	fieldFormat[i] = "2decimal";
-			} else if (metric[i] == 82) {
-    	        if (Toybox.Activity.Info has :distanceToDestination) {
-    	        	fieldValue[i] = (info.distanceToDestination != null) ? info.distanceToNextPoint / unitD : 0;
-    	        }
-        	    fieldLabel[i] = "DistDest";
-            	fieldFormat[i] = "2decimal";
-	        } else if (metric[i] == 28) {
+        	} else if (metric[i] == 28) {
     	        fieldValue[i] = (LapHeartrate != 0) ? mLapSpeed*60/LapHeartrate : 0;
         	    fieldLabel[i] = "Lap EF";
             	fieldFormat[i] = "2decimal";
@@ -470,7 +458,7 @@ class ExtramemView extends DatarunpremiumView {
                     mZone[counter] = Math.round(10*(1+(testvalue-mZ1under+0.00001)/(mZ2under-mZ1under+0.00001)))/10;
                 } else {
                     mfillColour = Graphics.COLOR_LT_GRAY;        //! (Z0)
-                    mZone[counter] = Math.round(10*((testvalue+0.00001)/(mZ1under-0.00001)))/10;
+                    mZone[counter] = Math.round(10*((testvalue-baseline+0.00001)/(mZ1under-0.00001)))/10;
                 }
 		 	  }
 		   }
