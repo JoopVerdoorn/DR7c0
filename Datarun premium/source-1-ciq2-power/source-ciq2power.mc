@@ -123,14 +123,14 @@ class CiqView extends DatarunpremiumView {
             		dc.drawText(xh, yh, Graphics.FONT_LARGE, fTimerHours, Graphics.TEXT_JUSTIFY_LEFT|Graphics.TEXT_JUSTIFY_VCENTER);
             		fTimer = (fieldvalue / 60 % 60).format("%02d") + ":" + fTimerSecs;  
         		}
-        		if ( ID0 == 3798 or ID0 == 4023 or ID0 == 3800 or ID0 == 4025) { //! Fenix 6(s)
+        		if ( ID0 == 3798 or ID0 == 4023 or ID0 == 3800 or ID0 == 4025 or ID0 == 4149) { //! Fenix 6(s) or Enduro
         			dc.drawText(xx, y, Graphics.FONT_NUMBER_MILD, fTimer, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
         		} else {
         			dc.drawText(xx, y, Graphics.FONT_NUMBER_MEDIUM, fTimer, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
         		}	
         	}
         } else {
-        	if ( ID0 == 3798 or ID0 == 4023 or ID0 == 3800 or ID0 == 4025) { //! Fenix 6(s)
+        	if ( ID0 == 3798 or ID0 == 4023 or ID0 == 3800 or ID0 == 4025 or ID0 == 4149) { //! Fenix 6(s)  or Enduro
         		dc.drawText(x, y, Graphics.FONT_NUMBER_MILD, fieldvalue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
         	} else {
         		dc.drawText(x, y, Graphics.FONT_NUMBER_MEDIUM, fieldvalue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);

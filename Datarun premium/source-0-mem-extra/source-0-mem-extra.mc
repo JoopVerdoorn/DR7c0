@@ -511,7 +511,7 @@ class ExtramemView extends DatarunpremiumView {
 	   if (uShowDemo == false ) {
 
 		//! Display colored labels on screen	
-		if (ID0 == 3801 or ID0 == 4026 ) {  //! Fenix 6 pro labels
+		if (mySettings.screenWidth == 260 and mySettings.screenHeight == 260 ) {  //! Fenix 6 pro labels
 			for (var i = 1; i < 8; ++i) {
 			   	if ( i == 1 ) {			//!upper row, left    	
 	    			if (disablelabel[1] == false) {
@@ -543,7 +543,7 @@ class ExtramemView extends DatarunpremiumView {
 		    		}
 	    		}       	
 			}		
-		} else if (ID0 == 3802 or ID0 == 4027 ) {     //! Fenix 6x pro labels
+		} else if (mySettings.screenWidth == 280 and mySettings.screenHeight == 280 ) {     //! Fenix 6x pro labels
 			for (var i = 1; i < 8; ++i) {
 			   	if ( i == 1 ) {			//!upper row, left    	
 					if (disablelabel[1] == false) {

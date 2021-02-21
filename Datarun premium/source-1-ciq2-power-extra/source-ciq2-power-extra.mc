@@ -80,13 +80,13 @@ class CiqView extends ExtramemView {
 		for (i = 1; i < 11; ++i) {
 			Power[i] = 0;
 		}
-		if (ID0 == 3588 or ID0 == 3832 or ID0 == 3624 or ID0 == 3952 or ID0 == 3762 or ID0 == 3962 or ID0 == 3761 or ID0 == 3961 or ID0 == 3757 or ID0 == 3931 or ID0 == 3758 or ID0 == 3932 or ID0 == 3759 or ID0 == 3959 or ID0 == 3798 or ID0 == 4023 or ID0 == 3799 or ID0 == 4024) {
-			Garminfont = Ui.loadResource(Rez.Fonts.Garmin1);		
-		} else if (ID0 == 3801 or ID0 == 4026 ) {
+		if (mySettings.screenWidth == 260 and mySettings.screenHeight == 260) {
 			Garminfont = Ui.loadResource(Rez.Fonts.Garmin2);
-		} else if (ID0 == 3802 or ID0 == 4027 ) {
+		} else if (mySettings.screenWidth == 280 and mySettings.screenHeight == 280) {
 			Garminfont = Ui.loadResource(Rez.Fonts.Garmin3);
-		}	
+		} else {
+			Garminfont = Ui.loadResource(Rez.Fonts.Garmin1);
+		}
     }
 
 
