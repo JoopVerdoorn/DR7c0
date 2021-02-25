@@ -71,7 +71,7 @@ class CiqView extends DatarunpremiumView {
         if ( counter == 6 or counter == 7 ) {
         	if ( ID0 == 3798 or ID0 == 4023 ) { //! Fenix 6s
         		ycorrectionFenix6or6s = 3;
-        	} else if ( ID0 == 3800 or ID0 == 4025 ) { //! Fenix 6
+        	} else if ( ID0 == 3800 or ID0 == 4025 or ID0 == 4149) { //! Fenix 6
         		ycorrectionFenix6or6s = 4;
         	}
         	y = y + ycorrectionFenix6or6s;
