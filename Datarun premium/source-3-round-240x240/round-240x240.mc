@@ -59,15 +59,15 @@ class DeviceView extends PowerView {
 
 		for (var i = 1; i < 8; ++i) {
 	    	if ( i == 1 ) {			//!upper row, left
-	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"069,069,073,013,077,073,037");
+	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"069,067,073,013,077,073,037");
 	       	} else if ( i == 2 ) {	//!upper row, right
-	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"170,069,180,121,077,167,037");
+	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"170,067,180,121,077,167,037");
 	       	} else if ( i == 3 ) {  //!middle row, left
-	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"036,133,000,000,000,036,101");
+	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"036,131,000,000,000,036,101");
 	       	} else if ( i == 4 ) {	//!middle row, middle
-	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"118,133,000,000,000,118,101");
+	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"118,131,000,000,000,118,101");
 	       	} else if ( i == 5 ) {  //!middle row, right
-	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"202,133,000,000,000,201,101");
+	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"202,131,000,000,000,201,101");
 	       	} else if ( i == 6 ) {	//!lower row, left
 	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"070,177,073,014,170,080,207");
 	       	} else if ( i == 7 ) {	//!lower row, right
