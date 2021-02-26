@@ -613,10 +613,10 @@ class ExtramemView extends DatarunpremiumView {
 		//! Show number of laps or clock with current time in top
 		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
 		if (uMilClockAltern == 2) { //! Show number of laps 
-			if (ID0 == 3801 or ID0 == 4026 ) {
+			if (mySettings.screenWidth == 260 and mySettings.screenHeight == 260) {
 				 dc.drawText(113, -3, Graphics.FONT_MEDIUM, mLaps, Graphics.TEXT_JUSTIFY_CENTER);
 				 dc.drawText(150, -1, Graphics.FONT_XTINY, "lap", Graphics.TEXT_JUSTIFY_CENTER);
-			} else if (ID0 == 3802 or ID0 == 4027 ) {
+			} else if (mySettings.screenWidth == 280 and mySettings.screenHeight == 280) {
 				 dc.drawText(123, -2, Graphics.FONT_MEDIUM, mLaps, Graphics.TEXT_JUSTIFY_CENTER);
 				 dc.drawText(160, -1, Graphics.FONT_XTINY, "lap", Graphics.TEXT_JUSTIFY_CENTER);		
 			} else {	
@@ -633,9 +633,9 @@ class ExtramemView extends DatarunpremiumView {
 				AmPmhour = AmPmhour - 12;
 			}
 	    	var strTime = AmPmhour + ":" + myTime.min.format("%02d") + " " + AmPm;
-	    	if (ID0 == 3801 or ID0 == 4026 ) {
+	    	if (mySettings.screenWidth == 260 and mySettings.screenHeight == 260) {
 				dc.drawText(140, -3, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
-	    	} else if (ID0 == 3802 or ID0 == 4027 ) {
+	    	} else if (mySettings.screenWidth == 280 and mySettings.screenHeight == 280) {
 				dc.drawText(150, -2, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
 	    	} else {
 				dc.drawText(130, -4, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
@@ -674,9 +674,9 @@ class ExtramemView extends DatarunpremiumView {
         		Temp = (CFMValue != 0 ) ? (CFMValue).toLong() : 0;
         		CFMValue = (Temp /60000 % 60).format("%02d") + ":" + (Temp /1000 % 60).format("%02d");
 	        }
-	    	if (ID0 == 3801 or ID0 == 4026 ) {
+	    	if (mySettings.screenWidth == 260 and mySettings.screenHeight == 260) {
 	    	   	dc.drawText(130, 14, Graphics.FONT_MEDIUM, CFMValue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-	    	} else if (ID0 == 3802 or ID0 == 4027 ) {
+	    	} else if (mySettings.screenWidth == 280 and mySettings.screenHeight == 280) {
 	    	   	dc.drawText(140, 15, Graphics.FONT_MEDIUM, CFMValue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 	       	} else {
 		       	dc.drawText(120, 13, Graphics.FONT_MEDIUM, CFMValue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
