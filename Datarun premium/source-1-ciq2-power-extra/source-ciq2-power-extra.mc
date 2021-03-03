@@ -360,13 +360,22 @@ class CiqView extends ExtramemView {
 			WorkoutStepHighBoundary = (workoutTarget != null) ? (workoutTarget.step.targetValueHigh.toNumber() - 1000) : 999;
 			WorkoutStepLowBoundary = (uOnlyPwrCorrFactor == false) ? WorkoutStepLowBoundary : WorkoutStepLowBoundary/PwrCorrFactor;
 			WorkoutStepHighBoundary = (uOnlyPwrCorrFactor == false) ? WorkoutStepHighBoundary : WorkoutStepHighBoundary/PwrCorrFactor;
-			WorkoutStepDuration = (workoutTarget != null) ? workoutTarget.step.durationValue.toNumber() : 0;
 			WorkoutStepDurationType = (workoutTarget != null) ? workoutTarget.step.durationType.toNumber() : 0;
+
+			if (workoutTarget != null) {
+				WorkoutStepDuration = (workoutTarget.step.durationValue != null) ? workoutTarget.step.durationValue.toNumber() : 9999999;
+			} else {
+				WorkoutStepDuration = 0;
+			}
+
 			if (WorkoutStepDurationType == 0) {
 				RemainingWorkoutTime = WorkoutStepDuration - (jTimertime - StartTimeNewStep);
 			} else if (WorkoutStepDurationType == 1) {
 				RemainingWorkoutDistance = WorkoutStepDuration/unitD - (ElapsedDistance - StartDistanceNewStep);
-			}				 
+			} else if (WorkoutStepDuration == 9999999) {
+				RemainingWorkoutDistance = 0;
+			}
+			
 		} else {
 			hasWorkoutStep = false;
 			WorkoutStepLowBoundary = 0;
@@ -621,6 +630,10 @@ class CiqView extends ExtramemView {
 						fieldValue[i] = RemainingWorkoutDistance;
 						fieldLabel[i] = "Remain D";
         	    		fieldFormat[i] = "2decimal";
+        	    	} else if (WorkoutStepDurationType == 5) {
+						fieldValue[i] = 0;
+						fieldLabel[i] = "Button";
+        	    		fieldFormat[i] = "0decimal";
 					}     
     	        } else {
         			fieldValue[i] = 0;
