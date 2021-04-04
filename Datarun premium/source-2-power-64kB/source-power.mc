@@ -55,7 +55,7 @@ class PowerView extends CiqView {
 
 		//!Calculate powermetrics
 		var mLapElapsedPower = mElapsedPower - mLastLapPowerMarker;
-        AveragePower = Math.round((mPowerTime != 0) ? mElapsedPower/mPowerTime : 0);
+        
 		LapPower = (mLapTimerTimePwr != 0) ? Math.round(mLapElapsedPower/mLapTimerTimePwr) : 0; 	
 		LastLapPower = (mLastLapTimerTimePwr != 0) ? Math.round(mLastLapElapsedPower/mLastLapTimerTimePwr) : 0;
 
@@ -87,24 +87,22 @@ class PowerView extends CiqView {
 	    	runalertPower 	 = runPower;
 	    } else if ( uLapPwr4alerts == 1 ) {
 	    	runalertPower 	 = AveragePower3sec;
-	    } else if ( uLapPwr4alerts == 2 ) {
+		} else if ( uLapPwr4alerts == 2 ) {
 	    	runalertPower 	 = AveragePower5sec;
 		} else if ( uLapPwr4alerts == 3 ) {
 	    	runalertPower 	 = AveragePower10sec;
-		} else if ( uLapPwr4alerts == 4 ) {
-	    	runalertPower 	 = Averagepowerpersec;
 		} else if ( uLapPwr4alerts == 5 ) {
 	    	runalertPower 	 = LapPower;
 		} else if ( uLapPwr4alerts == 6 ) {
 	    	runalertPower 	 = AveragePower;
 		}
+		
 		PowerWarning = 0;
 		if (jTimertime != 0) {
 		  if (runalertPower>mPowerWarningupper or runalertPower<mPowerWarningunder) {	 
 			 if (Toybox.Attention has :vibrate && uNoAlerts == false) {
 			 	vibrateseconds = vibrateseconds + 1;	 		  			
     			if (runalertPower>mPowerWarningupper) {
-    				PowerWarning = 1;
     				if (vibrateseconds == uWarningFreq) {
     					Toybox.Attention.vibrate(vibrateData);
     					if (uAlertbeep == true) {
@@ -114,9 +112,7 @@ class PowerView extends CiqView {
     					vibrateseconds = 0;
     				}
     			} else if (runalertPower<mPowerWarningunder){
-    				PowerWarning = 2;
     				if (vibrateseconds == uWarningFreq) {
-    					
     						if (uAlertbeep == true) {
     							Attention.playTone(Attention.TONE_ALERT_LO);
     						}
@@ -146,7 +142,7 @@ class PowerView extends CiqView {
             	fieldLabel[i] = "LL Pwr";
             	fieldFormat[i] = "power";
 	        } else if (metric[i] == 24) {
-    	        fieldValue[i] = AveragePower;
+    	        fieldValue[i] = Math.round((mPowerTime != 0) ? mElapsedPower/mPowerTime : 0);
         	    fieldLabel[i] = "A Power";
             	fieldFormat[i] = "power";   
 			}

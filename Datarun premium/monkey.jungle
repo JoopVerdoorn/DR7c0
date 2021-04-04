@@ -11,16 +11,16 @@ fr645.sourcePath		=source-32kB;					source-1-ciq2-nopower;			source-2-nopower-no
 fr245m.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-nopower-extra;	source-2-nopower-nofont;	source-3-round-240x240
 fr645m.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-nopower-extra;	source-2-nopower-nofont;	source-3-round-240x240
 
-fr935.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power;				source-3-round-240x240
-fr735xt.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power;				source-3-semiround-215x180
-fenix5.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power;				source-3-round-240x240
-fenix5s.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power;				source-3-round-218x218
-fenixchronos.sourcePath	=source-32kB;					source-1-ciq2-power;			source-2-power;				source-3-round-218x218
-fenix6s.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power;				source-3-round-240x240
-fenix6.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power;				source-3-round-260x260
-enduro.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power;				source-3-round-280x280
+fr935.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power-32kB;				source-3-round-240x240
+fr735xt.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power-32kB;				source-3-semiround-215x180
+fenix5.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power-32kB;				source-3-round-240x240
+fenix5s.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power-32kB;				source-3-round-218x218
+fenixchronos.sourcePath	=source-32kB;					source-1-ciq2-power;			source-2-power-32kB;				source-3-round-218x218
+fenix6s.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power-32kB;				source-3-round-240x240
+fenix6.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power-32kB;				source-3-round-260x260
+enduro.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power-32kB;				source-3-round-280x280
 
-fr745.sourcePath		=source;source-0-mem-limitedextra;	source-1-ciq2-power-limitedextra;		source-2-power;				source-3-round-240x240
+fr745.sourcePath		=source;source-0-mem-limitedextra;	source-1-ciq2-power-limitedextra;		source-2-power-64kB;				source-3-round-240x240
 
 fenix5x.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 fenix5plus.sourcePath	=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
@@ -35,16 +35,15 @@ marqathlete.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		
 marqaviator.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 marqcaptain.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 marqdriver.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
-marqgolfer.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 marqexpedition.sourcePath	=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 marqadventurer.sourcePath	=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
+marqgolfer.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 marqcommander.sourcePath	=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 descentmk1.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
+descentmk2.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-280x280
 fenix6spro.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
-
 fenix6pro.sourcePath			=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-260x260
 fenix6xpro.sourcePath			=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-280x280
-descentmk2.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-280x280
 
 fr645.resourcePath 			= resources
 
@@ -79,6 +78,7 @@ marqexpedition.resourcePath	= resources-power-extra
 marqadventurer.resourcePath	= resources-power-extra
 marqcommander.resourcePath	= resources-power-extra
 marqgolfer.resourcePath		= resources-power-extra
+descentmk1.resourcePath		= resources-power-extra
 descentmk1.resourcePath		= resources-power-extra
 descentmk2.resourcePath		= resources-power-extra
 fenix6spro.resourcePath		= resources-power-extra

@@ -24,7 +24,7 @@
     <property id="pRequiredPower" type="string">000:999</property>
     <property id="pWarningFreq" type="number">5</property>
     <property id="pAlertbeep" type="boolean">false</property>
-    <property id="pLapPwr4alerts" type="boolean">false</property>
+    <property id="pLapPwr4alerts" type="number">1</property>
     <property id="pPowerZones" type="string">184:Z1:227:Z2:255:Z3:284:Z4:326:Z5:369</property>
     <property id="pMilClockAltern" type="number">0</property>
     <property id="prolavPacmaxsecs" type="number">30</property> 
@@ -58,14 +58,16 @@
     <property id="pFTPAltitude" type="number">200</property>
     <property id="pTempeCalibration" type="number">0</property>
     <property id="poverruleWourkout" type="boolean">false</property>
-    
+    <property id="pFontalertColorLow" type="number">5</property>
+    <property id="pFontalertColorHigh" type="number">4</property>
+    <property id="pShowRedClock" type="boolean">false</property>
   </properties>
 
 	
   <strings>
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
-    <string id="AppVersion">2.31c</string>
-    <string id="lDummysetting4version">Version 2.31c of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="AppVersion">2.33</string>
+    <string id="lDummysetting4version">Version 2.33 of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>
@@ -139,8 +141,25 @@
     <string id="lRequiredPower">Boundaries of a static powerzone for warning signal, a format required like (227:284)</string> 
     <string id="lWarningFreq">Frequency for the warning signal for operating out of powerzone</string>
     <string id="lAlertbeep">Play sound as warning signal for operating out of powerzone</string> 
-    <string id="lLapPwr4alerts">Use lap power for alerts instead of current power</string>  
-	<string id="lPacefield">Pace field on middle row</string>
+    <string id="lLapPwr4alerts">Use lap power for alerts instead of current power</string>
+    <string id="lLapPwr4alerts">Power metric for alerts</string>  
+    <string id="lCurrentPoweralert">Current running power</string>
+    <string id="l3secPoweralert">Power averaged over the last 3 seconds</string>
+    <string id="l5secPoweralert">Power averaged over the last 5 seconds</string>
+    <string id="l10secPoweralert">>Power averaged over the last 10 seconds</string>
+    <string id="l300secPoweralert">Power averaged over the last ... seconds (max is 300 seconds, this metric also needs to be chosen on display!)</string>
+    <string id="lLapPoweralert">Lap power</string>
+    <string id="lAveragePoweralert">Average power</string>
+    <string id="lFontalertColorLow">Font color for power alerts, when under powerzone</string>
+    <string id="lFontalertColorHigh">Font color for power alerts, when above powerzone</string>
+    <string id="lFontalertGreen">Green</string>
+    <string id="lFontalertBlue">Blue</string>
+    <string id="lFontalertGray">Dark gray</string>
+    <string id="lFontalertWhite">White</string>
+    <string id="lFontalertPurple">Purple</string>
+    <string id="lFontalertRed">Red</string>
+    <string id="lFontalertBlack">Black</string>  
+    <string id="lFontalertDarkBlue">Dark blue</string>
 	<string id="lPaceper3km">Pace averaged over the last 3 seconds</string>
 	<string id="lPaceper5km">Pace averaged over the last 5 seconds</string>
 	<string id="lPaceper300km">Pace averaged over the last .. seconds (max is 300 seconds)</string>
@@ -229,7 +248,7 @@
     <string id="lLapE">Lap Running Effectiveness (as used by Steve Palladino)</string>
     <string id="lAverRE">Average Running Effectiveness (as used by Steve Palladino)</string>
     <string id="lPowerTarget">Powertarget in Watt, useful when power correction is set only to influence powertarget</string>
-    <string id="lPtargetcorrect">Powertarget in Watt as set in settings, corrected by temperature/humidity/altitude if set in settings</string>
+    <string id="lPtargetcorrect">Powertarget in Watt as set in settings or defined by a workout, corrected by temperature/humidity/altitude if set in settings</string>
     <string id="lOnlyPwrCorrFactor">Use correction factors for running power only to change powertarget</string>
     <string id="lPwrTempcorrect">Power correction based on temperature</string>
     <string id="lNoPwrTempcorrect">No correction</string>
@@ -250,13 +269,14 @@
     <string id="lRealAltitude">Current altitude, for power correction based on altitude</string>
     <string id="lFTPAltitude">Altitude at which Critical power or FTP is determined, for power correction based on altitude</string>
     <string id="lCCnumber">C-Code generated on the watch by the corresponding main Datarun premium datafield</string>  
-    <string id="lLtarget">Lower power boundary of a workout step, from Training peaks etc, corrected by temperature/humidity/altitude if set in settings</string> 
-    <string id="lHtarget">Upper power boundary of a workout step, from Training peaks etc, corrected by temperature/humidity/altitude if set in settings</string>
-    <string id="lLperctarget">Lower power boundary of a workout step in % van FTP, from Training peaks etc, corrected by temperature/humidity/altitude if set in settings</string> 
-    <string id="lHperctarget">Upper power boundary of a workout step in % van FTP, from Training peaks etc, corrected by temperature/humidity/altitude if set in settings</string>
-    <string id="lStepnumber">Current step number of a workout</string>
-    <string id="lReamingTimeOfStep">Remaining time or distance of the current step of a workout</string>
-    <string id="loverruleWourkout">Use a static powerzone for alerts, not powerzones from workout steps</string>      
+    <string id="lLtarget">Lower power boundary of a workout step (not for F5x), from Training peaks etc, corrected by temperature/humidity/altitude if set in settings</string> 
+    <string id="lHtarget">Upper power boundary of a workout step (not for F5x), from Training peaks etc, corrected by temperature/humidity/altitude if set in settings</string>
+    <string id="lLperctarget">Lower power boundary of a workout step in % van FTP (not for F5x), from Training peaks etc, corrected by temperature/humidity/altitude if set in settings</string> 
+    <string id="lHperctarget">Upper power boundary of a workout step in % van FTP (not for F5x), from Training peaks etc, corrected by temperature/humidity/altitude if set in settings</string>
+    <string id="lStepnumber">Current step number of a workout (not for F5x)</string>
+    <string id="lReamingTimeOfStep">Remaining time or distance of the current step of a workout (not for F5x)</string>
+    <string id="loverruleWourkout">Use a static powerzone for alerts, not powerzones from workout steps</string>  
+    <string id="lShowRedClock">Show red clock over all metrics before the start of an activity (useful for a race when the normal clock isn't visible)</string>    
 </strings>
 
   <settings>
@@ -362,7 +382,39 @@
       <settingConfig type="boolean" required="true" />
     </setting>
     <setting propertyKey="@Properties.pLapPwr4alerts" title="@Strings.lLapPwr4alerts">
-      <settingConfig type="boolean" required="true" />
+      <settingConfig type="list" required="true">
+        <listEntry value="0">@Strings.lCurrentPoweralert</listEntry>
+        <listEntry value="1">@Strings.l3secPoweralert</listEntry>
+        <listEntry value="2">@Strings.l5secPoweralert</listEntry>
+        <listEntry value="3">@Strings.l10secPoweralert</listEntry>
+        <listEntry value="4">@Strings.l300secPoweralert</listEntry>
+        <listEntry value="5">@Strings.lLapPoweralert</listEntry>
+        <listEntry value="6">@Strings.lAveragePoweralert</listEntry>
+      </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.pFontalertColorLow" title="@Strings.lFontalertColorLow">
+      <settingConfig type="list" required="true">
+        <listEntry value="0">@Strings.lFontalertGreen</listEntry>
+        <listEntry value="1">@Strings.lFontalertBlue</listEntry>
+        <listEntry value="2">@Strings.lFontalertGray</listEntry>
+        <listEntry value="3">@Strings.lFontalertWhite</listEntry>
+        <listEntry value="4">@Strings.lFontalertPurple</listEntry>
+        <listEntry value="5">@Strings.lFontalertRed</listEntry>
+        <listEntry value="6">@Strings.lFontalertBlack</listEntry>
+        <listEntry value="7">@Strings.lFontalertDarkBlue</listEntry>
+      </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.pFontalertColorHigh" title="@Strings.lFontalertColorHigh">
+      <settingConfig type="list" required="true">
+        <listEntry value="0">@Strings.lFontalertGreen</listEntry>
+        <listEntry value="1">@Strings.lFontalertBlue</listEntry>
+        <listEntry value="2">@Strings.lFontalertGray</listEntry>
+        <listEntry value="3">@Strings.lFontalertWhite</listEntry>
+        <listEntry value="4">@Strings.lFontalertPurple</listEntry>
+        <listEntry value="5">@Strings.lFontalertRed</listEntry>
+        <listEntry value="6">@Strings.lFontalertBlack</listEntry>
+        <listEntry value="7">@Strings.lFontalertDarkBlue</listEntry>
+      </settingConfig>
     </setting>
     <setting propertyKey="@Properties.pRacedistance" title="@Strings.lRacedistanceTitle">
       <settingConfig type="numeric" errorMessage="@Strings.lRacedistanceError" />
@@ -375,6 +427,9 @@
     </setting>
     <setting propertyKey="@Properties.prolavPowmaxsecs" title="@Strings.lrolavPowmaxsecs">
       <settingConfig type="numeric" errorMessage="@Strings.lrolavPowmaxsecsError" />
+    </setting>
+    <setting propertyKey="@Properties.pShowRedClock" title="@Strings.lShowRedClock">
+      <settingConfig type="boolean" required="false" />
     </setting>
     <setting propertyKey="@Properties.pMilClockAltern" title="@Strings.lMilClockAltern">
       <settingConfig type="list" required="true">
@@ -1314,6 +1369,11 @@
         <listEntry value="84">@Strings.lLpercMaxHR</listEntry>
         <listEntry value="85">@Strings.lLLpercMaxHR</listEntry>
         <listEntry value="86">@Strings.lApercMaxHR</listEntry>
+        
+        <listEntry value="1000">@Strings.lWorkoutMenu</listEntry>
+		<listEntry value="107">@Strings.lPtargetcorrect</listEntry>
+        <listEntry value="121">@Strings.lStepnumber</listEntry>
+        <listEntry value="122">@Strings.lReamingTimeOfStep</listEntry>
         
         <listEntry value="998">@Strings.lAltitudeMenu</listEntry>
         <listEntry value="51">@Strings.lAltitude</listEntry>

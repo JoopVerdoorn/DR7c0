@@ -21,14 +21,14 @@
     <property id="pAlertbeep" type="boolean">false</property>
     <property id="pETAfromLap" type="boolean">true</property>
     <property id="pLapPwr4alerts" type="boolean">false</property>
-    
+    <property id="pShowRedClock" type="boolean">false</property>
   </properties>
 
 	
   <strings>
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
-    <string id="AppVersion">2.31c</string>
-    <string id="lDummysetting4version">Version 2.31c of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="AppVersion">2.33</string>
+    <string id="lDummysetting4version">Version 2.33 of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>
@@ -79,7 +79,6 @@
     <string id="lAveraHeartrate">Average heartrate</string>
 	<string id="lLapHeartrate">Current lap heartrate</string>
 	<string id="lLLHeartrate">Last lap heartrate</string>   
-	<string id="lPacefield">Pace field on middle row</string>
 	<string id="lPaceper3km">Pace averaged over the last 3 seconds</string>
 	<string id="lPaceper5km">Pace averaged over the last 5 seconds</string>
 	<string id="lCurrentSpeed">Speed in km/mile per hour</string>
@@ -98,6 +97,7 @@
 	<string id="lLPower">Current lap running power</string>
 	<string id="lLLPower">Last lap running power</string>
 	<string id="lCCnumber">C-Code generated on the watch by the corresponding main Datarun premium datafield</string>
+	<string id="lShowRedClock">Show red clock over all metrics before the start of an activity (useful for a race when the normal clock isn't visible)</string>
  </strings>
 
   <settings>
@@ -136,6 +136,9 @@
     </setting>
     <setting propertyKey="@Properties.pLapPwr4alerts" title="@Strings.lLapPwr4alerts">
       <settingConfig type="boolean" required="true" />
+    </setting>
+    <setting propertyKey="@Properties.pShowRedClock" title="@Strings.lShowRedClock">
+      <settingConfig type="boolean" required="false" />
     </setting>
     <setting propertyKey="@Properties.pUpperLeftMetric" title="@Strings.lUpperLeftMetric">
       <settingConfig type="list" required="true">
