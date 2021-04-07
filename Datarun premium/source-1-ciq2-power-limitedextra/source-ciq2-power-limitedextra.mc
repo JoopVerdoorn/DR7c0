@@ -262,6 +262,8 @@ class CiqView extends ExtramemView {
 			hasWorkoutStep = true;
 			WorkoutStepLowBoundary = (workoutTarget != null) ? (workoutTarget.step.targetValueLow.toNumber() - 1000) : 0;
 			WorkoutStepHighBoundary = (workoutTarget != null) ? (workoutTarget.step.targetValueHigh.toNumber() - 1000) : 999;
+			WorkoutStepLowBoundary = (WorkoutStepLowBoundary == -1000) ? WorkoutStepLowBoundary+1000 : WorkoutStepLowBoundary; 
+			WorkoutStepHighBoundary = (WorkoutStepHighBoundary == -1000) ? WorkoutStepHighBoundary+1000 : WorkoutStepHighBoundary;
 			WorkoutStepLowBoundary = (uOnlyPwrCorrFactor == false) ? WorkoutStepLowBoundary : WorkoutStepLowBoundary/PwrCorrFactor;
 			WorkoutStepHighBoundary = (uOnlyPwrCorrFactor == false) ? WorkoutStepHighBoundary : WorkoutStepHighBoundary/PwrCorrFactor;
 			WorkoutStepDurationType = (workoutTarget != null) ? workoutTarget.step.durationType.toNumber() : 0;
