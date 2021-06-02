@@ -582,7 +582,7 @@ class CiqView extends ExtramemView {
         	    fieldFormat[i] = "2decimal";
 			} else if (metric[i] == 59) {
 	            fieldValue[i] = mTTS;
-    	        fieldLabel[i] = "TTS";
+    	        fieldLabel[i] = "TSS";
         	    fieldFormat[i] = "0decimal";
 			} else if (metric[i] == 60) {
 	            fieldValue[i] = RSS;

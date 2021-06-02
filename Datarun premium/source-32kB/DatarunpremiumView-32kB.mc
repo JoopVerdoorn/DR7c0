@@ -320,6 +320,8 @@ class DatarunpremiumView extends Ui.DataField {
         		fieldFormat[i] = "pace";
         		if (info.elapsedDistance != null and mRacetime != jTimertime and mRacetime > jTimertime) {
         			fieldValue[i] = (uRacedistance - info.elapsedDistance) / (mRacetime - jTimertime);
+        		} else {
+        			fieldValue[i] = uRacedistance / mRacetime;
         		} 
 	        } else if (metric[i] == 14) {
     	        fieldValue[i] = Math.round(mETA).toNumber();
