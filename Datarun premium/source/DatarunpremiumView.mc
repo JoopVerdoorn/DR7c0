@@ -32,35 +32,30 @@ class DatarunpremiumView extends Ui.DataField {
 
 	//!Get device info
 	var mySettings = System.getDeviceSettings();
-	hidden var ID0 = 999;
-	hidden var ID1 = 123;
-	hidden var ID2 = 456;
-	hidden var WatchID = mySettings.uniqueIdentifier;
-	hidden var watchType = mySettings.partNumber;
-	hidden var licenseOK = false;
-	hidden var CCode = 12345678;
-	
-	hidden var uMilClockAltern = 0;
-	hidden var uShowDemo = false;
-	hidden var umyNumber = 26429769;
+	hidden var ID0 							= 999;
+	hidden var ID1 							= 123;
+	hidden var ID2 							= 456;
+	hidden var WatchID 						= mySettings.uniqueIdentifier;
+	hidden var watchType 					= mySettings.partNumber;
+	hidden var licenseOK 					= false;
+	hidden var CCode 						= 12345678;
+	hidden var uMilClockAltern 				= 0;
+	hidden var uShowDemo 					= false;
+	hidden var umyNumber 					= 26429769;
 	var uBlackBackground 					= false;
-	
-	hidden var mtest = 63869733;
-	hidden var jTimertime = 0;
-	
-	hidden var fieldValue = [1, 2, 3, 4, 5, 6, 7, 8];
-	hidden var fieldLabel = [1, 2, 3, 4, 5, 6, 7, 8];
-	hidden var fieldFormat = [1, 2, 3, 4, 5, 6, 7, 8];	
-
-    var Averagespeedinmper3sec 			= 0;
-    var Averagespeedinmper5sec 			= 0;
+	hidden var mtest 						= 63869733;
+	hidden var jTimertime 					= 0;
+	hidden var fieldValue 					= [1, 2, 3, 4, 5, 6, 7, 8];
+	hidden var fieldLabel 					= [1, 2, 3, 4, 5, 6, 7, 8];
+	hidden var fieldFormat 					= [1, 2, 3, 4, 5, 6, 7, 8];	
+    var Averagespeedinmper3sec 				= 0;
+    var Averagespeedinmper5sec 				= 0;
     hidden var mColour;
     hidden var mColourFont;
 	hidden var mColourFont1;
     hidden var mColourLine;
-    hidden var mColourBackGround;
-   
-    hidden var mLapTimerTime   = 0;
+    hidden var mColourBackGround;  
+    hidden var mLapTimerTime   				= 0;
 	hidden var mElapsedDistance				= 0;
     hidden var mTimerRunning                = false;	
     hidden var unitP                        = 1000.0;
@@ -70,27 +65,21 @@ class DatarunpremiumView extends Ui.DataField {
     var Pace3 								= 0;
 	var Pace4 								= 0;
     var Pace5 								= 0;
-
-    var CurrentSpeedinmpersec		= 0;
-    var uRoundedPace                 = true;
-
+    var CurrentSpeedinmpersec				= 0;
+    var uRoundedPace                 		= true;
     hidden var uBacklight                   = false;
-
     hidden var uRequiredPower		 		= "000:999";
     hidden var uWarningFreq		 			= 5;
     hidden var uAlertbeep			 		= false;
 	hidden var uNoAlerts 					= false;
 	hidden var PowerWarning 				= 0;
-    
-    hidden var mStartStopPushed             = 0;    //! Timer value when the start/stop button was last pushed
-
+    hidden var mStartStopPushed             = 0;
     hidden var mPrevElapsedDistance         = 0;
     hidden var uRacedistance                = 42195;
     hidden var uRacetime					= "03:59:48";
 	hidden var mRacetime  					= 0;
-	var mETA								= 0;
+	hidden var mETA							= 0;
 	var uETAfromLap 						= true;
-	
     hidden var mLastLapDistMarker           = 0;
     hidden var mLastLapTimeMarker           = 0;
     hidden var mLastLapStoppedTimeMarker    = 0;
@@ -101,7 +90,6 @@ class DatarunpremiumView extends Ui.DataField {
     hidden var mLastLapSpeed 				= 0;
 	hidden var mLaps                        = 1;           
 	hidden var metric 						= [1, 2, 3, 4, 5, 6, 7,8];
-	
     hidden var mElapsedHeartrate   			= 0;
 	hidden var mLastLapHeartrateMarker      = 0;    
     hidden var mCurrentHeartrate    		= 0; 
@@ -116,28 +104,31 @@ class DatarunpremiumView extends Ui.DataField {
 	hidden var AverageHeartrate 			= 0; 
 	hidden var mLapElapsedDistance 			= 0;
 	hidden var uShowRedClock 				= false;
+	hidden var ucadenceWorkaround 			= false;
 
     function initialize() {
          DataField.initialize();
 
          var mApp = Application.getApp();
-         metric[1]    	= mApp.getProperty("pUpperLeftMetric");
-         metric[2]   	= mApp.getProperty("pUpperRightMetric");
-    	 metric[3]   	= mApp.getProperty("pMiddleLeftMetric");
-    	 metric[4] 		= mApp.getProperty("pMiddleMiddleMetric");    
-    	 metric[5]		= mApp.getProperty("pMiddleRightMetric");
-         metric[6]   	= mApp.getProperty("pBottomLeftMetric");
-         metric[7]  	= mApp.getProperty("pBottomRightMetric");     
-         uRoundedPace        = mApp.getProperty("pRoundedPace");
-         uBacklight          = mApp.getProperty("pBacklight");
-         umyNumber			 = mApp.getProperty("myNumber");
-         uShowDemo			 = mApp.getProperty("pShowDemo");
-         uMilClockAltern	 = mApp.getProperty("pMilClockAltern");
-         uRacedistance		 = mApp.getProperty("pRacedistance");
-         uRacetime			 = mApp.getProperty("pRacetime");
-         uETAfromLap		 = mApp.getProperty("pETAfromLap");
-         uShowRedClock = mApp.getProperty("pShowRedClock");
-         var uHrZones = UserProfile.getHeartRateZones(UserProfile.getCurrentSport());
+         metric[1]	    	= mApp.getProperty("pUpperLeftMetric");
+         metric[2]  	 	= mApp.getProperty("pUpperRightMetric");
+    	 metric[3]   		= mApp.getProperty("pMiddleLeftMetric");
+    	 metric[4]	 		= mApp.getProperty("pMiddleMiddleMetric");    
+    	 metric[5]			= mApp.getProperty("pMiddleRightMetric");
+         metric[6]   		= mApp.getProperty("pBottomLeftMetric");
+         metric[7]  		= mApp.getProperty("pBottomRightMetric");     
+         uRoundedPace       = mApp.getProperty("pRoundedPace");
+         uBacklight         = mApp.getProperty("pBacklight");
+         umyNumber			= mApp.getProperty("myNumber");
+         uShowDemo			= mApp.getProperty("pShowDemo");
+         uMilClockAltern	= mApp.getProperty("pMilClockAltern");
+         uRacedistance		= mApp.getProperty("pRacedistance");
+         uRacetime			= mApp.getProperty("pRacetime");
+         uETAfromLap		= mApp.getProperty("pETAfromLap");
+         uShowRedClock 		= mApp.getProperty("pShowRedClock");
+         var uHrZones 		= UserProfile.getHeartRateZones(UserProfile.getCurrentSport());
+         var uCCnumber 		= mApp.getProperty("pCCnumber");
+         ucadenceWorkaround = mApp.getProperty("pcadenceWorkaround");
 
         if (System.getDeviceSettings().paceUnits == System.UNIT_STATUTE) {
             unitP = 1609.344;
@@ -215,9 +206,6 @@ class DatarunpremiumView extends Ui.DataField {
 		AverageHeartrate = Math.round((mHeartrateTime != 0) ? mElapsedHeartrate/mHeartrateTime : 0);  		
 		LapHeartrate = (mLapTimerTimeHR != 0) ? Math.round(mLapElapsedHeartrate/mLapTimerTimeHR) : 0; 					
 		LastLapHeartrate			= (mLastLapTimerTime != 0) ? Math.round(mLastLapElapsedHeartrate/mLastLapTimerTime) : 0;
-
-        //! Calculate lap time
-        mLapTimerTime = jTimertime - mLastLapTimeMarker;				
 
         //! Calculate lap distance
         mLapElapsedDistance = 0.0;
@@ -388,7 +376,8 @@ class DatarunpremiumView extends Ui.DataField {
     	        fieldLabel[i] = "Avg HR";
         	    fieldFormat[i] = "0decimal";
 			} else if (metric[i] == 50) {
-				fieldValue[i] = (info.currentCadence != null) ? info.currentCadence : 0; 
+				fieldValue[i] = (info.currentCadence != null) ? info.currentCadence : 0;
+				fieldValue[i] = (ucadenceWorkaround == true) ? fieldValue[i]*2 : fieldValue[i]; //! workaround multiply by two for FR945LTE and Fenix 6 series 
     	        fieldLabel[i] = "Cadence";
         	    fieldFormat[i] = "0decimal";
 			} else if (metric[i] == 51) {

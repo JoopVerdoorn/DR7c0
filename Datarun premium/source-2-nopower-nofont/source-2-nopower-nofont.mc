@@ -81,7 +81,7 @@ class PowerView extends CiqView {
 
 		//! Display colored labels on screen for FR645
 		if (ID0 == 3397 or ID0 == 3514) {
-			for (var i = 1; i < 8; ++i) {
+			for (i = 1; i < 8; ++i) {
 			   	if ( i == 1 ) {			//!upper row, left    	
 	    			Coloring2(dc,i,fieldValue[i],"018,029,100,019");
 		   		} else if ( i == 2 ) {	//!upper row, right

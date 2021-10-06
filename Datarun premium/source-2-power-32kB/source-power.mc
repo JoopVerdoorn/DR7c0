@@ -1,3 +1,5 @@
+using Toybox.Attention;
+
 class PowerView extends CiqView { 
     hidden var mElapsedPower	   				= 0;
     hidden var mLastLapElapsedPower				= 0;

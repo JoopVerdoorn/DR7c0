@@ -2,7 +2,7 @@ project.manifest = manifest.xml
  
 # fix autobuild to be a specific device
 base.sourcePath=$(fr935.sourcePath)
-base.resourcePath=$(fr935.sourcePath)
+base.resourcePath=$(fr935.resourcePath)
  
 # define the actual sourcePaths
 fr245.sourcePath		=source-32kB;					source-1-ciq2-nopower;			source-2-nopower-nofont;	source-3-round-240x240
@@ -31,6 +31,7 @@ d2delta.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		sour
 d2deltapx.sourcePath	=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 d2deltas.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 fr945.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
+fr945lte.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 marqathlete.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 marqaviator.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 marqcaptain.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
@@ -70,6 +71,7 @@ d2delta.resourcePath		= resources-power-extra
 d2deltapx.resourcePath		= resources-power-extra
 d2deltas.resourcePath		= resources-power-extra
 fr945.resourcePath			= resources-power-extra
+fr945lte.resourcePath		= resources-power-extra
 marqathlete.resourcePath	= resources-power-extra
 marqaviator.resourcePath	= resources-power-extra
 marqcaptain.resourcePath	= resources-power-extra

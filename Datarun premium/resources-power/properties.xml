@@ -22,13 +22,13 @@
     <property id="pETAfromLap" type="boolean">true</property>
     <property id="pLapPwr4alerts" type="boolean">false</property>
     <property id="pShowRedClock" type="boolean">false</property>
+    <property id="pCCnumber" type="number">9999999</property>
   </properties>
 
 	
   <strings>
-    <string id="AppName">Datarun premium with 7 metrics, main version</string>
-    <string id="AppVersion">2.33b</string>
-    <string id="lDummysetting4version">Version 2.33b of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="AppVersion">2.42</string>
+    <string id="lDummysetting4version">Version 2.42 of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>
@@ -96,7 +96,6 @@
     <string id="lAPower">Average running power</string>
 	<string id="lLPower">Current lap running power</string>
 	<string id="lLLPower">Last lap running power</string>
-	<string id="lCCnumber">C-Code generated on the watch by the corresponding main Datarun premium datafield</string>
 	<string id="lShowRedClock">Show red clock over all metrics before the start of an activity (useful for a race when the normal clock isn't visible)</string>
  </strings>
 
