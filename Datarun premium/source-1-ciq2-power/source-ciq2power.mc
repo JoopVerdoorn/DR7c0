@@ -3,7 +3,6 @@ using Toybox.Application as App;
 class CiqView extends DatarunpremiumView {  
     hidden var WorkoutStepLowBoundary		= 0;
     hidden var WorkoutStepHighBoundary		= 999;
-    hidden var is32kBdevice					= true;
 
     function initialize() {
         DatarunpremiumView.initialize();

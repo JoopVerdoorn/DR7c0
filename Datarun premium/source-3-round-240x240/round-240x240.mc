@@ -1,18 +1,16 @@
 using Toybox.Graphics as Gfx;
 using Toybox.System as Sys;
 
-//! inherit from the view that contains the commonlogic
+
 class DeviceView extends PowerView {
 	var myTime;
 	var strTime;
 
-	//! it's good practice to always have an initialize, make sure to call your parent class here!
     function initialize() {
         PowerView.initialize();
     }
 
 	function onUpdate(dc) {
-		//! call the parent function in order to execute the logic of the parent
 		PowerView.onUpdate(dc);
                 
 		//! Conditions for showing the demoscreen       
@@ -52,7 +50,8 @@ class DeviceView extends PowerView {
 
 		myTime = Toybox.System.getClockTime(); 
     	strTime = myTime.hour.format("%02d") + ":" + myTime.min.format("%02d");
-		//! Show number of laps or clock with current time in top
+		
+		//! Show military clock in top
 		if (uMilClockAltern == 0) {		
 			dc.drawText(120, -4, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
 		}

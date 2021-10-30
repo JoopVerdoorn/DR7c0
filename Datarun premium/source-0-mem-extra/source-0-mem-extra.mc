@@ -80,7 +80,12 @@ class ExtramemView extends DatarunpremiumView {
 	hidden var verticalRatio				= 0;
 	hidden var rollverticalRatio			= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 	hidden var AveragerollverticalRatio10sec= 0;
-	hidden var startTime;
+	hidden var startTime					   ;
+	var HR1									= 0; 
+    var HR2									= 0;
+    var HR3									= 0;
+    var mGPScolor							= mColourBackGround;
+    var screenWidth 						= mySettings.screenWidth;
 	
     function initialize() {
         DatarunpremiumView.initialize();
@@ -187,7 +192,11 @@ class ExtramemView extends DatarunpremiumView {
         mRacesec = mRacesec.toNumber();
         mRacetime = mRacehour*3600 + mRacemin*60 + mRacesec;
 	
-        
+        //!Calculate 3 sec rolling HR
+        		HR3 					= HR2;
+        		HR2 					= HR1;
+				HR1						= currentHR; 
+		var	AverageHR3sec= (HR1+HR2+HR3)/3;
 	
 		var sensorIter = getIterator();
 		maxHR = uHrZones[5];
@@ -365,8 +374,35 @@ class ExtramemView extends DatarunpremiumView {
            		}
             	fieldLabel[i] = "T-Asc-h";
             	fieldFormat[i] = "0decimal";
-			} 
+			} else if (metric[i] == 130) {
+           		fieldValue[i] = AverageHR3sec;
+            	fieldLabel[i] = "HR 3s";
+            	fieldFormat[i] = "0decimal";
+			}
 		}
+
+		//! Show GPS accuracy
+        if (info.currentLocationAccuracy == null or info.currentLocationAccuracy == 1) {
+        	mGPScolor = Graphics.COLOR_LT_GRAY;
+        } else {
+			mGPScolor = (info.currentLocationAccuracy == 2) ? Graphics.COLOR_RED : mGPScolor;
+			mGPScolor = (info.currentLocationAccuracy == 3) ? Graphics.COLOR_PURPLE : mGPScolor;
+		}
+		dc.setColor(mGPScolor, Graphics.COLOR_TRANSPARENT);
+		
+		if (screenWidth == 240) {
+			dc.fillRectangle(10, 5, 64, 22); 
+			dc.fillRectangle(164, 5, 55, 22);
+		} else if (screenWidth == 260) { 
+			dc.fillRectangle(11, 5, 69, 24); 
+			dc.fillRectangle(178, 5, 60, 24);
+		} else if (screenWidth == 280) {
+			dc.fillRectangle(12, 6, 77, 26); 
+			dc.fillRectangle(191, 6, 64, 26);
+		}
+
+		dc.setColor(mColourLine, Graphics.COLOR_TRANSPARENT);
+
 
 		var CFMValue = 0;
         var CFMLabel = "error";
@@ -592,7 +628,10 @@ class ExtramemView extends DatarunpremiumView {
             } else if (uClockFieldMetric == 115) {			
 				CFMValue = AveragerollverticalRatio10sec;
             	CFMFormat = "1decimal";
-			}
+			} else if (uClockFieldMetric == 130) {
+	        	CFMValue = AverageHR3sec;
+    	       	CFMFormat = "0decimal";
+           	}
 		
 		//! Determine HR-zone for clockfield
         if (uClockFieldMetric==46) {
