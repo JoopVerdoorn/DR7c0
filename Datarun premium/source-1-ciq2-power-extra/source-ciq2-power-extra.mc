@@ -307,7 +307,7 @@ class CiqView extends ExtramemView {
 					PwrCorrFactor = 1- (B24 - B25) - (B39-B38)/100;
 				}
 				
-								if (dynamics != null) {
+				if (dynamics != null) {
 		 		    var data = dynamics.getRunningDynamics(); 
 		 		    if (data != null) {
 		    			groundContactBalance = data.groundContactBalance;
@@ -746,7 +746,7 @@ class CiqView extends ExtramemView {
         	    fieldFormat[i] = "2decimal";
 			} else if (metric[i] == 59) {
 	            fieldValue[i] = mTTS;
-    	        fieldLabel[i] = "TTS";
+    	        fieldLabel[i] = "TSS";
         	    fieldFormat[i] = "0decimal";
 			} else if (metric[i] == 60) {
 	            fieldValue[i] = RSS;
@@ -1026,5 +1026,4 @@ class CiqView extends ExtramemView {
 
         mLaps++;	
 	}
-
 }

@@ -20,8 +20,6 @@ fenix6s.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power-32kB
 fenix6.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power-32kB;				source-3-round-260x260
 enduro.sourcePath		=source-32kB;					source-1-ciq2-power;			source-2-power-32kB;				source-3-round-280x280
 
-fr745.sourcePath		=source;source-0-mem-limitedextra;	source-1-ciq2-power-limitedextra;		source-2-power-64kB;				source-3-round-240x240
-
 fenix5x.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 fenix5plus.sourcePath	=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 fenix5splus.sourcePath	=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
@@ -30,6 +28,7 @@ d2charlie.sourcePath	=source;source-0-mem-extra;	source-1-ciq2-power-extra;		sou
 d2delta.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 d2deltapx.sourcePath	=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 d2deltas.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
+fr745.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 fr945.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 fr945lte.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
 marqathlete.sourcePath		=source;source-0-mem-extra;	source-1-ciq2-power-extra;		source-2-power;				source-3-round-240x240
@@ -51,8 +50,6 @@ fr645.resourcePath 			= resources
 fr245m.resourcePath 		= resources-mem-extra
 fr645m.resourcePath 		= resources-mem-extra
 
-fr745.resourcePath 		= resources-power-limitedextra
-
 fr935.resourcePath 			= resources-power
 fr735xt.resourcePath 		= resources-power
 fenix5.resourcePath 		= resources-power
@@ -70,6 +67,7 @@ d2charlie.resourcePath		= resources-power-extra
 d2delta.resourcePath		= resources-power-extra
 d2deltapx.resourcePath		= resources-power-extra
 d2deltas.resourcePath		= resources-power-extra
+fr745.resourcePath			= resources-power-extra
 fr945.resourcePath			= resources-power-extra
 fr945lte.resourcePath		= resources-power-extra
 marqathlete.resourcePath	= resources-power-extra
