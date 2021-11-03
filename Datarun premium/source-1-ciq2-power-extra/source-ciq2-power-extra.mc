@@ -180,7 +180,7 @@ class CiqView extends ExtramemView {
         	valueAsclast = valueAsc;
 	        CurrentVertSpeedinmpersec = Diff2-Diff1;
 	        TotalVertSpeedinmpersec = TotalVertSpeedinmpersec + CurrentVertSpeedinmpersec;
-    	    for (i = 1; i < 7; ++i) {
+    	    for (i = 1; i < 8; ++i) {
 	    	    if (metric[i] == 67 or metric[i] == 108) {
 					for (var j = 1; j < 30; ++j) {			
 						VertPace[31-j] = VertPace[30-j];
@@ -333,7 +333,7 @@ class CiqView extends ExtramemView {
    					verticalRatio = 0;
     			}
 
-        		for (i = 1; i < 7; ++i) {
+        		for (i = 1; i < 8; ++i) {
         			if (metric[i] == 109) {  
         				rollgroundContactBalance[10] 								= rollgroundContactBalance[9];
 	            		rollgroundContactBalance[9] 								= rollgroundContactBalance[8];
