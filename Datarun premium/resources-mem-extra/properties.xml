@@ -41,8 +41,7 @@
 	
   <strings>
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
-    <string id="AppVersion">2.43c</string>
-    <string id="lDummysetting4version">Version 2.43c of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="lDummysetting4version">Version 2.43d of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lMiscellaneousMenu">___Miscellaneous items___</string>

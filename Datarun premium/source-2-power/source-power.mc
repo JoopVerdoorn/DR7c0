@@ -149,7 +149,7 @@ class PowerView extends CiqView {
             	fieldLabel[i] = "LL Pwr";
             	fieldFormat[i] = "power";
 	        } else if (metric[i] == 24) {
-    	        fieldValue[i] = (info.averagePower != null) ? info.averagePower : 0;
+    	        fieldValue[i] = Math.round((mPowerTime != 0) ? AveragePower : 0);
         	    fieldLabel[i] = "A Power";
             	fieldFormat[i] = "power";   
 			}

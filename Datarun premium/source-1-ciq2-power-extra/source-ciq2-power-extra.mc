@@ -627,11 +627,7 @@ class CiqView extends ExtramemView {
             } else if (metric[i] == 104) {
     	        fieldValue[i] =  AveragePower;     	        
         	    fieldLabel[i] = "Av Pzone";
-            	fieldFormat[i] = "1decimal";           	
-			} else if (metric[i] == 17) {
-	            fieldValue[i] = Averagespeedinmpersec;
-    	        fieldLabel[i] = "Pc ..sec";
-        	    fieldFormat[i] = "pace";            	
+            	fieldFormat[i] = "1decimal";           	         	
 			} else if (metric[i] == 55) {   
             	if (info.currentSpeed == null or info.currentSpeed==0) {
             		fieldValue[i] = 0;

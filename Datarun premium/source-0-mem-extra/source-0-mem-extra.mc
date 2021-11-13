@@ -418,7 +418,7 @@ class ExtramemView extends DatarunpremiumView {
             	CFMFormat = "2decimal";   
 	        } else if (uClockFieldMetric == 5) {
     	        CFMValue = mLapElapsedDistance/unitD;
-            	CFMFormat = "2decimal";
+            	CFMFormat = "2decimal"; 
 			} else if (uClockFieldMetric == 6) {
     	        CFMValue = mLastLapElapsedDistance/unitD;
             	CFMFormat = "2decimal";
