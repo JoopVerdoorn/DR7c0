@@ -84,7 +84,7 @@ class ExtramemView extends DatarunpremiumView {
 	var HR1									= 0; 
     var HR2									= 0;
     var HR3									= 0;
-    var mGPScolor							= mColourBackGround;
+    var mGPScolor							= Graphics.COLOR_LT_GRAY;
     var GPSAccuracy							= "null";
     var screenWidth 						= mySettings.screenWidth;
 	
@@ -392,6 +392,8 @@ class ExtramemView extends DatarunpremiumView {
         	mGPScolor = Graphics.COLOR_PURPLE;
         } else if (GPSAccuracy == 4) {
 			mGPScolor = mColourBackGround;
+		} else {
+		    mGPScolor = Graphics.COLOR_LT_GRAY;
 		}
 		dc.setColor(mGPScolor, Graphics.COLOR_TRANSPARENT);
 		
