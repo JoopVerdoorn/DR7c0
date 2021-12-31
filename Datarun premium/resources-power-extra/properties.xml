@@ -63,11 +63,12 @@
     <property id="pShowRedClock" type="boolean">false</property>
     <property id="pCCnumber" type="number">9999999</property>
     <property id="pcadenceWorkaround" type="boolean">false</property>
+    <property id="pVertgradeDist" type="number">100</property>
   </properties>
 
 	
   <strings>
-    <string id="lDummysetting4version">Version 2.43e of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="lDummysetting4version">Version 2.44 of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lMiscellaneousMenu">___Miscellaneous items___</string>
@@ -294,6 +295,9 @@
     <string id="lTotalAscentinmperhour">Vertical ascent averaged over the whole activity (in meters/hour or feet/hour depending on watch settings)</string>
     <string id="lElapsed">Elapsed time (actual time minus start of timer moment)</string>
     <string id="lcadenceWorkaround">Apply workaround for bug in cadance metrics being halved (currently for Fenix 6 and FR945 LTE)</string>
+    <string id="lVertgrade">Vertical grade in percentages over a certain distance (any distance is allowed, see elsewhere in the settings, but maximum time observed is 5 minutes)</string>
+    <string id="lVertgradeDist">Distance in kilometers for the calculation of vertical grade (any distance is allowed, but maximum time observed is 5 minutes)</string>
+    <string id="lVertgradeDisterror">Invalid value</string>
 </strings>
 
   <settings>
@@ -432,6 +436,9 @@
         <listEntry value="6">@Strings.lFontalertBlack</listEntry>
         <listEntry value="7">@Strings.lFontalertDarkBlue</listEntry>
       </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.pVertgradeDist" title="@Strings.lVertgradeDist">
+      <settingConfig type="numeric" errorMessage="@Strings.lVertgradeDisterror" />
     </setting>
     <setting propertyKey="@Properties.pRacedistance" title="@Strings.lRacedistanceTitle">
       <settingConfig type="numeric" errorMessage="@Strings.lRacedistanceError" />
@@ -596,6 +603,7 @@
         <listEntry value="108">@Strings.lVAM_hour</listEntry>
         <listEntry value="125">@Strings.lTotalAscentinmpermin</listEntry>
         <listEntry value="126">@Strings.lTotalAscentinmperhour</listEntry>
+        <listEntry value="131">@Strings.lVertgrade</listEntry>
         <listEntry value="89">@Strings.lTemp</listEntry>
         <listEntry value="105">@Strings.lTempeTemp</listEntry>
         
@@ -740,6 +748,7 @@
         <listEntry value="108">@Strings.lVAM_hour</listEntry>
         <listEntry value="125">@Strings.lTotalAscentinmpermin</listEntry>
         <listEntry value="126">@Strings.lTotalAscentinmperhour</listEntry>
+        <listEntry value="131">@Strings.lVertgrade</listEntry>
         <listEntry value="89">@Strings.lTemp</listEntry>
         <listEntry value="105">@Strings.lTempeTemp</listEntry>
         
@@ -876,6 +885,7 @@
         <listEntry value="108">@Strings.lVAM_hour</listEntry>
         <listEntry value="125">@Strings.lTotalAscentinmpermin</listEntry>
         <listEntry value="126">@Strings.lTotalAscentinmperhour</listEntry>
+        <listEntry value="131">@Strings.lVertgrade</listEntry>
         <listEntry value="89">@Strings.lTemp</listEntry>   
         <listEntry value="105">@Strings.lTempeTemp</listEntry>  
          
@@ -1011,6 +1021,7 @@
         <listEntry value="108">@Strings.lVAM_hour</listEntry>
         <listEntry value="125">@Strings.lTotalAscentinmpermin</listEntry>
         <listEntry value="126">@Strings.lTotalAscentinmperhour</listEntry>
+        <listEntry value="131">@Strings.lVertgrade</listEntry>
         <listEntry value="89">@Strings.lTemp</listEntry>   
         <listEntry value="105">@Strings.lTempeTemp</listEntry>  
         
@@ -1146,6 +1157,7 @@
         <listEntry value="108">@Strings.lVAM_hour</listEntry>
         <listEntry value="125">@Strings.lTotalAscentinmpermin</listEntry>
         <listEntry value="126">@Strings.lTotalAscentinmperhour</listEntry>
+        <listEntry value="131">@Strings.lVertgrade</listEntry>
         <listEntry value="89">@Strings.lTemp</listEntry>   
         <listEntry value="105">@Strings.lTempeTemp</listEntry>
          
@@ -1291,6 +1303,7 @@
         <listEntry value="108">@Strings.lVAM_hour</listEntry>
         <listEntry value="125">@Strings.lTotalAscentinmpermin</listEntry>
         <listEntry value="126">@Strings.lTotalAscentinmperhour</listEntry>
+        <listEntry value="131">@Strings.lVertgrade</listEntry>
         <listEntry value="89">@Strings.lTemp</listEntry>
         <listEntry value="105">@Strings.lTempeTemp</listEntry>
         
@@ -1435,6 +1448,7 @@
         <listEntry value="108">@Strings.lVAM_hour</listEntry>
         <listEntry value="125">@Strings.lTotalAscentinmpermin</listEntry>
         <listEntry value="126">@Strings.lTotalAscentinmperhour</listEntry>
+        <listEntry value="131">@Strings.lVertgrade</listEntry>
         <listEntry value="89">@Strings.lTemp</listEntry>
         <listEntry value="105">@Strings.lTempeTemp</listEntry>
         
@@ -1512,6 +1526,7 @@
         <listEntry value="108">@Strings.lVAM_hour</listEntry>
         <listEntry value="125">@Strings.lTotalAscentinmpermin</listEntry>
         <listEntry value="126">@Strings.lTotalAscentinmperhour</listEntry>
+        <listEntry value="131">@Strings.lVertgrade</listEntry>
         <listEntry value="89">@Strings.lTemp</listEntry>
         <listEntry value="105">@Strings.lTempeTemp</listEntry>
         
