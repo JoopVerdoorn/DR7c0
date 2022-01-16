@@ -70,9 +70,9 @@ class DeviceView extends PowerView {
 			} else if ( i == 5 ) {  //!middle row, right	
 				Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"236,153,000,000,000,235,117");
 			} else if ( i == 6 ) {	//!lower row, left
-				Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"082,207,085,018,198,093,244");
+				Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"082,207,085,018,198,093,242");
 			} else if ( i == 7 ) {	//!lower row, right
-				Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"198,207,210,142,217,183,244");
+				Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"198,207,210,142,217,183,242");
        		}       	
 		}
 		

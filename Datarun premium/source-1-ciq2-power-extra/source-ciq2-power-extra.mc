@@ -60,6 +60,8 @@ class CiqView extends ExtramemView {
 	var stopiteration                       = false;
 	var uVertgradeDist                      = 0.1;
 	var Vertgradsmooth  	        		= new[6]; 
+	var uLabelfontbig 						= true;
+	var Labelfont							= Graphics.FONT_TINY;
     
     
             		            				
@@ -87,11 +89,18 @@ class CiqView extends ExtramemView {
     	uFontalertColorLow = mApp.getProperty("pFontalertColorLow");
     	uFontalertColorHigh = mApp.getProperty("pFontalertColorHigh");
     	uVertgradeDist   = mApp.getProperty("pVertgradeDist");
+    	uLabelfontbig = mApp.getProperty("pLabelfontbig");
 
         uVertgradeDist = (uVertgradeDist<50) ? 0.050 : uVertgradeDist;
 	
 		uRealHumid = (uRealHumid != 0 ) ? uRealHumid : 1;
 		uFTPHumid = (uFTPHumid != 0 ) ? uFTPHumid : 1;
+		
+		if (uLabelfontbig == true) {
+			Labelfont = Graphics.FONT_TINY;
+		} else {
+			Labelfont = Graphics.FONT_XTINY;
+		}
 		
 		//! Choose fontcolor for alert when power value is under or above powerzone
         if ( uFontalertColorLow == 0 ) {
@@ -1045,7 +1054,7 @@ class CiqView extends ExtramemView {
         }        
        	mColourFont = originalFontcolor;
 		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
-		dc.drawText(xl, yl, Graphics.FONT_XTINY,  fieldlabel, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(xl, yl, Labelfont,  fieldlabel, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
     }
 
 	function hashfunction(string) {
