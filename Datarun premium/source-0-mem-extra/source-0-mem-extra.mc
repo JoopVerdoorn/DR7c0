@@ -407,6 +407,9 @@ class ExtramemView extends DatarunpremiumView {
 		} else if (screenWidth == 280) {
 			dc.fillRectangle(12, 6, 77, 26); 
 			dc.fillRectangle(191, 6, 64, 26);
+		} else if (screenWidth == 416) {
+			dc.fillRectangle(18, 9, 114, 40); 
+			dc.fillRectangle(284, 9, 95, 40);
 		}
 
 		dc.setColor(mColourLine, Graphics.COLOR_TRANSPARENT);
@@ -737,6 +740,38 @@ class ExtramemView extends DatarunpremiumView {
 				} else if ( i == 7 ) {	//!lower row, right	
 					if (disablelabel[7] == false) {
 						Coloring(dc,i,fieldValue[i],"140,235,117,020");
+					}	
+	    		}        	
+			}	
+		} else if (mySettings.screenWidth == 416 and mySettings.screenHeight == 416 ) {     //! Epix 2labels
+			for (i = 1; i < 8; ++i) {
+			   	if ( i == 1 ) {			//!upper row, left    	
+					if (disablelabel[1] == false) {
+						Coloring(dc,i,fieldValue[i],"031,051,176,030");
+					}	    
+			   	} else if ( i == 2 ) {	//!upper row, right
+					if (disablelabel[2] == false) {
+						Coloring(dc,i,fieldValue[i],"208,051,174,030");
+					}
+				} else if ( i == 3 ) {  //!middle row, left		
+					if (disablelabel[3] == false) {
+						Coloring(dc,i,fieldValue[i],"000,160,126,030");
+					}	
+		   		} else if ( i == 4 ) {	//!middle row, middle
+					if (disablelabel[4] == false) {
+						Coloring(dc,i,fieldValue[i],"127,160,158,030");
+					}
+				} else if ( i == 5 ) {  //!middle row, right		
+					if (disablelabel[5] == false) {
+						Coloring(dc,i,fieldValue[i],"285,160,134,030");
+					}	
+			   	} else if ( i == 6 ) {	//!lower row, left
+					if (disablelabel[6] == false) {
+						Coloring(dc,i,fieldValue[i],"031,349,176,030");
+					}
+				} else if ( i == 7 ) {	//!lower row, right	
+					if (disablelabel[7] == false) {
+						Coloring(dc,i,fieldValue[i],"208,349,174,030");
 					}	
 	    		}        	
 			}	
