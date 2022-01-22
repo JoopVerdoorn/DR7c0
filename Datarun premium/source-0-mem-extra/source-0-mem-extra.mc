@@ -137,19 +137,35 @@ class ExtramemView extends DatarunpremiumView {
 		tempeTemp = (Storage.getValue("mytemp") != null) ? Storage.getValue("mytemp") : 0;
 
     	//! Setup back- and foregroundcolours
-		if (uBlackBackground == true ){
-			mColourFont = Graphics.COLOR_WHITE;
-			mColourFont1 = Graphics.COLOR_WHITE;
-			mColourLine = Graphics.COLOR_GREEN;
-			mColourBackGround = Graphics.COLOR_BLACK;
+		if (mySettings.screenWidth == 416 and mySettings.screenHeight == 416 ) {
+			if (uBlackBackground == true ){
+				mColourFont = Graphics.COLOR_WHITE;
+				mColourFont1 = Graphics.COLOR_WHITE;
+				mColourLine = Graphics.COLOR_GREEN;
+				mColourBackGround = Graphics.COLOR_BLACK;
+			} else {
+				mColourFont = Graphics.COLOR_BLACK;
+				mColourFont1 = Graphics.COLOR_BLACK;
+				mColourLine = Graphics.COLOR_BLUE;
+				mColourBackGround = Graphics.COLOR_WHITE;
+			}
+			dc.setColor(mColourBackGround, Graphics.COLOR_TRANSPARENT);
+			dc.fillRectangle (0, 0, 416, 416);
 		} else {
-			mColourFont = Graphics.COLOR_BLACK;
-			mColourFont1 = Graphics.COLOR_BLACK;
-			mColourLine = Graphics.COLOR_BLUE;
-			mColourBackGround = Graphics.COLOR_WHITE;
-		}
-		dc.setColor(mColourBackGround, Graphics.COLOR_TRANSPARENT);
-        dc.fillRectangle (0, 0, 280, 280);
+			if (uBlackBackground == true ){
+				mColourFont = Graphics.COLOR_WHITE;
+				mColourFont1 = Graphics.COLOR_WHITE;
+				mColourLine = Graphics.COLOR_GREEN;
+				mColourBackGround = Graphics.COLOR_BLACK;
+			} else {
+				mColourFont = Graphics.COLOR_BLACK;
+				mColourFont1 = Graphics.COLOR_BLACK;
+				mColourLine = Graphics.COLOR_BLUE;
+				mColourBackGround = Graphics.COLOR_WHITE;
+			}
+			dc.setColor(mColourBackGround, Graphics.COLOR_TRANSPARENT);
+			dc.fillRectangle (0, 0, 280, 280);
+        }		
         
         //! Calculate lap (Cadence) time
         mLapTimerTimeCadence 	= mCadenceTime - mLastLapTimeCadenceMarker;
@@ -819,6 +835,9 @@ class ExtramemView extends DatarunpremiumView {
 			} else if (mySettings.screenWidth == 280 and mySettings.screenHeight == 280) {
 				 dc.drawText(123, -2, Graphics.FONT_MEDIUM, mLaps, Graphics.TEXT_JUSTIFY_CENTER);
 				 dc.drawText(160, -1, Graphics.FONT_XTINY, "lap", Graphics.TEXT_JUSTIFY_CENTER);		
+			} else if (mySettings.screenWidth == 416 and mySettings.screenHeight == 416) {
+				 dc.drawText(183, -3, Graphics.FONT_MEDIUM, mLaps, Graphics.TEXT_JUSTIFY_CENTER);
+				 dc.drawText(238, -1, Graphics.FONT_XTINY, "lap", Graphics.TEXT_JUSTIFY_CENTER);		
 			} else {	
 				 dc.drawText(103, -4, Graphics.FONT_MEDIUM, mLaps, Graphics.TEXT_JUSTIFY_CENTER);
 				 dc.drawText(140, -1, Graphics.FONT_XTINY, "lap", Graphics.TEXT_JUSTIFY_CENTER);
@@ -837,6 +856,8 @@ class ExtramemView extends DatarunpremiumView {
 				dc.drawText(140, -3, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
 	    	} else if (mySettings.screenWidth == 280 and mySettings.screenHeight == 280) {
 				dc.drawText(150, -2, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
+	    	} else if (mySettings.screenWidth == 416 and mySettings.screenHeight == 416) {
+				dc.drawText(223, -3, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
 	    	} else {
 				dc.drawText(130, -4, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
 			}
@@ -876,6 +897,8 @@ class ExtramemView extends DatarunpremiumView {
 	    	   	dc.drawText(130, 14, Graphics.FONT_MEDIUM, CFMValue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 	    	} else if (mySettings.screenWidth == 280 and mySettings.screenHeight == 280) {
 	    	   	dc.drawText(140, 15, Graphics.FONT_MEDIUM, CFMValue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+	       	} else if (mySettings.screenWidth == 416 and mySettings.screenHeight == 416) {
+	    	   	dc.drawText(208, 22, Graphics.FONT_MEDIUM, CFMValue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 	       	} else {
 		       	dc.drawText(120, 13, Graphics.FONT_MEDIUM, CFMValue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
     	    }
