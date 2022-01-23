@@ -70,7 +70,7 @@
 
 	
   <strings>
-    <string id="lDummysetting4version">Version 2.46b of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="lDummysetting4version">Version 2.46c of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lMiscellaneousMenu">___Miscellaneous items___</string>
@@ -119,7 +119,7 @@
     <string id="lColoringPaceFromAver">Use average pace for coloring of the pace field in middle row, instead of pace based on desired finish time</string>
     <string id="lShowDemo">Show demo view for ID's and check license</string>
     <string id="lBlackBackground">Use black background instead of white</string>
-    <string id="lBacklight">Force backlight on, regardless of device settings</string>
+    <string id="lBacklight">Force backlight on, regardless of device settings (not for Epix 2)</string>
     <string id="lMilClockAltern">Alternative for default military clock in upper field</string>
     <string id="lShowMilClock">Keep clock with military time</string>
     <string id="lShowlaps">Show number of laps </string>
@@ -1521,7 +1521,6 @@
         <listEntry value="1000">@Strings.lWorkoutMenu</listEntry>
 		<listEntry value="107">@Strings.lPtargetcorrect</listEntry>
         <listEntry value="121">@Strings.lStepnumber</listEntry>
-        <listEntry value="122">@Strings.lReamingTimeOfStep</listEntry>
         
         <listEntry value="998">@Strings.lAltitudeMenu</listEntry>
         <listEntry value="51">@Strings.lAltitude</listEntry>

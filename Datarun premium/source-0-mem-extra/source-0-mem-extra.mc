@@ -81,6 +81,11 @@ class ExtramemView extends DatarunpremiumView {
 	hidden var rollverticalRatio			= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 	hidden var AveragerollverticalRatio10sec= 0;
 	hidden var startTime					   ;
+	hidden var workoutTarget                   ;
+	hidden var RemainingWorkoutTime  		= 0;
+    hidden var RemainingWorkoutDistance		= 0;
+    hidden var WorkoutStepDurationType  	= 9;
+    hidden var StartTimeNewStep				= 0;
 	var HR1									= 0; 
     var HR2									= 0;
     var HR3									= 0;
@@ -416,16 +421,32 @@ class ExtramemView extends DatarunpremiumView {
 		
 		if (screenWidth == 240) {
 			dc.fillRectangle(10, 5, 64, 22); 
-			dc.fillRectangle(164, 5, 55, 22);
+			if (uMilClockAltern == 1) {
+			   dc.fillRectangle(183, 5, 55, 22);
+		    } else {
+		       dc.fillRectangle(165, 5, 55, 22);
+		    }
 		} else if (screenWidth == 260) { 
 			dc.fillRectangle(11, 5, 69, 24); 
-			dc.fillRectangle(178, 5, 60, 24);
+			if (uMilClockAltern == 1) {
+			   dc.fillRectangle(197, 5, 60, 24);
+		    } else {
+		       dc.fillRectangle(178, 5, 60, 24);
+		    }
 		} else if (screenWidth == 280) {
-			dc.fillRectangle(12, 6, 77, 26); 
-			dc.fillRectangle(191, 6, 64, 26);
+			dc.fillRectangle(12, 6, 77, 25); 
+			if (uMilClockAltern == 1) {
+			   dc.fillRectangle(211, 6, 64, 25);
+			} else {
+			   dc.fillRectangle(191, 6, 64, 25);
+			}
 		} else if (screenWidth == 416) {
-			dc.fillRectangle(18, 9, 114, 40); 
-			dc.fillRectangle(284, 9, 95, 40);
+			dc.fillRectangle(18, 9, 114, 39); 
+			if (uMilClockAltern == 1) {
+			   dc.fillRectangle(313, 9, 95, 39);
+			} else {
+			   dc.fillRectangle(284, 9, 95, 39);
+			}
 		}
 
 		dc.setColor(mColourLine, Graphics.COLOR_TRANSPARENT);
@@ -606,12 +627,18 @@ class ExtramemView extends DatarunpremiumView {
 	            CFMValue = RealWorkoutStepNr;
         	    CFMFormat = "0decimal";
         	} else if (uClockFieldMetric == 122) {
-	            CFMValue = RealRemainingWorkoutTime;
-   	    		if (DistinClockfield == false) {
-   	    			CFMFormat = "time";
-   	    		} else {
-   	    			CFMFormat = "2decimal";
-   	    		}
+	            if (workoutTarget != null) {
+		            if (WorkoutStepDurationType == 0) {
+						CFMValue = RemainingWorkoutTime;
+        	    		CFMFormat = "time";
+					} else if (WorkoutStepDurationType == 1) {
+						CFMValue = RemainingWorkoutDistance;
+        	    		CFMFormat = "2decimal";
+        	    	} else if (WorkoutStepDurationType == 5) {
+						CFMValue = jTimertime-StartTimeNewStep;
+        	    		CFMFormat = "time";
+					} 
+				}
    	    	}  else if (uClockFieldMetric == 124) {
            		CFMValue = (unitD == 1609.344) ? AverageVertspeedinmper30sec*3.2808*60 : AverageVertspeedinmper30sec*60;
             	CFMFormat = "0decimal";
@@ -836,8 +863,8 @@ class ExtramemView extends DatarunpremiumView {
 				 dc.drawText(123, -2, Graphics.FONT_MEDIUM, mLaps, Graphics.TEXT_JUSTIFY_CENTER);
 				 dc.drawText(160, -1, Graphics.FONT_XTINY, "lap", Graphics.TEXT_JUSTIFY_CENTER);		
 			} else if (mySettings.screenWidth == 416 and mySettings.screenHeight == 416) {
-				 dc.drawText(183, -3, Graphics.FONT_MEDIUM, mLaps, Graphics.TEXT_JUSTIFY_CENTER);
-				 dc.drawText(238, -1, Graphics.FONT_XTINY, "lap", Graphics.TEXT_JUSTIFY_CENTER);		
+				 dc.drawText(183, -4, Graphics.FONT_MEDIUM, mLaps, Graphics.TEXT_JUSTIFY_CENTER);
+				 dc.drawText(238, 2, Graphics.FONT_XTINY, "lap", Graphics.TEXT_JUSTIFY_CENTER);		
 			} else {	
 				 dc.drawText(103, -4, Graphics.FONT_MEDIUM, mLaps, Graphics.TEXT_JUSTIFY_CENTER);
 				 dc.drawText(140, -1, Graphics.FONT_XTINY, "lap", Graphics.TEXT_JUSTIFY_CENTER);
@@ -857,7 +884,7 @@ class ExtramemView extends DatarunpremiumView {
 	    	} else if (mySettings.screenWidth == 280 and mySettings.screenHeight == 280) {
 				dc.drawText(150, -2, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
 	    	} else if (mySettings.screenWidth == 416 and mySettings.screenHeight == 416) {
-				dc.drawText(223, -3, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
+				dc.drawText(223, 0, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
 	    	} else {
 				dc.drawText(130, -4, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
 			}
@@ -898,7 +925,7 @@ class ExtramemView extends DatarunpremiumView {
 	    	} else if (mySettings.screenWidth == 280 and mySettings.screenHeight == 280) {
 	    	   	dc.drawText(140, 15, Graphics.FONT_MEDIUM, CFMValue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 	       	} else if (mySettings.screenWidth == 416 and mySettings.screenHeight == 416) {
-	    	   	dc.drawText(208, 22, Graphics.FONT_MEDIUM, CFMValue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+	    	   	dc.drawText(208, 25, Graphics.FONT_MEDIUM, CFMValue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 	       	} else {
 		       	dc.drawText(120, 13, Graphics.FONT_MEDIUM, CFMValue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
     	    }
