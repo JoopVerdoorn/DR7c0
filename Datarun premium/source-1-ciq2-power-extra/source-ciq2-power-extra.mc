@@ -62,7 +62,7 @@ class CiqView extends ExtramemView {
 	var Vertgradsmooth  	        		= new[6]; 
 	var uLabelfontbig 						= true;
 	var Labelfont							= Graphics.FONT_TINY;
-    
+    hidden var mPowerWarningunderNext              = 888;
     
             		            				
     function initialize() {
@@ -480,27 +480,70 @@ class CiqView extends ExtramemView {
 					}
 				}
 			}
+		
+        //! Alers when out of powerzone		
+		var vibrateData = [
+			new Attention.VibeProfile( 100, 200 )
+		];
+
+        mPowerWarningunder = mPowerWarningunder.toNumber();
+        mPowerWarningupper = mPowerWarningupper.toNumber(); 
+
+        if (Activity has :getCurrentWorkoutStep and overruleWourkout == false) {
+	        	if (WorkoutStepHighBoundary > 0) {
+	        		mPowerWarningunder = WorkoutStepLowBoundary;
+    	    		mPowerWarningupper = WorkoutStepHighBoundary; 
+        		} else {
+        			mPowerWarningunder = 0;
+        			mPowerWarningupper = 999;
+        		}
+        }
+
+
+        if (Activity has :getNextWorkoutStep) {
+            if (WorkoutStepHighBoundary > 0) {
+	        		mPowerWarningunderNext = WorkoutStepLowBoundary;
+        	}
+        }
+
+        //! Calculate power-lap time and convert timers from milliseconds to seconds
+        mLapTimerTimePwr = mPowerTime - mLastLapTimePwrMarker;
+
+		//!Calculate powermetrics
+		var mLapElapsedPower = mElapsedPower - mLastLapPowerMarker;
+        AveragePower = Math.round((mPowerTime != 0) ? mElapsedPower/mPowerTime : 0);
+		LapPower = (mLapTimerTimePwr != 0) ? Math.round(mLapElapsedPower/mLapTimerTimePwr) : 0; 	
+		LastLapPower = (mLastLapTimerTimePwr != 0) ? Math.round(mLastLapElapsedPower/mLastLapTimerTimePwr) : 0;
 			
-			var vibrateData = [
-				new Attention.VibeProfile( 100, 200 )
-			];
-
-			if (VibrateHighRequired == true) {
-    			Toybox.Attention.vibrate(vibrateData);
-    			if (uAlertbeep == true) {
-    				Attention.playTone(Attention.TONE_ALERT_HI);
-    			}
-    			Toybox.Attention.vibrate(vibrateData);
-    			VibrateHighRequired = false;
-    		}
-
-    		if (VibrateLowRequired == true) {
-    			if (uAlertbeep == true) {
-    				Attention.playTone(Attention.TONE_ALERT_LO);
-    			}
-    			Toybox.Attention.vibrate(vibrateData);
-    			VibrateLowRequired = false;
-    		}
+		PowerWarning = 0;
+		if (jTimertime != 0) {
+		  if (runalertPower>mPowerWarningupper or runalertPower<mPowerWarningunder) {	 
+			 if (Toybox.Attention has :vibrate && uNoAlerts == false) {
+			 	vibrateseconds = vibrateseconds + 1;	 		  			
+    			if (runalertPower>mPowerWarningupper) {
+    				PowerWarning = 1;
+    				if (vibrateseconds == uWarningFreq) {
+    					Toybox.Attention.vibrate(vibrateData);
+    					if (uAlertbeep == true) {
+    						Attention.playTone(Attention.TONE_ALERT_HI);
+    					}
+    					Toybox.Attention.vibrate(vibrateData);
+    					vibrateseconds = 0;
+    				}
+    			} else if (runalertPower<mPowerWarningunder){
+    				PowerWarning = 2;
+    				if (vibrateseconds == uWarningFreq) {
+    					
+    						if (uAlertbeep == true) {
+    							Attention.playTone(Attention.TONE_ALERT_LO);
+    						}
+    					Toybox.Attention.vibrate(vibrateData);
+    					vibrateseconds = 0;
+    				}
+    			} 
+			 }
+		  }	 
+		}
 			           	
             //!Calculate lappower
             mPowerTime		 = (info.currentPower != null and mTimerRunning) ? mPowerTime+1 : mPowerTime;
@@ -664,9 +707,32 @@ class CiqView extends ExtramemView {
 		
 		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
 		
+		//!base variable for the number of steps
+        var activityMonitorInfo = Toybox.ActivityMonitor.getInfo();
+		
 		i = 0; 
 	    for (i = 1; i < 8; ++i) {
-	        if (metric[i] == 38) {
+            if (metric[i] == 20) {
+            	fieldValue[i] = (info.currentPower != null) ? runPower : 0;
+            	fieldLabel[i] = "Power";
+            	fieldFormat[i] = "power";   
+	        } else if (metric[i] == 21) {
+    	        fieldValue[i] = AveragePower3sec;
+        	    fieldLabel[i] = "Pwr 3s";
+            	fieldFormat[i] = "power";
+			} else if (metric[i] == 22) {
+    	        fieldValue[i] = LapPower;
+        	    fieldLabel[i] = "L Power";
+            	fieldFormat[i] = "power";
+			} else if (metric[i] == 23) {
+        	    fieldValue[i] = LastLapPower;
+            	fieldLabel[i] = "LL Pwr";
+            	fieldFormat[i] = "power";
+	        } else if (metric[i] == 24) {
+    	        fieldValue[i] = Math.round((mPowerTime != 0) ? AveragePower : 0);
+        	    fieldLabel[i] = "A Power";
+            	fieldFormat[i] = "power"; 
+	        } else if (metric[i] == 38) {
     	        fieldValue[i] =  runPower;     	        
         	    fieldLabel[i] = "Cur Pzone";
             	fieldFormat[i] = "1decimal";
@@ -918,6 +984,14 @@ class CiqView extends ExtramemView {
            		fieldValue[i] = Vertgradsmoothed;
             	fieldLabel[i] = "V grade";
             	fieldFormat[i] = "1decimal";
+			} else if (metric[i] == 132) {
+           		fieldValue[i] = activityMonitorInfo.steps - NumberStepsAtStart;
+            	fieldLabel[i] = "Steps";
+            	fieldFormat[i] = "0decimal";
+			} else if (metric[i] == 133) {
+           		fieldValue[i] = mPowerWarningunderNext;
+            	fieldLabel[i] = "Test";
+            	fieldFormat[i] = "0decimal";
 			}
         	//!einde invullen field metrics
 		}
