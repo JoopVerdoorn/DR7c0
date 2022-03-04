@@ -301,8 +301,6 @@
     <string id="lVertgradeDist">Distance in kilometers for the calculation of vertical grade (any distance is allowed, but maximum time observed is 5 minutes)</string>
     <string id="lVertgradeDisterror">Invalid value</string>
     <string id="lLabelfontbig">Use large label font on FR745, FR945(LTE), Marq and Fenix 6 watches (default is on)</string>
-    <string id="lNumberofsteps">Number of steps during the activity</string>
-    <string id="lTest">Test for showing lower boundery of next workout step</string>
 </strings>
 
   <settings>
@@ -523,7 +521,6 @@
         <listEntry value="113">@Strings.lstepLength</listEntry>
         <listEntry value="114">@Strings.lverticalOscillation</listEntry>
         <listEntry value="115">@Strings.lverticalRatio</listEntry>
-        <listEntry value="132">@Strings.lNumberofsteps</listEntry>
 
         <listEntry value="993">@Strings.lETAMenu</listEntry>
         <listEntry value="13">@Strings.lETArequiredpace</listEntry>
@@ -669,7 +666,6 @@
         <listEntry value="113">@Strings.lstepLength</listEntry>
         <listEntry value="114">@Strings.lverticalOscillation</listEntry>
         <listEntry value="115">@Strings.lverticalRatio</listEntry>
-        <listEntry value="132">@Strings.lNumberofsteps</listEntry>
 
         <listEntry value="993">@Strings.lETAMenu</listEntry>
         <listEntry value="13">@Strings.lETArequiredpace</listEntry>
@@ -809,7 +805,6 @@
         <listEntry value="113">@Strings.lstepLength</listEntry>
         <listEntry value="114">@Strings.lverticalOscillation</listEntry>
         <listEntry value="115">@Strings.lverticalRatio</listEntry>
-        <listEntry value="132">@Strings.lNumberofsteps</listEntry>
         
         <listEntry value="993">@Strings.lETAMenu</listEntry>
         <listEntry value="13">@Strings.lETArequiredpace</listEntry>
@@ -902,7 +897,6 @@
          
         <listEntry value="989">@Strings.lMiscellaneousMenu</listEntry>
         <listEntry value="123">@Strings.lBatteryPerc</listEntry>
-        <listEntry value="133">@Strings.lTest</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.pMiddleMiddleMetric" title="@Strings.lMiddleMiddleMetric">
@@ -947,7 +941,6 @@
         <listEntry value="113">@Strings.lstepLength</listEntry>
         <listEntry value="114">@Strings.lverticalOscillation</listEntry>
         <listEntry value="115">@Strings.lverticalRatio</listEntry>
-        <listEntry value="132">@Strings.lNumberofsteps</listEntry>
         
         <listEntry value="993">@Strings.lETAMenu</listEntry>
         <listEntry value="13">@Strings.lETArequiredpace</listEntry>
@@ -1084,7 +1077,6 @@
         <listEntry value="113">@Strings.lstepLength</listEntry>
         <listEntry value="114">@Strings.lverticalOscillation</listEntry>
         <listEntry value="115">@Strings.lverticalRatio</listEntry>
-        <listEntry value="132">@Strings.lNumberofsteps</listEntry>
         
         <listEntry value="993">@Strings.lETAMenu</listEntry>
         <listEntry value="13">@Strings.lETArequiredpace</listEntry>
@@ -1229,7 +1221,6 @@
         <listEntry value="113">@Strings.lstepLength</listEntry>
         <listEntry value="114">@Strings.lverticalOscillation</listEntry>
         <listEntry value="115">@Strings.lverticalRatio</listEntry>
-        <listEntry value="132">@Strings.lNumberofsteps</listEntry>
 
         <listEntry value="993">@Strings.lETAMenu</listEntry>
         <listEntry value="13">@Strings.lETArequiredpace</listEntry>
@@ -1375,7 +1366,6 @@
         <listEntry value="113">@Strings.lstepLength</listEntry>
         <listEntry value="114">@Strings.lverticalOscillation</listEntry>
         <listEntry value="115">@Strings.lverticalRatio</listEntry>
-        <listEntry value="132">@Strings.lNumberofsteps</listEntry>
 
         <listEntry value="993">@Strings.lETAMenu</listEntry>
         <listEntry value="13">@Strings.lETArequiredpace</listEntry>
@@ -1515,7 +1505,6 @@
         <listEntry value="113">@Strings.lstepLength</listEntry>
         <listEntry value="114">@Strings.lverticalOscillation</listEntry>
         <listEntry value="115">@Strings.lverticalRatio</listEntry>
-        <listEntry value="132">@Strings.lNumberofsteps</listEntry>
         
         <listEntry value="995">@Strings.lHRMenu</listEntry>
         <listEntry value="45">@Strings.lHeartrate</listEntry>

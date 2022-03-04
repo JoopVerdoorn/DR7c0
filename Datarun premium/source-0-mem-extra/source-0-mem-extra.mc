@@ -93,8 +93,6 @@ class ExtramemView extends DatarunpremiumView {
     var GPSAccuracy							= "null";
     var screenWidth 						= mySettings.screenWidth;
     hidden var Vertgradsmoothed             = 0;
-    hidden var NumberStepsAtStart           = 0;
-    
 	
     function initialize() {
         DatarunpremiumView.initialize();
@@ -113,11 +111,6 @@ class ExtramemView extends DatarunpremiumView {
 		disablelabel[6] 			= mApp.getProperty("pdisablelabel6");
 		disablelabel[7] 			= mApp.getProperty("pdisablelabel7");
 		utempcalibration 			= mApp.getProperty("pTempeCalibration");
-
-
-        var activityMonitorInfo = Toybox.ActivityMonitor.getInfo();
-        NumberStepsAtStart = activityMonitorInfo.steps;
-
 		
 		if(Toybox.AntPlus has :RunningDynamics) {
 			dynamics = new Toybox.AntPlus.RunningDynamics(null);
@@ -227,10 +220,7 @@ class ExtramemView extends DatarunpremiumView {
         		HR2 					= HR1;
 				HR1						= currentHR; 
 		var	AverageHR3sec= (HR1+HR2+HR3)/3;
-		
-		//!base variable for the number of steps
-        var activityMonitorInfo = Toybox.ActivityMonitor.getInfo();
-
+	
 		var sensorIter = getIterator();
 		maxHR = uHrZones[5];
 		var i = 0; 
@@ -413,7 +403,6 @@ class ExtramemView extends DatarunpremiumView {
             	fieldFormat[i] = "0decimal";
 			}
 		}
-
 
 		//! Show GPS accuracy
         GPSAccuracy=info.currentLocationAccuracy;
@@ -700,11 +689,8 @@ class ExtramemView extends DatarunpremiumView {
            	} else if (uClockFieldMetric == 131) {
            		CFMValue = Vertgradsmoothed;
             	CFMFormat = "1decimal";
-			} else if (uClockFieldMetric == 132) {
-           		CFMValue = activityMonitorInfo.steps - NumberStepsAtStart;
-            	CFMFormat = "0decimal";
 			}
-	
+		
 		//! Determine HR-zone for clockfield
         if (uClockFieldMetric==46) {
 			if (CFMValue >= uHrZones[5]) {
