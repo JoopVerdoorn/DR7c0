@@ -49,18 +49,13 @@ class DeviceView extends PowerView {
         //! Top centre mini-field separator
         dc.drawRoundedRectangle(72, -10, 72, 36, 4);
 
-		//! Display metrics
-        dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
-
 		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
-
+		//! Show clock with current time in top
 		myTime = Toybox.System.getClockTime(); 
     	strTime = myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"); 		
-		//! Show clock with current time in top
-		if (uMilClockAltern == 0) {	
-			dc.drawText(98, -4, Graphics.FONT_NUMBER_MILD, strTime, Graphics.TEXT_JUSTIFY_CENTER);
-		}
+		dc.drawText(98, -4, Graphics.FONT_NUMBER_MILD, strTime, Graphics.TEXT_JUSTIFY_CENTER);
 
+		//! Display metrics
 		for (var i = 1; i < 8; ++i) {
 	    	if ( i == 1 ) {			//!upper row, left
 	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"062,041,065,015,047,052,015");

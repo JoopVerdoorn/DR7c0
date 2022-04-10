@@ -25,7 +25,6 @@ class CiqView extends DatarunpremiumView {
 
 	function onUpdate(dc) {
 		DatarunpremiumView.onUpdate(dc);
-		uMilClockAltern=0;
 		
     	//! Setup back- and foregroundcolours
 		mColourFont = (getBackgroundColor() == Graphics.COLOR_BLACK) ? Graphics.COLOR_WHITE : Graphics.COLOR_BLACK; 

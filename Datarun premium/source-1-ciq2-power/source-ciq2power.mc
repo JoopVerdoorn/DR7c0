@@ -36,6 +36,23 @@ class CiqView extends DatarunpremiumView {
 	function onWorkoutStepComplete() {
 		Lapaction ();
 	}
+	
+	//! Current activity is ended
+    function onTimerReset() {
+        mPrevElapsedDistance        = 0;
+        mLaps                       = 1;
+        mLastLapDistMarker          = 0;
+        mLastLapTimeMarker          = 0;
+        mLastLapTimerTime           = 0;
+        mLastLapElapsedDistance     = 0;
+        mStartStopPushed            = 0;
+        mLastLapHeartrateMarker     = 0;
+        mLastLapElapsedHeartrate    = 0;        
+        mLastLapTimerTimeHR     	= 0;   
+        mLastLapPowerMarker      	= 0;
+        mLastLapElapsedPower     	= 0; 
+        mLastLapTimerTimePwr     	= 0;  
+    }
 
 	function onUpdate(dc) {
 		//! call the parent onUpdate to do the base logic
