@@ -112,7 +112,7 @@ class ExtramemView extends DatarunpremiumView {
 		disablelabel[6] 		= mApp.getProperty("pdisablelabel6");
 		disablelabel[7] 		= mApp.getProperty("pdisablelabel7");
 		utempcalibration 		= mApp.getProperty("pTempeCalibration");
-		uLinecolor              = 6;
+		uLinecolor              = mApp.getProperty("pLinecolor");
 		
 		if(Toybox.AntPlus has :RunningDynamics) {
 			dynamics = new Toybox.AntPlus.RunningDynamics(null);

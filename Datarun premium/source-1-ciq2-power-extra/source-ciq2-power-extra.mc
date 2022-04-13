@@ -535,8 +535,7 @@ class CiqView extends ExtramemView {
 		AveragePower = Math.round((mPowerTime != 0) ? mElapsedPower/mPowerTime : 0);  
 		LapPower = (mLapTimerTimePwr != 0) ? Math.round(mLapElapsedPower/mLapTimerTimePwr) : 0; 	
 		LastLapPower = (mLastLapTimerTimePwr != 0) ? Math.round(mLastLapElapsedPower/mLastLapTimerTimePwr) : 0;
-
-         	
+    	
 		//! Alert when out of predefined powerzone
 		//!Calculate power metrics
         mPowerWarningunder = uRequiredPower.substring(0, 3);
