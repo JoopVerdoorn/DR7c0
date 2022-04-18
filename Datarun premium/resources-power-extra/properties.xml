@@ -71,7 +71,7 @@
 
 	
   <strings>
-    <string id="lDummysetting4version">Version 2.48b of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="lDummysetting4version">Version 2.48c of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lMiscellaneousMenu">___Miscellaneous items___</string>
@@ -166,6 +166,8 @@
     <string id="lFontalertRed">Red</string>
     <string id="lFontalertBlack">Black</string>  
     <string id="lFontalertDarkBlue">Dark blue</string>
+    <string id="lFontalertYellow">Yellow</string>
+    <string id="lFontalertOrange">Orange</string>
 	<string id="lPaceper3km">Pace averaged over the last 3 seconds</string>
 	<string id="lPaceper5km">Pace averaged over the last 5 seconds</string>
 	<string id="lPaceper300km">Pace averaged over the last .. seconds (max is 300 seconds)</string>
@@ -452,6 +454,8 @@
         <listEntry value="5">@Strings.lFontalertRed</listEntry>
         <listEntry value="6">@Strings.lFontalertBlack</listEntry>
         <listEntry value="7">@Strings.lFontalertDarkBlue</listEntry>
+        <listEntry value="8">@Strings.lFontalertYellow</listEntry>
+        <listEntry value="9">@Strings.lFontalertOrange</listEntry>
       </settingConfig>
     </setting>
     <setting propertyKey="@Properties.pFontalertColorHigh" title="@Strings.lFontalertColorHigh">
@@ -464,6 +468,8 @@
         <listEntry value="5">@Strings.lFontalertRed</listEntry>
         <listEntry value="6">@Strings.lFontalertBlack</listEntry>
         <listEntry value="7">@Strings.lFontalertDarkBlue</listEntry>
+        <listEntry value="8">@Strings.lFontalertYellow</listEntry>
+        <listEntry value="9">@Strings.lFontalertOrange</listEntry>
       </settingConfig>
     </setting>
     <setting propertyKey="@Properties.pVertgradeDist" title="@Strings.lVertgradeDist">
