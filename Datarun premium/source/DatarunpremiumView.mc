@@ -105,6 +105,7 @@ class DatarunpremiumView extends Ui.DataField {
 	hidden var mLapElapsedDistance 			= 0;
 	hidden var uShowRedClock 				= false;
 	hidden var ucadenceWorkaround 			= false;
+    hidden var c0Version					= true;
 
     function initialize() {
          DataField.initialize();
