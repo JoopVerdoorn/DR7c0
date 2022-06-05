@@ -811,6 +811,38 @@ class ExtramemView extends DatarunpremiumView {
 					}	
 	    		}        	
 			}	
+		} else if (mySettings.screenWidth == 218 and mySettings.screenHeight == 218 ) {     //! FR255s(m) labels
+			for (i = 1; i < 8; ++i) {
+			   	if ( i == 1 ) {			//!upper row, left    	
+					if (disablelabel[1] == false) {
+						Coloring(dc,i,fieldValue[i],"016,027,92,016");
+					}	    
+			   	} else if ( i == 2 ) {	//!upper row, right
+					if (disablelabel[2] == false) {
+						Coloring(dc,i,fieldValue[i],"109,027,92,016");
+					}
+				} else if ( i == 3 ) {  //!middle row, left		
+					if (disablelabel[3] == false) {
+						Coloring(dc,i,fieldValue[i],"000,084,066,016");
+					}	
+		   		} else if ( i == 4 ) {	//!middle row, middle
+					if (disablelabel[4] == false) {
+						Coloring(dc,i,fieldValue[i],"067,084,083,016");
+					}
+				} else if ( i == 5 ) {  //!middle row, right		
+					if (disablelabel[5] == false) {
+						Coloring(dc,i,fieldValue[i],"149,084,070,016");
+					}	
+			   	} else if ( i == 6 ) {	//!lower row, left
+					if (disablelabel[6] == false) {
+						Coloring(dc,i,fieldValue[i],"016,183,092,016");
+					}
+				} else if ( i == 7 ) {	//!lower row, right	
+					if (disablelabel[7] == false) {
+						Coloring(dc,i,fieldValue[i],"109,183,091,016");
+					}	
+	    		}        	
+			}	
 		} else {
 			for (i = 1; i < 8; ++i) {
 			   	if ( i == 1 ) {			//!upper row, left    	
@@ -858,6 +890,9 @@ class ExtramemView extends DatarunpremiumView {
 			} else if (mySettings.screenWidth == 416 and mySettings.screenHeight == 416) {
 				 dc.drawText(183, -4, Graphics.FONT_MEDIUM, mLaps, Graphics.TEXT_JUSTIFY_CENTER);
 				 dc.drawText(238, 2, Graphics.FONT_XTINY, "lap", Graphics.TEXT_JUSTIFY_CENTER);		
+			} else if (mySettings.screenWidth == 218 and mySettings.screenHeight == 218) {
+				 dc.drawText(96, -4, Graphics.FONT_MEDIUM, mLaps, Graphics.TEXT_JUSTIFY_CENTER);
+				 dc.drawText(125, 2, Graphics.FONT_XTINY, "lap", Graphics.TEXT_JUSTIFY_CENTER);
 			} else {	
 				 dc.drawText(103, -4, Graphics.FONT_MEDIUM, mLaps, Graphics.TEXT_JUSTIFY_CENTER);
 				 dc.drawText(140, -1, Graphics.FONT_XTINY, "lap", Graphics.TEXT_JUSTIFY_CENTER);
@@ -878,8 +913,10 @@ class ExtramemView extends DatarunpremiumView {
 				dc.drawText(150, -2, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
 	    	} else if (mySettings.screenWidth == 416 and mySettings.screenHeight == 416) {
 				dc.drawText(223, 0, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
-	    	} else {
-				dc.drawText(130, -4, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
+	    	} else if (mySettings.screenWidth == 218 and mySettings.screenHeight == 218) {
+				dc.drawText(117, 0, Graphics.FONT_SMALL, strTime, Graphics.TEXT_JUSTIFY_CENTER);
+			} else {
+				dc.drawText(128, 0, Graphics.FONT_SMALL, strTime, Graphics.TEXT_JUSTIFY_CENTER);
 			}
 		} else if (uMilClockAltern == 3) {		//! Display of metric in Clock field
 			var originalFontcolor = mColourFont;
@@ -919,6 +956,8 @@ class ExtramemView extends DatarunpremiumView {
 	    	   	dc.drawText(140, 15, Graphics.FONT_MEDIUM, CFMValue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 	       	} else if (mySettings.screenWidth == 416 and mySettings.screenHeight == 416) {
 	    	   	dc.drawText(208, 25, Graphics.FONT_MEDIUM, CFMValue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+	       	} else if (mySettings.screenWidth == 218 and mySettings.screenHeight == 218) {
+	    	   	dc.drawText(109, 13, Graphics.FONT_MEDIUM, CFMValue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 	       	} else {
 		       	dc.drawText(120, 13, Graphics.FONT_MEDIUM, CFMValue, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
     	    }

@@ -54,8 +54,7 @@ class DeviceView extends PowerView {
 		   dc.fillRectangle(165, 5, 55, 23);
 		}
 
-		//! Display metrics
-        dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
+		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
 
 		myTime = Toybox.System.getClockTime(); 
     	strTime = myTime.hour.format("%02d") + ":" + myTime.min.format("%02d");
@@ -65,6 +64,7 @@ class DeviceView extends PowerView {
 			dc.drawText(120, -4, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
 		}
 
+		//! Display metrics        
 		for (var i = 1; i < 8; ++i) {
 	    	if ( i == 1 ) {			//!upper row, left
 	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"069,067,073,013,077,073,037");

@@ -45,37 +45,25 @@ class DeviceView extends PowerView {
         //! Bottom vertical divider
         dc.drawLine(109, 142, 109, 202);
 
-		//! Display GPS accuracy
-        dc.setColor(mGPScolor, Graphics.COLOR_TRANSPARENT);
-        dc.fillRectangle(10, 5, 64, 21); 
-		if (uMilClockAltern == 1) {
-		   dc.fillRectangle(162, 5, 55, 21);
-		} else {
-		   dc.fillRectangle(145, 5, 55, 21);
-		}
-
-		dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
+		//! Display metrics
+        dc.setColor(mColourFont, Graphics.COLOR_TRANSPARENT);
 
 		//! Show clock with current time in top
 		myTime = Toybox.System.getClockTime(); 
-    	strTime = myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"); 
-    	
-    	//! Show military clock in top
-		if (uMilClockAltern == 0) {			
-		    dc.drawText(108, -4, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
-	    }
-	    
+    	strTime = myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"); 		
+		dc.drawText(108, -4, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
+	
 		for (var i = 1; i < 8; ++i) {
 	    	if ( i == 1 ) {			//!upper row, left
-	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"062,061,065,015,067,062,034");
+	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"062,063,065,015,067,062,036");
 	       	} else if ( i == 2 ) {	//!upper row, right
-	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"154,061,163,114,067,152,034");
+	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"154,063,163,114,067,152,036");
 	       	} else if ( i == 3 ) {  //!middle row, left
-	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"031,119,000,000,000,033,092");
+	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"031,121,000,000,000,033,092");
 	       	} else if ( i == 4 ) {	//!middle row, middle
-	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"107,119,000,000,000,109,092");
+	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"107,121,000,000,000,109,092");
 	       	} else if ( i == 5 ) {  //!middle row, right
-	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"183,120,000,000,000,183,092");
+	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"183,121,000,000,000,183,092");
 	       	} else if ( i == 6 ) {	//!lower row, left
 	    		Formatting(dc,i,fieldValue[i],fieldFormat[i],fieldLabel[i],"063,163,065,015,157,073,191");
 	       	} else if ( i == 7 ) {	//!lower row, right
