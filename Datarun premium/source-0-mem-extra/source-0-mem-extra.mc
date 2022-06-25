@@ -908,15 +908,15 @@ class ExtramemView extends DatarunpremiumView {
 			}
 	    	var strTime = AmPmhour + ":" + myTime.min.format("%02d") + " " + AmPm;
 	    	if (mySettings.screenWidth == 260 and mySettings.screenHeight == 260) {
-				dc.drawText(140, -3, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
+				dc.drawText(140, 1, Graphics.FONT_SMALL, strTime, Graphics.TEXT_JUSTIFY_CENTER);
 	    	} else if (mySettings.screenWidth == 280 and mySettings.screenHeight == 280) {
-				dc.drawText(150, -2, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
+				dc.drawText(150, 2, Graphics.FONT_SMALL, strTime, Graphics.TEXT_JUSTIFY_CENTER);
 	    	} else if (mySettings.screenWidth == 416 and mySettings.screenHeight == 416) {
-				dc.drawText(223, 0, Graphics.FONT_MEDIUM, strTime, Graphics.TEXT_JUSTIFY_CENTER);
+				dc.drawText(223, 4, Graphics.FONT_SMALL, strTime, Graphics.TEXT_JUSTIFY_CENTER);
 	    	} else if (mySettings.screenWidth == 218 and mySettings.screenHeight == 218) {
 				dc.drawText(117, 0, Graphics.FONT_SMALL, strTime, Graphics.TEXT_JUSTIFY_CENTER);
-			} else {
-				dc.drawText(128, 0, Graphics.FONT_SMALL, strTime, Graphics.TEXT_JUSTIFY_CENTER);
+	    	} else {
+				dc.drawText(130, 1, Graphics.FONT_SMALL, strTime, Graphics.TEXT_JUSTIFY_CENTER);
 			}
 		} else if (uMilClockAltern == 3) {		//! Display of metric in Clock field
 			var originalFontcolor = mColourFont;

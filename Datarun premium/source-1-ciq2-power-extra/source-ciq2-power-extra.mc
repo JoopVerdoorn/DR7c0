@@ -32,7 +32,6 @@ class CiqView extends ExtramemView {
     var uFTPHumid 							= 70;
     var uRealAltitude 						= 2;
     var uFTPAltitude 						= 200;
-//!    hidden var workoutTarget 						;
     hidden var hasWorkoutStep 				= false;
     hidden var WorkoutStepLowBoundary		= 0;
     hidden var WorkoutStepHighBoundary		= 999;
@@ -40,11 +39,7 @@ class CiqView extends ExtramemView {
     var AveragePower						= 0;
     var WorkoutStepNr						= 0;
     var WorkoutStepDuration 				= 0; 
-//!    hidden var StartTimeNewStep				= 0;
     var StartDistanceNewStep				= 0;
-//!    hidden var RemainingWorkoutTime  		= 0;
-//!    hidden var RemainingWorkoutDistance		= 0;
-//!    hidden var WorkoutStepDurationType  	= 9;
     hidden var AveragePower3sec  	 		= 0;
     hidden var AveragePower5sec  	 		= 0;
     hidden var AveragePower10sec  	 		= 0;
@@ -590,9 +585,12 @@ class CiqView extends ExtramemView {
 	        		mPowerWarningunder = WorkoutStepLowBoundary;
     	    		mPowerWarningupper = WorkoutStepHighBoundary; 
         		} else {
-        			mPowerWarningunder = mPowerWarningunder.toNumber();
-                    mPowerWarningupper = mPowerWarningupper.toNumber(); 
+        			mPowerWarningunder = 0;
+                    mPowerWarningupper = 999; 
         		}
+        } else if (Activity has :getCurrentWorkoutStep and overruleWourkout == true) {
+            mPowerWarningunder = mPowerWarningunder.toNumber();
+            mPowerWarningupper = mPowerWarningupper.toNumber(); 
         }
 
 		var runalertPower = 0;
