@@ -79,6 +79,12 @@ class CiqView extends ExtramemView {
     hidden var mPowerWarningunder				= 0;
     hidden var mPowerWarningupper 				= 999;
     hidden var ElapsedDistance                  = 1;
+    hidden var maxHR1						 	= 0;
+	hidden var minHR1						 	= 0;
+	hidden var maxPwr1						 	= 0;
+	hidden var minPwr1						 	= 0;
+	var mLastLapMaxPwr							= 0;
+	var mLastLapMinPwr							= 0;
     
             		            				
     function initialize() {
@@ -199,6 +205,10 @@ class CiqView extends ExtramemView {
 			}
 		}
 		
+		var info = Activity.getActivityInfo();
+		minHR1 = (info.currentHeartRate != null) ? info.currentHeartRate : 0;
+		minPwr1 = (info.currentPower != null) ? (info.currentPower+0.001)*PwrCorrFactor : 0;
+		
 		if (mySettings.screenWidth == 260 and mySettings.screenHeight == 260) {
 			Garminfont = Ui.loadResource(Rez.Fonts.Garmin2);
 		} else if (mySettings.screenWidth == 280 and mySettings.screenHeight == 280) {
@@ -213,6 +223,14 @@ class CiqView extends ExtramemView {
 
     //! Calculations we need to do every second even when the data field is not visible
     function compute(info) {
+        currentHR = (info.currentHeartRate != null) ? info.currentHeartRate : 0;
+        maxHR1 = (currentHR > maxHR1) ? currentHR : maxHR1;
+        if (currentHR > 0 and minHR1 == 0) {
+        	minHR1 = currentHR;
+        } else {
+        	minHR1 = (currentHR < minHR1) ? currentHR : minHR1;
+        }
+        
         //! If enabled, switch the backlight on in order to make it stay on
         if (uBacklight) {
              Attention.backlight(true);
@@ -260,11 +278,8 @@ class CiqView extends ExtramemView {
            	
            	//!Calculate lapCadence
             mCadenceTime	 = (info.currentCadence != null) ? mCadenceTime+1 : mCadenceTime;
-            if (ucadenceWorkaround == true ) { //! workaround multiply by two for FR945LTE and Fenix 6 series
-            	mElapsedCadence= (info.currentCadence != null) ? mElapsedCadence + info.currentCadence*2 : mElapsedCadence;
-            } else {
-            	mElapsedCadence= (info.currentCadence != null) ? mElapsedCadence + info.currentCadence : mElapsedCadence;
-            }
+            mElapsedCadence= (info.currentCadence != null) ? mElapsedCadence + info.currentCadence : mElapsedCadence;
+            
             
             //! Calculate vertical speed
     	    valueDesc = (info.totalDescent != null) ? info.totalDescent : 0;
@@ -519,6 +534,13 @@ class CiqView extends ExtramemView {
             }
 			mElapsedPower    = (mTimerRunning) ? mElapsedPower + runPower : mElapsedPower;
 			
+			maxPwr1 = (runPower > maxPwr1) ? runPower : maxPwr1;
+    	    if (runPower > 0 and minPwr1 == 0) {
+        		minPwr1 = runPower;
+	        } else {
+    	    	minPwr1 = (runPower < minPwr1) ? runPower : minPwr1;
+        	}
+
 			if (uCP != 0) {
 				if ((runPower+0.001)/uCP < 0.5 ) {
 					RSS = RSS + 0.0026516504294491;
@@ -683,6 +705,72 @@ class CiqView extends ExtramemView {
         mLastLapPowerMarker      	= 0;
         mLastLapElapsedPower     	= 0; 
         mLastLapTimerTimePwr     	= 0;  
+        HRzone= 0;
+        Powerzone= 0;
+        kCalories= 0;
+        mElapsedCadence   = 0;
+        mLastLapCadenceMarker  = 0;
+        mCurrentCadence= 0; 
+        mLastLapElapsedCadence= 0;
+        mCadenceTime= 0;
+        mLapTimerTimeCadence= 0;
+        mLastLapTimeCadenceMarker= 0;
+        mLastLapTimerTimeCadence= 0;
+        currentCadence= 0;
+        LapCadence= 0;
+        LastLapCadence= 0;
+        AverageCadence = 0; 
+        AveragerollgroundContactBalance10sec= 0;
+        AveragerollgroundContactTime10sec= 0;
+        AveragerollstanceTime10sec= 0;
+        AveragerollstepLength10sec= 0;
+        AveragerollverticalOscillation10sec= 0;
+        AveragerollverticalRatio10sec= 0;
+        Averagespeedinmper3sec = 0;
+        Averagespeedinmper5sec = 0;
+        mLapTimerTime   = 0;
+        mElapsedDistance= 0;
+        mTimerRunning= false;
+        mStartStopPushed = 0;//! Timer value when the start/stop button was last pushed
+        mPrevElapsedDistance = 0;
+        mRacetime  = 0;
+        mETA= 0;
+        mLastLapDistMarker   = 0;
+        mLastLapTimeMarker   = 0;
+        mLastLapStoppedTimeMarker= 0;
+        mLastLapStoppedDistMarker= 0;
+        mLastLapElapsedDistance  = 0;
+        mLastLapTimerTime= 0;
+        mLapSpeed = 0;
+        mLastLapSpeed = 0;
+        mLaps= 1;   
+        mElapsedHeartrate   = 0;
+        mLastLapHeartrateMarker  = 0;
+        mCurrentHeartrate= 0; 
+        mLastLapElapsedHeartrate= 0;
+        mHeartrateTime= 0;
+        mLapTimerTimeHR= 0;
+        mLastLapTimeHRMarker= 0;
+        mLastLapTimerTimeHR= 0;
+        currentHR= 0;
+        mLastLapMaxHR = 0;
+        mLastLapMinHR = 0;
+        LapHeartrate= 0;
+        LastLapHeartrate= 0;
+        AverageHeartrate = 0;
+        mLapElapsedDistance = 0;
+        mElapsedPower   = 0;
+        mLastLapElapsedPower= 0;
+        mPowerTime= 0;
+        mLastLapPowerMarker  = 0;
+        mLastLapStoppedPowerMarker   = 0;
+        mLastLapStoppedHeartrateMarker   = 0;
+        mLastLapTimePwrMarker= 0;
+        mLapTimerTimePwr= 0;
+        mLastLapTimerTimePwr= 0;
+        LapPower = 0; 
+        LastLapPower = 0;
+        runPower= 0;
     }
 
 	function onUpdate(dc) {
@@ -1049,7 +1137,23 @@ class CiqView extends ExtramemView {
 	        } else if (metric[i] == 80) {
     	        fieldValue[i] = (info.maxPower != null) ? info.maxPower : 0;
         	    fieldLabel[i] = "Max Pwr";
-            	fieldFormat[i] = "power"; 
+            	fieldFormat[i] = "power";
+            } else if (metric[i] == 132) {
+    	        fieldValue[i] = mLastLapMaxHR;
+        	    fieldLabel[i] = "LLmaxHR";
+            	fieldFormat[i] = "0decimal";   
+			} else if (metric[i] == 133) {
+    	        fieldValue[i] = mLastLapMinHR;
+        	    fieldLabel[i] = "LLminHR";
+            	fieldFormat[i] = "0decimal";   
+			} else if (metric[i] == 134) {
+    	        fieldValue[i] = mLastLapMaxPwr;
+        	    fieldLabel[i] = "LLmaxPw";
+            	fieldFormat[i] = "0decimal";   
+			} else if (metric[i] == 135) {
+    	        fieldValue[i] = mLastLapMinPwr;
+        	    fieldLabel[i] = "LLminPw";
+            	fieldFormat[i] = "0decimal"; 
 			}
         	//!einde invullen field metrics
 		}
@@ -1211,6 +1315,10 @@ class CiqView extends ExtramemView {
         mLastLapElapsedHeartrate 	= (info.currentHeartRate != null) ? mElapsedHeartrate - mLastLapHeartrateMarker : 0;
         mLastLapHeartrateMarker     = mElapsedHeartrate;
         mLastLapTimeHRMarker        = mHeartrateTime;
+        mLastLapMaxHR				= maxHR1;
+        maxHR1						= 0;
+        mLastLapMinHR				= minHR1;
+        minHR1						= 0;
         
         mLastLapTimerTimeCadence	= mHeartrateTime - mLastLapTimeCadenceMarker;
         mLastLapElapsedCadence 		= (info.currentCadence != null) ? mElapsedCadence - mLastLapCadenceMarker : 0;
@@ -1221,7 +1329,11 @@ class CiqView extends ExtramemView {
         mLastLapElapsedPower  		= (info.currentPower != null) ? mElapsedPower - mLastLapPowerMarker : 0;
         mLastLapPowerMarker         = mElapsedPower;
         mLastLapTimePwrMarker       = mPowerTime;        
-
+        mLastLapMaxPwr				= maxPwr1;
+        maxPwr1						= 0;
+        mLastLapMinPwr				= minPwr1;
+        minPwr1						= 0;
+        
         mLaps++;	
 	}
 }

@@ -35,14 +35,13 @@
     <property id="pTempeCalibration" type="number">0</property>
     <property id="pShowRedClock" type="boolean">false</property>
     <property id="pCCnumber" type="number">9999999</property>
-    <property id="pcadenceWorkaround" type="boolean">false</property>
     <property id="pLinecolor" type="number">1</property>
   </properties>
 
 	
   <strings>
     <string id="AppName">Datarun premium with 7 metrics, main version</string>
-    <string id="lDummysetting4version">Version 2.48h of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="lDummysetting4version">Version 2.49 of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lMiscellaneousMenu">___Miscellaneous items___</string>
@@ -159,7 +158,6 @@
     <string id="lVAM_hour">Vertical speed averaged over the last 30 seconds (in meters/hour or feet/hour depending on watch settings)</string>
 	<string id="lVAM_min">Vertical speed averaged over the last 30 seconds (in meters/minute or feet/minute depending on watch settings)</string>
 	<string id="lElapsed">Elapsed time (actual time minus start of timer moment)</string>
-	<string id="lcadenceWorkaround">Apply workaround for bug in cadance metrics being halved (currently for Fenix 6 and FR945 LTE)</string>
 	<string id="lLinecolorGreen">Green</string>
     <string id="lLinecolorBlue">Blue</string>
     <string id="lLinecolorGray">Dark gray</string>
@@ -220,9 +218,6 @@
     </setting>
     <setting propertyKey="@Properties.pShowRedClock" title="@Strings.lShowRedClock">
       <settingConfig type="boolean" required="false" />
-    </setting>
-    <setting propertyKey="@Properties.pcadenceWorkaround" title="@Strings.lcadenceWorkaround">
-      <settingConfig type="boolean" required="true" />
     </setting>
     <setting propertyKey="@Properties.pMilClockAltern" title="@Strings.lMilClockAltern">
       <settingConfig type="list" required="true">
