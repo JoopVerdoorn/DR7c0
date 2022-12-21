@@ -7,7 +7,7 @@ class CiqView extends ExtramemView {
 	
     function initialize() {
         ExtramemView.initialize();	
-        Garminfont = (ID0 == 3588) ? Ui.loadResource(Rez.Fonts.Garmin1) : Graphics.FONT_NUMBER_MEDIUM;	
+        Garminfont = (Watchtype == 3077) ? Ui.loadResource(Rez.Fonts.Garmin1) : Graphics.FONT_NUMBER_MEDIUM;	
     }
 
     //! Calculations we need to do every second even when the data field is not visible

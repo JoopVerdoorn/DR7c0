@@ -19,8 +19,6 @@
     <property id="pRoundedPace" type="boolean">true</property>
     <property id="pBlackBackground" type="boolean">false</property>
     <property id="pBacklight" type="boolean">false</property>
-    <property id="myNumber" type="number">12345678</property>
-    <property id="pShowDemo" type="boolean">false</property>
     <property id="pDummysetting4version" type="boolean">true</property>
     <property id="pRequiredPower" type="string">000:999</property>
     <property id="pWarningFreq" type="number">5</property>
@@ -62,7 +60,6 @@
     <property id="pFontalertColorLow" type="number">5</property>
     <property id="pFontalertColorHigh" type="number">4</property>
     <property id="pShowRedClock" type="boolean">false</property>
-    <property id="pCCnumber" type="number">9999999</property>
     <property id="pVertgradeDist" type="number">100</property>
     <property id="pLabelfontbig" type="boolean">true</property>
     <property id="pLinecolor" type="number">1</property>
@@ -70,7 +67,7 @@
 
 	
   <strings>
-    <string id="lDummysetting4version">Version 2.49 of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="lDummysetting4version">Version 2.50 of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lMiscellaneousMenu">___Miscellaneous items___</string>
@@ -117,7 +114,6 @@
     <string id="lRoundedPace">Show current pace as Rounded Pace</string>
     <string id="lMaxColoringPace">Use 5 colors for coloring of pace field in middle row, instead of 3 colors</string>
     <string id="lColoringPaceFromAver">Use average pace for coloring of the pace field in middle row, instead of pace based on desired finish time</string>
-    <string id="lShowDemo">Show demo view for ID's and check license</string>
     <string id="lBlackBackground">Use black background instead of white</string>
     <string id="lBacklight">Force backlight on, regardless of device settings (not for Epix 2)</string>
     <string id="lMilClockAltern">Alternative for default military clock in upper field</string>
@@ -125,8 +121,6 @@
     <string id="lShowlaps">Show number of laps </string>
     <string id="lShowAMPM">Show clock with AM or PM instead of military time </string>
     <string id="lShowmetric">Show metric </string>
-    <string id="MyNumberTitle">Enter license key</string>
-    <string id="l">C-Code generated on the watch by the corresponding main Datarun premium datafield</string> 
     <string id="lRacedistanceTitle">Enter race distance in meters or thousands of a mile (imperial/statute watch settings) for estimated finish time</string>
     <string id="lRacedistanceError">Not valid, only numbers allowed!</string>
     <string id="lRacetimeTitle">Enter desired finish time for estimated deviation of finish time (format like 03:59:00 required!)</string>
@@ -274,7 +268,6 @@
     <string id="lManPwrAlticorrect">Correction based on manual set altitude</string>
     <string id="lRealAltitude">Current altitude, for power correction based on altitude</string>
     <string id="lFTPAltitude">Altitude at which Critical power or FTP is determined, for power correction based on altitude</string>
-    <string id="lCCnumber">C-Code generated on the watch by the corresponding main Datarun premium datafield</string>  
     <string id="lLtarget">Lower power boundary of a workout step (not for F5x), from Training peaks etc, corrected by temperature/humidity/altitude if set in settings</string> 
     <string id="lHtarget">Upper power boundary of a workout step (not for F5x), from Training peaks etc, corrected by temperature/humidity/altitude if set in settings</string>
     <string id="lLperctarget">Lower power boundary of a workout step in % van FTP (not for F5x), from Training peaks etc, corrected by temperature/humidity/altitude if set in settings</string> 
@@ -321,9 +314,6 @@
   <settings>
   	<setting propertyKey="@Properties.pDummysetting4version" title="@Strings.lDummysetting4version">
       <settingConfig type="boolean" required="true" />
-    </setting>  	
-  	<setting propertyKey="@Properties.pShowDemo" title="@Strings.lShowDemo">
-      <settingConfig type="boolean" required="true" />
     </setting>
     <setting propertyKey="@Properties.pBlackBackground" title="@Strings.lBlackBackground">
       <settingConfig type="boolean" required="true" />
@@ -344,9 +334,6 @@
     </setting>
     <setting propertyKey="@Properties.pBacklight" title="@Strings.lBacklight">
       <settingConfig type="boolean" required="true" />
-    </setting>
-    <setting propertyKey="@Properties.myNumber" title="@Strings.MyNumberTitle">
-        <settingConfig type="numeric" />
     </setting>
     <setting propertyKey="@Properties.pRoundedPace" title="@Strings.lRoundedPace">
       <settingConfig type="boolean" required="true" />

@@ -13,17 +13,14 @@
     <property id="pRacetime" type="string">03:59:48</property>
     <property id="pRoundedPace" type="boolean">true</property>
     <property id="pBacklight" type="boolean">false</property>
-    <property id="myNumber" type="number">12345678</property>
     <property id="pETAfromLap" type="boolean">true</property>
-    <property id="pShowDemo" type="boolean">false</property>
     <property id="pDummysetting4version" type="boolean">true</property>
     <property id="pShowRedClock" type="boolean">false</property>
-    <property id="pCCnumber" type="number">9999999</property>
   </properties>
 
 	
   <strings>
-    <string id="lDummysetting4version">Version 2.49 of Datarun premium with 7 metrics, main version (dummy setting)</string>
+    <string id="lDummysetting4version">Version 2.50 of Datarun premium with 7 metrics, main version (dummy setting)</string>
 	<string id="lTimeMenu">___Time items___</string>
 	<string id="lDistanceMenu">___Distance items___</string>
 	<string id="lPaceMenu">___Pace items___</string>
@@ -61,11 +58,7 @@
     <string id="lETAfrompace">Estimated finished time based on average or last lap pace</string>
 	<string id="lETAdeviation">Deviation from required finish in hours, minutes and seconds</string>
     <string id="lRoundedPace">Show current pace as Rounded Pace</string>
-    <string id="lShowDemo">Show demo view for ID's and check license</string>
     <string id="lBacklight">Force backlight on, regardless of device settings</string>
-    <string id="MyNumberTitle">Enter license key</string>
-    <string id="MyNumberError">Not valid, only numbers allowed!</string>
-    <string id="lCCnumber">C-Code generated on the watch by the corresponding main Datarun premium datafield</string> 
     <string id="lRacedistanceTitle">Enter race distance in meters or thousands of a mile (imperial/statute watch settings) for estimated finish time</string>
     <string id="lRacedistanceError">Not valid, only numbers allowed!</string>
     <string id="lRacetimeTitle">Enter desired finish time(format like 03:59:00 required!)</string>
@@ -88,15 +81,9 @@
   <settings>
   	<setting propertyKey="@Properties.pDummysetting4version" title="@Strings.lDummysetting4version">
       <settingConfig type="boolean" required="true" />
-    </setting>  	
-  	<setting propertyKey="@Properties.pShowDemo" title="@Strings.lShowDemo">
-      <settingConfig type="boolean" required="true" />
     </setting>
     <setting propertyKey="@Properties.pBacklight" title="@Strings.lBacklight">
       <settingConfig type="boolean" required="true" />
-    </setting>
-    <setting propertyKey="@Properties.myNumber" title="@Strings.MyNumberTitle">
-        <settingConfig type="numeric" errorMessage="@Strings.MyNumberError" />
     </setting>
     <setting propertyKey="@Properties.pRoundedPace" title="@Strings.lRoundedPace">
       <settingConfig type="boolean" required="true" />

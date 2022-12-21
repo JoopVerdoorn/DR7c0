@@ -1183,20 +1183,7 @@ class CiqView extends ExtramemView {
        			RealRemainingWorkoutTime = 0;
        			DistinClockfield = false;
        		}
-		}
-		
-		//! Conditions for showing the demoscreen       
-        if (uShowDemo == false) {
-        	if (licenseOK == false && jTimertime > 900)  {
-        		uShowDemo = true;        		
-        	}
-        }
-
-	   //! Check whether demoscreen is showed or the metrics 
-	   if (uShowDemo == false ) {
-
-	   } 
-	   
+		}	   
 	}
 
     function Formatting(dc,counter,fieldvalue,fieldformat,fieldlabel,CorString) {     
@@ -1208,7 +1195,8 @@ class CiqView extends ExtramemView {
         var xh = CorString.substring(12, 15);
         var yh = CorString.substring(16, 19);
         var xl = CorString.substring(20, 23);
-		var yl = CorString.substring(24, 27);                  
+		var yl = CorString.substring(24, 27);    
+		var Watchtype = 1111;              
         x = x.toNumber();
         y = y.toNumber();
         xms = xms.toNumber();
